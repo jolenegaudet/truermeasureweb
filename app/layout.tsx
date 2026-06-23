@@ -1,26 +1,29 @@
 import type { Metadata } from "next";
-import { Inter, Mona_Sans } from "next/font/google";
+import { Cormorant_Garamond, Hanken_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 
-const inter = Inter({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant-garamond",
 });
 
-const monaSans = Mona_Sans({
+const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-mona-sans",
+  variable: "--font-hanken-grotesk",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Truer Measure",
+    default: "The Hidden Report Card | Truer Measure",
     template: "%s | Truer Measure",
   },
-  description: "Start here. Learn from the room. Build direct.",
+  description:
+    "A living record of who your child is becoming, built to preserve the skills and qualities that shape almost everything that matters.",
 };
 
 export default function RootLayout({
@@ -29,8 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${monaSans.variable}`}>
-      <body className="bg-cream font-sans text-ink antialiased">
+    <html
+      lang="en"
+      className={`${cormorantGaramond.variable} ${hankenGrotesk.variable}`}
+    >
+      <body className="bg-parchment font-sans text-bark antialiased overflow-x-hidden">
         <Script
           src="https://plausible.io/js/script.js"
           data-domain="truermeasure.com"

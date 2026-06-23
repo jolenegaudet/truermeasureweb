@@ -1,15 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* Fonts — variables injected by next/font */
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-mona-sans);
+  --font-sans: var(--font-hanken-grotesk);
+  --font-heading: var(--font-cormorant-garamond);
 
-  /* Brand palette */
-  --color-cream: #faf9f5;
-  --color-bark: #2b2220;
   --color-parchment: #f7f1ed;
-  --color-ember: #c87941;
-  --color-ink: #1a1a1a;
-  --color-stone: #6b6560;
+  --color-bark:      #2b2220;
+  --color-smoke:     #6f615c;
+  --color-dusk:      #5b4d49;
+  --color-rose:      #a47a72;
+  --color-blush:     #efe3df;
+  --color-border:    #e3cfc8;
+  --color-grid:      #dcc5be;
+  --color-faint:     #bfa099;
+  --color-muted:     #bdaca6;
+  --color-rose-dark: #c29f98;
+  --color-charcoal:  #3f322f;
+  --color-ghost:     #fdfbf9;
+  --color-linen:     #f3e8e3;
+  --color-subdued:   #9c8a84;
+  --color-warm:      #d8b8b2;
 }
