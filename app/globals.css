@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts — variables injected by next/font */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-mona-sans);
+
+  /* Brand palette */
+  --color-cream: #faf9f5;
+  --color-bark: #2b2220;
+  --color-parchment: #f7f1ed;
+  --color-ember: #c87941;
+  --color-ink: #1a1a1a;
+  --color-stone: #6b6560;
+}
