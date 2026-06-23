@@ -29,20 +29,12 @@ const contrasts = [
     right: "Captures who your child is beyond any standard",
   },
   {
-    left: "Updated twice a year",
-    right: "Updated whenever something significant happens",
-  },
-  {
-    left: "Written by teachers",
-    right: "Co-created by the people who know your child best",
+    left: "A snapshot in time",
+    right: "A living record that grows with them",
   },
   {
     left: "Tells you what they know",
     right: "Shows you who they're becoming",
-  },
-  {
-    left: "A snapshot in time",
-    right: "A living record that grows with them",
   },
 ];
 
