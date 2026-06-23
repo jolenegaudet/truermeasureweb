@@ -12,7 +12,7 @@ export default function LearnPage() {
       <PageHero
         eyebrow="Learn"
         title="Learn From The Room"
-        subtitle="[Your subtitle — replace with content from your original site]"
+        subtitle="Communication + Conversations + Collective Intelligence"
       />
       <section className="mx-auto max-w-3xl px-6 py-20">
         <LearnContent />

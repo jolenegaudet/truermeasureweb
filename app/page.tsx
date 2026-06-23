@@ -10,9 +10,9 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        eyebrow="Welcome"
-        title="Start Here"
-        subtitle="[Your tagline — replace this with content from your original site]"
+        eyebrow="The Truer Measure of Your Child"
+        title="The Hidden Report Card"
+        subtitle="Because a report card was never designed to tell the whole story."
       />
       <section className="mx-auto max-w-3xl px-6 py-20">
         <HomeContent />
