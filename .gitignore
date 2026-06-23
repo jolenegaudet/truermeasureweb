@@ -38,3 +38,11 @@ Thumbs.db
 # Cache
 .cache/
 .parcel-cache/
+
+# Netlify
+.netlify/
+
+# Debug / comparison artifacts
+out-original.html
+scripts/screenshot-*.png
+scripts/section-*.png
