@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -12,7 +11,6 @@ const links = [
 ];
 
 export default function Nav() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
@@ -30,9 +28,7 @@ export default function Nav() {
             <Link
               key={href}
               href={href}
-              className={`text-[12.5px] font-semibold tracking-[0.16em] uppercase transition-opacity hover:opacity-70 ${
-                pathname === href ? "text-bark" : "text-rose"
-              }`}
+              className="text-[12.5px] font-semibold tracking-[0.16em] uppercase text-rose transition-opacity hover:opacity-70"
             >
               {label}
             </Link>

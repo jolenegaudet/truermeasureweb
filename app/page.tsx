@@ -16,25 +16,25 @@ const qualities = [
 ];
 
 const moments = [
-  "Meeting a new teacher for the first time",
-  "Choosing a school, program, or learning path",
-  "Your child is struggling and needs to be reminded of who they are",
-  "Applying for something that asks who your child is beyond their grades",
-  "Celebrating a milestone that will never show up on a report card",
+  "Before a parent–teacher meeting",
+  "Before choosing courses",
+  "Before applying for a program, team, or scholarship",
+  "When confidence drops",
+  "When a child says, “I’m not smart.”",
 ];
 
 const contrasts = [
   {
-    left: "Measures performance against grade-level standards",
-    right: "Captures who your child is beyond any standard",
+    left: "Record performance.",
+    right: "Records the person behind the performance.",
   },
   {
-    left: "A snapshot in time",
-    right: "A living record that grows with them",
+    left: "Provide a snapshot.",
+    right: "Preserves the story.",
   },
   {
-    left: "Tells you what they know",
-    right: "Shows you who they're becoming",
+    left: "Tell you how a child is doing.",
+    right: "Helps families remember who that child is.",
   },
 ];
 
@@ -92,7 +92,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1080px]">
           <div className="mx-auto mb-16 max-w-[640px] text-center">
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              THE HIDDEN REPORT CARD — THE TRUER MEASURE OF YOUR CHILD
+              THE HIDDEN REPORT CARD - THE TRUER MEASURE OF YOUR CHILD
             </div>
             <h2
               className="font-heading font-medium text-bark"
@@ -216,7 +216,7 @@ export default function HomePage() {
                 A good investor
               </div>
               <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.7 }}>
-                doesn't look at one day's performance. They look for patterns
+                doesn't look at one days' performance. The look for patterns
                 over time.
               </p>
             </div>
@@ -225,7 +225,7 @@ export default function HomePage() {
                 The hidden report card
               </div>
               <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.7 }}>
-                helps families see patterns, growth, strengths, and potential
+                helps families see patterns, growth, strenghts, and potential
                 that are easy to miss when focusing only on grades.
               </p>
             </div>
@@ -449,6 +449,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col gap-2 text-[14px] text-smoke">
                 <div>Everything in Elite</div>
+                <div className="h-3" />
                 <div>Small-Group Sessions</div>
                 <div>Direct Access to Jolene via DM</div>
                 <div>Possibility of 1:1 Access</div>
