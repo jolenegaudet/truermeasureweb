@@ -42,8 +42,5 @@ Thumbs.db
 # Netlify
 .netlify/
 
-# Debug / comparison artifacts
-out-original.html
-scripts/screenshot-*.png
-scripts/section-*.png
-scripts/sec-*.png
+# Local secrets (never commit)
+.cf-token
