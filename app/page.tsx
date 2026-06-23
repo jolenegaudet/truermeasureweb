@@ -7,15 +7,12 @@ export const metadata: Metadata = {
 };
 
 const qualities = [
-  { n: "01", word: "Curiosity" },
-  { n: "02", word: "Resilience" },
-  { n: "03", word: "Creativity" },
-  { n: "04", word: "Empathy" },
-  { n: "05", word: "Confidence" },
-  { n: "06", word: "Persistence" },
-  { n: "07", word: "Initiative" },
-  { n: "08", word: "Self-regulation" },
-  { n: "09", word: "Integrity" },
+  { n: "01", word: "Confidence" },
+  { n: "02", word: "Curiosity" },
+  { n: "03", word: "Courage" },
+  { n: "04", word: "Initiative" },
+  { n: "05", word: "Resilience" },
+  { n: "06", word: "Creativity" },
 ];
 
 const moments = [
