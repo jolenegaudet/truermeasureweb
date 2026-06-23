@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-bark px-10 py-[56px]">
-      <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-6">
+    <footer className="bg-bark px-6 py-10 md:px-10 md:py-[56px]">
+      <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-4 md:gap-6">
         <div className="font-heading text-[21px] text-parchment">
           The Hidden Report Card
         </div>

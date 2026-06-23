@@ -15,10 +15,10 @@ export default function Nav() {
 
   return (
     <header>
-      <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-6 px-10 py-[26px]">
+      <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-4 px-5 py-5 md:gap-6 md:px-10 md:py-[26px]">
         <Link
           href="/"
-          className="font-heading text-[23px] font-semibold tracking-[0.01em] text-bark"
+          className="font-heading text-[17px] font-semibold tracking-[0.01em] text-bark md:text-[23px]"
         >
           Welcome to the Truer Measure of your child!
         </Link>
@@ -45,7 +45,7 @@ export default function Nav() {
       </div>
 
       {/* Gradient separator */}
-      <div className="mx-auto max-w-[1180px] px-10">
+      <div className="mx-auto max-w-[1180px] px-5 md:px-10">
         <div
           style={{
             height: "1px",
@@ -57,7 +57,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-border bg-parchment px-10 py-4 md:hidden">
+        <nav className="border-t border-border bg-parchment px-5 py-4 md:hidden">
           {links.map(({ href, label }) => (
             <Link
               key={href}

@@ -42,7 +42,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto max-w-[920px] px-10 pb-[72px] pt-24 text-center">
+      <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
         <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
           Because a report card was never designed to tell the whole story
         </div>
@@ -88,16 +88,16 @@ export default function HomePage() {
       </section>
 
       {/* Qualities */}
-      <section className="bg-blush px-10 py-24">
+      <section className="bg-blush px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1080px]">
-          <div className="mx-auto mb-16 max-w-[640px] text-center">
+          <div className="mx-auto mb-12 max-w-[640px] text-center md:mb-16">
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               THE HIDDEN REPORT CARD - THE TRUER MEASURE OF YOUR CHILD
             </div>
             <h2
               className="font-heading font-medium text-bark"
               style={{
-                fontSize: "clamp(32px,5vw,54px)",
+                fontSize: "clamp(28px,5vw,54px)",
                 lineHeight: 1.08,
                 margin: 0,
               }}
@@ -107,21 +107,18 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div
-            className="border border-grid bg-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1 }}
-          >
+          <div className="grid grid-cols-2 gap-px border border-grid bg-grid md:grid-cols-3">
             {qualities.map(({ n, word }) => (
               <div
                 key={n}
-                className="bg-blush px-8 py-[46px] text-center"
+                className="bg-blush px-4 py-8 text-center md:px-8 md:py-[46px]"
               >
                 <div className="font-heading mb-[14px] text-[13px] tracking-[0.3em] text-faint">
                   {n}
                 </div>
                 <div
                   className="font-heading font-medium text-bark"
-                  style={{ fontSize: "clamp(28px,3.4vw,40px)" }}
+                  style={{ fontSize: "clamp(22px,3.4vw,40px)" }}
                 >
                   {word}
                 </div>
@@ -141,11 +138,8 @@ export default function HomePage() {
       </section>
 
       {/* Founder */}
-      <section className="mx-auto max-w-[1080px] px-10 py-[104px]">
-        <div
-          className="grid items-center gap-16"
-          style={{ gridTemplateColumns: "0.85fr 1.15fr" }}
-        >
+      <section className="mx-auto max-w-[1080px] px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="grid items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
           <div>
             <Image
               src="/founder.png"
@@ -192,25 +186,22 @@ export default function HomePage() {
       </section>
 
       {/* Artifact (dark) */}
-      <section className="bg-bark px-10 py-[104px]">
+      <section className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[880px] text-center">
           <div className="mb-7 text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
             TRUERMEASURE.COM
           </div>
           <h2
-            className="font-heading mx-auto mb-14 font-medium text-parchment"
+            className="font-heading mx-auto mb-10 font-medium text-parchment md:mb-14"
             style={{
-              fontSize: "clamp(30px,4.6vw,52px)",
+              fontSize: "clamp(26px,4.6vw,52px)",
               lineHeight: 1.18,
             }}
           >
             The real value is ongoing clarity, a living document that helps
             families make better decisions about learning, growth, and support.
           </h2>
-          <div
-            className="border border-charcoal bg-charcoal text-left"
-            style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 1 }}
-          >
+          <div className="grid grid-cols-1 gap-px border border-charcoal bg-charcoal text-left md:grid-cols-2">
             <div className="bg-bark px-[34px] py-[38px]">
               <div className="font-heading mb-3 text-[21px] text-warm">
                 A good investor
@@ -234,7 +225,7 @@ export default function HomePage() {
       </section>
 
       {/* Moments */}
-      <section className="mx-auto max-w-[1000px] px-10 py-[104px]">
+      <section className="mx-auto max-w-[1000px] px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto mb-[60px] max-w-[620px] text-center">
           <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
             Whenever you need it
@@ -272,12 +263,12 @@ export default function HomePage() {
       </section>
 
       {/* Contrast */}
-      <section className="bg-blush px-10 py-[100px]">
+      <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
         <div className="mx-auto max-w-[1000px]">
-          <div className="mb-[60px] text-center">
+          <div className="mb-12 text-center md:mb-[60px]">
             <h2
               className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(30px,4.6vw,50px)", lineHeight: 1.12 }}
+              style={{ fontSize: "clamp(26px,4.6vw,50px)", lineHeight: 1.12 }}
             >
               Grades tell a story.
               <br />
@@ -285,14 +276,13 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="flex flex-col border border-grid" style={{ gap: 1, background: "#dcc5be" }}>
+          <div className="flex flex-col gap-px border border-grid bg-grid">
             {contrasts.map(({ left, right }, i) => (
               <div
                 key={i}
-                className="grid bg-blush"
-                style={{ gridTemplateColumns: "1fr 1fr" }}
+                className="grid grid-cols-1 bg-blush md:grid-cols-2"
               >
-                <div className="border-r border-grid px-9 py-[34px]">
+                <div className="border-b border-grid px-6 py-6 md:border-b-0 md:border-r md:px-9 md:py-[34px]">
                   <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-faint">
                     The report card
                   </div>
@@ -306,7 +296,7 @@ export default function HomePage() {
                     {left}
                   </div>
                 </div>
-                <div className="px-9 py-[34px]">
+                <div className="px-6 py-6 md:px-9 md:py-[34px]">
                   <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
                     The Hidden Report Card
                   </div>
@@ -327,12 +317,12 @@ export default function HomePage() {
       </section>
 
       {/* Tiers */}
-      <section id="tiers" className="bg-parchment px-10 pb-[100px] pt-[110px]">
+      <section id="tiers" className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]">
         <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto mb-16 max-w-[560px] text-center">
+          <div className="mx-auto mb-12 max-w-[560px] text-center md:mb-16">
             <h2
               className="font-heading mb-[18px] font-medium text-bark"
-              style={{ fontSize: "clamp(32px,5vw,52px)", lineHeight: 1.08 }}
+              style={{ fontSize: "clamp(28px,5vw,52px)", lineHeight: 1.08 }}
             >
               Start with Clarity.
             </h2>
@@ -341,10 +331,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div
-            className="grid items-stretch gap-6"
-            style={{ gridTemplateColumns: "1.08fr 1fr 1fr" }}
-          >
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1.08fr_1fr_1fr]">
             {/* Tier 1 — Start Here */}
             <div
               className="flex flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"

@@ -10,7 +10,7 @@ export default function BuildPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-blush px-10 pb-[72px] pt-24">
+      <section className="bg-blush px-6 pb-[60px] pt-16 md:px-10 md:pb-[72px] md:pt-24">
         <div className="mx-auto max-w-[920px] text-center">
           <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
             Build Direct With Me
@@ -34,7 +34,7 @@ export default function BuildPage() {
       </section>
 
       {/* Content */}
-      <section className="mx-auto max-w-[720px] px-10 py-[96px]">
+      <section className="mx-auto max-w-[720px] px-6 py-16 md:px-10 md:py-[96px]">
         <BuildContent />
 
         <div className="mt-16 border-t border-border pt-10">
