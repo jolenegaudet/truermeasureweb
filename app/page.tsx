@@ -17,7 +17,6 @@ const qualities = [
 
 const moments = [
   "Before a parent–teacher meeting",
-  "Before choosing courses",
   "Before applying for a program, team, or scholarship",
   "When confidence drops",
   "When a child says, “I’m not smart.”",
@@ -60,7 +59,7 @@ export default function HomePage() {
           Report Card
         </h1>
         <p
-          className="font-heading mx-auto mb-[14px] italic text-dusk"
+          className="font-heading mx-auto mb-10 italic text-dusk"
           style={{
             fontSize: "clamp(22px,3.2vw,30px)",
             lineHeight: 1.45,
@@ -69,13 +68,6 @@ export default function HomePage() {
         >
           A report card measures your child against a narrow set of standards.
           It was never designed to capture your whole child.
-        </p>
-        <p
-          className="mx-auto mt-[22px] mb-10 text-smoke"
-          style={{ fontSize: 17, lineHeight: 1.7, maxWidth: 560 }}
-        >
-          A living record of who your child is becoming, built to preserve the
-          skills and qualities that shape almost everything that matters.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a
@@ -130,9 +122,8 @@ export default function HomePage() {
             className="mx-auto mt-[54px] text-center text-smoke"
             style={{ fontSize: 17, lineHeight: 1.7, maxWidth: 620 }}
           >
-            They show up in patterns, moments, interests, challenges,
-            conversations, aspirations, and experiences that often go unnoticed,
-            because no one is collecting the story.
+            They show up in patterns, moments, and conversations that go
+            unnoticed, because no one is collecting the story.
           </p>
         </div>
       </section>
@@ -177,9 +168,8 @@ export default function HomePage() {
               the pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That's why I created The Hidden Report Card, as a living record of
-              who your child is{" "}
-              <em className="italic text-bark">becoming</em>.
+              That's why I created The Hidden Report Card — a record of who
+              your child is <em className="italic text-bark">becoming</em>.
             </p>
           </div>
         </div>
@@ -220,98 +210,6 @@ export default function HomePage() {
                 that are easy to miss when focusing only on grades.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Moments */}
-      <section className="mx-auto max-w-[1000px] px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto mb-[60px] max-w-[620px] text-center">
-          <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-            Whenever you need it
-          </div>
-          <h2
-            className="font-heading font-medium text-bark"
-            style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
-          >
-            Pull up the Hidden Report Card.
-          </h2>
-        </div>
-
-        <div className="flex flex-col">
-          {moments.map((context, i) => (
-            <div
-              key={i}
-              className="flex flex-wrap items-baseline justify-between gap-7 border-t border-border px-1 py-7"
-            >
-              <div
-                className="font-heading flex-1 italic text-dusk"
-                style={{
-                  fontSize: "clamp(21px,2.8vw,29px)",
-                  flexBasis: 280,
-                }}
-              >
-                {context}
-              </div>
-              <div className="shrink-0 text-[13px] font-semibold uppercase tracking-[0.16em] text-rose whitespace-nowrap">
-                Pull it up →
-              </div>
-            </div>
-          ))}
-          <div className="border-t border-border" />
-        </div>
-      </section>
-
-      {/* Contrast */}
-      <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
-        <div className="mx-auto max-w-[1000px]">
-          <div className="mb-12 text-center md:mb-[60px]">
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(26px,4.6vw,50px)", lineHeight: 1.12 }}
-            >
-              Grades tell a story.
-              <br />
-              They just don't tell the whole story.
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-px border border-grid bg-grid">
-            {contrasts.map(({ left, right }, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-1 bg-blush md:grid-cols-2"
-              >
-                <div className="border-b border-grid px-6 py-6 md:border-b-0 md:border-r md:px-9 md:py-[34px]">
-                  <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-faint">
-                    The report card
-                  </div>
-                  <div
-                    className="font-heading text-smoke"
-                    style={{
-                      fontSize: "clamp(19px,2.4vw,25px)",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {left}
-                  </div>
-                </div>
-                <div className="px-6 py-6 md:px-9 md:py-[34px]">
-                  <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-                    The Hidden Report Card
-                  </div>
-                  <div
-                    className="font-heading text-bark"
-                    style={{
-                      fontSize: "clamp(19px,2.4vw,25px)",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {right}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -357,18 +255,10 @@ export default function HomePage() {
               >
                 $97
               </div>
-              <p className="mb-[10px] text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
+              <p className="mb-9 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
                 You will have access to update and regenerate your child's Hidden
                 Report Card as often as needed through January 2027. Spaces
                 limited.
-              </p>
-              <div className="my-[18px] h-px w-12 bg-charcoal" />
-              <p
-                className="mx-auto mb-9 text-muted"
-                style={{ fontSize: 14, lineHeight: 1.65, maxWidth: 220 }}
-              >
-                Because some of the most important things about a child never
-                appear on a report card.
               </p>
               <div className="flex-1" />
               <a
@@ -450,6 +340,100 @@ export default function HomePage() {
                 Apply
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Moments */}
+      <section className="bg-ghost px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto max-w-[1000px]">
+          <div className="mx-auto mb-[60px] max-w-[620px] text-center">
+            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+              What it looks like in real life
+            </div>
+            <h2
+              className="font-heading font-medium text-bark"
+              style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
+            >
+              Pull up the Hidden Report Card.
+            </h2>
+          </div>
+
+          <div className="flex flex-col">
+            {moments.map((context, i) => (
+              <div
+                key={i}
+                className="flex flex-wrap items-baseline justify-between gap-7 border-t border-border px-1 py-7"
+              >
+                <div
+                  className="font-heading flex-1 italic text-dusk"
+                  style={{
+                    fontSize: "clamp(21px,2.8vw,29px)",
+                    flexBasis: 280,
+                  }}
+                >
+                  {context}
+                </div>
+                <div className="shrink-0 text-[13px] font-semibold uppercase tracking-[0.16em] text-rose whitespace-nowrap">
+                  Pull it up →
+                </div>
+              </div>
+            ))}
+            <div className="border-t border-border" />
+          </div>
+        </div>
+      </section>
+
+      {/* Contrast */}
+      <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
+        <div className="mx-auto max-w-[1000px]">
+          <div className="mb-12 text-center md:mb-[60px]">
+            <h2
+              className="font-heading font-medium text-bark"
+              style={{ fontSize: "clamp(26px,4.6vw,50px)", lineHeight: 1.12 }}
+            >
+              Grades tell a story.
+              <br />
+              They just don't tell the whole story.
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-px border border-grid bg-grid">
+            {contrasts.map(({ left, right }, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-1 bg-blush md:grid-cols-2"
+              >
+                <div className="border-b border-grid px-6 py-6 md:border-b-0 md:border-r md:px-9 md:py-[34px]">
+                  <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-faint">
+                    The report card
+                  </div>
+                  <div
+                    className="font-heading text-smoke"
+                    style={{
+                      fontSize: "clamp(19px,2.4vw,25px)",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {left}
+                  </div>
+                </div>
+                <div className="px-6 py-6 md:px-9 md:py-[34px]">
+                  <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
+                    The Hidden Report Card
+                  </div>
+                  <div
+                    className="font-heading text-bark"
+                    style={{
+                      fontSize: "clamp(19px,2.4vw,25px)",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {right}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
