@@ -239,21 +239,12 @@ export default function HomePage() {
                 Start Here
               </div>
               <div
-                className="font-heading mb-[10px] font-medium text-parchment"
+                className="font-heading mb-[18px] font-medium text-parchment"
                 style={{ fontSize: 40, lineHeight: 1.04 }}
               >
                 The Hidden
                 <br />
                 Report Card
-              </div>
-              <div className="font-heading mb-5 italic text-rose-dark" style={{ fontSize: 20 }}>
-                Founder&apos;s Price
-              </div>
-              <div
-                className="font-heading mb-[6px] font-semibold text-parchment"
-                style={{ fontSize: 56, lineHeight: 1 }}
-              >
-                $97
               </div>
               <p className="mb-9 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
                 Unlimited Hidden Report Cards for your family for one year.
@@ -263,7 +254,7 @@ export default function HomePage() {
                 href="#"
                 className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
               >
-                Get Started
+                Join Waitlist
               </a>
             </div>
 
