@@ -256,9 +256,7 @@ export default function HomePage() {
                 $97
               </div>
               <p className="mb-9 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
-                You will have access to update and regenerate your child's Hidden
-                Report Card as often as needed through January 2027. Spaces
-                limited.
+                Unlimited Hidden Report Cards for your family for one year.
               </p>
               <div className="flex-1" />
               <a
