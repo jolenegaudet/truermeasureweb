@@ -18,6 +18,7 @@ const ALLOWED_TAGS = new Set([
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
+const STUDENT_NOTES_FIELD_ID = "QUrGhz59gCPbU9gVa0MY";
 
 const json = (status: number, body: unknown) => ({
   statusCode: status,
@@ -57,7 +58,7 @@ export const handler = async (event: { httpMethod: string; body: string | null }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(400, { error: "Valid email is required" });
   if (!ALLOWED_TAGS.has(tag)) return json(400, { error: "Invalid tag" });
 
-  const contactBody = {
+  const contactBody: Record<string, unknown> = {
     firstName,
     lastName,
     email,
@@ -69,6 +70,9 @@ export const handler = async (event: { httpMethod: string; body: string | null }
     tags: [tag],
     source: "truermeasure.com",
   };
+  if (kids) {
+    contactBody.customFields = [{ id: STUDENT_NOTES_FIELD_ID, value: kids }];
+  }
 
   const contactRes = await fetch(`${GHL_BASE}/contacts/`, {
     method: "POST",
@@ -88,28 +92,6 @@ export const handler = async (event: { httpMethod: string; body: string | null }
       return json(200, { ok: true, duplicate: true });
     }
     return json(502, { error: "Could not save your details. Please try again." });
-  }
-
-  let contactId: string | undefined;
-  try {
-    const parsed = JSON.parse(contactText);
-    contactId = parsed?.contact?.id || parsed?.id;
-  } catch {}
-
-  if (contactId && kids) {
-    const noteRes = await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Version: GHL_VERSION,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ body: `Student Notes:\n${kids}` }),
-    });
-    if (!noteRes.ok) {
-      console.error("GHL note create failed", noteRes.status, await noteRes.text());
-    }
   }
 
   return json(200, { ok: true });
