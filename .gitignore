@@ -44,3 +44,4 @@ Thumbs.db
 
 # Local secrets (never commit)
 .cf-token
+*.local.ps1

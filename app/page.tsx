@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { WaitlistButton } from "@/components/waitlist-button";
 
 export const metadata: Metadata = {
   title: "The Hidden Report Card | Truer Measure",
@@ -250,12 +250,14 @@ export default function HomePage() {
                 Unlimited Hidden Report Cards for your family for one year.
               </p>
               <div className="flex-1" />
-              <a
-                href="#"
-                className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-              >
-                Join Waitlist
-              </a>
+              <WaitlistButton
+                tag="waitlist-hidden-report-card"
+                label="Join Waitlist"
+                modalEyebrow="Start Here"
+                modalTitle="Join the Hidden Report Card waitlist."
+                submitLabel="Join the waitlist"
+                variant="dark"
+              />
             </div>
 
             {/* Tier 2 — Learn */}
@@ -285,12 +287,14 @@ export default function HomePage() {
                 <div>Group Q&amp;A</div>
               </div>
               <div className="flex-1" />
-              <Link
-                href="/learn"
-                className="mt-9 inline-block rounded-[2px] border border-rose-dark px-[26px] py-[14px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline"
-              >
-                Join Waitlist
-              </Link>
+              <WaitlistButton
+                tag="waitlist-elite-learning-leaders"
+                label="Join Waitlist"
+                modalEyebrow="Learn From The Room"
+                modalTitle="Join the Elite Learning Leaders waitlist."
+                submitLabel="Join the waitlist"
+                variant="outline-rose-dark"
+              />
             </div>
 
             {/* Tier 3 — Build */}
@@ -322,12 +326,14 @@ export default function HomePage() {
                 <div>Early Access to Products and Artifacts</div>
               </div>
               <div className="flex-1" />
-              <Link
-                href="/build"
-                className="mt-9 inline-block rounded-[2px] border border-rose px-[26px] py-[14px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline"
-              >
-                Apply
-              </Link>
+              <WaitlistButton
+                tag="applied-inner-circle"
+                label="Apply"
+                modalEyebrow="Build Direct With Me"
+                modalTitle="Apply to Inner Circle."
+                submitLabel="Submit application"
+                variant="outline-rose"
+              />
             </div>
           </div>
         </div>
