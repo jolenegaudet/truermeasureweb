@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LearnContent from "@/content/learn.mdx";
+import { WaitlistButton } from "@/components/waitlist-button";
 
 export const metadata: Metadata = {
   title: "Learn From The Room",
@@ -40,12 +41,14 @@ export default function LearnPage() {
         <LearnContent />
 
         <div className="mt-16 border-t border-border pt-10">
-          <a
-            href="#"
-            className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-parchment no-underline"
-          >
-            Join the Waitlist
-          </a>
+          <WaitlistButton
+            tag="waitlist-elite-learning-leaders"
+            label="Join the Waitlist"
+            modalEyebrow="Learn From The Room"
+            modalTitle="Join the Elite Learning Leaders waitlist."
+            submitLabel="Join the waitlist"
+            variant="bark"
+          />
           <Link
             href="/"
             className="ml-6 text-[13px] font-semibold uppercase tracking-[0.14em] text-rose hover:text-bark transition-colors"

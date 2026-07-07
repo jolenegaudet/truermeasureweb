@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BuildContent from "@/content/build.mdx";
+import { WaitlistButton } from "@/components/waitlist-button";
 
 export const metadata: Metadata = {
   title: "Build Direct With Me",
@@ -38,12 +39,14 @@ export default function BuildPage() {
         <BuildContent />
 
         <div className="mt-16 border-t border-border pt-10">
-          <a
-            href="#"
-            className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-parchment no-underline"
-          >
-            Apply
-          </a>
+          <WaitlistButton
+            tag="applied-inner-circle"
+            label="Apply"
+            modalEyebrow="Build Direct With Me"
+            modalTitle="Apply to Inner Circle."
+            submitLabel="Submit application"
+            variant="bark"
+          />
           <Link
             href="/"
             className="ml-6 text-[13px] font-semibold uppercase tracking-[0.14em] text-rose hover:text-bark transition-colors"

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Variant = "dark" | "outline-rose-dark" | "outline-rose";
+type Variant = "dark" | "outline-rose-dark" | "outline-rose" | "bark";
 
 type Props = {
   tag: "waitlist-hidden-report-card" | "waitlist-elite-learning-leaders" | "applied-inner-circle";
@@ -20,6 +20,8 @@ const buttonClass: Record<Variant, string> = {
     "mt-9 inline-block rounded-[2px] border border-rose-dark px-[26px] py-[14px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline cursor-pointer bg-transparent",
   "outline-rose":
     "mt-9 inline-block rounded-[2px] border border-rose px-[26px] py-[14px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline cursor-pointer bg-transparent",
+  bark:
+    "inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-parchment no-underline cursor-pointer",
 };
 
 type Status = "idle" | "submitting" | "success" | "error";
