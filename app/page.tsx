@@ -248,7 +248,7 @@ export default function HomePage() {
               <p className="mb-3 text-muted" style={{ fontSize: 14, lineHeight: 1.65 }}>
                 Use code <span className="font-semibold text-parchment">FOUNDING40</span> to unlock:
               </p>
-              <div className="mb-5 flex flex-col gap-2 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
+              <div className="mb-5 flex flex-col gap-2 text-parchment" style={{ fontSize: 14, lineHeight: 1.6 }}>
                 <div>40% off your first year</div>
                 <div>20% off every renewal while you&rsquo;re an active member</div>
               </div>
