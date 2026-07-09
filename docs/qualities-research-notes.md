@@ -19,10 +19,12 @@ though "confidence" is the lay translation, not the measured construct.
 with effort (von Stumm, Hell & Chamorro-Premuzic, 2011, "The Hungry Mind"). Evidence:
 strong.
 
-**03 Courage** — thinnest direct evidence base of the twelve as a measured childhood
-construct; retained for its emotional truth and its overlap with well-studied
-approach-vs-avoidance and risk-taking literatures. Treat as values language, not a
-research claim.
+**03 Kindness** — grounded in the prosocial-behavior literature: the same Jones,
+Greenberg & Crowley (2015) cohort behind Empathy, plus decades of prosocial-development
+work (Eisenberg). Kind/prosocial behavior in early childhood predicts peer acceptance,
+adjustment, and long-run outcomes. Also the closest match to what parents say they want
+most (Pew surveys put honesty/ethics and kindness at the top of parent priorities).
+Replaced *Courage* on 2026-07-09. Evidence: strong.
 
 **04 Imagination** — grounded in pretend-play and counterfactual-reasoning research
 (Gopnik; Weisberg). Evidence linking early imaginative play to later creativity is
@@ -61,9 +63,12 @@ Evidence: strong.
 to school readiness and long-run outcomes (Diamond, 2013). Also appears in OECD/Education
 2030 frameworks, which is positioning, not evidence. Evidence: moderate-to-strong.
 
-**11 Hope** — Snyder's hope theory (agency + pathways thinking). Hope scores predict
-academic achievement beyond intelligence in several studies (Snyder, 2002; Day et al.,
-2010). Evidence: moderate; the construct is well defined but the literature is smaller.
+**11 Critical Thinking** — established cognitive-science construct with validated
+measures; teachable, with meaningful effects across ages (Abrami et al., 2015
+meta-analysis of critical-thinking instruction). Also the #1 skill in employer forecasts
+(WEF Future of Jobs) — that ranking is market positioning, not developmental evidence,
+and should be cited as such. Replaced *Hope* on 2026-07-09. Evidence: strong for the
+construct; the employer-demand claim is a forecast.
 
 **12 Purpose** — Damon's Stanford work on youth purpose; purposeful adolescents show
 higher motivation and wellbeing. Evidence: directional and largely correlational —
@@ -79,6 +84,14 @@ credible for a "matters in life" claim, not a causal one.
 - **Gratitude / Mindfulness** — child-outcome evidence thinner; reads as wellness content.
 - **Leadership** — not a stable, measurable childhood construct.
 - **Initiative** — removed 2026-07-09; letter-graded on Ontario report cards.
+- **Courage** — removed 2026-07-09; thinnest evidence base of the original twelve
+  (values language, not a measured childhood construct). Kindness took its seat.
+- **Hope** — removed 2026-07-09; moderate evidence (Snyder's hope theory, 2002) but
+  the smallest literature on the grid. Critical Thinking took its seat.
+- **Corporate-list words** (flexibility, agility, lifelong learning, active listening,
+  leadership, social influence, technological literacy, AI fluency) — considered
+  2026-07-09 and excluded: duplicates of existing words, practices rather than
+  qualities, or competencies that may become graded curriculum and would date the grid.
 
 ## Key sources
 
@@ -95,7 +108,10 @@ credible for a "matters in life" claim, not a causal one.
   Psychologist*, 56(3).
 - von Stumm, Hell & Chamorro-Premuzic (2011). The hungry mind. *Perspectives on
   Psychological Science*, 6(6).
-- Snyder (2002). Hope theory: Rainbows in the mind. *Psychological Inquiry*, 13(4).
+- Abrami et al. (2015). Strategies for teaching students to think critically: A
+  meta-analysis. *Review of Educational Research*, 85(2).
+- Eisenberg, Fabes & Spinrad (2006). Prosocial development. In *Handbook of Child
+  Psychology* (6th ed.), Vol. 3.
 - Durlak et al. (2011). The impact of enhancing students' social and emotional learning.
   *Child Development*, 82(1).
 - Yeager et al. (2019). A national experiment reveals where a growth mindset improves

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const qualities = [
   "Confidence",
   "Curiosity",
-  "Courage",
+  "Kindness",
   "Imagination",
   "Resilience",
   "Creativity",
@@ -28,7 +28,7 @@ const qualities = [
   "Persistence",
   "Empathy",
   "Adaptability",
-  "Hope",
+  "Critical Thinking",
   "Purpose",
 ];
 
