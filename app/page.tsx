@@ -11,9 +11,15 @@ const qualities = [
   { n: "01", word: "Confidence" },
   { n: "02", word: "Curiosity" },
   { n: "03", word: "Courage" },
-  { n: "04", word: "Initiative" },
+  { n: "04", word: "Imagination" },
   { n: "05", word: "Resilience" },
   { n: "06", word: "Creativity" },
+  { n: "07", word: "Self-Regulation" },
+  { n: "08", word: "Persistence" },
+  { n: "09", word: "Empathy" },
+  { n: "10", word: "Adaptability" },
+  { n: "11", word: "Hope" },
+  { n: "12", word: "Purpose" },
 ];
 
 const contrasts = [
