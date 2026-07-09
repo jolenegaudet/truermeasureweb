@@ -179,7 +179,7 @@ export default function HomePage() {
             TRUERMEASURE.COM
           </div>
           <h2
-            className="font-heading mx-auto mb-10 font-medium text-parchment md:mb-14"
+            className="font-heading mx-auto font-medium text-parchment"
             style={{
               fontSize: "clamp(26px,4.6vw,52px)",
               lineHeight: 1.18,
@@ -188,26 +188,6 @@ export default function HomePage() {
             The real value is ongoing clarity, a living document that helps
             families make better decisions about learning, growth, and support.
           </h2>
-          <div className="grid grid-cols-1 gap-px border border-charcoal bg-charcoal text-left md:grid-cols-2">
-            <div className="bg-bark px-[34px] py-[38px]">
-              <div className="font-heading mb-3 text-[21px] text-warm">
-                A good investor
-              </div>
-              <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.7 }}>
-                doesn't look at one days' performance. The look for patterns
-                over time.
-              </p>
-            </div>
-            <div className="bg-bark px-[34px] py-[38px]">
-              <div className="font-heading mb-3 text-[21px] text-warm">
-                The hidden report card
-              </div>
-              <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.7 }}>
-                helps families see patterns, growth, strenghts, and potential
-                that are easy to miss when focusing only on grades.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
