@@ -5,7 +5,11 @@ import { WaitlistButton } from "@/components/waitlist-button";
 const moments = [
   "Before a parent–teacher meeting",
   "Before applying for a program, team, or scholarship",
+  "Before meeting a new teacher, tutor, or coach",
+  "When deciding whether to change schools",
+  "When the report card doesn’t match the child you know",
   "When confidence drops",
+  "When a hard week starts to feel like a bad year",
   "When a child says, “I’m not smart.”",
 ];
 
