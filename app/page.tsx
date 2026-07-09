@@ -242,9 +242,6 @@ export default function HomePage() {
                 <br />
                 Report Card
               </div>
-              <p className="mb-8 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
-                Unlimited Hidden Report Cards for your family.
-              </p>
               <div className="font-heading mb-3 text-[21px] text-warm">
                 Become a Founding Family
               </div>
