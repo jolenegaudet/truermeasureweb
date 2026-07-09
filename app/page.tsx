@@ -256,14 +256,12 @@ export default function HomePage() {
                 Limited to our first 40 Founding Families.
               </p>
               <div className="flex-1" />
-              <WaitlistButton
-                tag="waitlist-hidden-report-card"
-                label="Unlock my Child's Hidden Potential"
-                modalEyebrow="Start Here"
-                modalTitle="Join the Hidden Report Card waitlist."
-                submitLabel="Join the waitlist"
-                variant="dark"
-              />
+              <a
+                href="https://link.fastpaydirect.com/payment-link/6a4ffe14c981f3feae6e8524"
+                className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+              >
+                Unlock my Child&rsquo;s Hidden Potential
+              </a>
             </div>
 
             {/* Tier 2 — Learn */}
