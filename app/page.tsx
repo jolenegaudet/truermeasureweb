@@ -248,13 +248,15 @@ export default function HomePage() {
               <div className="font-heading mb-3 text-[21px] text-warm">
                 Become a Founding Family
               </div>
-              <p className="mb-5 text-muted" style={{ fontSize: 14, lineHeight: 1.65 }}>
-                Help shape the future of Truer Measure. Receive early access,
-                influence what&rsquo;s built next, and keep your founding
-                membership rate for as long as you remain a member.
+              <p className="mb-3 text-muted" style={{ fontSize: 14, lineHeight: 1.65 }}>
+                Use code <span className="font-semibold text-parchment">FOUNDING40</span> to unlock:
               </p>
+              <div className="mb-5 flex flex-col gap-2 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
+                <div>40% off your first year</div>
+                <div>20% off every renewal while you&rsquo;re an active member</div>
+              </div>
               <p className="mb-9 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
-                Limited to our first founding families.
+                Limited to our first 40 Founding Families.
               </p>
               <div className="flex-1" />
               <WaitlistButton
