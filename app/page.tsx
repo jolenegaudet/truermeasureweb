@@ -10,7 +10,7 @@ const moments = [
   "When confidence drops",
   "When a hard week starts to feel like a bad year",
   "When a child says, “I’m not smart.”",
-  "Anytime you need to…",
+  "Anytime you need to remember who your child really is.",
 ];
 
 export const metadata: Metadata = {
