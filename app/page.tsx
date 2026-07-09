@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { WaitlistButton } from "@/components/waitlist-button";
-import { Moments } from "@/components/moments";
+
+const moments = [
+  "Before a parent–teacher meeting",
+  "Before applying for a program, team, or scholarship",
+  "When confidence drops",
+  "When a child says, “I’m not smart.”",
+];
 
 export const metadata: Metadata = {
   title: "The Hidden Report Card | Truer Measure",
@@ -351,7 +357,22 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <Moments />
+          <div className="flex flex-col">
+            {moments.map((context) => (
+              <div
+                key={context}
+                className="border-t border-border px-1 py-7"
+              >
+                <div
+                  className="font-heading italic text-dusk"
+                  style={{ fontSize: "clamp(21px,2.8vw,29px)" }}
+                >
+                  {context}
+                </div>
+              </div>
+            ))}
+            <div className="border-t border-border" />
+          </div>
         </div>
       </section>
 
