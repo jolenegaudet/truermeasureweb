@@ -34,16 +34,16 @@ const qualities = [
 
 const contrasts = [
   {
-    left: "Record performance.",
-    right: "Records the person behind the performance.",
+    left: "Measures performance.",
+    right: "Sees the person behind the performance.",
   },
   {
-    left: "Provide a snapshot.",
+    left: "Gives you a snapshot.",
     right: "Preserves the story.",
   },
   {
-    left: "Tell you how a child is doing.",
-    right: "Helps families remember who that child is.",
+    left: "Tells you how your child is doing.",
+    right: "Remembers who your child is.",
   },
 ];
 
