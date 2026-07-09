@@ -8,18 +8,18 @@ export const metadata: Metadata = {
 };
 
 const qualities = [
-  { n: "01", word: "Confidence" },
-  { n: "02", word: "Curiosity" },
-  { n: "03", word: "Courage" },
-  { n: "04", word: "Imagination" },
-  { n: "05", word: "Resilience" },
-  { n: "06", word: "Creativity" },
-  { n: "07", word: "Self-Regulation" },
-  { n: "08", word: "Persistence" },
-  { n: "09", word: "Empathy" },
-  { n: "10", word: "Adaptability" },
-  { n: "11", word: "Hope" },
-  { n: "12", word: "Purpose" },
+  "Confidence",
+  "Curiosity",
+  "Courage",
+  "Imagination",
+  "Resilience",
+  "Creativity",
+  "Self-Regulation",
+  "Persistence",
+  "Empathy",
+  "Adaptability",
+  "Hope",
+  "Purpose",
 ];
 
 const contrasts = [
@@ -100,14 +100,11 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 gap-px border border-grid bg-grid md:grid-cols-3">
-            {qualities.map(({ n, word }) => (
+            {qualities.map((word) => (
               <div
-                key={n}
-                className="bg-blush px-4 py-8 text-center md:px-8 md:py-[46px]"
+                key={word}
+                className="flex items-center justify-center bg-blush px-4 py-8 text-center md:px-8 md:py-[46px]"
               >
-                <div className="font-heading mb-[14px] text-[13px] tracking-[0.3em] text-faint">
-                  {n}
-                </div>
                 <div
                   className="font-heading font-medium text-bark"
                   style={{ fontSize: "clamp(22px,3.4vw,40px)" }}
