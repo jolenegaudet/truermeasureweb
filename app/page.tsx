@@ -259,7 +259,7 @@ export default function HomePage() {
               <div className="flex-1" />
               <WaitlistButton
                 tag="waitlist-hidden-report-card"
-                label="Join Waitlist"
+                label="Unlock my Child's Hidden Potential"
                 modalEyebrow="Start Here"
                 modalTitle="Join the Hidden Report Card waitlist."
                 submitLabel="Join the waitlist"
