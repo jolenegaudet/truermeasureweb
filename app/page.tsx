@@ -190,7 +190,7 @@ export default function HomePage() {
           </h2>
           <div className="mx-auto max-w-[560px] border border-charcoal bg-bark px-[34px] py-[38px] text-left">
             <div className="font-heading mb-3 text-[21px] text-warm">
-              The hidden report card
+              The Hidden Report Card
             </div>
             <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.7 }}>
               helps families see patterns, growth, strengths, and potential
