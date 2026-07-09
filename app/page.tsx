@@ -240,8 +240,19 @@ export default function HomePage() {
                 <br />
                 Report Card
               </div>
-              <p className="mb-9 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
+              <p className="mb-8 text-muted" style={{ fontSize: 14, lineHeight: 1.6 }}>
                 Unlimited Hidden Report Cards for your family for one year.
+              </p>
+              <div className="font-heading mb-3 text-[21px] text-warm">
+                Become a Founding Family
+              </div>
+              <p className="mb-5 text-muted" style={{ fontSize: 14, lineHeight: 1.65 }}>
+                Help shape the future of Truer Measure. Receive early access,
+                influence what&rsquo;s built next, and keep your founding
+                membership rate for as long as you remain a member.
+              </p>
+              <p className="mb-9 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
+                Limited to our first founding families.
               </p>
               <div className="flex-1" />
               <WaitlistButton
