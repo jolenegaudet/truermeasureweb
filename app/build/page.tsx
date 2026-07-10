@@ -4,7 +4,7 @@ import BuildContent from "@/content/build.mdx";
 import { WaitlistButton } from "@/components/waitlist-button";
 
 export const metadata: Metadata = {
-  title: "Build Direct With Me",
+  title: "Be Part of the Inner Circle",
 };
 
 export default function BuildPage() {
@@ -14,22 +14,22 @@ export default function BuildPage() {
       <section className="bg-blush px-6 pb-[60px] pt-16 md:px-10 md:pb-[72px] md:pt-24">
         <div className="mx-auto max-w-[920px] text-center">
           <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-            Build Direct With Me
+            Help Shape What&rsquo;s Next
           </div>
           <h1
             className="font-heading mb-8 font-medium text-bark"
             style={{ fontSize: "clamp(44px,7vw,88px)", lineHeight: 1.0, letterSpacing: "-0.01em" }}
           >
-            Inner
+            Be Part of the
             <br />
-            Circle
+            Inner Circle
           </h1>
           <p
             className="font-heading mx-auto italic text-dusk"
             style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
           >
-            Direct access to me — smaller live sessions and occasional
-            one-on-one time.
+            Direct access to Jolene, early access to new frameworks, and a
+            voice in what Truer Measure creates next.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function BuildPage() {
           <WaitlistButton
             tag="applied-inner-circle"
             label="Apply"
-            modalEyebrow="Build Direct With Me"
+            modalEyebrow="Help Shape What's Next"
             modalTitle="Apply to Inner Circle."
             submitLabel="Submit application"
             variant="bark"

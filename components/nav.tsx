@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 const links = [
   { href: "/#tiers", label: "Start Here" },
   { href: "/learn", label: "Learn From The Room" },
-  { href: "/build", label: "Build Direct With Me" },
+  { href: "/build", label: "Be Part of the Inner Circle" },
 ];
 
 export default function Nav() {

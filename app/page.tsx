@@ -280,7 +280,7 @@ export default function HomePage() {
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
               >
-                Insights + Teachings + Conversations + Collective Intelligence
+                Insights + Conversations + Collective Intelligence
                 with other Learning Leaders
               </p>
               <div className="flex flex-col gap-2 text-[14px] text-smoke">
@@ -325,7 +325,7 @@ export default function HomePage() {
               <WaitlistButton
                 tag="applied-inner-circle"
                 label="Apply"
-                modalEyebrow="Build Direct With Me"
+                modalEyebrow="Help Shape What's Next"
                 modalTitle="Apply to Inner Circle."
                 submitLabel="Submit application"
                 variant="outline-rose"
