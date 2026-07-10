@@ -7,6 +7,16 @@
   node_bundler = "esbuild"
 
 [[redirects]]
+  from   = "/build"
+  to     = "/inner-circle"
+  status = 301
+
+[[redirects]]
+  from   = "/build/*"
+  to     = "/inner-circle/:splat"
+  status = 301
+
+[[redirects]]
   from   = "/*"
   to     = "/404.html"
   status = 404
