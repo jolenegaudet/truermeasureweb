@@ -272,7 +272,7 @@ export default function HomePage() {
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Elite
+                Elite Parents as
                 <br />
                 Learning Leaders
               </div>
@@ -281,7 +281,7 @@ export default function HomePage() {
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
               >
                 Insights + Conversations + Co-intelligence
-                with other Learning Leaders
+                with other Parents
               </p>
               <div className="flex flex-col gap-2 text-[14px] text-smoke">
                 <div>Live Room with Jolene</div>
@@ -294,7 +294,7 @@ export default function HomePage() {
                 tag="waitlist-elite-learning-leaders"
                 label="Join Waitlist"
                 modalEyebrow="Learn From The Room"
-                modalTitle="Join the Elite Learning Leaders waitlist."
+                modalTitle="Join the Elite Parents as Learning Leaders waitlist."
                 submitLabel="Join the waitlist"
                 variant="outline-rose-dark"
               />
@@ -318,8 +318,8 @@ export default function HomePage() {
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
                 As an inner circle member, you&rsquo;ll have direct access to
-                Jolene, early access to new frameworks, and a voice in what
-                Truer Measure creates next. See if you&rsquo;re a fit.
+                Jolene and a voice in what Truer Measure creates next. See if
+                you&rsquo;re a fit.
               </p>
               <div className="flex-1" />
               <WaitlistButton

@@ -24,13 +24,6 @@ export default function BuildPage() {
             <br />
             Inner Circle
           </h1>
-          <p
-            className="font-heading mx-auto italic text-dusk"
-            style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
-          >
-            Direct access to Jolene, early access to new frameworks, and a
-            voice in what Truer Measure creates next.
-          </p>
         </div>
       </section>
 

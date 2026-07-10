@@ -19,16 +19,15 @@ export default function LearnPage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(44px,7vw,88px)", lineHeight: 1.0, letterSpacing: "-0.01em" }}
         >
-          Elite Learning
+          Elite Parents as
           <br />
-          Leaders
+          Learning Leaders
         </h1>
         <p
           className="font-heading mx-auto italic text-dusk"
           style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
         >
-          Insights + Conversations + Co-intelligence with other
-          Learning Leaders
+          Insights + Conversations + Co-intelligence with other Parents
         </p>
       </section>
 
@@ -46,7 +45,7 @@ export default function LearnPage() {
             tag="waitlist-elite-learning-leaders"
             label="Join the Waitlist"
             modalEyebrow="Learn From The Room"
-            modalTitle="Join the Elite Learning Leaders waitlist."
+            modalTitle="Join the Elite Parents as Learning Leaders waitlist."
             submitLabel="Join the waitlist"
             variant="bark"
           />
