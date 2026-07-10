@@ -358,8 +358,8 @@ export default function HomePage() {
               >
                 <div
                   className={
-                    "font-heading italic text-dusk" +
-                    (i === moments.length - 1 ? " font-semibold" : "")
+                    "font-heading text-dusk" +
+                    (i === moments.length - 1 ? " font-semibold" : " italic")
                   }
                   style={{ fontSize: "clamp(21px,2.8vw,29px)" }}
                 >
