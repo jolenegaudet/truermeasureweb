@@ -136,7 +136,7 @@ export function WaitlistModal(props: ModalProps) {
               className="font-heading mb-4 font-medium text-bark"
               style={{ fontSize: 30, lineHeight: 1.15 }}
             >
-              Thanks — we&rsquo;ll be in touch.
+              Thanks. We&rsquo;ll be in touch.
             </h3>
             <p className="mb-7 text-smoke" style={{ fontSize: 15, lineHeight: 1.6 }}>
               We&rsquo;ve added you to the list. Watch for an email from Jolene with next steps.

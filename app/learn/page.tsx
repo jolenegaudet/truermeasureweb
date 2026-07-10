@@ -27,7 +27,7 @@ export default function LearnPage() {
           className="font-heading mx-auto italic text-dusk"
           style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
         >
-          Insights + Conversations + Collective Intelligence with other
+          Insights + Conversations + Co-intelligence with other
           Learning Leaders
         </p>
       </section>

@@ -280,7 +280,7 @@ export default function HomePage() {
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
               >
-                Insights + Conversations + Collective Intelligence
+                Insights + Conversations + Co-intelligence
                 with other Learning Leaders
               </p>
               <div className="flex flex-col gap-2 text-[14px] text-smoke">
