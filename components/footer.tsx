@@ -9,6 +9,9 @@ export default function Footer() {
           The Truer Measure of a Child!
         </div>
       </div>
+      <div className="mx-auto mt-8 max-w-[1180px] border-t border-charcoal pt-6 text-center text-[12px] tracking-[0.04em] text-subdued">
+        © {new Date().getFullYear()} Truer Measure. All rights reserved.
+      </div>
     </footer>
   );
 }

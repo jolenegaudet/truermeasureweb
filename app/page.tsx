@@ -9,7 +9,7 @@ const moments = [
   "When they shine everywhere except on paper",
   "When confidence drops",
   "When a hard week starts to feel like a bad year",
-  "When a child says, “I’m not smart.”",
+  "When a child says, “I’m not smart”",
   "Anytime you need to remember who your child really is.",
 ];
 
@@ -43,7 +43,7 @@ const contrasts = [
   },
   {
     left: "Tells you how your child is doing.",
-    right: "Remembers who your child is.",
+    right: "Remembers who your child is becoming.",
   },
 ];
 
@@ -303,28 +303,24 @@ export default function HomePage() {
             {/* Tier 3 — Build */}
             <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-9 pb-[46px] pt-[50px] text-center">
               <div className="mb-[22px] text-[11.5px] font-bold uppercase tracking-[0.26em] text-rose">
-                BUILD DIRECT WITH ME
+                HELP SHAPE WHAT&rsquo;S NEXT
               </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Inner
+                Be Part of the
                 <br />
-                Circle
+                Inner Circle
               </div>
               <p
                 className="mb-9 text-smoke"
-                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
+                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
-                Direct access to Jolene, smaller live sessions.
+                As an inner circle member, you&rsquo;ll have direct access to
+                Jolene, early access to new frameworks, and a voice in what
+                Truer Measure creates next. See if you&rsquo;re a fit.
               </p>
-              <div
-                className="font-heading text-bark"
-                style={{ fontSize: 19, lineHeight: 1.4 }}
-              >
-                You help build Truer Measure.
-              </div>
               <div className="flex-1" />
               <WaitlistButton
                 tag="applied-inner-circle"
@@ -350,18 +346,21 @@ export default function HomePage() {
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
             >
-              Pull up the Hidden Report Card.
+              Pull up the Hidden Report Card whenever you need it.
             </h2>
           </div>
 
           <div className="flex flex-col">
-            {moments.map((context) => (
+            {moments.map((context, i) => (
               <div
                 key={context}
-                className="border-t border-border px-1 py-7"
+                className="border-t border-border px-1 py-7 text-center"
               >
                 <div
-                  className="font-heading italic text-dusk"
+                  className={
+                    "font-heading italic text-dusk" +
+                    (i === moments.length - 1 ? " font-semibold" : "")
+                  }
                   style={{ fontSize: "clamp(21px,2.8vw,29px)" }}
                 >
                   {context}
