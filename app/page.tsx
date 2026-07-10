@@ -76,7 +76,7 @@ export default function HomePage() {
             maxWidth: 680,
           }}
         >
-          A report card measures your child against a narrow set of standards.
+          A report card measures your child against a limited set of standards.
           It was never designed to capture your whole child.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
@@ -104,7 +104,7 @@ export default function HomePage() {
                 margin: 0,
               }}
             >
-              None of these receive a grade. Yet they shape almost everything
+              None of these receive a grade. Yet, they shape almost everything
               that matters.
             </h2>
           </div>
@@ -138,14 +138,14 @@ export default function HomePage() {
       {/* Founder */}
       <section className="mx-auto max-w-[1080px] px-6 py-16 md:px-10 md:py-[104px]">
         <div className="grid items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
-          <div>
+          <div className="flex justify-center">
             <Image
               src="/founder.png"
               alt="Jolene, founder of The Hidden Report Card"
-              width={600}
-              height={750}
-              className="block w-full rounded-[2px] object-cover object-top"
-              style={{ aspectRatio: "4/5" }}
+              width={400}
+              height={400}
+              className="block rounded-full object-cover object-top"
+              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
             />
           </div>
           <div>
@@ -175,7 +175,7 @@ export default function HomePage() {
               the pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That's why I created The Hidden Report Card — a record of who
+              That's why I created The Hidden Report Card; a record of who
               your child is <em className="italic text-bark">becoming</em>.
             </p>
           </div>
@@ -245,13 +245,12 @@ export default function HomePage() {
               <div className="font-heading mb-3 text-[21px] text-warm">
                 Become a Founding Family
               </div>
-              <p className="mb-3 text-muted" style={{ fontSize: 14, lineHeight: 1.65 }}>
-                Use code <span className="font-semibold text-parchment">FOUNDING40</span> to unlock:
+              <p className="mb-5 text-muted" style={{ fontSize: 14, lineHeight: 1.7 }}>
+                Use code <span className="font-semibold text-parchment">FOUNDING40</span> to
+                unlock: <span className="text-parchment">40% off your first year</span>, and{" "}
+                <span className="text-parchment">20% off every renewal while you&rsquo;re an
+                active member</span>.
               </p>
-              <div className="mb-5 flex flex-col gap-2 text-parchment" style={{ fontSize: 14, lineHeight: 1.6 }}>
-                <div>40% off your first year</div>
-                <div>20% off every renewal while you&rsquo;re an active member</div>
-              </div>
               <p className="mb-9 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
                 Limited to our first 40 Founding Families.
               </p>
@@ -281,11 +280,11 @@ export default function HomePage() {
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
               >
-                Communication + Conversations + Collective Intelligence
+                Insights + Teachings + Conversations + Collective Intelligence
+                with other Learning Leaders
               </p>
               <div className="flex flex-col gap-2 text-[14px] text-smoke">
                 <div>Live Room with Jolene</div>
-                <div>Access to Frameworks and Tools</div>
                 <div>Community Network</div>
                 <div>Guest Experts</div>
                 <div>Group Q&amp;A</div>
@@ -318,16 +317,13 @@ export default function HomePage() {
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
               >
-                Direct access to me, smaller live sessions and occasional
-                one-on-one time.
+                Direct access to Jolene, smaller live sessions.
               </p>
-              <div className="flex flex-col gap-2 text-[14px] text-smoke">
-                <div>Everything in Elite</div>
-                <div className="h-3" />
-                <div>Small-Group Sessions</div>
-                <div>Direct Access to Jolene via DM</div>
-                <div>Possibility of 1:1 Access</div>
-                <div>Early Access to Products and Artifacts</div>
+              <div
+                className="font-heading text-bark"
+                style={{ fontSize: 19, lineHeight: 1.4 }}
+              >
+                You help build Truer Measure.
               </div>
               <div className="flex-1" />
               <WaitlistButton
