@@ -6,10 +6,10 @@ const moments = [
   "Before a parent–teacher meeting",
   "Before applying for a program, team, or scholarship",
   "When the report card doesn’t match the child you know",
-  "When they shine everywhere except on paper",
+  "When your kid shines everywhere except on paper",
   "When confidence drops",
   "When a hard week starts to feel like a bad year",
-  "When a child says, “I’m not smart”",
+  "When a child says, “I’m not smart.”",
   "Anytime you need to remember who your child really is.",
 ];
 
