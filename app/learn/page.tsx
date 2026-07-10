@@ -19,15 +19,13 @@ export default function LearnPage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(44px,7vw,88px)", lineHeight: 1.0, letterSpacing: "-0.01em" }}
         >
-          Elite Parents as
-          <br />
-          Learning Leaders
+          Elite Parents
         </h1>
         <p
           className="font-heading mx-auto italic text-dusk"
           style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
         >
-          Insights + Conversations + Co-intelligence with other Parents
+          Elite Parents as Learning Leaders
         </p>
       </section>
 

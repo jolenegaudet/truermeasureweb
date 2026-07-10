@@ -272,16 +272,15 @@ export default function HomePage() {
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Elite Parents as
+                Elite
                 <br />
-                Learning Leaders
+                Parents
               </div>
               <p
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
               >
-                Insights + Conversations + Co-intelligence
-                with other Parents
+                Elite Parents as Learning Leaders
               </p>
               <div className="flex flex-col gap-2 text-[14px] text-smoke">
                 <div>Live Room with Jolene</div>
@@ -309,10 +308,16 @@ export default function HomePage() {
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Be Part of the
+                Inner
                 <br />
-                Inner Circle
+                Circle
               </div>
+              <p
+                className="mb-4 text-smoke"
+                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
+              >
+                Be Part of the Inner Circle
+              </p>
               <p
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}

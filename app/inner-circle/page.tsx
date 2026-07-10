@@ -20,10 +20,14 @@ export default function BuildPage() {
             className="font-heading mb-8 font-medium text-bark"
             style={{ fontSize: "clamp(44px,7vw,88px)", lineHeight: 1.0, letterSpacing: "-0.01em" }}
           >
-            Be Part of the
-            <br />
             Inner Circle
           </h1>
+          <p
+            className="font-heading mx-auto italic text-dusk"
+            style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
+          >
+            Be Part of the Inner Circle
+          </p>
         </div>
       </section>
 
