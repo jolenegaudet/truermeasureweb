@@ -175,7 +175,7 @@ export default function HomePage() {
               the pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That's why I created The Hidden Report Card; a record of who
+              That's why I created The Hidden Report Card: a record of who
               your child is <em className="italic text-bark">becoming</em>.
             </p>
           </div>
