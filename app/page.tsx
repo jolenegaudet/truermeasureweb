@@ -130,7 +130,7 @@ export default function HomePage() {
             style={{ fontSize: 17, lineHeight: 1.7, maxWidth: 620 }}
           >
             They show up in patterns, moments, and conversations that go
-            unnoticed, because no one is collecting the story.
+            unnoticed, because no one is collecting the data.
           </p>
         </div>
       </section>
@@ -221,7 +221,7 @@ export default function HomePage() {
               Start with Clarity.
             </h2>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.7 }}>
-              Continue with Community. Grow with Support.
+              Continue with Community. Grow with Proximity.
             </p>
           </div>
 
