@@ -256,7 +256,7 @@ export default function HomePage() {
               </p>
               <div className="flex-1" />
               <a
-                href="https://link.fastpaydirect.com/payment-link/6a4ffe14c981f3feae6e8524"
+                href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
                 className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
               >
                 Unlock my Child&rsquo;s Hidden Potential
