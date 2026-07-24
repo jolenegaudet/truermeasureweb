@@ -18,12 +18,24 @@ const hankenGrotesk = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://truermeasure.com"),
   title: {
     default: "The Hidden Report Card | Truer Measure",
     template: "%s | Truer Measure",
   },
   description:
     "A living record of who your child is becoming, built to preserve the skills and qualities that shape almost everything that matters.",
+  openGraph: {
+    siteName: "Truer Measure",
+    type: "website",
+    url: "/",
+    title: "The Hidden Report Card | Truer Measure",
+    description:
+      "A living record of who your child is becoming, built to preserve the skills and qualities that shape almost everything that matters.",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
