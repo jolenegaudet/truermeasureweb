@@ -15,6 +15,10 @@ export default function Nav() {
 
   return (
     <header>
+      <div className="bg-blush px-5 py-[9px] text-center text-[11px] font-semibold tracking-[0.18em] uppercase text-dusk">
+        La version française arrive bientôt
+      </div>
+
       <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-4 px-5 py-5 md:gap-6 md:px-10 md:py-[26px]">
         <Link
           href="/"
