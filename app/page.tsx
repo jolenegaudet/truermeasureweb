@@ -210,6 +210,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* What you actually get */}
+      <section className="bg-ghost px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto max-w-[680px] text-center">
+          <div className="mb-6 text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            Inside your membership
+          </div>
+          <h2
+            className="font-heading mb-9 font-medium text-bark"
+            style={{ fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1 }}
+          >
+            What you actually get
+          </h2>
+          <p
+            className="mb-6 text-left text-smoke"
+            style={{ fontSize: 17, lineHeight: 1.8 }}
+          >
+            When you sign up, you get your child&rsquo;s Hidden Report Card, and
+            it doesn&rsquo;t stay frozen in time. You start by adding what
+            already exists: report cards, assessments, teacher comments, your
+            own observations, anything that helps tell your child&rsquo;s story.
+            Truer Measure brings the evidence together and generates the Hidden
+            Report Card. Then, as your child grows, you keep adding, and
+            regenerate it whenever you want a fresh picture.
+          </p>
+          <p
+            className="mb-10 text-left text-smoke"
+            style={{ fontSize: 17, lineHeight: 1.8 }}
+          >
+            It&rsquo;s yours. You decide what goes in, who contributes, and who
+            can see it. It evolves alongside your child.
+          </p>
+          <p className="font-heading italic text-dusk" style={{ fontSize: 25 }}>
+            That&rsquo;s the foundation.
+          </p>
+        </div>
+      </section>
+
       {/* Tiers */}
       <section id="tiers" className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]">
         <div className="mx-auto max-w-[1180px]">
