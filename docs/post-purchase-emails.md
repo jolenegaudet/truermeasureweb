@@ -4,10 +4,22 @@ Goal: after a successful Founding Family purchase, the customer gets exactly two
 emails — the official payment receipt (Stripe) and a branded welcome email
 (GoHighLevel) — and Jolene gets an internal purchase notification. Nothing else.
 
-Payment flow today: truermeasure.com Tier 1 button → GHL payment link
-`https://link.fastpaydirect.com/payment-link/6a4ffe14c981f3feae6e8524` →
-product "Truer Measure - One Year Individual Subscription" ($597/yr) → Stripe
-processes the charge.
+> **STALE IN PART A — corrected 2026-08-05.** The payment flow below changed on
+> 2026-07-17 (commit `5f5dd3f`) and Part A's trigger no longer describes reality.
+> Parts B, C and D are unaffected. The live GoHighLevel account has already moved
+> on; this document had not.
+
+Payment flow today: truermeasure.com Tier 1 button → **native Stripe Payment
+Link** (`buy.stripe.com/…`) → Stripe processes the charge directly.
+
+The payment therefore **never touches GoHighLevel**. It used to — the button
+pointed at a GHL payment link on `link.fastpaydirect.com` until 2026-07-17, when
+STACK rule 33 ratified Stripe payment links on the marketing sites.
+
+That matters because GoHighLevel does not import Stripe activity originating
+outside it: *"HighLevel only tracks new transactions created through HighLevel
+after the integration."* No GHL transaction is created, no contact appears from
+the payment, and **the `Payment Received` trigger in Part A cannot fire.**
 
 ---
 
@@ -16,11 +28,19 @@ processes the charge.
 GHL → Automation → Workflows → Create Workflow → Start from Scratch.
 Name it: `Founding Family - Welcome (post-purchase)`.
 
-**1. Trigger:** "Payment Received"
-- Filter: Payment status → Successful (or "Order Submitted" if using order forms)
-- Filter: Product → **Truer Measure - One Year Individual Subscription**
-  (this pins the workflow to the right checkout; if the product is later
-  renamed to the family offer, re-check this filter)
+**1. Trigger:** ~~"Payment Received"~~ — **superseded. Use an Inbound Webhook.**
+
+The live workflow (`Founding Family - Welcome`) already does: its trigger is an
+Inbound Webhook fed by a Stripe payment webhook. Nothing to change; this is
+recorded so the instruction below is not followed back into a broken state.
+
+- GHL gives the Inbound Webhook trigger a URL. A Stripe webhook endpoint points
+  at it, so Stripe and the app receive the same event independently.
+- **Subscribe that Stripe endpoint to `checkout.session.completed` ONLY.** It is
+  the renewal protection: `invoice.paid` or "all events" would re-enter the
+  workflow on every annual renewal.
+- The product filter below is not available on this trigger. If the workflow ever
+  needs pinning to one offer, filter on something in the Stripe payload instead.
 
 **2. Action — Send Email:**
 - From name: `Jolene from Truer Measure`
@@ -109,8 +129,8 @@ something like `jolene@mail.truermeasure.com` (or `hello@`).
 |---|---|
 | Stripe sends receipt only | Part B (toggles both sides) |
 | GHL sends branded welcome | Part A step 2 |
-| Trigger only on successful payment | Part A step 1 filter |
-| Connected to correct product/checkout | Part A step 1 product filter |
+| Trigger only on successful payment | Part A step 1 — Inbound Webhook + `checkout.session.completed` |
+| Connected to correct product/checkout | Part A step 1 — product filter unavailable on this trigger |
 | Sender name "Jolene from Truer Measure" | Part A step 2 |
 | Sender email on Truer Measure domain | Part C |
 | Internal purchase notification | Part A step 3 |
