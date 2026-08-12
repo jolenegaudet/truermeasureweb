@@ -283,13 +283,18 @@ export default function HomePage() {
                 Become a Founding Family
               </div>
               <p className="mb-5 text-muted" style={{ fontSize: 14, lineHeight: 1.7 }}>
-                Use code <span className="font-semibold text-parchment">FOUNDING40</span> to
-                unlock: <span className="text-parchment">40% off your first year</span>, and{" "}
-                <span className="text-parchment">20% off every renewal while you&rsquo;re an
-                active member</span>.
+                Use code <span className="font-semibold text-parchment">FOUNDING40</span> for{" "}
+                <span className="text-parchment">40% off your first year</span>. Founding
+                Families keep <span className="text-parchment">20% off every renewal</span> —
+                your renewal code arrives by email before your year ends.
               </p>
-              <p className="mb-9 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
+              <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
                 Limited to our first 40 Founding Families.
+              </p>
+              <p className="mb-9 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                $597 USD a year — $358.20 USD your first year with FOUNDING40.
+                <br />
+                Renews automatically each year until you cancel. Cancel anytime.
               </p>
               <div className="flex-1" />
               <a

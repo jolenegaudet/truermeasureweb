@@ -9,8 +9,14 @@ export default function Footer() {
           The Truer Measure of a Child!
         </div>
       </div>
-      <div className="mx-auto mt-8 max-w-[1180px] border-t border-charcoal pt-6 text-center text-[12px] tracking-[0.04em] text-subdued">
-        © {new Date().getFullYear()} Truer Measure. All rights reserved.
+      <div className="mx-auto mt-8 flex max-w-[1180px] flex-wrap items-center justify-center gap-x-8 gap-y-2 border-t border-charcoal pt-6 text-center text-[12px] tracking-[0.04em] text-subdued">
+        <span>© {new Date().getFullYear()} Truer Measure. All rights reserved.</span>
+        <a href="/terms-of-service" className="text-subdued underline underline-offset-2 hover:text-parchment transition-colors">
+          Terms of Service
+        </a>
+        <a href="/privacy-policy" className="text-subdued underline underline-offset-2 hover:text-parchment transition-colors">
+          Privacy Policy
+        </a>
       </div>
     </footer>
   );
