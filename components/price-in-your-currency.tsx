@@ -3,24 +3,38 @@
 import { useEffect, useState } from "react";
 
 /**
- * The membership is priced and billed in US dollars. This line shows a parent
- * roughly what that costs in her own currency before she reaches the Stripe
- * page, which presents USD only and does not label it for a Canadian viewer.
+ * The membership is priced and billed in US dollars. A parent can switch this
+ * to her own currency to see roughly what that costs today, before she reaches
+ * the Stripe page, which presents USD only and does not label it for a Canadian
+ * viewer.
  *
- * Rates refresh in the browser on load. The fallbacks ship with the build so
- * the line always renders a real number, even if both lookups fail.
+ * Nothing here changes what is charged. USD stays the billing currency and the
+ * copy says so in every state, because the conversion is done by her bank at
+ * its own rate, not by us and not by Stripe.
+ *
+ * Rates refresh in the browser on load. The fallbacks ship with the build so a
+ * real number always renders, even if both lookups fail.
  */
 
 const PRICE_USD = 597;
 
-const FALLBACK_RATES: Record<string, number> = { CAD: 1.3849, EUR: 0.8573 };
+const FALLBACK_RATES: Record<string, number> = { CAD: 1.3785, EUR: 0.8562 };
 
-const CURRENCIES: { code: string; symbol: string; locale: string }[] = [
-  { code: "CAD", symbol: "CA$", locale: "en-CA" },
-  { code: "EUR", symbol: "€", locale: "en-IE" },
+type Currency = {
+  code: string;
+  label: string;
+  symbol: string;
+  locale: string;
+};
+
+const BILLING: Currency = { code: "USD", label: "USD", symbol: "$", locale: "en-US" };
+
+const CONVERTED: Currency[] = [
+  { code: "CAD", label: "CAD", symbol: "CA$", locale: "en-CA" },
+  { code: "EUR", label: "EUR", symbol: "€", locale: "en-IE" },
 ];
 
-const SYMBOLS = CURRENCIES.map((c) => c.code).join(",");
+const SYMBOLS = CONVERTED.map((c) => c.code).join(",");
 
 type Rates = Record<string, number>;
 
@@ -33,7 +47,7 @@ async function readRates(url: string, signal: AbortSignal): Promise<Rates | null
   if (!rates) return null;
 
   const found: Rates = {};
-  for (const { code } of CURRENCIES) {
+  for (const { code } of CONVERTED) {
     const rate = rates[code];
     if (typeof rate !== "number" || !Number.isFinite(rate) || rate <= 0) return null;
     found[code] = rate;
@@ -62,13 +76,13 @@ async function fetchRates(signal: AbortSignal): Promise<Rates | null> {
   return null;
 }
 
-function convert(rate: number, locale: string, symbol: string): string {
-  const amount = Math.round(PRICE_USD * rate);
-  return `${symbol}${new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(amount)}`;
+function money(amount: number, locale: string, symbol: string): string {
+  return `${symbol}${new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(Math.round(amount))}`;
 }
 
 export function PriceInYourCurrency({ className }: { className?: string }) {
   const [rates, setRates] = useState<Rates>(FALLBACK_RATES);
+  const [selected, setSelected] = useState<string>(BILLING.code);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -78,13 +92,52 @@ export function PriceInYourCurrency({ className }: { className?: string }) {
     return () => controller.abort();
   }, []);
 
-  const amounts = CURRENCIES.map(({ code, symbol, locale }) =>
-    convert(rates[code] ?? FALLBACK_RATES[code], locale, symbol),
-  );
+  const options = [BILLING, ...CONVERTED];
+  const active = options.find((c) => c.code === selected) ?? BILLING;
+  const isBilling = active.code === BILLING.code;
+
+  const rate = rates[active.code] ?? FALLBACK_RATES[active.code] ?? 1;
 
   return (
-    <p className={className}>
-      {`About ${amounts.join(" or ")} at today’s rate. You are billed in US dollars. Your bank sets the exchange rate and may add a foreign transaction fee.`}
-    </p>
+    <div className={className}>
+      <div
+        role="group"
+        aria-label="Show the price in another currency"
+        className="mb-2 flex justify-center gap-1.5"
+      >
+        {options.map((currency) => {
+          const on = currency.code === selected;
+          return (
+            <button
+              key={currency.code}
+              type="button"
+              aria-pressed={on}
+              onClick={() => setSelected(currency.code)}
+              className={[
+                "cursor-pointer rounded-[2px] border px-[11px] py-[5px]",
+                "text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors",
+                on
+                  ? "border-parchment bg-parchment text-bark"
+                  : "border-dusk bg-transparent text-muted hover:border-rose-dark hover:text-parchment",
+              ].join(" ")}
+            >
+              {currency.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {isBilling ? (
+        <p>
+          {`Billed in US dollars. ${money(PRICE_USD, BILLING.locale, BILLING.symbol)} is the amount that reaches your statement.`}
+        </p>
+      ) : (
+        <p>
+          {`About ${money(PRICE_USD * rate, active.locale, active.symbol)} at today’s rate, `}
+          {`1 USD = ${rate.toFixed(4)} ${active.code}. You are still billed `}
+          {`${money(PRICE_USD, BILLING.locale, BILLING.symbol)} US, and your bank sets the rate it converts at.`}
+        </p>
+      )}
+    </div>
   );
 }
