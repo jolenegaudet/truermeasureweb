@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import { WaitlistButton } from "@/components/waitlist-button";
 
 const moments = [
@@ -285,17 +286,18 @@ export default function HomePage() {
               <p className="mb-5 text-muted" style={{ fontSize: 14, lineHeight: 1.7 }}>
                 Use code <span className="font-semibold text-parchment">FOUNDING40</span> for{" "}
                 <span className="text-parchment">40% off your first year</span>. Founding
-                Families keep <span className="text-parchment">20% off every renewal</span> —
-                your renewal code arrives by email before your year ends.
+                Families keep <span className="text-parchment">20% off every renewal</span>.
+                We apply it for you, so there is no code to remember.
               </p>
               <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
                 Limited to our first 40 Founding Families.
               </p>
-              <p className="mb-9 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                $597 USD a year — $358.20 USD your first year with FOUNDING40.
+              <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                $597 USD a year. $358.20 USD your first year with FOUNDING40.
                 <br />
                 Renews automatically each year until you cancel. Cancel anytime.
               </p>
+              <PriceInYourCurrency className="mb-9 text-muted text-[12px] leading-[1.7]" />
               <div className="flex-1" />
               <a
                 href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
