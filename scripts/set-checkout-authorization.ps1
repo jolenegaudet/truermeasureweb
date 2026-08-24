@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   Sets the authorization and currency sentence shown above the Subscribe button
   on the Truer Measure payment link.
@@ -30,9 +30,13 @@
   .\set-checkout-authorization.ps1
 
 .NOTES
-  Your Stripe secret key is read from the STRIPE_SECRET_KEY environment variable
-  if present, otherwise you are prompted for it. It is never written to disk,
-  never printed, and never stored in this repository.
+  Your Stripe key is read from the STRIPE_SECRET_KEY environment variable if
+  present, otherwise you are prompted for it. It is never written to disk, never
+  printed, and never stored in this repository.
+
+  A restricted key (rk_live_...) with Payment Links set to Write is safer than
+  the account secret key and is all this script needs. Create one at
+  https://dashboard.stripe.com/apikeys under "Restricted keys".
 #>
 
 [CmdletBinding()]
@@ -61,20 +65,43 @@ if ($Message.Length -gt 1200) {
     throw "Message is $($Message.Length) characters. Stripe's limit for custom_text.submit is 1200."
 }
 
+# Encoding guard. Windows PowerShell 5.1 reads a .ps1 saved as UTF-8 without a
+# byte-order mark as ANSI, which turns "americains" with an accent into mojibake
+# before it is ever sent. If that has happened, the French half will contain a
+# capital A-tilde. Refuse to publish rather than put broken text on a live page.
+$suspectChars = @([char]0x00C3, [char]0xFFFD)   # A-tilde, and the replacement character
+if ($Message.IndexOfAny($suspectChars) -ge 0) {
+    throw "The message text was mis-decoded when this script was read. Run it with PowerShell 7 (pwsh), or re-save this file as UTF-8 with a BOM. Nothing was sent."
+}
+
 # --- credentials -------------------------------------------------------------
 
 if ($env:STRIPE_SECRET_KEY) {
     $key = $env:STRIPE_SECRET_KEY
     Write-Host 'Using STRIPE_SECRET_KEY from the environment.'
 } else {
-    $secure = Read-Host 'Paste your Stripe LIVE secret key (sk_live_...). It will not be displayed' -AsSecureString
+    Write-Host ''
+    Write-Host 'You need a Stripe key. Get one here:' -ForegroundColor Cyan
+    Write-Host '  https://dashboard.stripe.com/apikeys'
+    Write-Host ''
+    Write-Host '  Best: under "Restricted keys", create a key with Payment Links set to Write.'
+    Write-Host '  Or:   under "Standard keys", click "Reveal live key" on the Secret key.'
+    Write-Host ''
+    Write-Host 'Copy it, then right-click here to paste. Nothing will appear as you paste.' -ForegroundColor DarkGray
+    Write-Host ''
+    $secure = Read-Host 'Paste the key, then press Enter' -AsSecureString
     $key = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
         [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
     )
 }
 
-if (-not $key) { throw 'No secret key provided.' }
-if (-not $key.StartsWith('sk_')) { throw 'That does not look like a Stripe secret key. It should start with sk_.' }
+if (-not $key) { throw 'No key provided.' }
+if (-not ($key.StartsWith('sk_') -or $key.StartsWith('rk_'))) {
+    throw 'That does not look like a Stripe key. It should start with sk_ (secret) or rk_ (restricted).'
+}
+if ($key.StartsWith('sk_test_') -or $key.StartsWith('rk_test_')) {
+    throw 'That is a test-mode key. This script edits the LIVE payment link, so it needs a live key.'
+}
 
 $headers = @{ Authorization = "Bearer $key" }
 
@@ -106,9 +133,15 @@ if ($DryRun) {
 
 # --- apply -------------------------------------------------------------------
 
+# Percent-encode as UTF-8 ourselves so the body on the wire is pure ASCII. This
+# removes every chance of the host's default encoding corrupting the accents.
+$form  = 'custom_text[submit][message]=' + [uri]::EscapeDataString($Message)
+$bytes = [Text.Encoding]::UTF8.GetBytes($form)
+
 $result = Invoke-RestMethod -Method Post -Headers $headers `
     -Uri "https://api.stripe.com/v1/payment_links/$PaymentLinkId" `
-    -Body @{ 'custom_text[submit][message]' = $Message }
+    -ContentType 'application/x-www-form-urlencoded' `
+    -Body $bytes
 
 if ($result.custom_text.submit.message -eq $Message) {
     Write-Host 'Updated. Stripe confirmed the new text.' -ForegroundColor Green
