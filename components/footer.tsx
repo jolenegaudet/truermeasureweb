@@ -10,13 +10,11 @@ export default function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-8 flex max-w-[1180px] flex-wrap items-center justify-center gap-x-8 gap-y-2 border-t border-charcoal pt-6 text-center text-[12px] tracking-[0.04em] text-subdued">
+        {/* Terms of Service and Privacy Policy links are deliberately absent
+            until those documents are out of draft. Restore this block and the
+            two route folders together, never one without the other:
+            git checkout e3bb129 -- app/terms-of-service app/privacy-policy */}
         <span>© {new Date().getFullYear()} Truer Measure. All rights reserved.</span>
-        <a href="/terms-of-service" className="text-subdued underline underline-offset-2 hover:text-parchment transition-colors">
-          Terms of Service
-        </a>
-        <a href="/privacy-policy" className="text-subdued underline underline-offset-2 hover:text-parchment transition-colors">
-          Privacy Policy
-        </a>
       </div>
     </footer>
   );
