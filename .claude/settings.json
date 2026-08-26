@@ -1,0 +1,7 @@
+{
+  "enabledPlugins": {
+    "refine-feature@antioch-skills": true,
+    "refine-story@antioch-skills": true,
+    "statusline@antioch-skills": true
+  }
+}
