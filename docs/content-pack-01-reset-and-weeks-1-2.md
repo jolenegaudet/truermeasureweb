@@ -34,14 +34,14 @@ learning and growth beyond grades* — with her experience as the credibility, a
 on the site explaining how to work with her. The bio must not read as tutoring, therapy, a
 school platform, an app for kids, or a grading tool.
 
-- *Name field* (bold, searchable — the product is named here): `Jolene Gaudet · The Hidden Report Card · K–12`
-- *Bio* (143 characters; limit 150) — approved by the founder 2026-09-06.
-  Built from her own offer lines (strategy §2); no free guide promised:
+- *Name field* (bold, searchable — the product is named here): `Jolene Gaudet · Founder, Truer Measure`
+- *Bio* (144 characters; limit 150) — the founder's own wording, approved 2026-09-06. Line
+  breaks, no bullets; no free guide promised:
 
-  > 🍎 Ex-principal
-  > 📖 A living account of your child's learning — school & beyond
-  > 🎙 Learn with me: live room or small circle
-  > ✉️ DM "BEYOND" to start
+  > Ex-principal
+  > A living account of your child's education — school & beyond
+  > Work with me: Learn from the Room or Inner Circle
+  > DM "BEYOND" to start
 
 - *Link title*: `Start here — The Hidden Report Card` → truermeasure.com, where the three
   ways to work with her are explained.

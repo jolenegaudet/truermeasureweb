@@ -32,8 +32,8 @@ on the site, not in posts.
 
 | Field | Copy |
 | --- | --- |
-| **Instagram name** | `Jolene Gaudet · The Hidden Report Card · K–12` |
-| **Instagram bio** (143 — approved 2026-09-06) | 🍎 Ex-principal <br> 📖 A living account of your child's learning — school & beyond <br> 🎙 Learn with me: live room or small circle <br> ✉️ DM "BEYOND" to start |
+| **Instagram name** | `Jolene Gaudet · Founder, Truer Measure` |
+| **Instagram bio** (144 — the founder's own wording, approved 2026-09-06) | Ex-principal <br> A living account of your child's education — school & beyond <br> Work with me: Learn from the Room or Inner Circle <br> DM "BEYOND" to start |
 | **Link title** | `Start here — The Hidden Report Card` → truermeasure.com |
 | **Facebook intro** | Your child is more than a report card can measure — and you already know it. I spent 20+ years in schools as a teacher, lead-tech and principal, watching parents look for their child inside a paragraph of comments. Truer Measure brings together what school records and what you see at home — every year, every teacher — into a fuller account of your child, parent-owned. K–12. FR•EN. New Brunswick + South Florida. Start: truermeasure.com |
 | **LinkedIn headline** | Former Teacher & School Principal · Founder, Truer Measure — helping parents see what report cards can't measure · K–12 · FR•EN · New Brunswick & South Florida |
