@@ -3,7 +3,7 @@ const rows = [
   ["Updated twice a year", "Updated whenever something matters"],
   ["Written by teachers", "Written by the people who know your child best"],
   ["Grades against a standard", "Records growth over time"],
-  ["Tells you what they know", "Shows who they're becoming"],
+  ["Tells you what they know", "Keeps the evidence of how they learn — school and beyond"],
   ["A static snapshot", "A living document"],
   ["Reflects one type of intelligence", "Reflects the full range of who they are"],
 ];

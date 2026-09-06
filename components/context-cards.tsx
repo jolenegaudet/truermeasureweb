@@ -21,7 +21,7 @@ const contexts = [
   },
   {
     title: "Celebrating a breakthrough",
-    desc: "Add it. Date it. Watch the record of who they're becoming grow.",
+    desc: "Add it. Date it. Watch your child's living account grow.",
   },
 ];
 

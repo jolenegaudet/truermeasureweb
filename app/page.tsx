@@ -44,7 +44,7 @@ const contrasts = [
   },
   {
     left: "Tells you how your child is doing.",
-    right: "Remembers who your child is becoming.",
+    right: "Keeps a living account of your child's education — school and beyond.",
   },
 ];
 
@@ -176,8 +176,9 @@ export default function HomePage() {
               the pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That's why I created The Hidden Report Card: a record of who
-              your child is <em className="italic text-bark">becoming</em>.
+              That's why I created The Hidden Report Card: a living account of
+              your child's education — school and{" "}
+              <em className="italic text-bark">beyond</em>.
             </p>
           </div>
         </div>
