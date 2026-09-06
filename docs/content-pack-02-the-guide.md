@@ -140,7 +140,7 @@ For parents of K–12 kids. truermeasure.com
   domain in the footer only.
 - **File name.** `how-to-read-your-childs-report-card-comment.pdf` — it will be forwarded by
   file name.
-- **Delivery.** Via GoHighLevel from the REPORT keyword (content pack 01 §4.2) and via the
+- **Delivery.** Via GoHighLevel from the BEYOND keyword (content pack 01 §4.2) and via the
   site's waitlist-button component with tag `guide-report-card-comment`. The lead-form
   privacy notice from `website-compliance-remediation-spec.md` T7 applies to the capture. No
   drip behind it — one delivery, one follow-up at 48 hours, per pack 01 §4.3.

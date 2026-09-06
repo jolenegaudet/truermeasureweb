@@ -24,10 +24,16 @@ on the site, not in posts.
 
 ## 2. Profiles
 
+**The three offers, in the founder's words (2026-09-06) — canonical; use verbatim on the site's tier cards and anywhere an offer is named:**
+
+- **Clarity** — A living account of your child's learning, strengths, and growth that brings together evidence from school and beyond.
+- **Community** — A live room to learn with me, other parents, and invited experts, ask questions, and explore possibilities.
+- **Proximity** — Closer access to me in a small circle, with deeper conversations and a voice in what we build next.
+
 | Field | Copy |
 | --- | --- |
-| **Instagram name** | `Jolene Gaudet · The Hidden Report Card` |
-| **Instagram bio** (147) | Preserve and use the evidence of your child's learning beyond grades — from school, from home, from everywhere it happens. Former principal. K–12 ↓ |
+| **Instagram name** | `Jolene Gaudet · The Hidden Report Card · K–12` |
+| **Instagram bio** (143 — approved 2026-09-06) | 🍎 Ex-principal <br> 📖 A living account of your child's learning — school & beyond <br> 🎙 Learn with me: live room or small circle <br> ✉️ DM "BEYOND" to start |
 | **Link title** | `Start here — The Hidden Report Card` → truermeasure.com |
 | **Facebook intro** | Your child is more than a report card can measure — and you already know it. I spent 20+ years in schools as a teacher, lead-tech and principal, watching parents look for their child inside a paragraph of comments. Truer Measure brings together what school records and what you see at home — every year, every teacher — into a fuller account of your child, parent-owned. K–12. FR•EN. New Brunswick + South Florida. Start: truermeasure.com |
 | **LinkedIn headline** | Former Teacher & School Principal · Founder, Truer Measure — helping parents see what report cards can't measure · K–12 · FR•EN · New Brunswick & South Florida |
@@ -60,7 +66,7 @@ One strong piece a day, not three. Twenty minutes a day on every comment and DM.
 
 Nobody buys US$597 from a caption. A post produces one of two handoffs:
 
-1. **Post → "comment REPORT"** → the one-page guide (pack 02) by DM → one follow-up at 48h → the site, or fifteen minutes with the founder and the child's last report card.
+1. **Post → "comment BEYOND"** → the one-page guide (pack 02) by DM → one follow-up at 48h → the site, or fifteen minutes with the founder and the child's last report card.
 2. **Post → link in bio** → homepage → Stripe.
 
 The URL appears in pins and bios only. Everywhere else, the keyword. Exact DM copy: pack 01 §4.

@@ -167,7 +167,7 @@ a shareable PDF; visualizations are V3 and school-facing tools V5. Copy says "sh
 | **Guide — authority** | Teacher, principal, education innovator; her thinking is built into what the software considers, how it connects evidence, and the conclusions it should and shouldn't draw |
 | **Plan** | 1. Get the guide → 2. Bring what you have — report cards, assessments, what you've noticed, what your child wants included → 3. Read the Hidden Report Card; keep adding as life happens; bring it to the table |
 | **Call to action — direct** | Start at truermeasure.com |
-| **Call to action — transitional** | Comment REPORT for the one-page guide |
+| **Call to action — transitional** | Comment BEYOND for the one-page guide |
 | **Failure** | Each observation remembered briefly and then lost; the meeting decided on a report card and memory |
 | **Success** | A fuller account of the child, parent-owned, on the table when what comes next is decided |
 | **One-liner** | *Grades shouldn't be the only evidence that speaks for your child. The Hidden Report Card brings together what school records and what you see — kept across the years, parent-owned — so you have a fuller account of your child when it counts.* |

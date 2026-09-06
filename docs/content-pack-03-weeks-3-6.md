@@ -46,9 +46,9 @@ NB line: *First report cards are late November. This is the sentence to watch fo
 >
 > So when you see it — and you will — be glad. Then ask the teacher one more thing: *what does she do when the work gets harder than she expected?* That's the answer the sentence can't hold.
 >
-> Comment REPORT and I'll send you the one-page guide to reading the rest of the comment.
+> Comment BEYOND and I'll send you the one-page guide to reading the rest of the comment.
 
-Caption: *A true sentence. An incomplete one. Comment REPORT for the guide.*
+Caption: *A true sentence. An incomplete one. Comment BEYOND for the guide.*
 
 **Wed 23 Sep — C15**
 
@@ -80,7 +80,7 @@ Caption:
 >
 > Behind every section: the evidence it rests on, one tap away. Never a footnote you have to hunt for. Never a claim without a document behind it.
 >
-> For parents of K–12 kids. Comment REPORT for the free one-page guide; the full thing is at the link in bio.
+> For parents of K–12 kids. Comment BEYOND for the free one-page guide; the full thing is at the link in bio.
 
 **Fri 25 Sep — C16 (question + keyword)**
 
@@ -88,7 +88,7 @@ Caption:
 > and what did they say?
 
 Caption: *Write it down before you forget the words. A good year's evidence is worth keeping.*
-*Comment REPORT for the one-page guide to reading what the other years said.*
+*Comment BEYOND for the one-page guide to reading what the other years said.*
 FL line: *Especially if that teacher was last year, and this year's hasn't met her yet.*
 NB line: *Especially if that teacher moved schools. The file didn't move with them.*
 
@@ -122,9 +122,9 @@ NB line: *Ask yourself in November: how long was the comment? Length is informat
 >
 > One line a week. What she did that nobody assigned. Where he went when he was bored. What she asked. That's it.
 >
-> Comment REPORT and I'll send you the guide — it tells you what to write down before the meeting.
+> Comment BEYOND and I'll send you the guide — it tells you what to write down before the meeting.
 
-Caption: *"Doing fine" is where the record goes quiet. Comment REPORT for the guide.*
+Caption: *"Doing fine" is where the record goes quiet. Comment BEYOND for the guide.*
 
 **Wed 30 Sep — C18**
 
@@ -153,7 +153,7 @@ Caption:
 >
 > A pattern needs to show up more than once, in more than one year, from more than one adult, before it's called a pattern. Below that bar, it's a question for you — and often the reason to come back with the next report card.
 >
-> Comment REPORT for the free one-page guide. The full thing is at the link in bio.
+> Comment BEYOND for the free one-page guide. The full thing is at the link in bio.
 
 **Fri 2 Oct — C19 (question + keyword)**
 
@@ -161,7 +161,7 @@ Caption:
 > from teacher to teacher?
 
 Caption: *Same word, different adults, different years. That's not an opinion anymore. Tell me the word.*
-*Comment REPORT for the guide to reading the rest.*
+*Comment BEYOND for the guide to reading the rest.*
 FL line: *If the interim uses it too, that's three.*
 NB line: *Check last year's before November. You'll know it when you see it.*
 
@@ -200,9 +200,9 @@ NB line: *Worth asking at the November meeting: what does he ask about?*
 >
 > Write your answer to number three down. Bring it to the meeting.
 >
-> Comment REPORT — the guide has the rest.
+> Comment BEYOND — the guide has the rest.
 
-Caption: *Five weeks in. One adult. One room. Read it as that. Comment REPORT for the guide.*
+Caption: *Five weeks in. One adult. One room. Read it as that. Comment BEYOND for the guide.*
 
 **Wed 7 Oct — C21**
 
@@ -234,14 +234,14 @@ Caption:
 >
 > What it is: your child's record, read closely, by someone who has read thousands, connected to what you see at home. That's enough. Anything more would be a claim it can't back.
 >
-> Comment REPORT for the free guide. Link in bio for the rest.
+> Comment BEYOND for the free guide. Link in bio for the rest.
 
 **Fri 9 Oct — C22 (question + keyword)**
 
 > What does your child do when he's bored?
 
 Caption: *Not what he's supposed to do. What he actually does. That's one of the clearest signals you'll ever get, and no form asks for it.*
-*Comment REPORT for the guide — it tells you where to write this down.*
+*Comment BEYOND for the guide — it tells you where to write this down.*
 FL line: *Long weekend ahead. Watch.*
 NB line: *Long weekend ahead. Watch.*
 
@@ -273,9 +273,9 @@ Caption: *Happy Thanksgiving to the Canadian half of this room. The other half: 
 >
 > If you've got the report cards, find them this week. Read them in order. That's the whole assignment.
 >
-> Comment REPORT for the guide — it tells you what to look for when you do.
+> Comment BEYOND for the guide — it tells you what to look for when you do.
 
-Caption: *A point can't show direction. A line can't hide it. Comment REPORT for the guide.*
+Caption: *A point can't show direction. A line can't hide it. Comment BEYOND for the guide.*
 
 **Wed 14 Oct — C24**
 
@@ -301,7 +301,7 @@ Caption:
 >
 > Two things we deliberately don't do. We never regenerate on our own — adding is yours, asking is yours. And we never nudge: no "haven't seen you in a while" emails, no streaks. If you come back, it's because something happened with your child and you wanted to know what it meant. That's the only reason worth coming back for, and it's the one thing we actually want to measure.
 >
-> For parents of K–12 kids. Comment REPORT for the free guide; link in bio for the rest.
+> For parents of K–12 kids. Comment BEYOND for the free guide; link in bio for the rest.
 
 **Fri 16 Oct — C25 (question + keyword)**
 
@@ -309,7 +309,7 @@ Caption:
 > actually tell you?
 
 Caption: *About your child — or about the room? Tell me which. Both answers are useful.*
-*Comment REPORT for the guide before the report cards land.*
+*Comment BEYOND for the guide before the report cards land.*
 FL line: *Q1 report cards are about three weeks out.*
 NB line: *Six weeks to the first report card. Time to find last year's.*
 
@@ -344,7 +344,7 @@ NB line: *Six weeks to the first report card. Time to find last year's.*
 > What's the thing your child could talk about
 > for an hour without being asked?
 
-Caption: *That's not a hobby. That's a learning profile. Comment REPORT for the guide to reading the rest of the record beside it.*
+Caption: *That's not a hobby. That's a learning profile. Comment BEYOND for the guide to reading the rest of the record beside it.*
 
 ---
 

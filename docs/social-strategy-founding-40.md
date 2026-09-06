@@ -158,7 +158,7 @@ is the algorithm telling you the same thing.
 The URL leaves the caption. The ladder is:
 
 1. **Post** — card or reel, one observation.
-2. **Keyword** — "Comment or DM **REPORT** and I'll send you the one-page guide to reading your
+2. **Keyword** — "Comment or DM **BEYOND** and I'll send you the one-page guide to reading your
    child's report card comment." The smaller yes.
 3. **The guide** — the shareable object from the marketing strategy, delivered by DM and email.
    One follow-up line, once: *the Hidden Report Card exists; here is what it is.* No drip.

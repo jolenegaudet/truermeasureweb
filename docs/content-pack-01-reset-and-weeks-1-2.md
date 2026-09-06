@@ -34,10 +34,14 @@ learning and growth beyond grades* — with her experience as the credibility, a
 on the site explaining how to work with her. The bio must not read as tutoring, therapy, a
 school platform, an app for kids, or a grading tool.
 
-- *Name field* (bold, searchable — the product is named here): `Jolene Gaudet · The Hidden Report Card`
-- *Bio* (147 characters; limit 150):
+- *Name field* (bold, searchable — the product is named here): `Jolene Gaudet · The Hidden Report Card · K–12`
+- *Bio* (143 characters; limit 150) — approved by the founder 2026-09-06.
+  Built from her own offer lines (strategy §2); no free guide promised:
 
-  > Preserve and use the evidence of your child's learning beyond grades — from school, from home, from everywhere it happens. Former principal. K–12 ↓
+  > 🍎 Ex-principal
+  > 📖 A living account of your child's learning — school & beyond
+  > 🎙 Learn with me: live room or small circle
+  > ✉️ DM "BEYOND" to start
 
 - *Link title*: `Start here — The Hidden Report Card` → truermeasure.com, where the three
   ways to work with her are explained.
@@ -111,7 +115,7 @@ Caption:
 >
 > The Hidden Report Card is where the rest goes: report cards, assessments, professionals' reports, and what you see at home — kept in one place, read across the years, never lost.
 >
-> Comment REPORT for the one-page guide to reading the part the report card does capture.
+> Comment BEYOND for the one-page guide to reading the part the report card does capture.
 
 ## 2. Observation cards — Mon / Wed / Fri, 7–18 September
 
@@ -150,7 +154,7 @@ run again in the first keyword slot, verbatim:
 > that you know matters the most?
 
 Caption: *Tell me below. One thing.*
-*If you'd like the one-page guide to reading the comment you'll get in November — what it can say, what it can't, and what to write down before the meeting — comment REPORT and I'll send it to you.*
+*If you'd like the one-page guide to reading the comment you'll get in November — what it can say, what it can't, and what to write down before the meeting — comment BEYOND and I'll send it to you.*
 
 *(The previous C03 — "What's one thing your child does well that has never appeared on a
 report card?" — moves to the spares as C13b.)*
@@ -183,7 +187,7 @@ Caption: *It's in the file. It's just spread across the file. That's the differe
 > you didn't already know?
 
 Caption: *Honest answers welcome.*
-*If the answer is "never," that's not reassurance — it's a ceiling on what the form can see. Comment REPORT for the one-page guide to reading what it does say.*
+*If the answer is "never," that's not reassurance — it's a ceiling on what the form can see. Comment BEYOND for the one-page guide to reading what it does say.*
 
 ### Spares — use in any slot, or hold for October
 
@@ -237,14 +241,14 @@ Caption: *Honest answers welcome.*
 > What's one thing your child does well
 > that has never appeared on a report card?
 
-Caption: *Tell me below. One thing. Comment REPORT for the guide.*
+Caption: *Tell me below. One thing. Comment BEYOND for the guide.*
 
 **C13** *(Friday spare — question + keyword)*
 
 > What did your child do this week
 > that nobody assigned?
 
-Caption: *That's evidence. Most of it is never written down anywhere. Comment REPORT and I'll send you the guide to what the report card will and won't say about it.*
+Caption: *That's evidence. Most of it is never written down anywhere. Comment BEYOND and I'll send you the guide to what the report card will and won't say about it.*
 
 ## 3. Tuesday reel scripts
 
@@ -266,10 +270,10 @@ before a thumb moves. No URL in the reel or the caption — the keyword does the
 >
 > The things you notice at home aren't extra. They're the record the school can't keep.
 >
-> If you want the one-page guide to reading the comment you'll get in November — what it can say, what it can't — comment REPORT. I'll send it.
+> If you want the one-page guide to reading the comment you'll get in November — what it can say, what it can't — comment BEYOND. I'll send it.
 
 Caption: *More than twenty years of report cards. The comment box was never the problem. Its size was.*
-*Comment REPORT for the guide.*
+*Comment BEYOND for the guide.*
 
 ### Script B — Tue 15 Sep — "Confident or compliant"
 
@@ -287,9 +291,9 @@ Caption: *More than twenty years of report cards. The comment box was never the 
 >
 > Write it down. I mean it — one line, tonight. That's the record.
 >
-> Comment REPORT and I'll send you the guide to what the report card will and won't tell you in November.
+> Comment BEYOND and I'll send you the guide to what the report card will and won't tell you in November.
 
-Caption: *"Doing great" is a grade. Confident is a child. Comment REPORT for the guide.*
+Caption: *"Doing great" is a grade. Confident is a child. Comment BEYOND for the guide.*
 
 ## 4. The keyword ladder — every line, in order
 
@@ -299,28 +303,24 @@ minutes a day.
 
 **4.1 The ask (goes at the end of Friday captions and Tuesday reels)**
 
-> Comment REPORT — or send it to me in a message — and I'll send you the one-page guide: how to read your child's report card comment. What it can say, what it can't, and what to write down before the meeting.
+> DM me "BEYOND" and I'll send you where to start — and if you tell me one thing about your child, I'll tell you what I'd look for first.
 
-**4.2 The delivery (DM, within the hour if by hand)**
+*No free guide is promised. The keyword opens a conversation, not a download. If the guide
+(pack 02) is ever produced, it is sent inside that conversation, never as the reason for it.*
 
-> Here it is: [guide link]
+**4.2 The reply (by hand, within the hour)**
+
+> Here's where to start: truermeasure.com — The Hidden Report Card is a living account of your child's learning, strengths and growth, from school and beyond. You add what you have; it connects it across the years.
 >
-> One page. Read it before the report card lands, and keep it for the meeting.
->
-> If reading it makes you think of something about your child that school has never measured — tell me. I read every one.
+> If you tell me one thing you've noticed about your child that school has never measured, I'll tell you what I'd look for first. I read every one.
 >
 > — Jolene
 
-*Until the guide exists, the delivery message is the same with one honest change: "It's
-coming out on [date] — you're on the list, and you'll have it first." No drip behind it.*
-
 **4.3 The one follow-up (48 hours later, once, never again)**
 
-> The guide is the free version of what I do.
+> Two other ways to learn with me, if that's more your speed: a live room with other parents and invited experts, and a small circle with closer access to me. Both are on the site under Community and Proximity.
 >
-> The full version is the Hidden Report Card: your child's whole school record, every year and every teacher, read for what it's actually evidence of — and connected to what you see at home. Then it keeps going as you add what you notice.
->
-> It's at truermeasure.com. If you'd rather talk first, I'll take fifteen minutes with you and your child's last report card and show you what I'd look for. No pitch — just the read. [booking link]
+> And the offer stands — one thing about your child, and I'll tell you what I'd look for.
 
 **4.4 When someone tells you something about their child**
 
