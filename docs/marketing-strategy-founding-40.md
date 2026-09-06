@@ -120,7 +120,63 @@ and it sits on the clean cohort's critical path, not the founding cohort's.
 
 ## 4. The message
 
-Hierarchy, in the order a stranger needs it:
+### 4.0 The StoryBrand script (added 2026-09-06; rebuilt the same day from the founder's own answers)
+
+Donald Miller's frame, applied so every bio, hero and caption keeps the parent as the hero and
+the founder as the guide. The rows below are the founder's words from a five-question
+interview on 2026-09-06, lightly compressed; where a row is mine, it says so.
+
+**The founder's answers, verbatim where it matters:**
+
+1. *What a stranger should walk away understanding:* "I can help them do something with what
+   they already see in their child: preserve it, bring it into conversations with school, and
+   make sure grades aren't the only evidence they have to speak for their child."
+2. *The scene:* a parent across the table from the teacher, deciding what comes next. Today:
+   a report card and years of noticing held in memory. Wanted: "a clear, shareable
+   [account] that brings school evidence and evidence from the rest of their child's life
+   together," so that "when they're deciding what to build on, what support to offer, or what
+   opportunities to explore, more of the child's story is there."
+3. *Between meetings:* "They keep adding to it as life happens: something their child said or
+   did, a photo, a teacher's comment, feedback from a coach, or something the child wants
+   included. They don't have to turn every moment into an assessment." It should "connect new
+   evidence with what's already there, show recurring patterns and changes, and leave room
+   for things that don't fit the earlier picture." "They shouldn't have to wait for a school
+   meeting to find it useful."
+4. *Where she is in it:* "They're buying something I designed from my experience as a teacher,
+   principal, and education innovator. My thinking is built into what it considers, how it
+   connects evidence, and the conclusions it should and shouldn't draw. They're not buying
+   ongoing one-to-one access to me." Access is Learn From the Room and the Inner Circle. The
+   bio promises "the value of my work: helping parents preserve and use the evidence of their
+   child's learning and growth beyond grades."
+5. *Not to be mistaken for:* tutoring, therapy, a school platform, an app for kids, a grading
+   tool. "It isn't there to rank or diagnose. It's parent-owned." "My broader work isn't
+   tutoring, therapy, or teaching parents how to parent."
+
+*Note on "dashboard" (answer 2):* the ratified record ships a report with a reading path and
+a shareable PDF; visualizations are V3 and school-facing tools V5. Copy says "shareable" and
+"brings school and home together"; it does not say "dashboard" until the product does.
+
+| Element | Truer Measure |
+| --- | --- |
+| **Character** | A K–12 parent |
+| **Wants** | To do something with what they already see in their child — and to have more than a grade to speak for them |
+| **Problem — external** | The report card measures performance against a narrow list |
+| **Problem — internal** | *I'm relying on memory to explain my child; the years of noticing were never brought together* |
+| **Problem — philosophical** | A child's learning shouldn't be lost because the form had no room for it. In the founder's words: *if a report card only captures part of a child's learning, where does the rest of the evidence go?* |
+| **Guide — empathy** | She sat across from parents looking for their child inside a paragraph of comments |
+| **Guide — authority** | Teacher, principal, education innovator; her thinking is built into what the software considers, how it connects evidence, and the conclusions it should and shouldn't draw |
+| **Plan** | 1. Get the guide → 2. Bring what you have — report cards, assessments, what you've noticed, what your child wants included → 3. Read the Hidden Report Card; keep adding as life happens; bring it to the table |
+| **Call to action — direct** | Start at truermeasure.com |
+| **Call to action — transitional** | Comment REPORT for the one-page guide |
+| **Failure** | Each observation remembered briefly and then lost; the meeting decided on a report card and memory |
+| **Success** | A fuller account of the child, parent-owned, on the table when what comes next is decided |
+| **One-liner** | *Grades shouldn't be the only evidence that speaks for your child. The Hidden Report Card brings together what school records and what you see — kept across the years, parent-owned — so you have a fuller account of your child when it counts.* |
+
+Test for any line of copy: if the founder is the subject of the first sentence, it's the
+guide's story, not the hero's. Pins and bios open with the parent; the founder's story lands
+on the parent within two sentences.
+
+### 4.1 Hierarchy, in the order a stranger needs it
 
 1. **The value statement.** *You notice things about your child that no school will ever
    see. Bring them here. We'll show you what they're evidence of — and how they connect to

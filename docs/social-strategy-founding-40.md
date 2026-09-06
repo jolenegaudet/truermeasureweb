@@ -74,7 +74,7 @@ closed 20 June ("see you in the fall"). No rating yet.
    visits, let alone conversations.
 2. **The room is peers, not buyers.** Fifty-nine percent of the Facebook audience is 45 or
    older; the cities are the founder's own Acadian New Brunswick; the birthday comments are
-   from former colleagues. Parents of six-to-twelve-year-olds are a minority in the room, and
+   from former colleagues. Parents of school-age children are a minority in the room, and
    Florida is absent.
 3. **The feed has been trained on Jolene-the-person.** Reinvention, outfits, travel, gifts win
    on Instagram; they are honest and they are hers — and they teach the algorithm to serve her
@@ -109,7 +109,7 @@ with one smaller yes in between.
 
 ### 3.1 One buyer, one job, in every post
 
-Every piece of content is for **the parent of a six-to-twelve-year-old who already writes
+Every piece of content is for **the parent of a K–12 child who already writes
 things down about her child**, and every piece applies the lens to something she already
 holds: the report-card comment, the note home, "works well with others," the child who was
 excited for school in September and isn't in November.
@@ -176,7 +176,7 @@ tool is a founder decision (D-S3); the ladder does not depend on it, only the la
 
 The 45-and-over New Brunswick audience is not the buyer. It is the buyer's mother, aunt,
 neighbour and former teacher. Treat it as the distribution layer it already is: Monday and
-Wednesday cards carry a line like *"Know a parent of a kid in grades 1–6? Send them this."*
+Wednesday cards carry a line like *"Know a parent with a kid in school, K–12? Send them this."*
 The word-of-mouth channel in the marketing strategy runs partly through this audience, and
 it costs nothing to say so out loud.
 

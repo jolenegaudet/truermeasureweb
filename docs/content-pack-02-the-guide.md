@@ -114,12 +114,13 @@ Bring the page. You'll find you're listening for different things.
 
 This page is the free version of what I do.
 
-The full version is the Hidden Report Card: your child's whole school record — every year,
-every teacher, every comment — read for what it's actually evidence of, and connected to what
-you see at home. Then it keeps going, as you add the next report card, the next assessment,
-the next thing you noticed.
+The full version is the Hidden Report Card: one place to keep the evidence of your child
+from everywhere it happens — report cards, assessments, professionals' reports, and what you
+notice at home — and software that reads all of it across the years for what it's actually
+evidence of. Then it keeps going, as you add the next report card, the next assessment, the
+next thing you noticed.
 
-For parents of kids in grades 1–6. truermeasure.com
+For parents of K–12 kids. truermeasure.com
 
 ---
 

@@ -23,20 +23,42 @@
 
 ### 1.1 Bios
 
-Same idea on every platform: who she was, what she does now, who it's for, where to start.
-No tiers, no ecosystem, no "coming soon."
+Built on the StoryBrand script in `marketing-strategy-founding-40.md` §4: the parent is the
+hero, the founder is the guide. Order on every platform — the hero's problem, the guide's
+authority in one breath, the call to action. No tiers, no ecosystem, no "coming soon."
 
-**Instagram** (fits the 150-character limit):
+**Instagram** — three fields, not one. Built from the founder's own answers in the
+2026-09-06 interview (recorded in `marketing-strategy-founding-40.md` §4.0): the promise is
+the value of her work — *helping parents preserve and use the evidence of their child's
+learning and growth beyond grades* — with her experience as the credibility, and the offers
+on the site explaining how to work with her. The bio must not read as tutoring, therapy, a
+school platform, an app for kids, or a grading tool.
 
-> Former school principal, 20+ yrs. I read report cards for what they can't say about your child. Parents of kids 6–12 — start here ↓
+- *Name field* (bold, searchable — the product is named here): `Jolene Gaudet · The Hidden Report Card`
+- *Bio* (147 characters; limit 150):
+
+  > Preserve and use the evidence of your child's learning beyond grades — from school, from home, from everywhere it happens. Former principal. K–12 ↓
+
+- *Link title*: `Start here — The Hidden Report Card` → truermeasure.com, where the three
+  ways to work with her are explained.
+
+Grunt test: offer (preserve and use the evidence beyond grades) · benefit (something to speak
+for your child besides a grade — "use") · next step (Start ↓). No negatives: a bio says what
+the hero gets, never what the product isn't (Miller). The five wrong ideas are ruled out by
+"from school, from home, from everywhere it happens" — no school platform, no app for kids. Her question — *where does the rest
+of the evidence go?* — stays as Pin 3 and the homepage hero, where there is room to answer it.
 
 **Facebook intro:**
 
-> Former school principal, 20+ years. Founder, Truer Measure. I help parents read their child's school records — every year, every teacher — for what they're actually evidence of, and connect it to what you see at home. FR•EN. New Brunswick + South Florida.
+> Your child is more than a report card can measure — and you already know it. I spent 20+ years in schools as a teacher, lead-tech and principal, watching parents look for their child inside a paragraph of comments. Truer Measure reads your child's records — every year, every teacher — for what they're actually evidence of, and connects it to what you see at home. K–12. FR•EN. New Brunswick + South Florida. Start: truermeasure.com
 
-**LinkedIn headline** (keep the shape; drop the product promise that isn't live yet):
+**LinkedIn headline** (her own line was already StoryBrand-shaped; kept, with the audience and
+the career order made explicit, and the product promise that isn't live yet removed):
 
-> Former School Principal · Founder, Truer Measure — helping parents read what report cards can't say · FR•EN · New Brunswick & South Florida
+> Former Teacher & School Principal · Founder, Truer Measure — helping parents see what report cards can't measure · K–12 · FR•EN · New Brunswick & South Florida
+
+*"FR•EN" on all three describes the founder, not the product. Until the French product exists,
+keep it out of any sentence about what Truer Measure delivers.*
 
 *If "Juste valeur arrive bientôt" stays, it is a promise with a date attached to nothing.
 Founder's call.*
@@ -60,32 +82,36 @@ Caption:
 
 > Bring them here.
 >
-> The Hidden Report Card reads your child's whole school record — every year, every teacher, every comment — for what it's actually evidence of. Then it connects that to what you see at home.
+> The Hidden Report Card is one place to keep everything that shows who your child is — report cards, assessments, professionals' reports, and what you see at home — and software that reads all of it across the years for what it's actually evidence of. Every insight traces back to the document it came from. Every time you add something, the picture grows.
 >
 > Not a grade. Not a diagnosis. A truer measure.
 >
-> For parents of kids in grades 1–6. Start at truermeasure.com.
+> For parents of K–12 kids. Start at truermeasure.com.
 
 **Pin 2 — the founder story (reel)**
 
 Script A in §3, "What I was never allowed to write." Caption:
 
-> More than twenty years of report cards. Here's what the comment box never had room for.
+> There's more to your child than a comment box has room for. Twenty-plus years of writing report cards, then signing them, taught me exactly what gets left out.
 >
-> Parents of kids 6–12: truermeasure.com
+> Parents, K–12: truermeasure.com
 
-**Pin 3 — the question that already travels (card)**
+**Pin 3 — the founder's question (card)**
 
-Card text (this card reached 3,108 people on Facebook on 3 September; keep it verbatim):
+Card text — the founder's own words, verbatim:
 
-> What does school completely miss about your kid
-> that you know matters the most?
+> If a report card only captures part
+> of a child's learning,
+>
+> where does the rest of the evidence go?
 
 Caption:
 
-> Tell me in the comments — one thing.
+> That question is why Truer Measure exists.
 >
-> And if you want the one-page guide to reading your child's report card comment before the next one lands, comment REPORT and I'll send it to you.
+> The Hidden Report Card is where the rest goes: report cards, assessments, professionals' reports, and what you see at home — kept in one place, read across the years, never lost.
+>
+> Comment REPORT for the one-page guide to reading the part the report card does capture.
 
 ## 2. Observation cards — Mon / Wed / Fri, 7–18 September
 
@@ -117,13 +143,17 @@ Caption: *That's not a criticism of the teacher. It's a description of the form.
 
 Caption: *Same four words, three very different children. The report card can't tell them apart. The parent usually can.*
 
-**Fri 11 Sep — C03 (question + keyword)**
+**Fri 11 Sep — C03 (question + keyword)** — the card that reached 3,108 people on 3 September,
+run again in the first keyword slot, verbatim:
 
-> What's one thing your child does well
-> that has never appeared on a report card?
+> What does school completely miss about your kid
+> that you know matters the most?
 
 Caption: *Tell me below. One thing.*
 *If you'd like the one-page guide to reading the comment you'll get in November — what it can say, what it can't, and what to write down before the meeting — comment REPORT and I'll send it to you.*
+
+*(The previous C03 — "What's one thing your child does well that has never appeared on a
+report card?" — moves to the spares as C13b.)*
 
 ### Week 2
 
@@ -202,6 +232,13 @@ Caption: *Honest answers welcome.*
 >
 > Nobody has ever read it in one sitting.
 
+**C13b** *(Friday spare — question + keyword)*
+
+> What's one thing your child does well
+> that has never appeared on a report card?
+
+Caption: *Tell me below. One thing. Comment REPORT for the guide.*
+
 **C13** *(Friday spare — question + keyword)*
 
 > What did your child do this week
@@ -217,7 +254,7 @@ before a thumb moves. No URL in the reel or the caption — the keyword does the
 
 ### Script A — Tue 8 Sep — "What I was never allowed to write"
 
-> I signed report cards for more than twenty years. First as a teacher writing them, then as a principal signing them.
+> For more than twenty years I wrote report cards as a teacher, then signed them as a principal.
 >
 > Here's what the comment box never had room for.
 >
@@ -312,11 +349,11 @@ the exchange the product sells.*
 For the New Brunswick audience — the grandmother, the aunt, the former colleague. Add one line
 to the Monday and Wednesday card captions, alternating:
 
-> Know a parent of a kid in grades 1–6? Send them this one.
+> Know a parent with a kid in school, K–12? Send them this one.
 
 > You know exactly which parent needs to read this. Pass it on.
 
-> Si vous connaissez un parent d'un enfant de la 1re à la 6e année, envoyez-lui ceci.
+> Si vous connaissez un parent d'un enfant à l'école — de la maternelle à la 12e année — envoyez-lui ceci.
 
 ## 6. Voice checklist — for whoever makes the next pack
 

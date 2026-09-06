@@ -70,7 +70,7 @@ Card:
 
 Caption:
 
-> People ask what they'd get. Here is the shape — the same shape for every child; the content is only ever theirs.
+> People ask what they'd get. First, what it is: software where you keep the evidence of your child from everywhere it happens — report cards, assessments, a psychologist's report, the thing you noticed on Tuesday — and it reads all of it across the years. What comes out of that is the Hidden Report Card. Here is its shape — the same shape for every child; the content is only ever theirs.
 >
 > It opens with what stands out — the patterns that recur across years, teachers and settings, and what they seem to be evidence of. Every pattern is written as an interpretation, not a verdict; the report says so in its own words.
 >
@@ -80,7 +80,7 @@ Caption:
 >
 > Behind every section: the evidence it rests on, one tap away. Never a footnote you have to hunt for. Never a claim without a document behind it.
 >
-> For parents of kids in grades 1–6. Comment REPORT for the free one-page guide; the full thing is at the link in bio.
+> For parents of K–12 kids. Comment REPORT for the free one-page guide; the full thing is at the link in bio.
 
 **Fri 25 Sep — C16 (question + keyword)**
 
@@ -301,7 +301,7 @@ Caption:
 >
 > Two things we deliberately don't do. We never regenerate on our own — adding is yours, asking is yours. And we never nudge: no "haven't seen you in a while" emails, no streaks. If you come back, it's because something happened with your child and you wanted to know what it meant. That's the only reason worth coming back for, and it's the one thing we actually want to measure.
 >
-> For parents of kids in grades 1–6. Comment REPORT for the free guide; link in bio for the rest.
+> For parents of K–12 kids. Comment REPORT for the free guide; link in bio for the rest.
 
 **Fri 16 Oct — C25 (question + keyword)**
 
