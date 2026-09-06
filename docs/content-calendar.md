@@ -309,12 +309,39 @@ Two six-post series pinned to **Day 0 = the day the report card comes home**: Fl
 
 ## DM replies — when someone sends BEYOND
 
-**First reply:** Here's where to start: truermeasure.com — The Hidden Report Card is a living account of your child's learning, strengths and growth, from school and beyond. You add what you have; it connects it across the years. If you tell me one thing you've noticed about your child that school has never measured, I'll tell you what I'd look for first. I read every one. — Jolene
+Short messages. One question at a time. End on the question. Never more than one message without a reply.
 
-**48 hours later, once:** Two other ways to learn with me, if that's more your speed: a live room with other parents and invited experts, and a small circle with closer access to me. Both are on the site under Community and Proximity. And the offer stands — one thing about your child, and I'll tell you what I'd look for.
+**First reply (within the hour):**
+Hey [name]! Glad you sent that.
+Quick one so I point you the right way: is this about something going on with your kid's school right now — or are you just curious what I do?
 
-**When they tell you about their child:** reflect it back in one line — what it's evidence of — then: That's exactly the kind of thing I mean. If you want, send me a photo of the last report card and give me fifteen minutes; I'll show you what I'd look for in it next to what you just told me.
+**If "something's going on":**
+Got it. What does school say about them right now — and what do you see that it doesn't?
+*(Let them answer. Reflect it back in one line — what it's evidence of, in plain words. Then:)*
+And a year from now, what would you want to be different? What would you want in your hands at the next meeting?
+*(Then:)*
+What's in the way of that today?
+*(Nine messages before any offer. When there's a real gap and something happening now, send the two-option offer from `sell-by-chat-truer-measure.md` §2 — price included.)*
 
-**Price:** US$597 a year, per child — the whole year: the first Hidden Report Card, then every update as you add report cards, assessments, and what you notice at home. Founding families this fall get 40% off the first year. Everything's at truermeasure.com — or fifteen minutes first, if you'd rather talk.
+**If "just curious":**
+Fair. Here's the short version: The Hidden Report Card is a living account of your child's education — school and beyond. You add what you have; it connects it across the years, so you're never walking into a meeting with just a report card and a memory. truermeasure.com
+If you ever want to tell me one thing about your kid that school has never measured, I'll tell you what I'd look for first. I read every one.
+
+**If they mention their child in the first message:**
+*(One line reflecting it back — what it's evidence of.)*
+That's exactly the kind of thing I mean. Is that showing up at school too, or only at home?
+
+**If they go quiet:** like their last message after 30 minutes · after an hour: "[Name]?" · next day, one more · then days 2, 3, 5, 8, 13 · last one: "Would you like to keep this going, or should I leave it here for now?"
+
+**Price:** US$597 a year, per child — the whole year: the first Hidden Report Card, then every update as you add report cards, assessments, and what you notice at home. Founding families get 40% off the first year. Everything's at truermeasure.com — or fifteen minutes first, if you'd rather talk.
+*(Room and Circle prices are never in the first reply; they come inside the offer message, after discovery.)*
+
+**"I need to talk to my partner":** Of course — want me to send something you can both read, or should the three of us talk for fifteen minutes?
+
+**"It's expensive":** It is. What would it be worth to walk into the next meeting with the whole picture instead of a report card and a memory?
+
+**"Not the right time":** The report card comes home in [weeks]. That's the moment this was built for.
+
+**"I already keep notes":** Good — most people don't. Where were they at the last meeting?
 
 **French?** Not yet. I speak French — we can talk in French — but the product and the report are in English for now. The French version has no date yet, and I'd rather say that than promise one.
