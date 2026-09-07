@@ -130,11 +130,11 @@ export function PriceInYourCurrency({ className }: { className?: string }) {
         })}
       </div>
 
-      {isBilling ? (
-        <p>
-          {`Billed in US dollars. ${money(PRICE_USD, BILLING.locale, BILLING.symbol)} is the amount that reaches your statement.`}
-        </p>
-      ) : (
+      {/* Nothing is shown for USD: the card states US$597 directly above, and the
+          conversion warning only matters to someone paying in another currency,
+          who will see it here the moment they switch, and again on the Stripe
+          checkout page. */}
+      {isBilling ? null : (
         <p>
           {`About ${money(PRICE_USD * rate, active.locale, active.symbol)} at today’s rate, `}
           {`1 USD = ${rate.toFixed(4)} ${active.code}. You are still billed `}
