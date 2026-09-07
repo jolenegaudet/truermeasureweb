@@ -335,17 +335,11 @@ export default function HomePage() {
                 the Room
               </div>
               <p
-                className="mb-5 text-smoke"
+                className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
                 A live room to learn with me, other parents, and invited experts, ask
                 questions, and explore possibilities.
-              </p>
-              <p
-                className="mb-9 text-smoke"
-                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
-              >
-                Founding members join at a rate that doesn&rsquo;t come back.
               </p>
               <div className="flex-1" />
               <WaitlistButton
