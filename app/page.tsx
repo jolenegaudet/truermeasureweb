@@ -233,8 +233,9 @@ export default function HomePage() {
             already exists: report cards, assessments, teacher comments, your
             own observations, anything that helps tell your child&rsquo;s story.
             Truer Measure brings the evidence together and generates the Hidden
-            Report Card. Then, as your child grows, you keep adding, and
-            regenerate it whenever you want a fresh picture.
+            Report Card. Then, as your child grows, you keep adding &mdash; and
+            request an updated Hidden Report Card when you&rsquo;re ready. Six
+            updates a year are included; extra updates are US$10 each.
           </p>
           <p
             className="mb-10 text-left text-smoke"
@@ -265,78 +266,83 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1.08fr_1fr_1fr]">
-            {/* Tier 1 — Start Here */}
-            <div
-              className="flex flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
-              style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
-            >
-              <div className="mb-[22px] text-[11.5px] font-bold uppercase tracking-[0.26em] text-rose-dark">
-                Start Here
-              </div>
+            {/* Tier 1 — The Hidden Report Card */}
+            <div className="flex flex-col">
               <div
-                className="font-heading mb-[18px] font-medium text-parchment"
-                style={{ fontSize: 40, lineHeight: 1.04 }}
+                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
+                style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
               >
-                The Hidden
-                <br />
-                Report Card
+                <div
+                  className="font-heading mb-[18px] font-medium text-parchment"
+                  style={{ fontSize: 40, lineHeight: 1.04 }}
+                >
+                  The Hidden
+                  <br />
+                  Report Card
+                </div>
+                <p className="mb-5 text-muted" style={{ fontSize: 14.5, lineHeight: 1.7 }}>
+                  A living account of your child&rsquo;s learning, strengths, and growth
+                  that brings together evidence from school and beyond.
+                </p>
+                {/* Compliance spec §8-D2: the recurring renewal-discount promise is removed.
+                    A Stripe promotion code carries exactly one coupon, so FOUNDING40
+                    cannot deliver both the 40%-once and the 20%-forever discount. Do not
+                    restore that line unless a second discount exists in Stripe that a
+                    parent can actually redeem at checkout — a dedicated founding price
+                    (§8-D2 option b), not a coupon applied by hand after the fact. */}
+                <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  US$597 a year, per child &middot; Founding Families: 40% off your first
+                  year with{" "}
+                  <span className="font-semibold text-parchment">FOUNDING40</span>
+                </p>
+                <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  Six updates a year included. Extra updates US$10 each.
+                </p>
+                <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
+                  Founding Families: the first 40. The founding rate ends when
+                  they&rsquo;re full.
+                </p>
+                <p className="mb-9 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  Renews yearly until you cancel. Cancel anytime.
+                </p>
+                <div className="flex-1" />
+                <a
+                  href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
+                  className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+                >
+                  Start here
+                </a>
               </div>
-              <div className="font-heading mb-3 text-[21px] text-warm">
-                Become a Founding Family
-              </div>
-              <p className="mb-5 text-muted" style={{ fontSize: 14, lineHeight: 1.7 }}>
-                Use code <span className="font-semibold text-parchment">FOUNDING40</span> for{" "}
-                <span className="text-parchment">40% off your first year</span>. Founding
-                Families keep <span className="text-parchment">20% off every renewal</span>.
-                We apply it for you, so there is no code to remember.
-              </p>
-              <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
-                Limited to our first 40 Founding Families.
-              </p>
-              <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                $597 USD a year. $358.20 USD your first year with FOUNDING40.
-                <br />
-                Renews automatically each year until you cancel. Cancel anytime.
-              </p>
-              <PriceInYourCurrency className="mb-9 text-muted text-[12px] leading-[1.7]" />
-              <div className="flex-1" />
-              <a
-                href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
-                className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-              >
-                Unlock my Child&rsquo;s Hidden Potential
-              </a>
+              <PriceInYourCurrency className="mt-3 text-center text-smoke text-[11.5px] leading-[1.6]" />
             </div>
 
-            {/* Tier 2 — Learn */}
+            {/* Tier 2 — Learn from the Room */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
-              <div className="mb-[22px] text-[11.5px] font-bold uppercase tracking-[0.26em] text-faint">
-                LEARN FROM THE ROOM
-              </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Elite
+                Learn from
                 <br />
-                Parents
+                the Room
               </div>
               <p
-                className="mb-9 text-smoke"
-                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 210 }}
+                className="mb-5 text-smoke"
+                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
-                Elite Parents as Learning Leaders
+                A live room to learn with me, other parents, and invited experts, ask
+                questions, and explore possibilities.
               </p>
-              <div className="flex flex-col gap-2 text-[14px] text-smoke">
-                <div>Live Room with Jolene</div>
-                <div>Community Network</div>
-                <div>Guest Experts</div>
-                <div>Group Q&amp;A</div>
-              </div>
+              <p
+                className="mb-9 text-smoke"
+                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
+              >
+                Founding members join at a rate that doesn&rsquo;t come back.
+              </p>
               <div className="flex-1" />
               <WaitlistButton
                 tag="waitlist-elite-learning-leaders"
-                label="Join Waitlist"
+                label="Join the waitlist"
                 modalEyebrow="Learn From The Room"
                 modalTitle="Join the Elite Parents as Learning Leaders waitlist."
                 submitLabel="Join the waitlist"
@@ -344,11 +350,8 @@ export default function HomePage() {
               />
             </div>
 
-            {/* Tier 3 — Build */}
+            {/* Tier 3 — Inner Circle */}
             <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-9 pb-[46px] pt-[50px] text-center">
-              <div className="mb-[22px] text-[11.5px] font-bold uppercase tracking-[0.26em] text-rose">
-                HELP SHAPE WHAT&rsquo;S NEXT
-              </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
@@ -358,18 +361,18 @@ export default function HomePage() {
                 Circle
               </div>
               <p
-                className="mb-4 text-smoke"
+                className="mb-5 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
-                Be Part of the Inner Circle
+                Closer access to me in a small circle, with deeper conversations and a
+                voice in what we build next.
               </p>
               <p
                 className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
-                As an inner circle member, you&rsquo;ll have direct access to
-                Jolene and a voice in what Truer Measure creates next. See if
-                you&rsquo;re a fit.
+                Eight families. By application. The founding circle closes when the
+                eighth says yes.
               </p>
               <div className="flex-1" />
               <WaitlistButton
