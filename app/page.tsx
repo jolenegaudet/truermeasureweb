@@ -304,8 +304,8 @@ export default function HomePage() {
                     in the same beat as the offer, not after a gap at the foot of the
                     card. Do not put the flex spacer back above this. */}
                 <p className="text-warm" style={{ fontSize: 13.5, lineHeight: 1.65 }}>
-                  Founding Families: the first 40. The founding rate ends when
-                  they&rsquo;re full.
+                  Founding Families: the first 40. The founding rate ends 30 September,
+                  or when they&rsquo;re full.
                 </p>
                 <div className="flex-1" />
                 {/* Compliance spec §5.1: the renewal disclosure is required
