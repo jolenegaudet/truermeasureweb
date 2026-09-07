@@ -116,9 +116,12 @@ export function PriceInYourCurrency({ className }: { className?: string }) {
               className={[
                 "cursor-pointer rounded-[2px] border px-[11px] py-[5px]",
                 "text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors",
+                // This control sits beneath the tier card on the parchment
+                // section background, not on the dark card. Colours are for a
+                // light ground.
                 on
-                  ? "border-parchment bg-parchment text-bark"
-                  : "border-dusk bg-transparent text-muted hover:border-rose-dark hover:text-parchment",
+                  ? "border-bark bg-bark text-parchment"
+                  : "border-border bg-transparent text-dusk hover:border-rose hover:text-bark",
               ].join(" ")}
             >
               {currency.label}
