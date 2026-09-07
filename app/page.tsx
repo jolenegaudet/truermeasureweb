@@ -280,7 +280,7 @@ export default function HomePage() {
                   <br />
                   Report Card
                 </div>
-                <p className="mb-5 text-muted" style={{ fontSize: 14.5, lineHeight: 1.7 }}>
+                <p className="mb-7 text-muted" style={{ fontSize: 14.5, lineHeight: 1.7 }}>
                   A living account of your child&rsquo;s learning, strengths, and growth
                   that brings together evidence from school and beyond.
                 </p>
@@ -290,23 +290,30 @@ export default function HomePage() {
                     restore that line unless a second discount exists in Stripe that a
                     parent can actually redeem at checkout — a dedicated founding price
                     (§8-D2 option b), not a coupon applied by hand after the fact. */}
-                <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  US$597 a year, per child &middot; Founding Families: 40% off your first
-                  year with{" "}
-                  <span className="font-semibold text-parchment">FOUNDING40</span>
+                <div
+                  className="font-heading font-medium text-parchment"
+                  style={{ fontSize: 52, lineHeight: 1 }}
+                >
+                  US$597
+                </div>
+                <p className="mb-6 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  a year, per child &middot; Founding Families: 40% off your first year
+                  with <span className="font-semibold text-parchment">FOUNDING40</span>
                 </p>
-                <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                <p className="mb-6 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
                   Six updates a year included. Extra updates US$10 each.
                 </p>
-                <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark">
+                <div className="flex-1" />
+                <p className="mb-4 text-warm" style={{ fontSize: 13.5, lineHeight: 1.65 }}>
                   Founding Families: the first 40. The founding rate ends when
                   they&rsquo;re full.
                 </p>
-                <p className="mb-9 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                {/* Compliance spec §5.1: the renewal disclosure is required
+                    immediately above the CTA. Keep it here, and keep it last. */}
+                <p className="mb-7 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
                   Renews yearly unless you cancel. We email you before every
                   renewal. Cancel anytime.
                 </p>
-                <div className="flex-1" />
                 <a
                   href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
                   className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
