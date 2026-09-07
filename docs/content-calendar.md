@@ -46,6 +46,43 @@ where does the rest of the evidence go?
 
 ---
 
+## The series — *There's More to Your Child Than School Can Measure*
+
+*Six parts, the founder's own text, verbatim. One part every Monday, 7 September – 12 October, replacing the Monday card in each week below (those cards move to spares). On Facebook and Instagram: a card carrying the line shown, the full part as the caption. On LinkedIn: the full part as a text post, same day. No link in the caption; the series lives on the site as a page and is what the "just curious" DM sends.*
+
+| Monday | Part | Card line (verbatim) |
+| --- | --- | --- |
+| 7 Sep | **1 — What Hasn't Changed** | Technology can change enormously. / Human beings don't change nearly that fast. |
+| 14 Sep | **2 — There's more to your child than school can measure** | There's more to your child / than school can measure. |
+| 21 Sep | **3 — We've become very good at measuring what school needs to know** | The measurements aren't necessarily wrong. / They're incomplete. |
+| 28 Sep | **4 — A report card measures performance in a particular environment** | A report card can tell you how your child is performing within school. / It cannot fully tell you who your child is. / Those are not the same question. |
+| 5 Oct | **5 — Parents need to notice what school can't** | When do you see a version of your child / that might never appear on a report card? |
+| 12 Oct | **6 — This back-to-school season, keep looking** | If the grades are excellent, keep looking. / If the grades are struggling, keep looking. |
+
+**More cards cut from the series** — use in any Wednesday slot or as spares; all verbatim:
+
+- What do kids need that no technology can replace? *(Part 1)*
+- A child gets a 72 in math, and suddenly the 72 starts carrying more weight than the way she spent Saturday afternoon figuring out how something worked. *(Part 3)*
+- Incomplete information becomes a problem when we forget that it's incomplete. *(Part 3)*
+- Doing well in school and loving learning are not always the same thing. *(Part 4)*
+- Sometimes "I want to know" slowly becomes: "Is this on the test?" *(Part 4)*
+- Eventually, school ends. *(Part 4)*
+- Children are constantly giving us information about who they are becoming. We just need to make sure the things that are easiest to measure don't become the only things we learn to see. *(Part 5)*
+- Don't accidentally hand that document more authority than it deserves. *(Part 6)*
+- "How are they doing in school?" / "What are we learning about who they are becoming?" *(Part 6 — two-panel card)*
+
+**Part 5's questions as Friday cards** — one per Friday, in place of the Friday cards below when you prefer them; each ends → BEYOND:
+
+- What makes your child lose track of time?
+- What do they teach themselves without being asked?
+- What questions do they keep asking?
+- What comes easily to them that they assume comes easily to everyone?
+- When do other kids naturally follow them?
+
+**Part 6 as a reel** (Tue 13 Oct, in place of "The point and the line" if you prefer) — read it as written from "When the report card eventually comes home" to "This year, make sure you notice it." It runs about 75 seconds; cut the three "will change" lines if it needs to be under sixty.
+
+---
+
 ## Week 1 — 7–11 September
 
 **Mon 7 — card**
@@ -270,6 +307,8 @@ actually tell you?
 ---
 
 ## Spares — any open slot
+
+**Displaced Monday cards (replaced by the series):** 200 characters · confident and compliant · a pleasure to have in class · the child who is "doing fine" · "why do we have to learn this?" · one term is a point — all above, in their weeks; use them on any Wednesday.
 
 **Card:** "Needs to apply herself" is a conclusion. / What was she doing instead? That's the observation — and it's usually more interesting.
 

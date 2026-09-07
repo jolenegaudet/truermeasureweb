@@ -48,6 +48,8 @@ on the site, not in posts.
 | 4 | **Patterns across years** | What three years show that one term can't | Womack: value at a specific time — the meeting, the decision | "One term is a point. Three years is a line." |
 | 5 | **The guide's story** | Teacher → principal → why she built it; lands on the parent | Miller: empathy + authority, one post in five | The LinkedIn post that reached 1,224 people |
 
+**The spine of pillars 1, 4 and 5 is the founder's own six-part series, *There's More to Your Child Than School Can Measure*** — one part every Monday from 7 September, verbatim, in the content calendar. Her lines beat written ones; where a series line and a written card compete for a slot, the series wins.
+
 Proof (family quotes, an excerpt) becomes a sixth pillar the day D-4 clears.
 
 ## 4. Platforms, formats, cadence
