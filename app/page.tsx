@@ -281,9 +281,14 @@ export default function HomePage() {
                   <br />
                   Report Card
                 </div>
-                <p className="mb-7 text-muted" style={{ fontSize: 14.5, lineHeight: 1.7 }}>
-                  A living account of your child&rsquo;s learning, strengths, and growth
-                  that brings together evidence from school and beyond.
+                <p className="mb-4 text-parchment" style={{ fontSize: 15, lineHeight: 1.6 }}>
+                  For the parent who knows the report card isn&rsquo;t the whole story.
+                  Walk into the next meeting with more than a grade to speak for your
+                  child.
+                </p>
+                <p className="mb-7 text-muted" style={{ fontSize: 14, lineHeight: 1.7 }}>
+                  Report cards, assessments, and what you&rsquo;ve noticed become one
+                  record. First report in five business days. Six updates a year.
                 </p>
                 {/* Compliance spec §8-D2: the recurring renewal-discount promise is removed.
                     A Stripe promotion code carries exactly one coupon, so FOUNDING40
@@ -297,9 +302,12 @@ export default function HomePage() {
                 >
                   US$597
                 </div>
-                <p className="mb-3 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  a year, per child &middot; Founding Families: 40% off your first year
-                  with <span className="font-semibold text-parchment">FOUNDING40</span>
+                <p className="mb-1 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  a year, per child
+                </p>
+                <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  US$358.20 your first year with{" "}
+                  <span className="font-semibold text-parchment">FOUNDING40</span>
                 </p>
                 {/* Sits tight under the discount on purpose: the scarcity has to land
                     in the same beat as the offer, not after a gap at the foot of the
