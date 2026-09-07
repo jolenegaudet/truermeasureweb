@@ -296,18 +296,21 @@ export default function HomePage() {
                 >
                   US$597
                 </div>
-                <p className="mb-6 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                <p className="mb-3 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
                   a year, per child &middot; Founding Families: 40% off your first year
                   with <span className="font-semibold text-parchment">FOUNDING40</span>
                 </p>
-                <div className="flex-1" />
-                <p className="mb-4 text-warm" style={{ fontSize: 13.5, lineHeight: 1.65 }}>
+                {/* Sits tight under the discount on purpose: the scarcity has to land
+                    in the same beat as the offer, not after a gap at the foot of the
+                    card. Do not put the flex spacer back above this. */}
+                <p className="text-warm" style={{ fontSize: 13.5, lineHeight: 1.65 }}>
                   Founding Families: the first 40. The founding rate ends when
                   they&rsquo;re full.
                 </p>
+                <div className="flex-1" />
                 {/* Compliance spec §5.1: the renewal disclosure is required
                     immediately above the CTA. Keep it here, and keep it last. */}
-                <p className="mb-7 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
+                <p className="mb-7 mt-8 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
                   Renews yearly unless you cancel. We email you before every
                   renewal. Cancel anytime.
                 </p>
