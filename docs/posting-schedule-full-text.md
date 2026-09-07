@@ -4,15 +4,15 @@
 
 *Instagram has three posts a day: a reel to camera, a quote card, and one more (a carousel, a card, a Stories question, or a product card). Facebook has one a day. LinkedIn has three a week. Substack has one a week. Weekends: Stories only, or one personal post.*
 
+*Every reel except the Monday series reads follows one shape: a label ("If your child…"), a promise stacked in three, the content, the mechanism — a living account of your child's education, school and beyond, read across the years — and the label returned with the call to action. The series is read exactly as written.*
+
 ---
 
 # WEEK 1
 
 ## Monday 7 September
 
-### Instagram — post 1 of 3 — reel, to camera
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera (the series, read as written)
 
 *Say to camera:*
 
@@ -350,15 +350,13 @@ TruerMeasure.com
 
 ### Instagram — post 1 of 3 — reel, to camera — "What I was never allowed to write"
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-For more than twenty years I wrote report cards as a teacher, then signed them as a principal. Here's what the comment box never had room for. The kid who organized the whole class when the substitute lost the plot. The one who asked the question that made me rethink the lesson. The one who was quiet all year and then, in June, said one thing that told me she'd been listening to everything. None of that has a line on the form. The form has about two hundred characters and a code. So parents sat across from me looking for their child inside a paragraph. And I watched them not find her. The things you notice at home aren't extra. They're the record the school can't keep. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've ever read your child's report card and thought, that's not the whole kid — this is for you. In the next minute you'll hear what the comment box never had room for, why it never will, and what that means for what you keep at home. For more than twenty years I wrote report cards as a teacher, then signed them as a principal. Here's what the comment box never had room for. The kid who organized the whole class when the substitute lost the plot. The one who asked the question that made me rethink the lesson. The one who was quiet all year and then, in June, said one thing that told me she'd been listening to everything. None of that has a line on the form. The form has about two hundred characters and a code. So parents sat across from me looking for their child inside a paragraph. And I watched them not find her. The things you notice at home aren't extra. They're the record the school can't keep. That's why I built the Hidden Report Card: a living account of your child's education — school and beyond — where what you notice is kept beside the school's record and read across the years. If that's your child — the one the comment never quite caught — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-More than twenty years of report cards. The comment box was never the problem. Its size was.
+If you've ever read your child's report card and thought, that's not the whole kid — this is for you. More than twenty years of report cards. The comment box was never the problem. Its size was.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -414,15 +412,13 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-"Works well with others" can mean a leader, a peacemaker, or a kid who has learned to disappear in a group. The comment doesn't say which. You probably know. Same four words, three very different children. The report card can't tell them apart. The parent usually can. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If 'works well with others' is on your child's report card — this is for you. In the next thirty seconds: the three children that sentence can describe, why the form can't tell them apart, and how you can. "Works well with others" can mean a leader, a peacemaker, or a kid who has learned to disappear in a group. The comment doesn't say which. You probably know. Same four words, three very different children. The report card can't tell them apart. The parent usually can. The version you know is the one worth keeping — beside the school's, across the years. That's the Hidden Report Card. If that sentence is on your child's report card — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Same four words, three very different children.
+If 'works well with others' is on your child's report card — this is for you. Same four words, three very different children.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -478,15 +474,13 @@ For more than twenty years I wrote report cards as a teacher, then signed them a
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-First, what it is: software where you keep the evidence of your child from everywhere it happens — report cards, assessments, a psychologist's report, the thing you noticed on Tuesday — and it reads all of it across the years. What comes out of that is the Hidden Report Card. It opens with what stands out — the patterns that recur across years, teachers and settings, and what they seem to be evidence of, written as interpretation, never verdict. It reads the school record beside what you see at home… DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've wondered what you'd actually get — this is for you. In the next minute: what the Hidden Report Card is, what's in it, and what it never does. First, what it is: software where you keep the evidence of your child from everywhere it happens — report cards, assessments, a psychologist's report, the thing you noticed on Tuesday — and it reads all of it across the years. What comes out of that is the Hidden Report Card. It opens with what stands out — the patterns that recur across years, teachers and settings, and what they seem to be evidence of, written as interpretation, never verdict. It reads the school record beside what you see at home… If you've been wondering — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-What a Hidden Report Card actually contains.
+If you've wondered what you'd actually get — this is for you. What a Hidden Report Card actually contains.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -530,15 +524,13 @@ First, what it is: software where you keep the evidence of your child from every
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-What does school completely miss about your kid that you know matters the most? Tell me below. One thing. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've ever thought, they don't see my kid — this is for you. One question. I read every answer. What does school completely miss about your kid that you know matters the most? Tell me below. One thing. If that's you — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Tell me below.
+If you've ever thought, they don't see my kid — this is for you. Tell me below.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -594,9 +586,7 @@ What has a report card never had room to say about your child?
 
 ## Monday 14 September
 
-### Instagram — post 1 of 3 — reel, to camera
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera (the series, read as written)
 
 *Say to camera:*
 
@@ -890,15 +880,13 @@ TruerMeasure.com
 
 ### Instagram — post 1 of 3 — reel, to camera — "Confident or compliant"
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Your kid's report card says she's doing great. Here's the one question it can't answer. Is she confident, or is she compliant? On a report card they look identical. Same grade. Same "meets expectations." Same "a pleasure to have in class." The difference doesn't show up at school. It shows up at your kitchen table. Three things to notice this week. One: does she start things nobody asked for? Two: when something's hard, does she push, or does she wait to be told what to do? Three: when she's finished, does she want to show you — or is she just relieved it's over? None of that is on the form. All of it matters more than the form. Write it down. One line, tonight. That's the record. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If your child's report card says she's doing great, and something in you isn't sure — this is for you. In the next minute: the one question the form can't answer, why it matters more than the grade, and three things to notice this week. Your kid's report card says she's doing great. Here's the one question it can't answer. Is she confident, or is she compliant? On a report card they look identical. Same grade. Same "meets expectations." Same "a pleasure to have in class." The difference doesn't show up at school. It shows up at your kitchen table. Three things to notice this week. One: does she start things nobody asked for? Two: when something's hard, does she push, or does she wait to be told what to do? Three: when she's finished, does she want to show you — or is she just relieved it's over? None of that is on the form. All of it matters more than the form. Write it down. One line, tonight. That's the record. Write them down — and keep them somewhere they'll still be next year. That's what the Hidden Report Card is: a living account of your child's education, school and beyond, read across the years. If your child is the one who's 'doing great' — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-"Doing great" is a grade. Confident is a child.
+If your child's report card says she's doing great, and something in you isn't sure — this is for you. "Doing great" is a grade. Confident is a child.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -953,15 +941,13 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-The strength that shows up three years in a row, from three different teachers, in slightly different words — nobody has ever written that down as a pattern. It's in the file. It's just spread across the file. That's the difference between a record and a story. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If a teacher has said something about your child that another teacher said years ago — this is for you. In the next thirty seconds: why that's a pattern and not an opinion, why nobody has written it down, and where it should live. The strength that shows up three years in a row, from three different teachers, in slightly different words — nobody has ever written that down as a pattern. It's in the file. It's just spread across the file. That's the difference between a record and a story. Written down, side by side, year after year — that's what the Hidden Report Card is: a living account of your child's education, school and beyond. If you've heard the same thing twice about your child — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-It's in the file.
+If a teacher has said something about your child that another teacher said years ago — this is for you. It's in the file.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1015,15 +1001,13 @@ Your kid's report card says she's doing great. Here's the one question it can't 
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Nothing in the report rests on a guess. If a pattern is named, the report cards, comments, assessments or your own notes that show it are one tap away — the actual words, the year, who wrote them. If the evidence is thin, the report says so and asks you a question instead of drawing a conclusion. If something couldn't be read — a scan, a handwritten line — it's set aside and you're asked, never filled in. A pattern needs to show up more than once, in more than… DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've been given confident advice about your child that turned out to be a guess — this is for you. In the next minute: the one rule every sentence in a Hidden Report Card follows, and what happens when the evidence is thin. Nothing in the report rests on a guess. If a pattern is named, the report cards, comments, assessments or your own notes that show it are one tap away — the actual words, the year, who wrote them. If the evidence is thin, the report says so and asks you a question instead of drawing a conclusion. If something couldn't be read — a scan, a handwritten line — it's set aside and you're asked, never filled in. A pattern needs to show up more than once, in more than… If you've had enough guesses about your child — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Every sentence in a Hidden Report Card traces to a document you gave us.
+If you've been given confident advice about your child that turned out to be a guess — this is for you. Every sentence in a Hidden Report Card traces to a document you gave us.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1066,15 +1050,13 @@ Nothing in the report rests on a guess. If a pattern is named, the report cards,
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-When was the last time a report card told you something about your child you didn't already know? Honest answers welcome. If the answer is "never," that's not reassurance — it's a ceiling on what the form can see. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If report card day has become a formality in your house — this is for you. One question. Honest answers welcome. When was the last time a report card told you something about your child you didn't already know? Honest answers welcome. If the answer is "never," that's not reassurance — it's a ceiling on what the form can see. If that's your house — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Honest answers welcome.
+If report card day has become a formality in your house — this is for you. Honest answers welcome.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1133,9 +1115,7 @@ Which strength has followed your child from teacher to teacher?
 
 ## Monday 21 September
 
-### Instagram — post 1 of 3 — reel, to camera
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera (the series, read as written)
 
 *Say to camera:*
 
@@ -1355,15 +1335,13 @@ TruerMeasure.com
 
 ### Instagram — post 1 of 3 — reel, to camera — "A pleasure to have in class"
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-I wrote "a pleasure to have in class" on hundreds of report cards. Here's what I meant — and what I didn't. I meant: she doesn't make my day harder. She follows the routine. She's kind to the others. She's not the one I'm thinking about at 9pm. All true. All good things. But notice what it isn't. It isn't "she asked a question that changed the lesson." It isn't "he took a risk on something hard." It isn't "she disagreed with me, and she was right." The easiest kids to have in a room are not always the ones the room is doing the most for. So when you see it — and you will — be glad. Then ask the teacher one more thing: what does she do when the work gets harder than she expected? That's the answer the sentence can't hold. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If 'a pleasure to have in class' is on your child's report card — this is for you. In the next minute: what I meant when I wrote it, what I didn't, and the one question to ask the teacher instead. I wrote "a pleasure to have in class" on hundreds of report cards. Here's what I meant — and what I didn't. I meant: she doesn't make my day harder. She follows the routine. She's kind to the others. She's not the one I'm thinking about at 9pm. All true. All good things. But notice what it isn't. It isn't "she asked a question that changed the lesson." It isn't "he took a risk on something hard." It isn't "she disagreed with me, and she was right." The easiest kids to have in a room are not always the ones the room is doing the most for. So when you see it — and you will — be glad. Then ask the teacher one more thing: what does she do when the work gets harder than she expected? That's the answer the sentence can't hold. The answer to that question belongs in a record the school doesn't keep. That's the Hidden Report Card: a living account of your child's education, school and beyond. If that sentence is on your child's report card — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-A true sentence. An incomplete one.
+If 'a pleasure to have in class' is on your child's report card — this is for you. A true sentence. An incomplete one.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1419,15 +1397,13 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Behaviour comments and learning comments are written in the same box. "Stays on task" is about the room. "Explains her thinking" is about the child. Read them separately. Half of most comments describe how the classroom ran. The other half describe how your child thinks. Only one of those travels home with them. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If your child's comment says 'stays on task' or 'needs to focus' — this is for you. In the next thirty seconds: which half of a comment is about the room, which half is about your child, and why to read them separately. Behaviour comments and learning comments are written in the same box. "Stays on task" is about the room. "Explains her thinking" is about the child. Read them separately. Half of most comments describe how the classroom ran. The other half describe how your child thinks. Only one of those travels home with them. The half about your child is the half worth keeping. In the Hidden Report Card it's kept beside what you see at home and read across the years. If that comment is on your child's report card — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Half of most comments describe how the classroom ran.
+If your child's comment says 'stays on task' or 'needs to focus' — this is for you. Half of most comments describe how the classroom ran.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1485,15 +1461,13 @@ I wrote "a pleasure to have in class" on hundreds of report cards. Here's what I
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Worth saying plainly, because the name invites the wrong picture. It doesn't grade your child on anything — no numbers, no percentiles, no chart. It doesn't diagnose: a psychologist's or therapist's report enters as that professional's information, attributed to them, never turned into a conclusion of its own. It doesn't predict: it reads what has already happened, across years, for what it's evidence of. Where that points beyond what a parent should handle at home, the suggestion is to talk to someone who can — and that suggestion is the… DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If the name 'Hidden Report Card' made you picture a score or a diagnosis — this is for you. In the next minute: what it isn't, what it is, and why the difference protects your child. Worth saying plainly, because the name invites the wrong picture. It doesn't grade your child on anything — no numbers, no percentiles, no chart. It doesn't diagnose: a psychologist's or therapist's report enters as that professional's information, attributed to them, never turned into a conclusion of its own. It doesn't predict: it reads what has already happened, across years, for what it's evidence of. Where that points beyond what a parent should handle at home, the suggestion is to talk to someone who can — and that suggestion is the… If that's what you pictured — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-The Hidden Report Card is not a diagnosis. Not a score. Not a prediction.
+If the name 'Hidden Report Card' made you picture a score or a diagnosis — this is for you. The Hidden Report Card is not a diagnosis. Not a score. Not a prediction.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1536,15 +1510,13 @@ Worth saying plainly, because the name invites the wrong picture. It doesn't gra
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Which teacher saw your child most clearly — and what did they say? Write it down before you forget the words. A good year's evidence is worth keeping. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If one teacher, one year, saw your child clearly — this is for you. One question, and one thing to do with the answer. Which teacher saw your child most clearly — and what did they say? Write it down before you forget the words. A good year's evidence is worth keeping. If there was one teacher who saw it — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Write it down before you forget the words.
+If one teacher, one year, saw your child clearly — this is for you. Write it down before you forget the words.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1600,9 +1572,7 @@ What's the sentence on your child's report card that was really about the classr
 
 ## Monday 28 September
 
-### Instagram — post 1 of 3 — reel, to camera
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera (the series, read as written)
 
 *Say to camera:*
 
@@ -1860,15 +1830,13 @@ TruerMeasure.com
 
 ### Instagram — post 1 of 3 — reel, to camera — "The quiet middle"
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-The kids I wrote the least about were not the kids with the least going on. As a principal I read every comment on every report card before I signed it. The longest ones went to two groups: the children who struggled, and the children who shone. The ones in the middle — doing fine, no flags — got a sentence. Sometimes half of one. Not because the teacher didn't care. Because nothing forced the moment. Twenty-five comments in a week, and the form rewards the kids who create a reason to write. If your child is in that middle, the school record is going to be thin. Not wrong — thin. Which means the record you keep at home isn't a supplement. For that child, it's most of the record. One line a week. What she did that nobody assigned. Where he went when he was bored. What she asked. That's it. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If your child's report card says 'doing fine' and not much else — this is for you. In the next minute you'll know why the comment is short, what it's hiding, and the one thing to do about it this week. The kids I wrote the least about were not the kids with the least going on. As a principal I read every comment on every report card before I signed it. The longest ones went to two groups: the children who struggled, and the children who shone. The ones in the middle — doing fine, no flags — got a sentence. Sometimes half of one. Not because the teacher didn't care. Because nothing forced the moment. Twenty-five comments in a week, and the form rewards the kids who create a reason to write. If your child is in that middle, the school record is going to be thin. Not wrong — thin. Which means the record you keep at home isn't a supplement. For that child, it's most of the record. One line a week. What she did that nobody assigned. Where he went when he was bored. What she asked. That's it. Which is why I built a place where that record lives: everything you notice, kept beside the school's record and read across the years. If your child is the quiet middle, that record is most of what there is. If your child is the quiet middle — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-"Doing fine" is where the record goes quiet.
+If your child's report card says 'doing fine' and not much else — this is for you. "Doing fine" is where the record goes quiet.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1923,15 +1891,13 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Homework battles are information. Not about whether he's motivated — about what the homework is asking for that the classroom didn't give him. Before the fight about effort, ask what the task assumes he already has. Time? A quiet room? The thing that was explained while he was somewhere else? DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If homework is a fight in your house — this is for you. In the next thirty seconds: what the fight is actually telling you, the one question to ask before the one about effort, and what to write down after. Homework battles are information. Not about whether he's motivated — about what the homework is asking for that the classroom didn't give him. Before the fight about effort, ask what the task assumes he already has. Time? A quiet room? The thing that was explained while he was somewhere else? What you write down after is evidence no school collects. The Hidden Report Card keeps it — beside the report card, across the years. If homework is the fight in your house — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Before the fight about effort, ask what the task assumes he already has.
+If homework is a fight in your house — this is for you. Before the fight about effort, ask what the task assumes he already has.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -1985,15 +1951,13 @@ The kids I wrote the least about were not the kids with the least going on. As a
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-The first Hidden Report Card is the beginning, not the product. When the next report card comes — or an assessment, a coach's comment, or something you noticed at the kitchen table — you add it. When you're ready, you ask for an update: not a new report, a What's Changed — what the new evidence revealed, what it made stronger, what now reads differently. The earlier chapters stay as they were; the story gets longer, not rewritten. Two things we deliberately don't do: we never regenerate on our own,… DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've ever paid for a report about your child and never opened it again — this is for you. In the next minute: the difference between a document and a record, what an update actually is, and the two things we refuse to do. The first Hidden Report Card is the beginning, not the product. When the next report card comes — or an assessment, a coach's comment, or something you noticed at the kitchen table — you add it. When you're ready, you ask for an update: not a new report, a What's Changed — what the new evidence revealed, what it made stronger, what now reads differently. The earlier chapters stay as they were; the story gets longer, not rewritten. Two things we deliberately don't do: we never regenerate on our own,… If you've got a report in a drawer somewhere — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-A report you read once is a document. One you keep adding to is a record.
+If you've ever paid for a report about your child and never opened it again — this is for you. A report you read once is a document. One you keep adding to is a record.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -2037,15 +2001,13 @@ The first Hidden Report Card is the beginning, not the product. When the next re
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-What's the one word that has followed your child from teacher to teacher? Same word, different adults, different years. That's not an opinion anymore. Tell me the word. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If the same word keeps appearing about your child — this is for you. One question. Tell me the word. What's the one word that has followed your child from teacher to teacher? Same word, different adults, different years. That's not an opinion anymore. Tell me the word. If there's a word that keeps appearing — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Same word, different adults, different years.
+If the same word keeps appearing about your child — this is for you. Same word, different adults, different years.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -2102,9 +2064,7 @@ Is your child in the quiet middle?
 
 ## Monday 5 October
 
-### Instagram — post 1 of 3 — reel, to camera
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera (the series, read as written)
 
 *Say to camera:*
 
@@ -2350,15 +2310,13 @@ TruerMeasure.com
 
 ### Instagram — post 1 of 3 — reel, to camera — "The first note home"
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-The first note home from a teacher is not a verdict on your kid. Here's how to read it. It's early October. Your child has known this adult for five weeks. The note — an email, an interim, a line in the agenda — is one adult's first read of one child in one new room. That's information about a meeting, not about a person. Three questions before you react. One: is this about learning, or about the room? "Not finishing work" and "talks during instruction" are room. "Struggles to explain his reasoning" is learning. Different conversations. Two: what changed since June? New teacher, new group, new expectations — the child is one variable among several. Three: does this match what you see at home? If it doesn't, that isn't a contradiction to argue about. It's the most useful thing you'll learn this term. Write your answer to number three down. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If a note came home from the teacher this week and your stomach dropped — this is for you. In the next minute: how to read it, the three questions to ask before you react, and the one thing to write down. The first note home from a teacher is not a verdict on your kid. Here's how to read it. It's early October. Your child has known this adult for five weeks. The note — an email, an interim, a line in the agenda — is one adult's first read of one child in one new room. That's information about a meeting, not about a person. Three questions before you react. One: is this about learning, or about the room? "Not finishing work" and "talks during instruction" are room. "Struggles to explain his reasoning" is learning. Different conversations. Two: what changed since June? New teacher, new group, new expectations — the child is one variable among several. Three: does this match what you see at home? If it doesn't, that isn't a contradiction to argue about. It's the most useful thing you'll learn this term. Write your answer to number three down. Your answer to the third question is the kind of evidence a school can't record. In the Hidden Report Card it sits beside the note — and next year you'll be able to see whether it was a moment or a pattern. If a note came home this week — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Five weeks in. One adult. One room. Read it as that.
+If a note came home from the teacher this week and your stomach dropped — this is for you. Five weeks in. One adult. One room. Read it as that.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -2414,15 +2372,13 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Two kids, same house, same form. The one the form fits looks stronger. The one it doesn't fit looks like a problem. Neither is the truth about either. Siblings get compared through a lens built for neither of them. Read each report card as if the other child didn't exist. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you have two children in the same school — this is for you. In the next thirty seconds: why the same form makes one look stronger and one look like a problem, and how to read each report card fairly. Two kids, same house, same form. The one the form fits looks stronger. The one it doesn't fit looks like a problem. Neither is the truth about either. Siblings get compared through a lens built for neither of them. Read each report card as if the other child didn't exist. Each child gets their own living account in the Hidden Report Card — their record, their years, nobody else's yardstick. If you have two children in the same school — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Siblings get compared through a lens built for neither of them.
+If you have two children in the same school — this is for you. Siblings get compared through a lens built for neither of them.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -2478,15 +2434,13 @@ The first note home from a teacher is not a verdict on your kid. Here's how to r
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-In the drawer, this term's report card is one document, read once, remembered for about a week. In The Hidden Report Card, it's one more piece of a living account of your child's education — school and beyond. Add the report card. Add what you noticed before it came home. Add what the teacher said at the meeting. The account connects the new to what's already there: what's recurring, what's changed, what doesn't fit the earlier picture yet. By spring you're not reading a report card. You're reading a year.… DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If a report card is going in a drawer this term — this is for you. In the next minute: what happens when it goes in the account instead, what connects to what, and what you're reading by spring. In the drawer, this term's report card is one document, read once, remembered for about a week. In The Hidden Report Card, it's one more piece of a living account of your child's education — school and beyond. Add the report card. Add what you noticed before it came home. Add what the teacher said at the meeting. The account connects the new to what's already there: what's recurring, what's changed, what doesn't fit the earlier picture yet. By spring you're not reading a report card. You're reading a year.… If that report card is headed for the drawer — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-The report card goes in the drawer. Or it goes in.
+If a report card is going in a drawer this term — this is for you. The report card goes in the drawer. Or it goes in.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -2529,15 +2483,13 @@ In the drawer, this term's report card is one document, read once, remembered fo
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-What does your child do when he's bored? Not what he's supposed to do. What he actually does. That's one of the clearest signals you'll ever get, and no form asks for it. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've watched your child with nothing to do — this is for you. One question. The answer is a signal. What does your child do when he's bored? Not what he's supposed to do. What he actually does. That's one of the clearest signals you'll ever get, and no form asks for it. If you've watched what he does when he's bored — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Not what he's supposed to do.
+If you've watched your child with nothing to do — this is for you. Not what he's supposed to do.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -2591,9 +2543,7 @@ What does your child keep asking?
 
 ## Monday 12 October (Thanksgiving in Canada · Columbus Day in the US)
 
-### Instagram — post 1 of 3 — reel, to camera
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera (the series, read as written)
 
 *Say to camera:*
 
@@ -2913,9 +2863,7 @@ TruerMeasure.com
 
 ## Tuesday 13 October
 
-### Instagram — post 1 of 3 — reel, to camera — "Keep looking — Part 6, read in full"
-
-**Say this to camera, as written**
+### Instagram — post 1 of 3 — reel, to camera — Part 6, read in full (the series, as written)
 
 *Say to camera:*
 
@@ -2929,9 +2877,15 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 *Alternative reel for this day — "The point and the line" — if Part 6 has already run as a reel:*
 
-Almost every decision about a child gets made from one term's data. Here's what three years looks like instead. As a principal I could pull a file and read every report card a child had ever received, in one sitting. Almost no parent has done that. The file's at school; the report cards are in a drawer, three different drawers, one of them at the other parent's house. Read together, they stop being grades and start being a shape. The word that appears in grade one, disappears in grade two, comes back in grade four from a teacher who'd never met the first one. The strength nobody named because each teacher saw it once. The "needs to" that quietly became "continues to" and then vanished — which means it worked, and nobody told you. One term can't show you a direction. Three years can't hide one. If you've got the report cards, find them this week. Read them in order. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+*Say to camera:*
 
-*Caption:* A point can't show direction. A line can't hide it. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you've got more than one year of your child's report cards in a drawer — this is for you. In the next minute: what three years show that one term can't, the three things I'd look for, and one assignment for this week. Almost every decision about a child gets made from one term's data. Here's what three years looks like instead. As a principal I could pull a file and read every report card a child had ever received, in one sitting. Almost no parent has done that. The file's at school; the report cards are in a drawer, three different drawers, one of them at the other parent's house. Read together, they stop being grades and start being a shape. The word that appears in grade one, disappears in grade two, comes back in grade four from a teacher who'd never met the first one. The strength nobody named because each teacher saw it once. The "needs to" that quietly became "continues to" and then vanished — which means it worked, and nobody told you. One term can't show you a direction. Three years can't hide one. If you've got the report cards, find them this week. Read them in order. Reading them in order is what the Hidden Report Card does for you — every year, every teacher, read as one account. If those report cards are in a drawer — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+
+*Caption:*
+
+If you've got more than one year of your child's report cards in a drawer — this is for you. A point can't show direction. A line can't hide it.
+
+DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 ### Instagram — post 2 of 3 — quote card
 
@@ -2984,15 +2938,13 @@ DM "BEYOND" and tell me one thing about your child that school has never measure
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-A test measures what was taught. It can't measure what she learned somewhere it wasn't looking. The thing she taught herself last summer will never appear on a school assessment. It's still the most reliable evidence you have of how she learns. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If your child learned something this summer that nobody assigned — this is for you. In the next thirty seconds: why a test can't see it, why it's still the best evidence you have of how she learns, and where to keep it. A test measures what was taught. It can't measure what she learned somewhere it wasn't looking. The thing she taught herself last summer will never appear on a school assessment. It's still the most reliable evidence you have of how she learns. Where to keep it is the Hidden Report Card: a living account of your child's education, school and beyond. If your child taught herself something this summer — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-The thing she taught herself last summer will never appear on a school assessment.
+If your child learned something this summer that nobody assigned — this is for you. The thing she taught herself last summer will never appear on a school assessment.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -3044,15 +2996,13 @@ When the report card eventually comes home, read it. Take it seriously. Celebrat
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-Three things people assume, and none of them is true. It isn't the school's — you own it, you decide what goes in and who sees it. It isn't for your child to do — though an older child can read their own, and can ask for something to be included. And it isn't a place where every moment becomes an assessment. You bring what feels worth keeping: something they said, a photo, a coach's comment, a teacher's note. It connects what you add to what's already there. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If you assumed this was a school platform, or an app for your kid — this is for you. In the next minute: three things people assume, why none of them is true, and what you actually bring. Three things people assume, and none of them is true. It isn't the school's — you own it, you decide what goes in and who sees it. It isn't for your child to do — though an older child can read their own, and can ask for something to be included. And it isn't a place where every moment becomes an assessment. You bring what feels worth keeping: something they said, a photo, a coach's comment, a teacher's note. It connects what you add to what's already there. If that's what you assumed — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-Parent-owned. Not a school platform. Not an app your kid completes tasks in.
+If you assumed this was a school platform, or an app for your kid — this is for you. Parent-owned. Not a school platform. Not an app your kid completes tasks in.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
@@ -3096,15 +3046,13 @@ Three things people assume, and none of them is true. It isn't the school's — 
 
 ### Instagram — post 1 of 3 — reel, to camera
 
-**Say this to camera, as written**
-
 *Say to camera:*
 
-What did the first note home this year actually tell you? About your child — or about the room? Tell me which. Both answers are useful. DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+If a note came home this fall — this is for you. One question. Both answers are useful. What did the first note home this year actually tell you? About your child — or about the room? Tell me which. Both answers are useful. If a note came home — DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
 *Caption:*
 
-About your child — or about the room? Tell me which.
+If a note came home this fall — this is for you. About your child — or about the room? Tell me which.
 
 DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
 
