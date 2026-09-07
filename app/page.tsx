@@ -205,8 +205,8 @@ export default function HomePage() {
               The Hidden Report Card
             </div>
             <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.7 }}>
-              helps families see patterns, growth, strengths, and potential
-              that are easy to miss when focusing only on grades.
+              helps families see the learning, strengths, and growth that are
+              easy to miss when focusing only on grades.
             </p>
           </div>
         </div>
