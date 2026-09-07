@@ -23,39 +23,39 @@ So the tier cards stay as they are — *Join the waitlist* and *Apply* — with 
 **1. Content that speaks to their pain** — non-obvious and observable. Not "report cards are limited"; the specific moment: *the comment says "works well with others" and you know she's learned to disappear in a group.* The cards in the content calendar already do this. Give the information away; the Room is where it gets implemented.
 
 **2. Opens — every notification becomes a conversation.** New follower, story view, comment, like: a personal message, something a bot couldn't say, ending in one either/or question.
-> [Name]! Thanks for the follow. Saw you're in [Moncton] — are you here for the posts, or is something going on with your kid's school this year?
+> Hi [name] — thank you for the follow. So I point you in the right direction: are you here because the report card doesn't match the child you know, or because you want to see beyond what school alone can measure?
 
 **3. Qualify — the A–B method, for a parent.**
-- **A, now:** *What does school say about your child right now — and what do you see that it doesn't?*
-- **B, twelve months:** *A year from now, what would be different? What would you want in your hands at the next meeting?*
-- **The gap:** *What's in the way of that today?*
-- **Urgency:** *Is there a meeting, a decision, or a worry that makes this a now thing?*
+- **A, now:** *Tell me about your child. What does school say, and what do you see that isn't on the page?*
+- **B, the whole story:** *If you could pull up the whole story before the next meeting — what would you want it to show?*
+- **The gap:** *What's kept that from existing so far?*
+- **The moment:** *Is there a meeting, a decision, or a moment coming up where you'd want it in hand?*
 
 Qualified means: a K–12 child · a gap they can name between the school's picture and theirs · something happening now · able to pay. Not qualified: educators looking for a peer, parents of preschoolers, anyone whose child needs clinical help first (the answer is a referral, not an offer).
 
 **The buying zone.** Too far from B, they've lost hope — *"nothing I say at that school changes anything."* Reframe: one meeting, one page in your hand, is a different meeting. Too close to B, they think they'll do it alone — *"I already keep notes."* Expose the gap: *and when you needed them at the last meeting, where were they?* Only offer inside the zone. At least nine messages before an offer.
 
-**4. The offer — two options, sent in the chat.** Martell's template, filled with your offers:
+**4. The offer — two options, sent in the chat.** Martell's template, in the site's voice, at the higher schedule:
 
-> Here's what I've got — two options.
+> Here are the two ways to work with me.
 >
-> **Inner Circle** (8 families, by invitation, 12 months)
-> · Monthly small-group call with me — your situation, over time
-> · Private space to keep the conversation going
-> · First access to what I build next, and a say in it
-> · Includes everything in Learn from the Room, and one Hidden Report Card
-> [12-month price]
+> **Inner Circle** — eight families, by application, twelve months.
+> · A monthly small-group conversation with me: your child's situation, revisited as things develop
+> · A private space to continue those conversations between calls
+> · Early access to what I build next, and a voice in it
+> · Everything in Learn from the Room, and your child's Hidden Report Card
+> US$9,997 for the year. The founding rate — it does not return.
 >
 > **Learn from the Room**
-> · Weekly live call with me and other parents — questions, frameworks, guest experts
+> · A live room with me every week — direct access, not a recording. Your questions answered in context, alongside other parents and, some weeks, guest experts
 > · Recordings and the community between calls
-> [3 months] · [6 months] · [12 months], paid up front
+> US$1,347 for three months · $2,297 for six · $2,997 for twelve, paid in advance. Founding rate on each.
 >
-> What we do that nobody else does: a former principal reads the room with you; your child's actual records, not generic advice; a group you get to know over a year.
+> What this gives you that nothing else does: a former principal in the room with you, your child's actual records rather than general advice, and a small group that comes to know your child over a year.
 >
-> Read it over and tell me if you're in, or what's unclear.
+> Read it through and tell me which fits — or what's unclear.
 
-His pricing ratios, applied to your prepaid terms: **12-month = the anchor; 6-month ≈ 75–80% of it; 3-month ≈ 45%.** Private (Circle) ≈ 3× the group, and it includes the group. Whichever schedule you settle on, those ratios hold.
+His pricing ratios, applied: **12-month = the anchor; 6-month ≈ 77% of it; 3-month ≈ 45%.** Private (Circle) ≈ 3× the group, and it includes the group. If the anchor changes, the others move with it.
 
 **Risk reversal.** He never states a price without one ("90 days or your money back"). Yours needs to exist before the first offer — a first-month guarantee on the Room (come to four calls; if it's not for you, refunded) is cheap and it sells. This collides with the site's no-refund position (compliance D5). Decide it once, for all three offers.
 

@@ -309,39 +309,40 @@ Two six-post series pinned to **Day 0 = the day the report card comes home**: Fl
 
 ## DM replies — when someone sends BEYOND
 
-Short messages. One question at a time. End on the question. Never more than one message without a reply.
+Short messages. One question at a time. End on the question. Never more than one message without a reply. Voice: the site's — "your child", "families", calm declaratives, no urgency in the tone.
 
-**First reply (within the hour):**
-Hey [name]! Glad you sent that.
-Quick one so I point you the right way: is this about something going on with your kid's school right now — or are you just curious what I do?
+**The open (within the hour):**
+Hi [name] — thank you for the message.
+So I point you in the right direction: are you here because the report card doesn't match the child you know, or because you want to see beyond what school alone can measure?
 
-**If "something's going on":**
-Got it. What does school say about them right now — and what do you see that it doesn't?
-*(Let them answer. Reflect it back in one line — what it's evidence of, in plain words. Then:)*
-And a year from now, what would you want to be different? What would you want in your hands at the next meeting?
-*(Then:)*
-What's in the way of that today?
-*(Nine messages before any offer. When there's a real gap and something happening now, send the two-option offer from `sell-by-chat-truer-measure.md` §2 — price included.)*
+**Discovery — one question at a time:**
+Tell me about your child. What does school say, and what do you see that isn't on the page?
+*(Reflect it back in one line — what it's evidence of, in plain words. Then:)*
+That's the kind of thing no one is collecting. Does it show up at school, or only at home?
+If you could pull up the whole story before the next meeting — what would you want it to show?
+What's kept that from existing so far?
+Is there a meeting, a decision, or a moment coming up where you'd want it in hand?
+*(At least nine messages before any offer. When there's a real gap and something coming, send the two-option offer from `sell-by-chat-truer-measure.md` §2.)*
 
 **If "just curious":**
-Fair. Here's the short version: The Hidden Report Card is a living account of your child's education — school and beyond. You add what you have; it connects it across the years, so you're never walking into a meeting with just a report card and a memory. truermeasure.com
-If you ever want to tell me one thing about your kid that school has never measured, I'll tell you what I'd look for first. I read every one.
+In short: The Hidden Report Card is a living account of your child's education — school and beyond. Report cards, assessments, teacher comments, your own observations, brought together so the patterns and moments that usually go unnoticed are kept. It's yours. truermeasure.com
+If you'd like, tell me one thing about your child that school has never measured. I'll tell you what I'd look for first.
 
 **If they mention their child in the first message:**
 *(One line reflecting it back — what it's evidence of.)*
-That's exactly the kind of thing I mean. Is that showing up at school too, or only at home?
+That's the kind of thing no one is collecting. Does it show up at school, or only at home?
 
-**If they go quiet:** like their last message after 30 minutes · after an hour: "[Name]?" · next day, one more · then days 2, 3, 5, 8, 13 · last one: "Would you like to keep this going, or should I leave it here for now?"
+**If they go quiet:** like their last message after 30 minutes · after an hour: "[Name] — did you see my note?" · next day, one more · then days 2, 3, 5, 8, 13 · last one: "Would you like to continue this, or shall I leave it here for now?"
 
-**Price:** US$597 a year, per child — the whole year: the first Hidden Report Card, then every update as you add report cards, assessments, and what you notice at home. Founding families get 40% off the first year. Everything's at truermeasure.com — or fifteen minutes first, if you'd rather talk.
+**Price of the Hidden Report Card:** US$597 a year, per child — the whole year: the first Hidden Report Card, then every update as you add report cards, assessments, and what you notice at home. Founding Families: 40% off the first year. Everything is at truermeasure.com — or fifteen minutes first, if you'd rather talk it through.
 *(Room and Circle prices are never in the first reply; they come inside the offer message, after discovery.)*
 
-**"I need to talk to my partner":** Of course — want me to send something you can both read, or should the three of us talk for fifteen minutes?
+**"I need to talk to my partner":** Of course. I can send something the two of you can read, or we can talk together for fifteen minutes.
 
-**"It's expensive":** It is. What would it be worth to walk into the next meeting with the whole picture instead of a report card and a memory?
+**"It's expensive":** It is an investment. Most families bring a report card and a memory to the table. This is the whole story, in hand.
 
-**"Not the right time":** The report card comes home in [weeks]. That's the moment this was built for.
+**"Not the right time":** The report card comes home in [weeks]. That's the moment I built this for.
 
-**"I already keep notes":** Good — most people don't. Where were they at the last meeting?
+**"I already keep notes":** Good — most families don't. Where were they at the last meeting?
 
 **French?** Not yet. I speak French — we can talk in French — but the product and the report are in English for now. The French version has no date yet, and I'd rather say that than promise one.
