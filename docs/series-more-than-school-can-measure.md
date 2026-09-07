@@ -1,6 +1,6 @@
 # There's More to Your Child Than School Can Measure
 
-*The founder's six-part series, for publication on truermeasure.com as a single page (proposed route: /more). Source for the Monday series in the content calendar. Verbatim; do not edit.*
+*The founder's six-part series. Social media content only — not for the website (founder ruling 2026-09-07). Source for the Monday series in the content calendar. Verbatim; do not edit.*
 
 ---
 

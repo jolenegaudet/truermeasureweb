@@ -48,7 +48,7 @@ where does the rest of the evidence go?
 
 ## The series — *There's More to Your Child Than School Can Measure*
 
-*Six parts, the founder's own text, verbatim. One part every Monday, 7 September – 12 October, replacing the Monday card in each week below (those cards move to spares). On Facebook and Instagram: a card carrying the line shown, the full part as the caption. On LinkedIn: the full part as a text post, same day. No link in the caption; the series lives on the site as a page and is what the "just curious" DM sends.*
+*Six parts, the founder's own text, verbatim. One part every Monday, 7 September – 12 October, replacing the Monday card in each week below (those cards move to spares). On Facebook and Instagram: a card carrying the line shown, the full part as the caption. On LinkedIn: the full part as a text post, same day. No link in the caption. The series is social content only — it does not go on the website.*
 
 | Monday | Part | Card line (verbatim) |
 | --- | --- | --- |
