@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { FoundingRateLine } from "@/components/founding-rate-line";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import { WaitlistButton } from "@/components/waitlist-button";
 
@@ -303,10 +304,7 @@ export default function HomePage() {
                 {/* Sits tight under the discount on purpose: the scarcity has to land
                     in the same beat as the offer, not after a gap at the foot of the
                     card. Do not put the flex spacer back above this. */}
-                <p className="text-warm" style={{ fontSize: 13.5, lineHeight: 1.65 }}>
-                  Founding Families: the first 40. The founding rate ends 30 September,
-                  or when they&rsquo;re full.
-                </p>
+                <FoundingRateLine className="text-warm" />
                 <div className="flex-1" />
                 {/* Compliance spec §5.1: the renewal disclosure is required
                     immediately above the CTA. Keep it here, and keep it last. */}
