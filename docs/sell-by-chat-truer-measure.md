@@ -59,7 +59,7 @@ His pricing ratios, applied: **12-month = the anchor; 6-month ≈ 77% of it; 3-m
 
 **Risk reversal.** He never states a price without one ("90 days or your money back"). Yours needs to exist before the first offer — a first-month guarantee on the Room (come to four calls; if it's not for you, refunded) is cheap and it sells. This collides with the site's no-refund position (compliance D5). Decide it once, for all three offers.
 
-**5. Follow-up.** His cadence, unchanged: **days 0, 1, 1, 2, 3, 5, 8, 13.** After an hour of silence, like a message; after two, one bump. Then daily, then the spaced days. The last message closes the file honestly: *Would you like to keep this going, or should I leave it here for now?* Ghosted conversations move to a monthly re-activation: send them a new piece, or say *"a new group starts in October — want in?"*
+**5. Follow-up.** His cadence, unchanged: **days 0, 1, 1, 2, 3, 5, 8, 13.** After an hour of silence, like a message; after two, one bump. Then daily, then the spaced days. The last message closes the file honestly: *Would you like to keep this going, or should I leave it here for now?* Ghosted conversations move to a monthly re-activation: send them a new piece, or say *"a new group is forming — would you like to see if it's a fit?"*
 
 ## 3. Tone — what changes for parents
 
@@ -68,10 +68,10 @@ His lines are for CEOs: *only working with the doers*, *are you ready to commit 
 Keep: short messages, one question at a time, reward every answer that moves forward, lean out when they lean out, never make them feel wrong for hesitating, reframe objections instead of answering them.
 
 Change:
-- **"I need to talk to my partner"** is real, not a stall. *Of course — want me to send something you can both read, or should the three of us talk for fifteen minutes?*
-- **"It's expensive"** → *It is. What would it be worth to walk into the next meeting with the whole picture instead of a report card and a memory?*
-- **"Not the right time"** → the school calendar *is* the time: *the report card comes home in three weeks. That's the moment this was built for.*
-- **"I already keep notes"** → *Good — most people don't. Where were they at the last meeting?*
+- **"I need to talk to my partner"** is real, not a stall. *Of course. I can send something the two of you can read, or we can talk together for fifteen minutes.*
+- **"It's expensive"** → *It is an investment. Most families bring a report card and a memory to the table. This is the whole story, in hand.*
+- **"Not the right time"** → the school calendar *is* the time: *The report card comes home in [weeks]. That's the moment I built this for.*
+- **"I already keep notes"** → *Good — most families don't. Where were they at the last meeting?*
 - **"I can't promise results"** is the honest line, and it's stronger than a guarantee of outcomes: *I can promise you'll see your child differently and have something to say for them. What that changes is yours.*
 
 ## 4. The machine
