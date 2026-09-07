@@ -369,18 +369,11 @@ export default function HomePage() {
                 Circle
               </div>
               <p
-                className="mb-5 text-smoke"
+                className="mb-9 text-smoke"
                 style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
               >
                 Closer access to me in a small circle, with deeper conversations and a
                 voice in what we build next.
-              </p>
-              <p
-                className="mb-9 text-smoke"
-                style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: 250 }}
-              >
-                Eight families. By application. The founding circle closes when the
-                eighth says yes.
               </p>
               <div className="flex-1" />
               <WaitlistButton
