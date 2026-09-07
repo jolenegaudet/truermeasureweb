@@ -233,7 +233,7 @@ export default function HomePage() {
             already exists: report cards, assessments, teacher comments, your
             own observations, anything that helps tell your child&rsquo;s story.
             Truer Measure brings the evidence together and generates the Hidden
-            Report Card. Then, as your child grows, you keep adding &mdash; and
+            Report Card. Then, as your child grows, you keep adding, and
             request an updated Hidden Report Card when you&rsquo;re ready. Six
             updates a year are included; extra updates are US$10 each.
           </p>
@@ -303,7 +303,8 @@ export default function HomePage() {
                   they&rsquo;re full.
                 </p>
                 <p className="mb-9 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  Renews yearly until you cancel. Cancel anytime.
+                  Renews yearly unless you cancel. We email you before every
+                  renewal. Cancel anytime.
                 </p>
                 <div className="flex-1" />
                 <a
