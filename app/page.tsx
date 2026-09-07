@@ -300,9 +300,6 @@ export default function HomePage() {
                   a year, per child &middot; Founding Families: 40% off your first year
                   with <span className="font-semibold text-parchment">FOUNDING40</span>
                 </p>
-                <p className="mb-6 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  Six updates a year included. Extra updates US$10 each.
-                </p>
                 <div className="flex-1" />
                 <p className="mb-4 text-warm" style={{ fontSize: 13.5, lineHeight: 1.65 }}>
                   Founding Families: the first 40. The founding rate ends when
