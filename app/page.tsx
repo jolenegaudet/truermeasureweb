@@ -52,6 +52,7 @@ const included = [
   "First report five business days after you upload",
   "Six updates a year, then US$10 each",
   "You decide who contributes and who can see it",
+  "One membership covers one child. Adding another child is a separate membership.",
 ];
 
 const contrasts = [
@@ -317,7 +318,7 @@ export default function HomePage() {
                   US$597
                 </div>
                 <p className="mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  per child, per year
+                  per year
                 </p>
                 <div className="flex-1" />
                 {/* Compliance spec §5.1: the renewal disclosure is required
