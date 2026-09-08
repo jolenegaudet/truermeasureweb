@@ -32,7 +32,7 @@ export function FoundingRateLine({ className }: { className?: string }) {
 
   return (
     <p className={className} style={{ fontSize: 13.5, lineHeight: 1.65 }}>
-      Founding Families: the first 40
+      Founding Families: the first 40. Rate ends 30 September.
     </p>
   );
 }

@@ -34,6 +34,13 @@ const qualities = [
   "Purpose",
 ];
 
+const included = [
+  "Report cards, assessments and what you’ve noticed, in one record",
+  "First report five business days after you upload",
+  "Six updates a year, then US$10 each",
+  "You decide who contributes and who can see it",
+];
+
 const contrasts = [
   {
     left: "Measures performance.",
@@ -281,14 +288,8 @@ export default function HomePage() {
                   <br />
                   Report Card
                 </div>
-                <p className="mb-4 text-parchment" style={{ fontSize: 15, lineHeight: 1.6 }}>
-                  For the parent who knows the report card isn&rsquo;t the whole story.
-                  Walk into the next meeting with more than a grade to speak for your
-                  child.
-                </p>
-                <p className="mb-7 text-muted" style={{ fontSize: 14, lineHeight: 1.7 }}>
-                  Report cards, assessments, and what you&rsquo;ve noticed become one
-                  record. First report in five business days. Six updates a year.
+                <p className="mb-8 text-parchment" style={{ fontSize: 15.5, lineHeight: 1.55 }}>
+                  More than a grade to speak for your child.
                 </p>
                 {/* Compliance spec §8-D2: the recurring renewal-discount promise is removed.
                     A Stripe promotion code carries exactly one coupon, so FOUNDING40
@@ -303,12 +304,23 @@ export default function HomePage() {
                   US$597
                 </div>
                 <p className="mb-1 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  a year, per child
+                  per child, per year
                 </p>
-                <p className="mb-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                <p className="mb-7 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
                   US$358.20 your first year with{" "}
                   <span className="font-semibold text-parchment">FOUNDING40</span>
                 </p>
+                <ul className="mb-6 w-full list-none border-t border-charcoal p-0 text-left">
+                  {included.map((item) => (
+                    <li
+                      key={item}
+                      className="border-b border-charcoal py-[9px] text-muted"
+                      style={{ fontSize: 13, lineHeight: 1.55 }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
                 {/* Sits tight under the discount on purpose: the scarcity has to land
                     in the same beat as the offer, not after a gap at the foot of the
                     card. Do not put the flex spacer back above this. */}
