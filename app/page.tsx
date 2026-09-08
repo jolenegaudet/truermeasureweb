@@ -41,20 +41,6 @@ const included = [
   "You decide who contributes and who can see it",
 ];
 
-const roomIncludes = [
-  "A live room with me every week, not a recording",
-  "Your questions answered in context, alongside other parents",
-  "Guest experts some weeks",
-  "Recordings and the community between calls",
-];
-
-const circleIncludes = [
-  "A monthly small-group conversation with me",
-  "Your child’s situation, revisited as things develop",
-  "A private space to continue between calls",
-  "Everything in Learn from the Room, and your child’s Hidden Report Card",
-];
-
 const contrasts = [
   {
     left: "Measures performance.",
@@ -366,20 +352,13 @@ export default function HomePage() {
                 <br />
                 the Room
               </div>
-              <p className="mb-8 text-bark" style={{ fontSize: 15.5, lineHeight: 1.55 }}>
-                A live room, not a recording.
+              <p
+                className="mb-9 text-smoke"
+                style={{ fontSize: 14.5, lineHeight: 1.7, maxWidth: 260 }}
+              >
+                A live room every week with me and other parents who are noticing the
+                same things. Bring the question you don&rsquo;t know who else to ask.
               </p>
-              <ul className="mb-8 w-full list-none border-t border-border p-0 text-left">
-                {roomIncludes.map((item) => (
-                  <li
-                    key={item}
-                    className="border-b border-border py-[9px] text-smoke"
-                    style={{ fontSize: 13, lineHeight: 1.55 }}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
               <div className="flex-1" />
               <WaitlistButton
                 tag="waitlist-elite-learning-leaders"
@@ -401,20 +380,13 @@ export default function HomePage() {
                 <br />
                 Circle
               </div>
-              <p className="mb-8 text-bark" style={{ fontSize: 15.5, lineHeight: 1.55 }}>
-                Closer access, and a voice in what comes next.
+              <p
+                className="mb-9 text-smoke"
+                style={{ fontSize: 14.5, lineHeight: 1.7, maxWidth: 260 }}
+              >
+                A small circle where I come to know your child over the year, and you
+                have a say in what Truer Measure builds next.
               </p>
-              <ul className="mb-8 w-full list-none border-t border-warm p-0 text-left">
-                {circleIncludes.map((item) => (
-                  <li
-                    key={item}
-                    className="border-b border-warm py-[9px] text-smoke"
-                    style={{ fontSize: 13, lineHeight: 1.55 }}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
               <div className="flex-1" />
               <WaitlistButton
                 tag="applied-inner-circle"
