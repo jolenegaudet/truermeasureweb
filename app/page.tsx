@@ -444,9 +444,9 @@ export default function HomePage() {
             </BeforeDeadline>
 
             <p className="mb-6 text-faint" style={{ fontSize: 12, lineHeight: 1.6 }}>
-              US$597 per year after the first. One membership covers one child. Adding
-              another child is a separate membership. Renews yearly unless you cancel. We
-              email you before every renewal. Cancel anytime.
+              US$597 per year after the first. One membership covers one child. Renews
+              yearly unless you cancel. We email you before every renewal. Cancel
+              anytime.
             </p>
 
             <a
