@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
  */
 const ENDS_AT = Date.UTC(2026, 9, 1, 3, 0, 0);
 
-export function FoundingRateLine({ className }: { className?: string }) {
+export function BeforeDeadline({ children }: { children: React.ReactNode }) {
   const [live, setLive] = useState(false);
 
   useEffect(() => {
@@ -30,9 +30,5 @@ export function FoundingRateLine({ className }: { className?: string }) {
 
   if (!live) return null;
 
-  return (
-    <p className={className} style={{ fontSize: 13.5, lineHeight: 1.65 }}>
-      Founding Families: the first 40. Rate ends 30 September.
-    </p>
-  );
+  return <>{children}</>;
 }

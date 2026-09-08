@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { FoundingRateLine } from "@/components/founding-rate-line";
+import { BeforeDeadline } from "@/components/founding-rate-line";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import { WaitlistButton } from "@/components/waitlist-button";
 
@@ -45,14 +45,6 @@ const circleAccess = [
   "Direct access to Jolene",
   "A small circle, by application",
   "A voice in what Truer Measure builds next",
-];
-
-const included = [
-  "Report cards, assessments and what you’ve noticed, in one record",
-  "First report five business days after you upload",
-  "Six updates a year, then US$10 each",
-  "You decide who contributes and who can see it",
-  "One membership covers one child. Adding another child is a separate membership.",
 ];
 
 const contrasts = [
@@ -402,25 +394,67 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* What came off the Hidden Report Card tier. The card is a price and a
-              button now; the detail lives here, under all three. */}
-          <div className="mx-auto mt-14 max-w-[720px] border-t border-border pt-10 text-center md:mt-20">
-            <div className="mb-6 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-              The Hidden Report Card, included
-            </div>
-            <div
-              className="mx-auto mb-9 flex max-w-[560px] flex-col gap-[10px] text-smoke"
-              style={{ fontSize: 14.5, lineHeight: 1.6 }}
+          {/* The Hidden Report Card, in full, beneath the three ways in. Jolène's
+              copy. The standard price and the renewal disclosure sit with the
+              button because compliance spec §5.1 requires them beside any CTA
+              that starts a subscription. */}
+          <div className="mx-auto mt-16 max-w-[640px] border-t border-border pt-14 text-center md:mt-24">
+            <h3
+              className="font-heading mb-8 font-medium text-bark"
+              style={{ fontSize: "clamp(26px,4vw,40px)", lineHeight: 1.1 }}
             >
-              {included.map((item) => (
-                <div key={item}>{item}</div>
-              ))}
-            </div>
-            <p className="mb-1 text-bark" style={{ fontSize: 15, lineHeight: 1.6 }}>
-              US$358.20 your first year with{" "}
-              <span className="font-semibold">FOUNDING40</span>
+              The Hidden Report Card
+            </h3>
+
+            <p
+              className="font-heading mb-8 italic text-dusk"
+              style={{ fontSize: "clamp(19px,2.4vw,24px)", lineHeight: 1.45 }}
+            >
+              School is part of your child&rsquo;s education. It is not the whole of it.
             </p>
-            <FoundingRateLine className="text-rose" />
+
+            <div
+              className="mx-auto mb-10 flex max-w-[540px] flex-col gap-5 text-smoke"
+              style={{ fontSize: 16, lineHeight: 1.7 }}
+            >
+              <p>
+                Bring together report cards, assessments and evidence of learning from
+                all the places your child learns and grows.
+              </p>
+              <p>
+                See what they reveal together about your child&rsquo;s strengths,
+                capabilities and growth, across experiences, perspectives and years.
+              </p>
+              <p>You decide who contributes and who can see it.</p>
+            </div>
+
+            <BeforeDeadline>
+              <div className="mb-8 border-t border-border pt-8">
+                <p className="font-heading mb-2 text-[22px] text-bark">
+                  40 founding parents. 40% off your first year.
+                </p>
+                <p className="mb-2 text-smoke" style={{ fontSize: 16, lineHeight: 1.7 }}>
+                  Pay only US$358.20 with code{" "}
+                  <span className="font-semibold text-bark">FOUNDING40</span>.
+                </p>
+                <p className="text-rose" style={{ fontSize: 15, lineHeight: 1.7 }}>
+                  Join before all 40 founding places are taken.
+                </p>
+              </div>
+            </BeforeDeadline>
+
+            <p className="mb-6 text-faint" style={{ fontSize: 12, lineHeight: 1.6 }}>
+              US$597 per year after the first. One membership covers one child. Adding
+              another child is a separate membership. Renews yearly unless you cancel. We
+              email you before every renewal. Cancel anytime.
+            </p>
+
+            <a
+              href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
+              className="inline-block rounded-[2px] bg-bark px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-parchment no-underline"
+            >
+              Become a Founding Parent
+            </a>
           </div>
         </div>
       </section>
