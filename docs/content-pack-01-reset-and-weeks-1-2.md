@@ -115,7 +115,7 @@ Caption:
 >
 > The Hidden Report Card is where the rest goes: report cards, assessments, professionals' reports, and what you see at home — kept in one place, read across the years, never lost.
 >
-> Comment BEYOND for the one-page guide to reading the part the report card does capture.
+> DM "BEYOND" to start.
 
 ## 2. Observation cards — Mon / Wed / Fri, 7–18 September
 
@@ -154,7 +154,7 @@ run again in the first keyword slot, verbatim:
 > that you know matters the most?
 
 Caption: *Tell me below. One thing.*
-*If you'd like the one-page guide to reading the comment you'll get in November — what it can say, what it can't, and what to write down before the meeting — comment BEYOND and I'll send it to you.*
+*If you'd like the one-page guide to reading the comment you'll get in November — what it can say, what it can't, and what to write down before the meeting — DM "BEYOND" to start.*
 
 *(The previous C03 — "What's one thing your child does well that has never appeared on a
 report card?" — moves to the spares as C13b.)*
@@ -248,7 +248,7 @@ Caption: *Tell me below. One thing. Comment BEYOND for the guide.*
 > What did your child do this week
 > that nobody assigned?
 
-Caption: *That's evidence. Most of it is never written down anywhere. Comment BEYOND and I'll send you the guide to what the report card will and won't say about it.*
+Caption: *That's evidence. Most of it is never written down anywhere. DM "BEYOND" to start.*
 
 ## 3. Tuesday reel scripts
 
@@ -291,7 +291,7 @@ Caption: *More than twenty years of report cards. The comment box was never the 
 >
 > Write it down. I mean it — one line, tonight. That's the record.
 >
-> Comment BEYOND and I'll send you the guide to what the report card will and won't tell you in November.
+> DM "BEYOND" to start.
 
 Caption: *"Doing great" is a grade. Confident is a child. Comment BEYOND for the guide.*
 
@@ -303,7 +303,7 @@ minutes a day.
 
 **4.1 The ask (goes at the end of Friday captions and Tuesday reels)**
 
-> DM me "BEYOND" and I'll send you where to start — and if you tell me one thing about your child, I'll tell you what I'd look for first.
+> DM me "BEYOND" and I'll send you where to start — and if you tell me one thing about your child,
 
 *No free guide is promised. The keyword opens a conversation, not a download. If the guide
 (pack 02) is ever produced, it is sent inside that conversation, never as the reason for it.*
@@ -312,7 +312,7 @@ minutes a day.
 
 > Here's where to start: truermeasure.com — The Hidden Report Card is a living account of your child's learning, strengths and growth, from school and beyond. You add what you have; it connects it across the years.
 >
-> If you tell me one thing you've noticed about your child that school has never measured, I'll tell you what I'd look for first. I read every one.
+> If you tell me one thing you've noticed about your child that school has never measured, I read every one.
 >
 > — Jolene
 
@@ -320,7 +320,7 @@ minutes a day.
 
 > Two other ways to learn with me, if that's more your speed: a live room with other parents and invited experts, and a small circle with closer access to me. Both are on the site under Community and Proximity.
 >
-> And the offer stands — one thing about your child, and I'll tell you what I'd look for.
+> And the offer stands — one thing about your child, and
 
 **4.4 When someone tells you something about their child**
 

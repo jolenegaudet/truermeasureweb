@@ -3,7 +3,7 @@
 *Instagram + Facebook. One post a day, Stories on weekends. Copy the card text onto the card template; paste the caption. Where a Friday or reel ends with the keyword, that's the whole call to action — no link, no guide.*
 
 **Keyword line (used wherever "→ BEYOND" appears):**
-DM "BEYOND" and tell me one thing about your child that school has never measured — I'll tell you what I'd look for first.
+DM "BEYOND" to start.
 
 ---
 
@@ -365,7 +365,7 @@ Is there a meeting, a decision, or a moment coming up where you'd want it in han
 
 **If "just curious":**
 In short: The Hidden Report Card is a living account of your child's education — school and beyond. Report cards, assessments, teacher comments, your own observations, brought together so the patterns and moments that usually go unnoticed are kept. It's yours. truermeasure.com
-If you'd like, tell me one thing about your child that school has never measured. I'll tell you what I'd look for first.
+If you'd like, tell me one thing about your child that school has never measured.
 
 **If they mention their child in the first message:**
 *(One line reflecting it back — what it's evidence of.)*

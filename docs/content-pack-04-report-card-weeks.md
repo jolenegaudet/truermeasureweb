@@ -55,7 +55,7 @@ Caption: *Report cards came home today in [district]. Read the comment twice: on
 >
 > Four. Now look at what isn't there. The thing she built at home. The question he keeps asking. That isn't a gap in your kid. It's a gap in the form.
 >
-> That's the part I built a place for. DM me BEYOND and tell me one thing that isn't on the report card — I'll tell you what I'd look for.
+> That's the part I built a place for. DM me "BEYOND" to start. 
 
 Caption: *A letter grade measures the room's target. The rest of your kid is somewhere else. DM "BEYOND."*
 
@@ -131,7 +131,7 @@ Caption: *Honest, and incomplete. That's not a criticism of the teacher; it's wh
 >
 > And the thing you noticed in October — the one you meant to write down and didn't — is exactly the kind of evidence that never makes it onto the page. Write it down tonight. That's the record only you can keep.
 >
-> DM me BEYOND and tell me one thing that isn't on the bulletin. I'll tell you what I'd look for first.
+> DM me "BEYOND" to start. 
 
 Caption: *Two sentences and a code. The rest of your kid is yours to keep. DM "BEYOND." — Si tu connais un parent, envoie-lui ceci.*
 
@@ -169,7 +169,7 @@ Caption:
 > What's the one thing about your kid
 > that has never made it onto a bulletin?
 
-Caption: *Tell me below. Then DM "BEYOND" — I'll tell you what I'd look for.*
+Caption: *Tell me below. Then DM "BEYOND" —*
 
 ## 3. On location in South Florida
 

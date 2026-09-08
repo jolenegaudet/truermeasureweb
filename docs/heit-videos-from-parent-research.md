@@ -25,7 +25,7 @@
 - **Illustrate:** A father posted his son's kindergarten report online, baffled — the boy who invents math games at home was marked "with help." Two hundred parents replied. Half said *that's standards-based grading, don't worry.* The other half said *that happened to us.* Nobody said *the report card was wrong.* Because it wasn't. It was incomplete.
 - **Teach:** Tonight, write one line: the thing your child did this week that isn't on the page. Date it. That's the other column. The next meeting starts from two columns instead of one.
 - **Transformation:** From *"am I delusional about my own kid?"* to *"here's what I've seen, and here's when."*
-- **CTA:** *"If the report card doesn't match the child you know — DM me BEYOND and tell me one thing it missed. I'll tell you what I'd look for first."*
+- **CTA:** *"If the report card doesn't match the child you know — DM me "BEYOND" to start. "*
 
 ---
 
@@ -48,7 +48,7 @@
 - **Illustrate:** Eight hundred parents upvoted that post. The most-liked reply: *"way too soon to have decided he's going to fail, and way too late to have not communicated."* The mother's own line: *when something is written down, it counts.*
 - **Teach:** Every note, every comment, every "quick word at pickup" — one line, dated, in one place. Before the meeting, read them in order. You'll see the story forming before anyone tells it to you. And you'll have the dates when they say *this has been going on for a while.*
 - **Transformation:** From *"blindsided"* to *"I have it written down — October 14th, you said…"*
-- **CTA:** *"If you've ever sat in a meeting and heard something for the first time — DM me BEYOND. I'll tell you what I'd keep, and where."*
+- **CTA:** *"If you've ever sat in a meeting and heard something for the first time — DM me "BEYOND" to start."*
 
 ---
 
@@ -72,7 +72,7 @@
 - **Illustrate:** I wrote those phrases for twenty years. "Continues to develop" means motion. "Is beginning to" means motion. "Needs to" is a next step — the thing is being worked on; it isn't a verdict. And when a teacher spends some of those two hundred characters on something *specific* — a moment, a when — that's the sentence to underline. It cost them something to write it.
 - **Teach:** Read the verb, not the adjective. Then ask one question at the meeting: *"Can you give me an example of a time you saw that?"* A rating becomes a moment. Moments you can work with.
 - **Transformation:** From *"I couldn't feel any less informed"* to *"I know which sentence matters and what to ask about it."*
-- **CTA:** *"If there's a phrase on your child's report card you can't turn into anything — DM me BEYOND with the phrase. I'll tell you what I'd look for behind it."*
+- **CTA:** *"If there's a phrase on your child's report card you can't turn into anything — DM me "BEYOND" to start."*
 
 ---
 
@@ -95,7 +95,7 @@
 - **Illustrate:** One mother posted her son's comments: *working on compromise, working on thinking more deeply, often misplaces his materials, working on a safe body.* Then she wrote what she was planning for the summer: a microscope, butterflies to hatch, library trips, *why do bugs need so many legs.* That second list is the child. Nobody at school has read it.
 - **Teach:** Write the second list down. Not as a rebuttal — as the record. One strength a week, dated, with the moment it showed up. When the meeting is all "working on," you'll have something to put beside it, and it won't be your word against the form.
 - **Transformation:** From *"constantly criticizing"* to *"here's the rest of him, and I can show you when."*
-- **CTA:** *"If your child's comment section had nothing good in it — DM me BEYOND and tell me one thing that should have been there. I'll tell you what it's evidence of."*
+- **CTA:** *"If your child's comment section had nothing good in it — DM me "BEYOND" to start."*
 
 ---
 
@@ -117,7 +117,7 @@
 - **Illustrate:** *"She is kind and inclusive even when I'm not there. She plays with anyone and everyone."* That's what made a mother cry. Not the grades. The proof that someone saw her daughter. Nineteen hundred parents pressed the button on that post — because that is what every one of them wants from a conference and almost none of them get.
 - **Teach:** If your child is "fine," the record the school keeps is going to be thin. Not wrong — thin. So keep the one they can't. What she does when nobody's asking. Who he sat with. The thing she said in the car. One line a week. For the quiet ones, that record is most of what there is.
 - **Transformation:** From *"it wasn't necessary for me to come"* to *"here is who my child is when nobody's looking — and I can show you across three years."*
-- **CTA:** *"If your child is the one nobody needs to talk about — DM me BEYOND and tell me one thing about them that no one at school has ever said. I'll tell you what I'd look for first."*
+- **CTA:** *"If your child is the one nobody needs to talk about — DM me "BEYOND" to start. "*
 
 ---
 

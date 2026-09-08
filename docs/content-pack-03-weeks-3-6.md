@@ -46,7 +46,7 @@ NB line: *First report cards are late November. This is the sentence to watch fo
 >
 > So when you see it — and you will — be glad. Then ask the teacher one more thing: *what does she do when the work gets harder than she expected?* That's the answer the sentence can't hold.
 >
-> Comment BEYOND and I'll send you the one-page guide to reading the rest of the comment.
+> DM "BEYOND" to start.
 
 Caption: *A true sentence. An incomplete one. Comment BEYOND for the guide.*
 
@@ -122,7 +122,7 @@ NB line: *Ask yourself in November: how long was the comment? Length is informat
 >
 > One line a week. What she did that nobody assigned. Where he went when he was bored. What she asked. That's it.
 >
-> Comment BEYOND and I'll send you the guide — it tells you what to write down before the meeting.
+> DM "BEYOND" to start.
 
 Caption: *"Doing fine" is where the record goes quiet. Comment BEYOND for the guide.*
 
