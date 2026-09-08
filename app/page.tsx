@@ -34,6 +34,19 @@ const qualities = [
   "Purpose",
 ];
 
+const roomAccess = [
+  "Live Room with Jolene, every week",
+  "Guest experts",
+  "Community between calls",
+  "Group Q&A",
+];
+
+const circleAccess = [
+  "Direct access to Jolene",
+  "A small circle, by application",
+  "A voice in what Truer Measure builds next",
+];
+
 const included = [
   "Report cards, assessments and what you’ve noticed, in one record",
   "First report five business days after you upload",
@@ -303,28 +316,9 @@ export default function HomePage() {
                 >
                   US$597
                 </div>
-                <p className="mb-1 mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                <p className="mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
                   per child, per year
                 </p>
-                <p className="mb-7 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  US$358.20 your first year with{" "}
-                  <span className="font-semibold text-parchment">FOUNDING40</span>
-                </p>
-                <ul className="mb-6 w-full list-none border-t border-charcoal p-0 text-left">
-                  {included.map((item) => (
-                    <li
-                      key={item}
-                      className="border-b border-charcoal py-[9px] text-muted"
-                      style={{ fontSize: 13, lineHeight: 1.55 }}
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {/* Sits tight under the discount on purpose: the scarcity has to land
-                    in the same beat as the offer, not after a gap at the foot of the
-                    card. Do not put the flex spacer back above this. */}
-                <FoundingRateLine className="text-warm" />
                 <div className="flex-1" />
                 {/* Compliance spec §5.1: the renewal disclosure is required
                     immediately above the CTA. Keep it here, and keep it last. */}
@@ -352,13 +346,17 @@ export default function HomePage() {
                 <br />
                 the Room
               </div>
-              <p
-                className="mb-9 text-smoke"
-                style={{ fontSize: 14.5, lineHeight: 1.7, maxWidth: 260 }}
-              >
-                A live room every week with me and other parents who are noticing the
-                same things. Bring the question you don&rsquo;t know who else to ask.
+              <p className="font-heading mb-7 text-[19px] text-dusk">
+                Elite Parents as Learning Leaders
               </p>
+              <div
+                className="mb-9 flex flex-col gap-[10px] text-smoke"
+                style={{ fontSize: 14 }}
+              >
+                {roomAccess.map((item) => (
+                  <div key={item}>{item}</div>
+                ))}
+              </div>
               <div className="flex-1" />
               <WaitlistButton
                 tag="waitlist-elite-learning-leaders"
@@ -380,13 +378,17 @@ export default function HomePage() {
                 <br />
                 Circle
               </div>
-              <p
-                className="mb-9 text-smoke"
-                style={{ fontSize: 14.5, lineHeight: 1.7, maxWidth: 260 }}
-              >
-                A small circle where I come to know your child over the year, and you
-                have a say in what Truer Measure builds next.
+              <p className="font-heading mb-7 text-[19px] text-dusk">
+                Help shape what&rsquo;s next
               </p>
+              <div
+                className="mb-9 flex flex-col gap-[10px] text-smoke"
+                style={{ fontSize: 14 }}
+              >
+                {circleAccess.map((item) => (
+                  <div key={item}>{item}</div>
+                ))}
+              </div>
               <div className="flex-1" />
               <WaitlistButton
                 tag="applied-inner-circle"
@@ -397,6 +399,27 @@ export default function HomePage() {
                 variant="outline-rose"
               />
             </div>
+          </div>
+
+          {/* What came off the Hidden Report Card tier. The card is a price and a
+              button now; the detail lives here, under all three. */}
+          <div className="mx-auto mt-14 max-w-[720px] border-t border-border pt-10 text-center md:mt-20">
+            <div className="mb-6 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
+              The Hidden Report Card, included
+            </div>
+            <div
+              className="mx-auto mb-9 flex max-w-[560px] flex-col gap-[10px] text-smoke"
+              style={{ fontSize: 14.5, lineHeight: 1.6 }}
+            >
+              {included.map((item) => (
+                <div key={item}>{item}</div>
+              ))}
+            </div>
+            <p className="mb-1 text-bark" style={{ fontSize: 15, lineHeight: 1.6 }}>
+              US$358.20 your first year with{" "}
+              <span className="font-semibold">FOUNDING40</span>
+            </p>
+            <FoundingRateLine className="text-rose" />
           </div>
         </div>
       </section>
