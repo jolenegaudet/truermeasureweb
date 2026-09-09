@@ -2,7 +2,7 @@
 
 *7 September – 23 October 2026. For one parent: the one who sees her brilliant kid start to disappear in a system built for a different era — a child in grades 1 to 6, a parent who keeps notes, a report card or a meeting coming. Days one to six are the founder's series, one part a day, as written; day seven is Part 7, the history of the system. Then six weeks, one problem a week, each one a way the disappearing happens — and each Thursday, what the Hidden Report Card does for that child. Parents' words are quoted as written in public threads (r/Parenting, r/ADHDparenting, Mumsnet), trimmed — no usernames, no children's names.*
 
-*Instagram: three a day. Facebook: one a day. LinkedIn: every series day, then Monday / Wednesday / Friday. Substack: every series day. Weekends after the series: Stories only, or one personal post.*
+*Instagram: three a day. Facebook: one a day. LinkedIn: every series day, then Monday / Wednesday / Friday. Substack: every series day. Saturdays: *What I really wanted to say* — a principal's-office piece in the founder's form, one a week; the first is hers verbatim, the rest are drafts for her to keep, rewrite or cut. Sundays: Stories only, or one personal post.*
 
 *A week's shape: **Monday** the problem, in their words · **Tuesday** the tool — one thing a parent can do tonight · **Wednesday** the Read — three real report-card lines read on camera · **Thursday** what the Hidden Report Card does for this child, and the invitation to bring one report card and one thing you wrote down · **Friday** the question, and the handoff to next week.*
 
@@ -1654,6 +1654,174 @@ Not the grade — the description. The sentence that isn't your child. Tell me. 
 
 ---
 
+## Saturday 19 September — What I really wanted to say: We need to rethink what we call "absent"
+
+*The founder's piece, verbatim. Parents responded to this one; it is the model for the rest.*
+
+### Instagram — post 1 of 3 — reel, to camera (read the piece as written)
+
+*Say to camera:*
+
+Every time a teacher told me, when I was a school principal, that they couldn't believe a family was going on another trip with their kids, this is what I really wanted to say: We need to rethink what we call "absent". If a child spends three weeks travelling with their family, experiencing another culture, navigating airports, hearing another language, visiting museums, calculating currencies, reading maps, ordering at a restaurant, trying unfamiliar foods, learning history where it happened, and seeing how other people live, we mark them absent because they weren't sitting in class… Absent from school? Yes. Absent from learning? Absolutely not. Learning has never respected the walls of a school building, but sometimes, we act as though it does. A child can be absent from school and very present in their education. And sometimes, kids are present in school and absent from their education. If you're lucky enough to travel the world with your kids, make the most of it. Stop worrying about the schooling they're missing. Pay attention to the education they're getting. And if travelling isn't part of your family's life, notice how much learning is happening in your own backyard, too. We need to get better at noticing all the places learning happens. This school year, pay attention to what your child is learning outside of school. It matters so much. And so much of it will never show up on a report card. DM "BEYOND" to start.
+
+*Caption:*
+
+Absent from school? Yes. Absent from learning? Absolutely not. DM "BEYOND" to start.
+
+### Instagram — post 2 of 3 — card with the full piece as the caption
+
+*Card:*
+
+Absent from school? Yes.
+
+Absent from learning? Absolutely not.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, that they couldn't believe a family was going on another trip with their kids, this is what I really wanted to say: We need to rethink what we call "absent".
+
+If a child spends three weeks travelling with their family, experiencing another culture, navigating airports, hearing another language, visiting museums, calculating currencies, reading maps, ordering at a restaurant, trying unfamiliar foods, learning history where it happened, and seeing how other people live, we mark them absent because they weren't sitting in class…
+
+Absent from school? Yes.
+
+Absent from learning? Absolutely not.
+
+Learning has never respected the walls of a school building, but sometimes, we act as though it does.
+
+A child can be absent from school and very present in their education.
+
+And sometimes, kids are present in school and absent from their education.
+
+If you're lucky enough to travel the world with your kids, make the most of it.
+
+Stop worrying about the schooling they're missing. Pay attention to the education they're getting.
+
+And if travelling isn't part of your family's life, notice how much learning is happening in your own backyard, too.
+
+We need to get better at noticing all the places learning happens.
+
+This school year, pay attention to what your child is learning outside of school.
+
+It matters so much.
+
+And so much of it will never show up on a report card.
+
+TruerMeasure.com
+
+### Instagram — post 3 of 3 — Stories
+
+*Question box:*
+
+What did your child learn this week that will never show up on a report card?
+
+### Facebook
+
+*Card:*
+
+Absent from school? Yes.
+
+Absent from learning? Absolutely not.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, that they couldn't believe a family was going on another trip with their kids, this is what I really wanted to say: We need to rethink what we call "absent".
+
+If a child spends three weeks travelling with their family, experiencing another culture, navigating airports, hearing another language, visiting museums, calculating currencies, reading maps, ordering at a restaurant, trying unfamiliar foods, learning history where it happened, and seeing how other people live, we mark them absent because they weren't sitting in class…
+
+Absent from school? Yes.
+
+Absent from learning? Absolutely not.
+
+Learning has never respected the walls of a school building, but sometimes, we act as though it does.
+
+A child can be absent from school and very present in their education.
+
+And sometimes, kids are present in school and absent from their education.
+
+If you're lucky enough to travel the world with your kids, make the most of it.
+
+Stop worrying about the schooling they're missing. Pay attention to the education they're getting.
+
+And if travelling isn't part of your family's life, notice how much learning is happening in your own backyard, too.
+
+We need to get better at noticing all the places learning happens.
+
+This school year, pay attention to what your child is learning outside of school.
+
+It matters so much.
+
+And so much of it will never show up on a report card.
+
+TruerMeasure.com
+
+### LinkedIn — text post
+
+Every time a teacher told me, when I was a school principal, that they couldn't believe a family was going on another trip with their kids, this is what I really wanted to say: We need to rethink what we call "absent".
+
+If a child spends three weeks travelling with their family, experiencing another culture, navigating airports, hearing another language, visiting museums, calculating currencies, reading maps, ordering at a restaurant, trying unfamiliar foods, learning history where it happened, and seeing how other people live, we mark them absent because they weren't sitting in class…
+
+Absent from school? Yes.
+
+Absent from learning? Absolutely not.
+
+Learning has never respected the walls of a school building, but sometimes, we act as though it does.
+
+A child can be absent from school and very present in their education.
+
+And sometimes, kids are present in school and absent from their education.
+
+If you're lucky enough to travel the world with your kids, make the most of it.
+
+Stop worrying about the schooling they're missing. Pay attention to the education they're getting.
+
+And if travelling isn't part of your family's life, notice how much learning is happening in your own backyard, too.
+
+We need to get better at noticing all the places learning happens.
+
+This school year, pay attention to what your child is learning outside of school.
+
+It matters so much.
+
+And so much of it will never show up on a report card.
+
+TruerMeasure.com
+
+### Substack — a short one
+
+*Title:* What I really wanted to say — We need to rethink what we call "absent"
+
+Every time a teacher told me, when I was a school principal, that they couldn't believe a family was going on another trip with their kids, this is what I really wanted to say: We need to rethink what we call "absent".
+
+If a child spends three weeks travelling with their family, experiencing another culture, navigating airports, hearing another language, visiting museums, calculating currencies, reading maps, ordering at a restaurant, trying unfamiliar foods, learning history where it happened, and seeing how other people live, we mark them absent because they weren't sitting in class…
+
+Absent from school? Yes.
+
+Absent from learning? Absolutely not.
+
+Learning has never respected the walls of a school building, but sometimes, we act as though it does.
+
+A child can be absent from school and very present in their education.
+
+And sometimes, kids are present in school and absent from their education.
+
+If you're lucky enough to travel the world with your kids, make the most of it.
+
+Stop worrying about the schooling they're missing. Pay attention to the education they're getting.
+
+And if travelling isn't part of your family's life, notice how much learning is happening in your own backyard, too.
+
+We need to get better at noticing all the places learning happens.
+
+This school year, pay attention to what your child is learning outside of school.
+
+It matters so much.
+
+And so much of it will never show up on a report card.
+
+TruerMeasure.com
+
+---
+
 # WEEK 3 — "I was blindsided at the conference"
 
 ## Monday 21 September — the problem, in their words
@@ -1918,6 +2086,128 @@ The thing that should have come home in October and arrived in March. Tell me wh
 ### LinkedIn — text post
 
 Eight weeks into second grade, a mother was told her son might fail the year. Nobody had mentioned a problem before the meeting. Eight hundred parents replied; the most-liked answer: "way too soon to have decided he's going to fail, and way too late to have not communicated." Another parent, elsewhere, in six words: when something is written down, it counts. The school writes things down. Parents remember. What did school tell you at a meeting that you were hearing for the first time?
+
+---
+
+## Saturday 26 September — What I really wanted to say: "He's done, and now he's a problem"
+
+*DRAFT in the founder's form — hers to keep, rewrite, or cut. Nothing in it is a claim about research; it is a principal's observation.*
+
+### Instagram — post 1 of 3 — reel, to camera (read the piece as written)
+
+*Say to camera:*
+
+Every time a teacher told me, when I was a school principal, that a child had finished the work early and was now "a problem," this is what I really wanted to say: He isn't a problem. He's a message. A child who finishes in ten minutes what was built to take forty has just told you something precise about where he is. We rarely write that down. We write down what he did with the other thirty minutes. So the report card says "needs to stay on task" or "distracts others." It doesn't say "the task ended and nothing was waiting for him." Both are true. Only one of them is about the child. If your child is the one who finishes early, watch what happens next — not in the classroom, at home. What does he reach for when nothing is assigned? That's the ceiling he's actually working under. Write it down. And if the comment says "distracts others," you're allowed to ask a different question at the meeting: what was he supposed to do when he was done? So much of what a fast child is gets recorded as what a fast child does with empty time. DM "BEYOND" to start.
+
+*Caption:*
+
+A child who finishes early isn't a behaviour problem. He's telling you the work was too small. DM "BEYOND" to start.
+
+### Instagram — post 2 of 3 — card with the full piece as the caption
+
+*Card:*
+
+A child who finishes early
+isn't a behaviour problem.
+
+He's telling you the work was too small.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, that a child had finished the work early and was now "a problem," this is what I really wanted to say:
+
+He isn't a problem. He's a message.
+
+A child who finishes in ten minutes what was built to take forty has just told you something precise about where he is. We rarely write that down. We write down what he did with the other thirty minutes.
+
+So the report card says "needs to stay on task" or "distracts others." It doesn't say "the task ended and nothing was waiting for him."
+
+Both are true. Only one of them is about the child.
+
+If your child is the one who finishes early, watch what happens next — not in the classroom, at home. What does he reach for when nothing is assigned? That's the ceiling he's actually working under. Write it down.
+
+And if the comment says "distracts others," you're allowed to ask a different question at the meeting: what was he supposed to do when he was done?
+
+So much of what a fast child is gets recorded as what a fast child does with empty time.
+
+TruerMeasure.com
+
+### Instagram — post 3 of 3 — Stories
+
+*Question box:*
+
+What did your child learn this week that will never show up on a report card?
+
+### Facebook
+
+*Card:*
+
+A child who finishes early
+isn't a behaviour problem.
+
+He's telling you the work was too small.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, that a child had finished the work early and was now "a problem," this is what I really wanted to say:
+
+He isn't a problem. He's a message.
+
+A child who finishes in ten minutes what was built to take forty has just told you something precise about where he is. We rarely write that down. We write down what he did with the other thirty minutes.
+
+So the report card says "needs to stay on task" or "distracts others." It doesn't say "the task ended and nothing was waiting for him."
+
+Both are true. Only one of them is about the child.
+
+If your child is the one who finishes early, watch what happens next — not in the classroom, at home. What does he reach for when nothing is assigned? That's the ceiling he's actually working under. Write it down.
+
+And if the comment says "distracts others," you're allowed to ask a different question at the meeting: what was he supposed to do when he was done?
+
+So much of what a fast child is gets recorded as what a fast child does with empty time.
+
+TruerMeasure.com
+
+### LinkedIn — text post
+
+Every time a teacher told me, when I was a school principal, that a child had finished the work early and was now "a problem," this is what I really wanted to say:
+
+He isn't a problem. He's a message.
+
+A child who finishes in ten minutes what was built to take forty has just told you something precise about where he is. We rarely write that down. We write down what he did with the other thirty minutes.
+
+So the report card says "needs to stay on task" or "distracts others." It doesn't say "the task ended and nothing was waiting for him."
+
+Both are true. Only one of them is about the child.
+
+If your child is the one who finishes early, watch what happens next — not in the classroom, at home. What does he reach for when nothing is assigned? That's the ceiling he's actually working under. Write it down.
+
+And if the comment says "distracts others," you're allowed to ask a different question at the meeting: what was he supposed to do when he was done?
+
+So much of what a fast child is gets recorded as what a fast child does with empty time.
+
+TruerMeasure.com
+
+### Substack — a short one
+
+*Title:* What I really wanted to say — "He's done, and now he's a problem"
+
+Every time a teacher told me, when I was a school principal, that a child had finished the work early and was now "a problem," this is what I really wanted to say:
+
+He isn't a problem. He's a message.
+
+A child who finishes in ten minutes what was built to take forty has just told you something precise about where he is. We rarely write that down. We write down what he did with the other thirty minutes.
+
+So the report card says "needs to stay on task" or "distracts others." It doesn't say "the task ended and nothing was waiting for him."
+
+Both are true. Only one of them is about the child.
+
+If your child is the one who finishes early, watch what happens next — not in the classroom, at home. What does he reach for when nothing is assigned? That's the ceiling he's actually working under. Write it down.
+
+And if the comment says "distracts others," you're allowed to ask a different question at the meeting: what was he supposed to do when he was done?
+
+So much of what a fast child is gets recorded as what a fast child does with empty time.
+
+TruerMeasure.com
 
 ---
 
@@ -2196,6 +2486,112 @@ could you not turn into anything?
 
 ---
 
+## Saturday 3 October — What I really wanted to say: "She's no trouble at all"
+
+*DRAFT in the founder's form — hers to keep, rewrite, or cut. Nothing in it is a claim about research; it is a principal's observation.*
+
+### Instagram — post 1 of 3 — reel, to camera (read the piece as written)
+
+*Say to camera:*
+
+Every time a teacher told me, when I was a school principal, "she's no trouble at all," meaning it as the highest compliment, this is what I really wanted to say: That's not about her. That's about your day. I understand it. Twenty-five children, one adult, and the ones who are no trouble are a gift. I've said it myself. But it tells a parent nothing about who their child is — only that she made a hard job a little easier. The quiet ones get the shortest comments. Not because there's less to say. Because nothing forced anyone to say it. If your child is "no trouble at all," she will fall through the cracks gently, year after year, with a lovely report card. So keep the record the school isn't keeping. What does she do when nobody's asking? Who does she sit with? What did she say in the car that made you go quiet? For that child, what you notice at home isn't a supplement to the school's record. It's most of the record. DM "BEYOND" to start.
+
+*Caption:*
+
+"She's no trouble at all" is not a description of your child. It's a description of the teacher's day. DM "BEYOND" to start.
+
+### Instagram — post 2 of 3 — card with the full piece as the caption
+
+*Card:*
+
+"She's no trouble at all"
+is not a description of your child.
+
+It's a description of the teacher's day.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, "she's no trouble at all," meaning it as the highest compliment, this is what I really wanted to say:
+
+That's not about her. That's about your day.
+
+I understand it. Twenty-five children, one adult, and the ones who are no trouble are a gift. I've said it myself. But it tells a parent nothing about who their child is — only that she made a hard job a little easier.
+
+The quiet ones get the shortest comments. Not because there's less to say. Because nothing forced anyone to say it.
+
+If your child is "no trouble at all," she will fall through the cracks gently, year after year, with a lovely report card. So keep the record the school isn't keeping. What does she do when nobody's asking? Who does she sit with? What did she say in the car that made you go quiet?
+
+For that child, what you notice at home isn't a supplement to the school's record. It's most of the record.
+
+TruerMeasure.com
+
+### Instagram — post 3 of 3 — Stories
+
+*Question box:*
+
+What did your child learn this week that will never show up on a report card?
+
+### Facebook
+
+*Card:*
+
+"She's no trouble at all"
+is not a description of your child.
+
+It's a description of the teacher's day.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, "she's no trouble at all," meaning it as the highest compliment, this is what I really wanted to say:
+
+That's not about her. That's about your day.
+
+I understand it. Twenty-five children, one adult, and the ones who are no trouble are a gift. I've said it myself. But it tells a parent nothing about who their child is — only that she made a hard job a little easier.
+
+The quiet ones get the shortest comments. Not because there's less to say. Because nothing forced anyone to say it.
+
+If your child is "no trouble at all," she will fall through the cracks gently, year after year, with a lovely report card. So keep the record the school isn't keeping. What does she do when nobody's asking? Who does she sit with? What did she say in the car that made you go quiet?
+
+For that child, what you notice at home isn't a supplement to the school's record. It's most of the record.
+
+TruerMeasure.com
+
+### LinkedIn — text post
+
+Every time a teacher told me, when I was a school principal, "she's no trouble at all," meaning it as the highest compliment, this is what I really wanted to say:
+
+That's not about her. That's about your day.
+
+I understand it. Twenty-five children, one adult, and the ones who are no trouble are a gift. I've said it myself. But it tells a parent nothing about who their child is — only that she made a hard job a little easier.
+
+The quiet ones get the shortest comments. Not because there's less to say. Because nothing forced anyone to say it.
+
+If your child is "no trouble at all," she will fall through the cracks gently, year after year, with a lovely report card. So keep the record the school isn't keeping. What does she do when nobody's asking? Who does she sit with? What did she say in the car that made you go quiet?
+
+For that child, what you notice at home isn't a supplement to the school's record. It's most of the record.
+
+TruerMeasure.com
+
+### Substack — a short one
+
+*Title:* What I really wanted to say — "She's no trouble at all"
+
+Every time a teacher told me, when I was a school principal, "she's no trouble at all," meaning it as the highest compliment, this is what I really wanted to say:
+
+That's not about her. That's about your day.
+
+I understand it. Twenty-five children, one adult, and the ones who are no trouble are a gift. I've said it myself. But it tells a parent nothing about who their child is — only that she made a hard job a little easier.
+
+The quiet ones get the shortest comments. Not because there's less to say. Because nothing forced anyone to say it.
+
+If your child is "no trouble at all," she will fall through the cracks gently, year after year, with a lovely report card. So keep the record the school isn't keeping. What does she do when nobody's asking? Who does she sit with? What did she say in the car that made you go quiet?
+
+For that child, what you notice at home isn't a supplement to the school's record. It's most of the record.
+
+TruerMeasure.com
+
+---
+
 # WEEK 5 — "They didn't have anything positive to say in any of the comment sections"
 
 ## Monday 5 October — the problem, in their words
@@ -2463,6 +2859,112 @@ One thing. The strength the form had no room for. Tell me. DM "BEYOND" to start.
 ### LinkedIn — text post
 
 His mother read the comment section five times looking for one good thing. There wasn't one. He's five: working on compromise, working on thinking more deeply, often misplaces his materials, working on a safe body. Then she wrote what she was planning for the summer — a microscope, butterflies to hatch, library trips, why do bugs need so many legs. That second list is the child. Comment boxes are built for next steps; that's their job. It means the strengths need somewhere else to live — as moments, dated, not adjectives. What should have been in your child's comment box that wasn't?
+
+---
+
+## Saturday 10 October — What I really wanted to say: The comment bank
+
+*DRAFT in the founder's form — hers to keep, rewrite, or cut. Nothing in it is a claim about research; it is a principal's observation.*
+
+### Instagram — post 1 of 3 — reel, to camera (read the piece as written)
+
+*Say to camera:*
+
+Every time a teacher asked me, when I was a school principal, to approve twenty-five report card comments written in an afternoon, this is what I really wanted to say: I know where these came from. Most schools have a bank of comments. Teachers pick the closest one, change the name, adjust a word. It isn't laziness — it's twenty-five children, a deadline, and a form with two hundred characters. The system produces the sentence; the teacher just chooses it. Which means the sentence a parent reads five times, looking for their child, was often never written about their child at all. Here's the thing to look for instead. Somewhere in the comment, there may be one specific detail — a moment, a when, a what. That one cost the teacher something. It's the only sentence on the page that was written about your kid. Underline it. Ask about it at the meeting. The rest of your child lives in what you've noticed. Keep that somewhere it can be found. DM "BEYOND" to start.
+
+*Caption:*
+
+Two hundred characters, chosen from a list. That's the sentence you'll read five times. DM "BEYOND" to start.
+
+### Instagram — post 2 of 3 — card with the full piece as the caption
+
+*Card:*
+
+Two hundred characters,
+chosen from a list.
+
+That's the sentence you'll read five times.
+
+*Caption:*
+
+Every time a teacher asked me, when I was a school principal, to approve twenty-five report card comments written in an afternoon, this is what I really wanted to say:
+
+I know where these came from.
+
+Most schools have a bank of comments. Teachers pick the closest one, change the name, adjust a word. It isn't laziness — it's twenty-five children, a deadline, and a form with two hundred characters. The system produces the sentence; the teacher just chooses it.
+
+Which means the sentence a parent reads five times, looking for their child, was often never written about their child at all.
+
+Here's the thing to look for instead. Somewhere in the comment, there may be one specific detail — a moment, a when, a what. That one cost the teacher something. It's the only sentence on the page that was written about your kid. Underline it. Ask about it at the meeting.
+
+The rest of your child lives in what you've noticed. Keep that somewhere it can be found.
+
+TruerMeasure.com
+
+### Instagram — post 3 of 3 — Stories
+
+*Question box:*
+
+What did your child learn this week that will never show up on a report card?
+
+### Facebook
+
+*Card:*
+
+Two hundred characters,
+chosen from a list.
+
+That's the sentence you'll read five times.
+
+*Caption:*
+
+Every time a teacher asked me, when I was a school principal, to approve twenty-five report card comments written in an afternoon, this is what I really wanted to say:
+
+I know where these came from.
+
+Most schools have a bank of comments. Teachers pick the closest one, change the name, adjust a word. It isn't laziness — it's twenty-five children, a deadline, and a form with two hundred characters. The system produces the sentence; the teacher just chooses it.
+
+Which means the sentence a parent reads five times, looking for their child, was often never written about their child at all.
+
+Here's the thing to look for instead. Somewhere in the comment, there may be one specific detail — a moment, a when, a what. That one cost the teacher something. It's the only sentence on the page that was written about your kid. Underline it. Ask about it at the meeting.
+
+The rest of your child lives in what you've noticed. Keep that somewhere it can be found.
+
+TruerMeasure.com
+
+### LinkedIn — text post
+
+Every time a teacher asked me, when I was a school principal, to approve twenty-five report card comments written in an afternoon, this is what I really wanted to say:
+
+I know where these came from.
+
+Most schools have a bank of comments. Teachers pick the closest one, change the name, adjust a word. It isn't laziness — it's twenty-five children, a deadline, and a form with two hundred characters. The system produces the sentence; the teacher just chooses it.
+
+Which means the sentence a parent reads five times, looking for their child, was often never written about their child at all.
+
+Here's the thing to look for instead. Somewhere in the comment, there may be one specific detail — a moment, a when, a what. That one cost the teacher something. It's the only sentence on the page that was written about your kid. Underline it. Ask about it at the meeting.
+
+The rest of your child lives in what you've noticed. Keep that somewhere it can be found.
+
+TruerMeasure.com
+
+### Substack — a short one
+
+*Title:* What I really wanted to say — The comment bank
+
+Every time a teacher asked me, when I was a school principal, to approve twenty-five report card comments written in an afternoon, this is what I really wanted to say:
+
+I know where these came from.
+
+Most schools have a bank of comments. Teachers pick the closest one, change the name, adjust a word. It isn't laziness — it's twenty-five children, a deadline, and a form with two hundred characters. The system produces the sentence; the teacher just chooses it.
+
+Which means the sentence a parent reads five times, looking for their child, was often never written about their child at all.
+
+Here's the thing to look for instead. Somewhere in the comment, there may be one specific detail — a moment, a when, a what. That one cost the teacher something. It's the only sentence on the page that was written about your kid. Underline it. Ask about it at the meeting.
+
+The rest of your child lives in what you've noticed. Keep that somewhere it can be found.
+
+TruerMeasure.com
 
 ---
 
@@ -2739,6 +3241,112 @@ A mother was told she didn't need to come to the conference; her kids were fine.
 
 ---
 
+## Saturday 17 October — What I really wanted to say: "Talks too much"
+
+*DRAFT in the founder's form — hers to keep, rewrite, or cut. Nothing in it is a claim about research; it is a principal's observation.*
+
+### Instagram — post 1 of 3 — reel, to camera (read the piece as written)
+
+*Say to camera:*
+
+Every time a teacher told me, when I was a school principal, that a child "talks too much," this is what I really wanted to say: About what? Because "talks too much" is one comment that covers a dozen children. The one who narrates everything. The one who explains the lesson to the kid beside her before you've finished. The one who can't stop asking why. The one who negotiates. The one who is funny at exactly the wrong moment and exactly the right volume. Those are different children with different futures, and one phrase filed them together for six years. Some of them are paid to talk now. If it's on your child's report card, ask the question the form didn't: about what, and to whom? Then write down what he talks about at home when nobody's grading it. That's the subject. The comment only recorded the volume. DM "BEYOND" to start.
+
+*Caption:*
+
+"Talks too much" was on his report card for six years. He's paid to talk now. DM "BEYOND" to start.
+
+### Instagram — post 2 of 3 — card with the full piece as the caption
+
+*Card:*
+
+"Talks too much" was on his report card
+for six years.
+
+He's paid to talk now.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, that a child "talks too much," this is what I really wanted to say:
+
+About what?
+
+Because "talks too much" is one comment that covers a dozen children. The one who narrates everything. The one who explains the lesson to the kid beside her before you've finished. The one who can't stop asking why. The one who negotiates. The one who is funny at exactly the wrong moment and exactly the right volume.
+
+Those are different children with different futures, and one phrase filed them together for six years.
+
+Some of them are paid to talk now.
+
+If it's on your child's report card, ask the question the form didn't: about what, and to whom? Then write down what he talks about at home when nobody's grading it. That's the subject. The comment only recorded the volume.
+
+TruerMeasure.com
+
+### Instagram — post 3 of 3 — Stories
+
+*Question box:*
+
+What did your child learn this week that will never show up on a report card?
+
+### Facebook
+
+*Card:*
+
+"Talks too much" was on his report card
+for six years.
+
+He's paid to talk now.
+
+*Caption:*
+
+Every time a teacher told me, when I was a school principal, that a child "talks too much," this is what I really wanted to say:
+
+About what?
+
+Because "talks too much" is one comment that covers a dozen children. The one who narrates everything. The one who explains the lesson to the kid beside her before you've finished. The one who can't stop asking why. The one who negotiates. The one who is funny at exactly the wrong moment and exactly the right volume.
+
+Those are different children with different futures, and one phrase filed them together for six years.
+
+Some of them are paid to talk now.
+
+If it's on your child's report card, ask the question the form didn't: about what, and to whom? Then write down what he talks about at home when nobody's grading it. That's the subject. The comment only recorded the volume.
+
+TruerMeasure.com
+
+### LinkedIn — text post
+
+Every time a teacher told me, when I was a school principal, that a child "talks too much," this is what I really wanted to say:
+
+About what?
+
+Because "talks too much" is one comment that covers a dozen children. The one who narrates everything. The one who explains the lesson to the kid beside her before you've finished. The one who can't stop asking why. The one who negotiates. The one who is funny at exactly the wrong moment and exactly the right volume.
+
+Those are different children with different futures, and one phrase filed them together for six years.
+
+Some of them are paid to talk now.
+
+If it's on your child's report card, ask the question the form didn't: about what, and to whom? Then write down what he talks about at home when nobody's grading it. That's the subject. The comment only recorded the volume.
+
+TruerMeasure.com
+
+### Substack — a short one
+
+*Title:* What I really wanted to say — "Talks too much"
+
+Every time a teacher told me, when I was a school principal, that a child "talks too much," this is what I really wanted to say:
+
+About what?
+
+Because "talks too much" is one comment that covers a dozen children. The one who narrates everything. The one who explains the lesson to the kid beside her before you've finished. The one who can't stop asking why. The one who negotiates. The one who is funny at exactly the wrong moment and exactly the right volume.
+
+Those are different children with different futures, and one phrase filed them together for six years.
+
+Some of them are paid to talk now.
+
+If it's on your child's report card, ask the question the form didn't: about what, and to whom? Then write down what he talks about at home when nobody's grading it. That's the subject. The comment only recorded the volume.
+
+TruerMeasure.com
+
+---
+
 # WEEK 7 — "Keep looking"
 
 ## Monday 19 October — the problem, in their words
@@ -2999,6 +3607,102 @@ The thing that's different this year that no form has a line for. Tell me. DM "B
 ### LinkedIn — text post
 
 As a principal I could pull a file and read every report card a child had ever received, in one sitting. Almost no parent has done that. Read in order, they stop being grades and start being a shape: the word two teachers used two years apart; the "needs to" that quietly became "continues to" and then vanished, which means it worked and nobody told you; the thing that was there in grade one and gone by grade four. One term is a point. Three years is a line. What has changed about your child that no report card has noticed?
+
+---
+
+## Saturday 24 October — What I really wanted to say: "She's only at level K"
+
+*DRAFT in the founder's form — hers to keep, rewrite, or cut. Nothing in it is a claim about research; it is a principal's observation.*
+
+### Instagram — post 1 of 3 — reel, to camera (read the piece as written)
+
+*Say to camera:*
+
+Every time a parent told me, when I was a school principal, that their child was "only at level K," as if it were a verdict, this is what I really wanted to say: The letter is about the book. Reading levels sort books so a teacher can hand a child something she can manage this week. They're a tool for choosing the next book. They were never designed to describe a reader — and they say nothing about the child who reads the same dinosaur book fourteen times, or the one who can't get through level K but will listen to a chapter book for an hour, or the one who reads recipes, game guides, and the back of every cereal box. None of that is on the form. The form has a letter. So when the letter comes home, notice the other thing: what does she read when nobody's assigned it? What does she ask you to read to her? What does she remember? That's the reader. The letter is the book. DM "BEYOND" to start.
+
+*Caption:*
+
+A reading level is about the book. It was never about the child. DM "BEYOND" to start.
+
+### Instagram — post 2 of 3 — card with the full piece as the caption
+
+*Card:*
+
+A reading level is about the book.
+
+It was never about the child.
+
+*Caption:*
+
+Every time a parent told me, when I was a school principal, that their child was "only at level K," as if it were a verdict, this is what I really wanted to say:
+
+The letter is about the book.
+
+Reading levels sort books so a teacher can hand a child something she can manage this week. They're a tool for choosing the next book. They were never designed to describe a reader — and they say nothing about the child who reads the same dinosaur book fourteen times, or the one who can't get through level K but will listen to a chapter book for an hour, or the one who reads recipes, game guides, and the back of every cereal box.
+
+None of that is on the form. The form has a letter.
+
+So when the letter comes home, notice the other thing: what does she read when nobody's assigned it? What does she ask you to read to her? What does she remember? That's the reader. The letter is the book.
+
+TruerMeasure.com
+
+### Instagram — post 3 of 3 — Stories
+
+*Question box:*
+
+What did your child learn this week that will never show up on a report card?
+
+### Facebook
+
+*Card:*
+
+A reading level is about the book.
+
+It was never about the child.
+
+*Caption:*
+
+Every time a parent told me, when I was a school principal, that their child was "only at level K," as if it were a verdict, this is what I really wanted to say:
+
+The letter is about the book.
+
+Reading levels sort books so a teacher can hand a child something she can manage this week. They're a tool for choosing the next book. They were never designed to describe a reader — and they say nothing about the child who reads the same dinosaur book fourteen times, or the one who can't get through level K but will listen to a chapter book for an hour, or the one who reads recipes, game guides, and the back of every cereal box.
+
+None of that is on the form. The form has a letter.
+
+So when the letter comes home, notice the other thing: what does she read when nobody's assigned it? What does she ask you to read to her? What does she remember? That's the reader. The letter is the book.
+
+TruerMeasure.com
+
+### LinkedIn — text post
+
+Every time a parent told me, when I was a school principal, that their child was "only at level K," as if it were a verdict, this is what I really wanted to say:
+
+The letter is about the book.
+
+Reading levels sort books so a teacher can hand a child something she can manage this week. They're a tool for choosing the next book. They were never designed to describe a reader — and they say nothing about the child who reads the same dinosaur book fourteen times, or the one who can't get through level K but will listen to a chapter book for an hour, or the one who reads recipes, game guides, and the back of every cereal box.
+
+None of that is on the form. The form has a letter.
+
+So when the letter comes home, notice the other thing: what does she read when nobody's assigned it? What does she ask you to read to her? What does she remember? That's the reader. The letter is the book.
+
+TruerMeasure.com
+
+### Substack — a short one
+
+*Title:* What I really wanted to say — "She's only at level K"
+
+Every time a parent told me, when I was a school principal, that their child was "only at level K," as if it were a verdict, this is what I really wanted to say:
+
+The letter is about the book.
+
+Reading levels sort books so a teacher can hand a child something she can manage this week. They're a tool for choosing the next book. They were never designed to describe a reader — and they say nothing about the child who reads the same dinosaur book fourteen times, or the one who can't get through level K but will listen to a chapter book for an hour, or the one who reads recipes, game guides, and the back of every cereal box.
+
+None of that is on the form. The form has a letter.
+
+So when the letter comes home, notice the other thing: what does she read when nobody's assigned it? What does she ask you to read to her? What does she remember? That's the reader. The letter is the book.
+
+TruerMeasure.com
 
 ---
 
