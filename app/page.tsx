@@ -79,9 +79,7 @@ export default function HomePage() {
             letterSpacing: "-0.01em",
           }}
         >
-          The Hidden
-          <br />
-          Report Card
+          A Truer Measure
         </h1>
         <p
           className="font-heading mx-auto mb-10 italic text-dusk"
@@ -92,7 +90,7 @@ export default function HomePage() {
           }}
         >
           A report card measures your child against a limited set of standards.
-          It was never designed to capture your whole child.
+          It was never designed to measure your whole child.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a
