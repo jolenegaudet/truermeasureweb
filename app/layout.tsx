@@ -20,7 +20,7 @@ const hankenGrotesk = Hanken_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://truermeasure.com"),
   title: {
-    default: "The Hidden Report Card | Truer Measure",
+    default: "A Truer Measure",
     template: "%s | Truer Measure",
   },
   description:
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Truer Measure",
     type: "website",
     url: "/",
-    title: "The Hidden Report Card | Truer Measure",
+    title: "A Truer Measure",
     description:
       "A living account of your child's learning, strengths, and growth — bringing together evidence from school and beyond.",
   },

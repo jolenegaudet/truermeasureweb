@@ -16,7 +16,7 @@ const moments = [
 ];
 
 export const metadata: Metadata = {
-  title: "The Hidden Report Card | Truer Measure",
+  title: "A Truer Measure",
 };
 
 const qualities = [
@@ -188,7 +188,7 @@ export default function HomePage() {
               the pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That's why I created The Hidden Report Card: a living account of
+              That's why I created A Truer Measure: a living account of
               your child's education — school and{" "}
               <em className="italic text-bark">beyond</em>.
             </p>
