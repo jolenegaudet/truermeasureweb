@@ -79,7 +79,7 @@ $headers = @{ Authorization = "Bearer $key" }
 
 # --- fetch -------------------------------------------------------------------
 
-$uri = 'https://api.stripe.com/v1/promotion_codes?limit=100'
+$uri = 'https://api.stripe.com/v1/promotion_codes?limit=100&expand[]=data.coupon'
 if ($Code) { $uri += "&code=$([uri]::EscapeDataString($Code))" }
 
 $response = Invoke-RestMethod -Method Get -Headers $headers -Uri $uri
@@ -102,13 +102,20 @@ $rows = foreach ($p in $response.data) {
         elseif ($null -eq $cap)  { 'NO CAP' }
         else                     { [string]([int]$cap - $used) }
 
+    # A restricted key needs Coupons set to Read before any of this comes back.
+    # Without it Stripe still lists the codes and their caps, but sends no
+    # coupon object at all, so the discount cannot be shown.
+    $couponReadable = $null -ne $p.coupon
+
     $discount =
-        if ($p.coupon.percent_off) { "$($p.coupon.percent_off)% off" }
+        if (-not $couponReadable) { 'key cannot read coupons' }
+        elseif ($p.coupon.percent_off) { "$($p.coupon.percent_off)% off" }
         elseif ($p.coupon.amount_off) { "$([math]::Round($p.coupon.amount_off / 100, 2)) $($p.coupon.currency.ToUpper()) off" }
         else { 'unknown' }
 
     $duration =
-        if ($p.coupon.duration -eq 'repeating') { "$($p.coupon.duration) x$($p.coupon.duration_in_months)m" }
+        if (-not $couponReadable) { $null }
+        elseif ($p.coupon.duration -eq 'repeating') { "$($p.coupon.duration) x$($p.coupon.duration_in_months)m" }
         else { $p.coupon.duration }
 
     $expires =
@@ -121,7 +128,7 @@ $rows = foreach ($p in $response.data) {
         Cap       = if ($null -eq $cap) { 'none' } else { [string]$cap }
         Used      = $used
         Remaining = $remaining
-        Discount  = "$discount ($duration)"
+        Discount  = if ($duration) { "$discount ($duration)" } else { $discount }
         Expires   = $expires
     }
 }
@@ -142,6 +149,14 @@ if ($uncapped) {
     Write-Host 'Anyone who learns one of these can use it, as many times as they like,' -ForegroundColor Yellow
     Write-Host 'no matter what limit is set in the CRM. The CRM counts people; it cannot' -ForegroundColor Yellow
     Write-Host 'refuse a payment.' -ForegroundColor Yellow
+}
+
+$blind = $rows | Where-Object { $_.Discount -eq 'key cannot read coupons' }
+if ($blind) {
+    Write-Host ''
+    Write-Host 'The caps above are real, but this key cannot see how much each code' -ForegroundColor DarkGray
+    Write-Host 'takes off. Add Coupons = Read to the restricted key and run again:' -ForegroundColor DarkGray
+    Write-Host '  https://dashboard.stripe.com/apikeys' -ForegroundColor DarkGray
 }
 
 Write-Host ''
