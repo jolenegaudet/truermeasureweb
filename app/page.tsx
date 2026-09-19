@@ -403,6 +403,12 @@ export default function HomePage() {
               <p className="text-rose" style={{ fontSize: 15, lineHeight: 1.7 }}>
                 Join before all 40 founding places are taken.
               </p>
+              {/* The band spans all three cards, but the discount is tier 1
+                  only. Without this line a parent can read 40% off as applying
+                  to the Room or the Inner Circle as well. */}
+              <p className="mt-3 text-faint" style={{ fontSize: 13, lineHeight: 1.6 }}>
+                Applies to The Truer Measure.
+              </p>
             </div>
           </BeforeDeadline>
 
