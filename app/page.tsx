@@ -407,7 +407,7 @@ export default function HomePage() {
                   only. Without this line a parent can read 40% off as applying
                   to the Room or the Inner Circle as well. */}
               <p className="mt-3 text-faint" style={{ fontSize: 13, lineHeight: 1.6 }}>
-                Applies to The Truer Measure.
+                Applies to The Truer Measure (The Hidden Report Card) only.
               </p>
             </div>
           </BeforeDeadline>
