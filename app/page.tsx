@@ -57,8 +57,8 @@ const contrasts = [
     right: "Preserves the story.",
   },
   {
-    left: "Tells you how your child is doing.",
-    right: "Keeps a living account of your child's education — school and beyond.",
+    left: "Tells you how your child is doing in school.",
+    right: "Keeps a living account of your child's education, school and beyond.",
   },
 ];
 
@@ -290,7 +290,7 @@ export default function HomePage() {
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
             >
-              Pull up the Hidden Report Card whenever you need it.
+              Pull up the Hidden Report Card
             </h2>
           </div>
 
