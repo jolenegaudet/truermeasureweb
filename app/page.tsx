@@ -79,7 +79,7 @@ export default function HomePage() {
             letterSpacing: "-0.01em",
           }}
         >
-          A Truer Measure
+          Here&rsquo;s a Truer Measure
         </h1>
         <p
           className="font-heading mx-auto mb-10 italic text-dusk"
