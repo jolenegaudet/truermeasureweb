@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     template: "%s | Truer Measure",
   },
   description:
-    "A living account of your child's learning, strengths, and growth — bringing together evidence from school and beyond.",
+    "A living account of your child's learning, strengths, and growth, bringing together evidence from school and beyond.",
   openGraph: {
     siteName: "Truer Measure",
     type: "website",
     url: "/",
     title: "A Truer Measure",
     description:
-      "A living account of your child's learning, strengths, and growth — bringing together evidence from school and beyond.",
+      "A living account of your child's learning, strengths, and growth, bringing together evidence from school and beyond.",
   },
   twitter: {
     card: "summary_large_image",
