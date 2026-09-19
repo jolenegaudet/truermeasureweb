@@ -416,13 +416,16 @@ export default function HomePage() {
                 className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
                 style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
               >
+                <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
+                  Clarity
+                </div>
                 <div
                   className="font-heading mb-[18px] font-medium text-parchment"
                   style={{ fontSize: 40, lineHeight: 1.04 }}
                 >
-                  The Hidden
+                  The Truer
                   <br />
-                  Report Card
+                  Measure
                 </div>
                 <p
                   className="mb-8 text-parchment"
@@ -470,12 +473,21 @@ export default function HomePage() {
                 >
                   Start here
                 </a>
+                <p
+                  className="mt-6 text-muted"
+                  style={{ fontSize: 12, lineHeight: 1.6 }}
+                >
+                  (The Hidden Report Card)
+                </p>
               </div>
               <PriceInYourCurrency className="mt-3 text-center text-smoke text-[11.5px] leading-[1.6]" />
             </div>
 
             {/* Tier 2 — Learn from the Room */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
+              <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+                Community
+              </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
@@ -508,6 +520,9 @@ export default function HomePage() {
 
             {/* Tier 3 — Inner Circle */}
             <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-9 pb-[46px] pt-[50px] text-center">
+              <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+                Proximity
+              </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
