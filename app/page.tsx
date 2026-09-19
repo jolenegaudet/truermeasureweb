@@ -357,7 +357,7 @@ export default function HomePage() {
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
               That&rsquo;s why I created A Truer Measure: a living account of
-              your child&rsquo;s education — school and{" "}
+              your child&rsquo;s education, school and{" "}
               <em className="italic text-bark">beyond</em>.
             </p>
           </div>
