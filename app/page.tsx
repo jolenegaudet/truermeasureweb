@@ -445,20 +445,9 @@ export default function HomePage() {
                     restore that line unless a second discount exists in Stripe that a
                     parent can actually redeem at checkout — a dedicated founding price
                     (§8-D2 option b), not a coupon applied by hand after the fact. */}
-                <div
-                  className="font-heading font-medium text-parchment"
-                  style={{ fontSize: 52, lineHeight: 1 }}
-                >
-                  US$597
-                </div>
+                <PriceInYourCurrency />
                 <p
-                  className="mt-2 text-muted"
-                  style={{ fontSize: 13, lineHeight: 1.7 }}
-                >
-                  per year
-                </p>
-                <p
-                  className="mt-3 text-muted"
+                  className="mt-5 text-muted"
                   style={{ fontSize: 13, lineHeight: 1.7 }}
                 >
                   One membership covers one child.
@@ -486,7 +475,6 @@ export default function HomePage() {
                   (The Hidden Report Card)
                 </p>
               </div>
-              <PriceInYourCurrency className="mt-3 text-center text-smoke text-[11.5px] leading-[1.6]" />
             </div>
 
             {/* Tier 2 — Learn from the Room */}
