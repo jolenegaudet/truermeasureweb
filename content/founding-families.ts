@@ -4,10 +4,10 @@
  * Every number and promise on the A Truer Measure page comes from this one
  * file, so the terms can be revised without touching page markup.
  *
- * NONE OF THIS IS CONFIRMED. It is a draft for Jolène to approve, change or
- * reject. Two things in particular are still open and are marked `toConfirm`
- * below, which makes them render with a visible "Needs your decision" chip in
- * the preview rather than stating a policy that does not exist yet.
+ * CONFIRMED by Jolène on 29 September 2026 and published: the price, the
+ * founders rate and its length, cancellation, retention, export and deletion.
+ * Nothing carries a `toConfirm` chip any more. The mechanism stays, so a future
+ * unanswered question can be marked rather than guessed at.
  *
  * Deliberately absent, because the brief ruled them out:
  *   no family cap, no enrolment deadline, no remaining-places counter, no

@@ -128,11 +128,6 @@ function ToConfirm() {
 export default function HiddenReportCardPage() {
   return (
     <>
-      {/* Preview notice. Remove this block when the page is ready to publish. */}
-      <div className="bg-bark px-5 py-3 text-center text-[11.5px] font-semibold uppercase tracking-[0.16em] text-warm">
-        Preview. Terms are proposed, not confirmed. The checkout is live, so do not share this page yet.
-      </div>
-
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
         <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
