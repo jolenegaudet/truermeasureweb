@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { offerHasClosed, priceView } from "./price-view";
+
 /**
  * A price, in the currency the parent picks.
  *
@@ -169,6 +171,8 @@ export function PriceInYourCurrency({
   unit,
   thenUSD,
   thenUnit,
+  offerEndsAt,
+  standingUnit = "per month",
   tone = "dark",
 }: {
   amountUSD: number;
@@ -178,6 +182,16 @@ export function PriceInYourCurrency({
   thenUSD?: number;
   /** How to describe that step up, e.g. "a month after that". */
   thenUnit?: string;
+  /**
+   * When an introductory headline stops being offered, as a UTC instant. After
+   * it, the standing price becomes the headline and the introductory framing
+   * goes. Checked in the browser, not at build time, because this is a static
+   * export and a build-time check would freeze whatever was true on the day the
+   * site was last deployed.
+   */
+  offerEndsAt?: number;
+  /** What the standing price buys once the offer has closed. */
+  standingUnit?: string;
   tone?: Tone;
 }) {
   const [rates, setRates] = useState<Rates>(FALLBACK_RATES);
@@ -202,12 +216,27 @@ export function PriceInYourCurrency({
     return () => controller.abort();
   }, []);
 
+  // Renders as the offer until the browser says otherwise, so the page source
+  // is correct today and corrects itself the morning the offer closes.
+  const [offerClosed, setOfferClosed] = useState(false);
+  useEffect(() => {
+    setOfferClosed(offerHasClosed(Date.now(), offerEndsAt));
+  }, [offerEndsAt]);
+
+  const { headlineUSD, headlineUnit, stepUpUSD } = priceView({
+    amountUSD,
+    unit,
+    thenUSD,
+    standingUnit,
+    closed: offerClosed,
+  });
+
   const options = [BILLING, ...CONVERTED];
   const active = options.find((c) => c.code === selected) ?? BILLING;
   const isBilling = active.code === BILLING.code;
 
   const rate = rates[active.code] ?? FALLBACK_RATES[active.code] ?? 1;
-  const billed = money(amountUSD, BILLING.locale, BILLING.symbol);
+  const billed = money(headlineUSD, BILLING.locale, BILLING.symbol);
 
   const show = (usd: number) =>
     isBilling
@@ -220,18 +249,18 @@ export function PriceInYourCurrency({
         className={`font-heading font-medium ${skin.price}`}
         style={{ fontSize: 52, lineHeight: 1 }}
       >
-        {show(amountUSD)}
+        {show(headlineUSD)}
       </div>
 
       <p className={`mt-2 ${skin.unit}`} style={{ fontSize: 13, lineHeight: 1.7 }}>
-        {isBilling ? unit : `${unit}, approximately`}
+        {isBilling ? headlineUnit : `${headlineUnit}, approximately`}
       </p>
 
       {/* The step up is part of the price, not small print, so it moves with
           the currency buttons like the headline figure does. */}
-      {thenUSD === undefined ? null : (
+      {stepUpUSD === undefined ? null : (
         <p className={`mt-2 ${skin.unit}`} style={{ fontSize: 13, lineHeight: 1.7 }}>
-          {`then ${show(thenUSD)} ${thenUnit ?? "after that"}`}
+          {`then ${show(stepUpUSD)} ${thenUnit ?? "after that"}`}
         </p>
       )}
 
@@ -271,9 +300,9 @@ export function PriceInYourCurrency({
       {isBilling ? null : (
         <p className={`mt-4 ${skin.note}`} style={{ fontSize: 11.5, lineHeight: 1.6 }}>
           {`You are billed ${billed}`}
-          {thenUSD === undefined
+          {stepUpUSD === undefined
             ? ""
-            : `, then ${money(thenUSD, BILLING.locale, BILLING.symbol)}`}
+            : `, then ${money(stepUpUSD, BILLING.locale, BILLING.symbol)}`}
           {`. Your bank converts at its own rate on each billing date, `}
           {`1 USD = ${rate.toFixed(4)} ${active.code} today, and may add a fee.`}
         </p>

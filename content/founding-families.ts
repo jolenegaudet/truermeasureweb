@@ -39,6 +39,23 @@ export const FOUNDERS_USD = 47;
 export const FOUNDERS_MONTHS = 9;
 
 /**
+ * When the founding offer closes to new members. Jolène's ruling, 29 September
+ * 2026: end of 30 June 2027, Atlantic time, which is 1 July 2027 03:00 UTC.
+ *
+ * This is a closing date, not a deadline on anybody's discount. A parent who
+ * joins on 30 June 2027 still gets her own nine months at US$47, running to
+ * March 2028. A parent who arrives on 1 July 2027 pays US$67 from the start.
+ *
+ * FOUNDING47 in Stripe carries the same instant as `expires_at`, so the code
+ * stops working on its own. The site must stop advertising US$47 on its own
+ * too, which is what passing this to PriceInYourCurrency does: after the date
+ * it shows the standing price and drops the founders framing, without anyone
+ * having to remember to redeploy.
+ */
+export const FOUNDERS_ENDS_AT = Date.UTC(2027, 6, 1, 3, 0, 0);
+export const FOUNDERS_ENDS_LABEL = "30 June 2027";
+
+/**
  * Live in Stripe as of 29 September 2026:
  *   product  prod_VLrZW1KcxNpyFR
  *   price    price_1ULA3DAJm8m0sW6o32xEAJ4i   US$67/month, tax exclusive
@@ -81,6 +98,7 @@ export const billingTerms: string[] = [
   `US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months, for ${PRICE_SCOPE}.`,
   `US$${PRICE_USD} a month after that. The change happens on its own, and we email you before it does.`,
   "Billed monthly. Cancel any time. You keep the month you have paid for, and you are not billed again.",
+  `The founding rate is open until ${FOUNDERS_ENDS_LABEL}. Join before then and your first ${FOUNDERS_MONTHS} months are US$${FOUNDERS_USD} whenever those months fall.`,
 ];
 
 /** What a founding family gets for the feedback period, and for how long. */

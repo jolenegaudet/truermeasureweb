@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import {
+  FOUNDERS_ENDS_AT,
   FOUNDERS_MONTHS,
   FOUNDERS_USD,
   PRICE_USD,
@@ -429,6 +430,7 @@ export default function HomePage() {
                   unit={`per month for your first ${FOUNDERS_MONTHS} months`}
                   thenUSD={PRICE_USD}
                   thenUnit="a month after that"
+                  offerEndsAt={FOUNDERS_ENDS_AT}
                 />
                 <p
                   className="mt-5 text-muted"

@@ -5,6 +5,7 @@ import {
   CHECKOUT_URL,
   DEMO_URL,
   FEEDBACK_MONTHS,
+  FOUNDERS_ENDS_AT,
   FOUNDERS_MONTHS,
   FOUNDERS_USD,
   PRICE_SCOPE,
@@ -399,6 +400,7 @@ export default function HiddenReportCardPage() {
               unit={`per month for your first ${FOUNDERS_MONTHS} months`}
               thenUSD={PRICE_USD}
               thenUnit="a month after that"
+              offerEndsAt={FOUNDERS_ENDS_AT}
               tone="dark"
             />
 
