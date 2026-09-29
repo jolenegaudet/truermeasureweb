@@ -67,23 +67,48 @@ $ErrorActionPreference = 'Stop'
 $monthlyCents = $MonthlyUsd * 100
 
 # --- credentials -------------------------------------------------------------
+#
+# Order: the key saved by save-stripe-pricing-key.ps1, then STRIPE_SECRET_KEY
+# from the environment, then a hidden prompt. The saved key lives outside the
+# repository; see that script for where and why.
 
-if ($env:STRIPE_SECRET_KEY) {
-    $key = $env:STRIPE_SECRET_KEY
-    Write-Host 'Using STRIPE_SECRET_KEY from the environment.'
-} else {
+function Get-StripeKey {
+    $repoRoot = (git rev-parse --show-toplevel 2>$null)
+    if ($repoRoot) {
+        $repoRoot = [IO.Path]::GetFullPath($repoRoot)
+        $secretsHome = if ($env:TRUERMEASURE_SECRETS_DIR) {
+            $env:TRUERMEASURE_SECRETS_DIR
+        } else {
+            Join-Path (Split-Path $repoRoot -Parent) '.secrets'
+        }
+        $secretsFile = Join-Path $secretsHome 'azure.local.env'
+        if (Test-Path $secretsFile) {
+            $line = Get-Content $secretsFile |
+                    Where-Object { $_ -match '^STRIPE_PRICING_KEY=' } |
+                    Select-Object -First 1
+            if ($line) {
+                Write-Host 'Using STRIPE_PRICING_KEY from the secrets file.'
+                return ($line -replace '^STRIPE_PRICING_KEY=', '').Trim().Trim('"').Trim("'")
+            }
+        }
+    }
+
+    if ($env:STRIPE_SECRET_KEY) {
+        Write-Host 'Using STRIPE_SECRET_KEY from the environment.'
+        return $env:STRIPE_SECRET_KEY
+    }
+
     Write-Host ''
-    Write-Host 'You need a Stripe key with write access:' -ForegroundColor Cyan
-    Write-Host '  https://dashboard.stripe.com/apikeys'
-    Write-Host '  Prices Write, Payment Links Write, Subscriptions Read, Coupons Write'
+    Write-Host 'No saved key found. Run "Save Stripe key.cmd" once and this stops asking.' -ForegroundColor Cyan
+    Write-Host 'Paste a live Stripe key, or press Enter to stop.' -ForegroundColor DarkGray
     Write-Host ''
-    Write-Host 'Copy it, then right-click here to paste. Nothing will appear as you paste.' -ForegroundColor DarkGray
-    Write-Host ''
-    $secure = Read-Host 'Paste the key, then press Enter' -AsSecureString
-    $key = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+    $secure = Read-Host 'Key' -AsSecureString
+    return [Runtime.InteropServices.Marshal]::PtrToStringAuto(
         [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
     )
 }
+
+$key = Get-StripeKey
 
 if (-not $key) { throw 'No key provided.' }
 if (-not ($key.StartsWith('sk_') -or $key.StartsWith('rk_'))) {

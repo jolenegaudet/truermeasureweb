@@ -38,7 +38,7 @@ $KeyName = 'STRIPE_PRICING_KEY'
 
 $repoRoot = (git rev-parse --show-toplevel 2>$null)
 if (-not $repoRoot) { throw 'Run this from inside the repository.' }
-$repoRoot = $repoRoot -replace '/', '\'
+$repoRoot = [IO.Path]::GetFullPath($repoRoot)
 
 $secretsHome = if ($env:TRUERMEASURE_SECRETS_DIR) {
     $env:TRUERMEASURE_SECRETS_DIR
