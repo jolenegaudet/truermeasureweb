@@ -16,13 +16,18 @@ import {
 } from "@/content/founding-families";
 
 export const metadata: Metadata = {
-  title: "The Hidden Report Card",
+  title: "A Truer Measure",
   description:
     "Bring together report cards, teacher comments, your observations, projects and moments from beyond school, and see what keeps showing up across your child's experiences.",
 };
 
 /**
- * The Hidden Report Card, and the proposed Founding Families offer.
+ * A Truer Measure, and the proposed Founding Families offer.
+ *
+ * Naming rule, Jolene 29 September 2026: A Truer Measure is what a parent buys.
+ * The Hidden Report Card is the document it produces. The route keeps its
+ * /hidden-report-card path, which is the phrase a parent is most likely to
+ * search for, but the product is named A Truer Measure on the page itself.
  *
  * PREVIEW ONLY. Nothing on this page can be bought. There is no US$79 monthly
  * price in Stripe: the only recurring price on the account is the US$597 annual
@@ -131,7 +136,7 @@ export default function HiddenReportCardPage() {
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
         <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-          The Hidden Report Card by Truer Measure
+          A Truer Measure
         </div>
         <h1
           className="font-heading mb-8 text-bark"
@@ -157,6 +162,13 @@ export default function HiddenReportCardPage() {
           Bring together report cards, teacher comments, your observations,
           projects and moments from beyond school. See what keeps showing up
           across your child&rsquo;s experiences, and what changes over time.
+        </p>
+        <p
+          className="mx-auto mb-10 text-smoke"
+          style={{ fontSize: 16, lineHeight: 1.75, maxWidth: 620 }}
+        >
+          What it produces is your child&rsquo;s Hidden Report Card: the account
+          you pull up before a meeting, an application, or a hard week.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a

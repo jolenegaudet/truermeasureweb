@@ -1,7 +1,7 @@
 /**
  * PROPOSED TERMS FOR THE FOUNDING FAMILIES PREVIEW.
  *
- * Every number and promise on the Hidden Report Card page comes from this one
+ * Every number and promise on the A Truer Measure page comes from this one
  * file, so the terms can be revised without touching page markup.
  *
  * NONE OF THIS IS CONFIRMED. It is a draft for Jolène to approve, change or
@@ -95,7 +95,7 @@ export const foundingIncludes: { what: string; howLong: string }[] = [
     howLong: "For as long as you are a member",
   },
   {
-    what: "The Hidden Report Card itself",
+    what: "A Truer Measure itself",
     howLong: "For as long as you are a member",
   },
 ];
@@ -111,7 +111,7 @@ export type Faq = { q: string; a: string; toConfirm?: boolean };
 export const faqs: Faq[] = [
   {
     q: "What am I paying for?",
-    a: `Access to the Hidden Report Card for ${PRICE_SCOPE}, at US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months and US$${PRICE_USD} a month after that: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
+    a: `Access to A Truer Measure for ${PRICE_SCOPE}, at US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months and US$${PRICE_USD} a month after that: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
   },
   {
     q: "What does being a founding family involve?",

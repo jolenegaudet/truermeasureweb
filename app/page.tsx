@@ -326,7 +326,7 @@ export default function HomePage() {
           <div className="flex justify-center">
             <Image
               src="/founder.png"
-              alt="Jolene, founder of The Hidden Report Card"
+              alt="Jolene, founder of Truer Measure"
               width={400}
               height={400}
               className="block rounded-full object-cover object-top"
@@ -388,7 +388,12 @@ export default function HomePage() {
 
 
           <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1.08fr_1fr_1fr]">
-            {/* Tier 1 — The Hidden Report Card.
+            {/* Tier 1 — A Truer Measure, the membership.
+                Naming rule, Jolene 29 September 2026: A Truer Measure is what a
+                parent buys. The Hidden Report Card is the document it produces.
+                Her own copy in "What you actually get" already drew that line,
+                so the card names the membership and the document keeps its name
+                everywhere it is the document being talked about.
                 One price and one button for this membership, on this card and
                 nowhere else on the page. The full description that used to sit
                 below these cards now lives in "What you actually get", above. */}
@@ -404,9 +409,9 @@ export default function HomePage() {
                   className="font-heading mb-3 font-medium text-parchment"
                   style={{ fontSize: 40, lineHeight: 1.04 }}
                 >
-                  The Hidden
+                  A Truer
                   <br />
-                  Report Card
+                  Measure
                 </div>
                 <p className="font-heading mb-7 text-[19px] text-warm">
                   Founding Families
