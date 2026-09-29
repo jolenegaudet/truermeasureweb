@@ -117,12 +117,12 @@ export default function HomePage() {
           It was never designed to measure your whole child.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
-          <Link
-            href="/hidden-report-card"
+          <a
+            href="#tiers"
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
             GET STARTED
-          </Link>
+          </a>
         </div>
       </section>
 
