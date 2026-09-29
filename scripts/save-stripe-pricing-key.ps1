@@ -103,37 +103,56 @@ $headers = @{ Authorization = "Bearer $key" }
 
 # --- can it reach what the pricing scripts need? -----------------------------
 
+# Required: without any one of these the pricing switch cannot happen at all.
+# Optional: promotion codes are only touched when FOUNDING40 is retired, which
+# is the last step and a separate decision, so a key missing it is still worth
+# saving rather than sending someone back to the Dashboard mid-task.
 $checks = @(
-    @{ Name = 'Products';      Path = 'products?limit=1' }
-    @{ Name = 'Prices';        Path = 'prices?limit=1' }
-    @{ Name = 'Payment Links'; Path = 'payment_links?limit=1' }
-    @{ Name = 'Subscriptions'; Path = 'subscriptions?limit=1' }
-    @{ Name = 'Coupons';       Path = 'promotion_codes?limit=1' }
+    @{ Name = 'Products';      Path = 'products?limit=1';        Required = $true }
+    @{ Name = 'Prices';        Path = 'prices?limit=1';          Required = $true }
+    @{ Name = 'Payment Links'; Path = 'payment_links?limit=1';   Required = $true }
+    @{ Name = 'Subscriptions'; Path = 'subscriptions?limit=1';   Required = $true }
+    @{ Name = 'Coupons';       Path = 'promotion_codes?limit=1'; Required = $false }
 )
 
 Write-Host ''
-$failed = @()
+$missingRequired = @()
+$missingOptional = @()
 foreach ($c in $checks) {
     try {
         $null = Invoke-RestMethod -Method Get -Headers $headers -Uri "https://api.stripe.com/v1/$($c.Path)"
         Write-Host ("  {0,-14} reachable" -f $c.Name) -ForegroundColor Green
     } catch {
-        $failed += $c.Name
-        Write-Host ("  {0,-14} REFUSED" -f $c.Name) -ForegroundColor Red
+        if ($c.Required) {
+            $missingRequired += $c.Name
+            Write-Host ("  {0,-14} REFUSED  (needed)" -f $c.Name) -ForegroundColor Red
+        } else {
+            $missingOptional += $c.Name
+            Write-Host ("  {0,-14} refused  (only needed to retire FOUNDING40)" -f $c.Name) -ForegroundColor Yellow
+        }
     }
 }
 
-if ($failed.Count -gt 0) {
+if ($missingRequired.Count -gt 0) {
     Write-Host ''
-    Write-Host "This key cannot reach: $($failed -join ', ')" -ForegroundColor Yellow
+    Write-Host "This key cannot reach: $($missingRequired -join ', ')" -ForegroundColor Yellow
     Write-Host 'Edit its permissions at https://dashboard.stripe.com/apikeys and run this again.' -ForegroundColor Yellow
     Write-Host 'Nothing was saved.' -ForegroundColor Yellow
     exit 1
 }
 
 Write-Host ''
-Write-Host 'All five reachable. Write access is only proven by the first real write,' -ForegroundColor DarkGray
-Write-Host 'which stops cleanly and names the permission if one is missing.' -ForegroundColor DarkGray
+Write-Host 'Everything the price switch needs is reachable. Write access is only proven' -ForegroundColor DarkGray
+Write-Host 'by the first real write, which stops cleanly and names any missing permission.' -ForegroundColor DarkGray
+
+if ($missingOptional.Count -gt 0) {
+    Write-Host ''
+    Write-Host 'Promotion codes are not reachable with this key.' -ForegroundColor Yellow
+    Write-Host 'Everything up to and including going live still works. The one thing that' -ForegroundColor Yellow
+    Write-Host 'will not is retiring FOUNDING40 at the end, which needs Coupons on the key.' -ForegroundColor Yellow
+    Write-Host 'In Stripe, look for a Coupons row and also a Promotion codes row: some' -ForegroundColor Yellow
+    Write-Host 'accounts list them separately. Add it later and run this script again.' -ForegroundColor Yellow
+}
 
 if ($Check) {
     Write-Host ''
