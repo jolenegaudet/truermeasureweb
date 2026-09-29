@@ -122,6 +122,10 @@ export const faqs: Faq[] = [
     a: "Yes. You start with whatever you already have, even if that is one report card and a few photos. The account is meant to grow as your child does, so there is no amount you need to gather first.",
   },
   {
+    q: "Can I take my child's record with me?",
+    a: "Yes. You can ask for a copy in a portable format at any time, at no charge, by writing to privacy@truermeasure.com.",
+  },
+  {
     q: "Is the price per child or per family?",
     a: `US$${FOUNDERS_USD} a month covers ${PRICE_SCOPE}, and so does US$${PRICE_USD} a month after the founders rate ends.`,
     toConfirm: true,
@@ -150,8 +154,18 @@ export const faqs: Faq[] = [
     a: "Email support@truermeasure.com and we cancel it. Your membership runs to the end of the month you have already paid for, and you are not billed after that. We do not refund part of a month.",
   },
   {
+    // Taken from the policies Jolene has already written, in the app repo:
+    //   app/legal/privacy-policy.md   section 9 (how long we keep things)
+    //                                 section 10 (your rights)
+    //   app/legal/terms-of-service.md section 5 (cancelling)
+    //
+    // Everything below is quoted from those, not invented here. ONE number is
+    // still missing: privacy-policy.md section 9 says the record is kept for
+    // `[POST_TERM_RETENTION_PERIOD - founder decision]` after a membership ends
+    // and is then deleted with notice. Until that is filled in, this answer
+    // cannot say how long, so it says that plainly and keeps its chip.
     q: "What happens to my child's information if I cancel?",
-    a: "This needs a written answer before founding places open. Truer Measure has no published policy on retention, export or deletion yet, and this page will not guess at one.",
+    a: "Cancelling does not delete your child's record. You can ask for a copy in a portable format at any time, and you can ask us to delete it, in which case it is gone from our active systems within 30 days and from backups within seven days after that. Write to privacy@truermeasure.com and we answer within 30 days, at no charge. We do not keep the record indefinitely after a membership ends, and we tell you before we delete anything. How long that period is has not been set yet.",
     toConfirm: true,
   },
 ];
