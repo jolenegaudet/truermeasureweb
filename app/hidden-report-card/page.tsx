@@ -16,7 +16,11 @@ import {
 } from "@/content/founding-families";
 
 export const metadata: Metadata = {
-  title: "A Truer Measure",
+  // The layout template appends " | Truer Measure", and the home page is
+  // already titled "A Truer Measure", so titling this page the same gave both
+  // "A Truer Measure | Truer Measure" and two pages with identical titles.
+  // This one is the founding offer, so it says so.
+  title: "Founding Families",
   description:
     "Bring together report cards, teacher comments, your observations, projects and moments from beyond school, and see what keeps showing up across your child's experiences.",
 };
