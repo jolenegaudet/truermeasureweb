@@ -64,7 +64,7 @@ export const FEEDBACK_MONTHS = 3;
 export const billingTerms: string[] = [
   `US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months, for ${PRICE_SCOPE}.`,
   `US$${PRICE_USD} a month after that. The change happens on its own, and we email you before it does.`,
-  "Billed monthly. Cancel any time before your next renewal.",
+  "Billed monthly. Cancel any time. You keep the month you have paid for, and you are not billed again.",
 ];
 
 /** What a founding family gets for the feedback period, and for how long. */
@@ -131,9 +131,14 @@ export const faqs: Faq[] = [
     a: `Your membership carries on as normal. The founding calls and the private group are part of the feedback period and end with it. The product itself, and your child's record inside it, do not change.`,
   },
   {
+    // Jolène's wording, 29 September 2026: cancel any time, but the month
+    // already paid for is not refunded.
+    //
+    // There is no Stripe customer portal on this account, so a parent cannot
+    // cancel herself and this must not imply a button that does not exist.
+    // If a portal is ever configured, this answer should say so instead.
     q: "How does cancellation work?",
-    a: "You cancel before your next monthly renewal and you are not billed again.",
-    toConfirm: true,
+    a: "Email support@truermeasure.com and we cancel it. Your membership runs to the end of the month you have already paid for, and you are not billed after that. We do not refund part of a month.",
   },
   {
     q: "What happens to my child's information if I cancel?",

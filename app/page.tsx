@@ -442,7 +442,7 @@ export default function HomePage() {
                 >
                   Billed monthly. The price changes on its own after{" "}
                   {FOUNDERS_MONTHS} months and we email you first. Cancel any
-                  time before your next renewal.
+                  time, and you keep the month you have paid for.
                 </p>
                 <Link
                   href="/hidden-report-card"
