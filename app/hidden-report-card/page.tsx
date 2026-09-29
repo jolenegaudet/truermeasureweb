@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import {
+  CHECKOUT_URL,
   DEMO_URL,
   FEEDBACK_MONTHS,
+  FOUNDERS_MONTHS,
+  FOUNDERS_USD,
   PRICE_SCOPE,
   PRICE_USD,
   billingTerms,
@@ -122,7 +125,7 @@ export default function HiddenReportCardPage() {
     <>
       {/* Preview notice. Remove this block when the page is ready to publish. */}
       <div className="bg-bark px-5 py-3 text-center text-[11.5px] font-semibold uppercase tracking-[0.16em] text-warm">
-        Preview. Terms are proposed, not confirmed, and nothing here can be bought yet.
+        Preview. Terms are proposed, not confirmed. The checkout is live, so do not share this page yet.
       </div>
 
       {/* 1. Hero */}
@@ -380,7 +383,13 @@ export default function HiddenReportCardPage() {
           </div>
 
           <div className="mx-auto max-w-[520px] border border-charcoal px-8 py-10 text-center md:px-11 md:py-12">
-            <PriceInYourCurrency amountUSD={PRICE_USD} unit="per month" tone="dark" />
+            <PriceInYourCurrency
+              amountUSD={FOUNDERS_USD}
+              unit={`per month for your first ${FOUNDERS_MONTHS} months`}
+              thenUSD={PRICE_USD}
+              thenUnit="a month after that"
+              tone="dark"
+            />
 
             <p className="mt-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
               For {PRICE_SCOPE}.
@@ -395,27 +404,45 @@ export default function HiddenReportCardPage() {
               ))}
             </ul>
 
-            {checkoutReady ? null : (
-              <div className="mt-8 border-t border-charcoal pt-8">
-                <button
-                  type="button"
-                  disabled
-                  aria-describedby="checkout-preview-note"
-                  className="w-full cursor-not-allowed rounded-[2px] border border-charcoal bg-transparent px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-subdued"
-                >
-                  Join as a Founding Family
-                </button>
-                <p
-                  id="checkout-preview-note"
-                  className="mt-4 text-subdued"
-                  style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                >
-                  Disabled in this preview. There is no monthly price set up yet,
-                  and this button will never be pointed at the annual membership
-                  checkout.
-                </p>
-              </div>
-            )}
+            <div className="mt-8 border-t border-charcoal pt-8">
+              {checkoutReady ? (
+                <>
+                  <a
+                    href={CHECKOUT_URL}
+                    className="inline-block w-full rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+                  >
+                    Join as a Founding Family
+                  </a>
+                  {/* The URL carries prefilled_promo_code, so the founders rate
+                      is already applied when the Stripe page opens and nobody
+                      has to remember a code. */}
+                  <p
+                    className="mt-4 text-subdued"
+                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
+                  >
+                    The founders rate is applied for you. There is no code to
+                    enter.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    disabled
+                    className="w-full cursor-not-allowed rounded-[2px] border border-charcoal bg-transparent px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-subdued"
+                  >
+                    Join as a Founding Family
+                  </button>
+                  <p
+                    className="mt-4 text-subdued"
+                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
+                  >
+                    Disabled until a monthly price exists in Stripe. This button
+                    will never be pointed at the annual membership checkout.
+                  </p>
+                </>
+              )}
+            </div>
 
             <a
               href={DEMO_URL}

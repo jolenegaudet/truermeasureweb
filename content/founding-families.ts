@@ -29,25 +29,42 @@
  *                                     to run until the monthly one is live
  */
 
+/** The standing price. What a member pays once the founders rate runs out. */
 export const PRICE_USD = 79;
 export const PRICE_PERIOD = "month";
 export const PRICE_SCOPE = "one child";
 
-/** Flip to true only when a real monthly payment link exists. */
-export const checkoutReady = false;
+/** The founders rate, and how long it lasts. */
+export const FOUNDERS_USD = 47;
+export const FOUNDERS_MONTHS = 9;
+
+/**
+ * Live in Stripe as of 29 September 2026:
+ *   product  prod_VLrZW1KcxNpyFR
+ *   price    price_1UL9q5AJm8m0sW6oPiusdBmT   US$79/month, tax exclusive
+ *   coupon   ZsoMprUb                         US$32 off, repeating, 9 months
+ *   code     FOUNDING47                       uncapped
+ *   link     plink_1UL9q5AJm8m0sW6ocVU1RnN1
+ *
+ * The URL carries prefilled_promo_code so a parent never types the code. The
+ * discount is a repeating coupon rather than a second price, so Stripe steps
+ * the subscription up to US$79 on the tenth invoice by itself. Nobody has to
+ * migrate anyone and nobody has to remember.
+ */
+export const CHECKOUT_URL =
+  "https://buy.stripe.com/9B67sKaaNgnHfn5eUEe7m07?prefilled_promo_code=FOUNDING47";
+
+export const checkoutReady = true;
 
 export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
 
 /** Months the founding feedback period runs for. */
 export const FEEDBACK_MONTHS = 3;
 
-/** Months the founding rate is held, given continuous membership. */
-export const RATE_HELD_MONTHS = 12;
-
 export const billingTerms: string[] = [
-  `US$${PRICE_USD} a month for ${PRICE_SCOPE}.`,
+  `US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months, for ${PRICE_SCOPE}.`,
+  `US$${PRICE_USD} a month after that. The change happens on its own, and we email you before it does.`,
   "Billed monthly. Cancel any time before your next renewal.",
-  `Your founding rate is held for your first ${RATE_HELD_MONTHS} months of continuous membership.`,
 ];
 
 /** What a founding family gets for the feedback period, and for how long. */
@@ -85,7 +102,7 @@ export type Faq = { q: string; a: string; toConfirm?: boolean };
 export const faqs: Faq[] = [
   {
     q: "What am I paying for?",
-    a: `Access to the Hidden Report Card for ${PRICE_SCOPE}: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
+    a: `Access to the Hidden Report Card for ${PRICE_SCOPE}, at US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months and US$${PRICE_USD} a month after that: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
   },
   {
     q: "What does being a founding family involve?",
@@ -97,7 +114,12 @@ export const faqs: Faq[] = [
   },
   {
     q: "Is the price per child or per family?",
-    a: `US$${PRICE_USD} a month covers ${PRICE_SCOPE}.`,
+    a: `US$${FOUNDERS_USD} a month covers ${PRICE_SCOPE}, and so does US$${PRICE_USD} a month after the founders rate ends.`,
+    toConfirm: true,
+  },
+  {
+    q: `What happens after ${FOUNDERS_MONTHS} months at US$${FOUNDERS_USD}?`,
+    a: `Your tenth monthly payment is US$${PRICE_USD}, and every one after that. Nothing else changes and you do not have to do anything. We email you before the first US$${PRICE_USD} payment so it is never a surprise on a statement.`,
     toConfirm: true,
   },
   {

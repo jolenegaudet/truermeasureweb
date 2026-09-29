@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
-import { PRICE_USD } from "@/content/founding-families";
+import {
+  FOUNDERS_MONTHS,
+  FOUNDERS_USD,
+  PRICE_USD,
+} from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
 
 const moments = [
@@ -415,7 +419,12 @@ export default function HomePage() {
                 </p>
                 {/* The amount comes from content/founding-families.ts, which is
                     the one place the proposed offer is defined. */}
-                <PriceInYourCurrency amountUSD={PRICE_USD} unit="per month" />
+                <PriceInYourCurrency
+                  amountUSD={FOUNDERS_USD}
+                  unit={`per month for your first ${FOUNDERS_MONTHS} months`}
+                  thenUSD={PRICE_USD}
+                  thenUnit="a month after that"
+                />
                 <p
                   className="mt-5 text-muted"
                   style={{ fontSize: 13, lineHeight: 1.7 }}
@@ -431,7 +440,9 @@ export default function HomePage() {
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
                 >
-                  Billed monthly. Cancel any time before your next renewal.
+                  Billed monthly. The price changes on its own after{" "}
+                  {FOUNDERS_MONTHS} months and we email you first. Cancel any
+                  time before your next renewal.
                 </p>
                 <Link
                   href="/hidden-report-card"

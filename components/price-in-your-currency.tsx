@@ -107,11 +107,17 @@ const TONE = {
 export function PriceInYourCurrency({
   amountUSD,
   unit,
+  thenUSD,
+  thenUnit,
   tone = "dark",
 }: {
   amountUSD: number;
   /** What the amount buys, e.g. "per month". */
   unit: string;
+  /** The standing price the headline steps up to, if it does. */
+  thenUSD?: number;
+  /** How to describe that step up, e.g. "a month after that". */
+  thenUnit?: string;
   tone?: Tone;
 }) {
   const [rates, setRates] = useState<Rates>(FALLBACK_RATES);
@@ -133,18 +139,31 @@ export function PriceInYourCurrency({
   const rate = rates[active.code] ?? FALLBACK_RATES[active.code] ?? 1;
   const billed = money(amountUSD, BILLING.locale, BILLING.symbol);
 
+  const show = (usd: number) =>
+    isBilling
+      ? money(usd, BILLING.locale, BILLING.symbol)
+      : money(usd * rate, active.locale, active.symbol);
+
   return (
     <div className="w-full">
       <div
         className={`font-heading font-medium ${skin.price}`}
         style={{ fontSize: 52, lineHeight: 1 }}
       >
-        {isBilling ? billed : money(amountUSD * rate, active.locale, active.symbol)}
+        {show(amountUSD)}
       </div>
 
       <p className={`mt-2 ${skin.unit}`} style={{ fontSize: 13, lineHeight: 1.7 }}>
         {isBilling ? unit : `${unit}, approximately`}
       </p>
+
+      {/* The step up is part of the price, not small print, so it moves with
+          the currency buttons like the headline figure does. */}
+      {thenUSD === undefined ? null : (
+        <p className={`mt-2 ${skin.unit}`} style={{ fontSize: 13, lineHeight: 1.7 }}>
+          {`then ${show(thenUSD)} ${thenUnit ?? "after that"}`}
+        </p>
+      )}
 
       {/* The toggle sits under the number it changes, so the connection between
           the two is not something a parent has to work out. */}
@@ -178,8 +197,12 @@ export function PriceInYourCurrency({
           who reads it here the moment she switches, and again at checkout. */}
       {isBilling ? null : (
         <p className={`mt-4 ${skin.note}`} style={{ fontSize: 11.5, lineHeight: 1.6 }}>
-          {`You are billed ${billed}. Your bank converts at its own rate on each `}
-          {`billing date, 1 USD = ${rate.toFixed(4)} ${active.code} today, and may add a fee.`}
+          {`You are billed ${billed}`}
+          {thenUSD === undefined
+            ? ""
+            : `, then ${money(thenUSD, BILLING.locale, BILLING.symbol)}`}
+          {`. Your bank converts at its own rate on each billing date, `}
+          {`1 USD = ${rate.toFixed(4)} ${active.code} today, and may add a fee.`}
         </p>
       )}
     </div>
