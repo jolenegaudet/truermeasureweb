@@ -30,7 +30,7 @@
  */
 
 /** The standing price. What a member pays once the founders rate runs out. */
-export const PRICE_USD = 79;
+export const PRICE_USD = 67;
 export const PRICE_PERIOD = "month";
 export const PRICE_SCOPE = "one child";
 
@@ -41,10 +41,19 @@ export const FOUNDERS_MONTHS = 9;
 /**
  * Live in Stripe as of 29 September 2026:
  *   product  prod_VLrZW1KcxNpyFR
- *   price    price_1UL9q5AJm8m0sW6oPiusdBmT   US$79/month, tax exclusive
- *   coupon   ZsoMprUb                         US$32 off, repeating, 9 months
+ *   price    price_1ULA3DAJm8m0sW6o32xEAJ4i   US$67/month, tax exclusive
+ *   coupon   dJ8nAmyA                         US$20 off, repeating, 9 months
  *   code     FOUNDING47                       uncapped
- *   link     plink_1UL9q5AJm8m0sW6ocVU1RnN1
+ *   link     plink_1ULA3DAJm8m0sW6o5xw2NhQy
+ *
+ * The standing price is US$67 rather than US$79 so that it stays under CA$100
+ * a month. At 1.4161 that is about CA$95, and the dollar would have to reach
+ * 1.4925 before it crossed CA$100. If it ever does, this number moves, not the
+ * promise on the page.
+ *
+ * A first US$79 set (price_1UL9q5, coupon ZsoMprUb, link plink_1UL9q5) was
+ * created and then archived the same day, before anyone bought anything. It is
+ * inactive in Stripe and nothing points at it.
  *
  * The URL carries prefilled_promo_code so a parent never types the code. The
  * discount is a repeating coupon rather than a second price, so Stripe steps
@@ -52,7 +61,7 @@ export const FOUNDERS_MONTHS = 9;
  * migrate anyone and nobody has to remember.
  */
 export const CHECKOUT_URL =
-  "https://buy.stripe.com/9B67sKaaNgnHfn5eUEe7m07?prefilled_promo_code=FOUNDING47";
+  "https://buy.stripe.com/dRmfZg96J6N75MvaEoe7m08?prefilled_promo_code=FOUNDING47";
 
 export const checkoutReady = true;
 
