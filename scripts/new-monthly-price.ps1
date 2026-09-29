@@ -62,6 +62,13 @@ param(
     [ValidateRange(1, 10000)]
     [int]$AmountUsd = 79,
     [string]$ProductName = 'Truer Measure - Founding Families Monthly',
+    # Stripe Tax is active on this account and the US$597 annual price is set to
+    # 'exclusive', meaning the amount is before tax and Stripe adds HST/GST/VAT
+    # on top at checkout. The monthly price matches it by default so the two
+    # behave the same way. 'inclusive' would make US$79 the all-in figure, with
+    # tax carved out of it, which is a pricing decision and not a default.
+    [ValidateSet('exclusive', 'inclusive')]
+    [string]$TaxBehavior = 'exclusive',
     [switch]$Replace
 )
 
@@ -165,8 +172,8 @@ $annual = @($prices.data | Where-Object {
 Write-Host ''
 Write-Host 'Plan' -ForegroundColor Cyan
 Write-Host "  1. find or create product   : $ProductName"
-Write-Host "  2. create price             : US`$$AmountUsd / month, recurring"
-Write-Host '  3. create payment link      : pointing at that new price'
+Write-Host "  2. create price             : US`$$AmountUsd / month, recurring, tax $TaxBehavior"
+Write-Host '  3. create payment link      : pointing at it, automatic tax ON'
 Write-Host ''
 Write-Host '  NOT touched: the annual price, the annual payment link, any subscription.'
 
@@ -214,15 +221,23 @@ $price = Invoke-Stripe Post 'prices' @{
     currency                = 'usd'
     unit_amount             = $amountCents
     'recurring[interval]'   = 'month'
+    tax_behavior            = $TaxBehavior
     nickname                = "Founding Families US`$$AmountUsd monthly"
 }
 Write-Host "Created price   $($price.id)"
 
+# automatic_tax has to be asked for. Without it Stripe Tax is active on the
+# account and still calculates nothing on this link, and the annual membership
+# would be collecting tax while the monthly one silently was not.
 $link = Invoke-Stripe Post 'payment_links' @{
-    'line_items[0][price]'    = $price.id
-    'line_items[0][quantity]' = 1
+    'line_items[0][price]'     = $price.id
+    'line_items[0][quantity]'  = 1
+    'automatic_tax[enabled]'   = 'true'
 }
 Write-Host "Created link    $($link.id)"
+Write-Host ""
+Write-Host "  tax behaviour : $TaxBehavior  (US`$$AmountUsd is the pre-tax amount)" -ForegroundColor DarkGray
+Write-Host "  automatic tax : $($link.automatic_tax.enabled)" -ForegroundColor DarkGray
 
 # --- confirm nothing else moved ---------------------------------------------
 
