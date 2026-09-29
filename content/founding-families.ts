@@ -70,6 +70,13 @@ export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
 /** Months the founding feedback period runs for. */
 export const FEEDBACK_MONTHS = 3;
 
+/**
+ * How long a child's record is kept after a membership ends, before it is
+ * deleted with notice. Jolene's ruling, 29 September 2026.
+ * The app repo's privacy-policy.md section 9 needs this number too.
+ */
+export const RETENTION_AFTER_END = "a year";
+
 export const billingTerms: string[] = [
   `US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months, for ${PRICE_SCOPE}.`,
   `US$${PRICE_USD} a month after that. The change happens on its own, and we email you before it does.`,
@@ -128,12 +135,10 @@ export const faqs: Faq[] = [
   {
     q: "Is the price per child or per family?",
     a: `US$${FOUNDERS_USD} a month covers ${PRICE_SCOPE}, and so does US$${PRICE_USD} a month after the founders rate ends.`,
-    toConfirm: true,
   },
   {
     q: `What happens after ${FOUNDERS_MONTHS} months at US$${FOUNDERS_USD}?`,
     a: `Your tenth monthly payment is US$${PRICE_USD}, and every one after that. Nothing else changes and you do not have to do anything. We email you before the first US$${PRICE_USD} payment so it is never a surprise on a statement.`,
-    toConfirm: true,
   },
   {
     q: "Does this include Learn From The Room or Inner Circle?",
@@ -159,13 +164,14 @@ export const faqs: Faq[] = [
     //                                 section 10 (your rights)
     //   app/legal/terms-of-service.md section 5 (cancelling)
     //
-    // Everything below is quoted from those, not invented here. ONE number is
-    // still missing: privacy-policy.md section 9 says the record is kept for
-    // `[POST_TERM_RETENTION_PERIOD - founder decision]` after a membership ends
-    // and is then deleted with notice. Until that is filled in, this answer
-    // cannot say how long, so it says that plainly and keeps its chip.
+    // Everything below is quoted from those, not invented here.
+    //
+    // The retention period was the one number missing. Jolene ruled it on
+    // 29 September 2026: ONE YEAR after a membership ends, then deleted, with
+    // notice first. privacy-policy.md section 9 in the app repo still reads
+    // `[POST_TERM_RETENTION_PERIOD - founder decision]` and needs the same
+    // number written into it, or the two documents will disagree.
     q: "What happens to my child's information if I cancel?",
-    a: "Cancelling does not delete your child's record. You can ask for a copy in a portable format at any time, and you can ask us to delete it, in which case it is gone from our active systems within 30 days and from backups within seven days after that. Write to privacy@truermeasure.com and we answer within 30 days, at no charge. We do not keep the record indefinitely after a membership ends, and we tell you before we delete anything. How long that period is has not been set yet.",
-    toConfirm: true,
+    a: "Cancelling does not delete your child's record. We keep it for a year after your membership ends, and we tell you before we delete anything. At any time you can ask for a copy in a portable format, or ask us to delete it, in which case it is gone from our active systems within 30 days and from backups within seven days after that. Write to privacy@truermeasure.com and we answer within 30 days, at no charge.",
   },
 ];
