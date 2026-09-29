@@ -104,13 +104,30 @@ $form    = @{ 'Content-Type' = 'application/x-www-form-urlencoded' }
 function Invoke-Stripe {
     param([string]$Method, [string]$Path, [hashtable]$Body)
     $uri = "https://api.stripe.com/v1/$Path"
-    if ($Method -eq 'Get') {
-        return Invoke-RestMethod -Method Get -Headers $headers -Uri $uri
+    try {
+        if ($Method -eq 'Get') {
+            return Invoke-RestMethod -Method Get -Headers $headers -Uri $uri
+        }
+        $encoded = ($Body.GetEnumerator() | ForEach-Object {
+            "$([uri]::EscapeDataString($_.Key))=$([uri]::EscapeDataString([string]$_.Value))"
+        }) -join '&'
+        return Invoke-RestMethod -Method $Method -Headers ($headers + $form) -Uri $uri -Body $encoded
+    } catch {
+        # A restricted key missing one permission is the most likely failure
+        # here, and a raw REST stack trace is no help to the person running it.
+        $detail = $_.ErrorDetails.Message
+        if ($detail -and $detail -match '"code":\s*"more_permissions_required"') {
+            $needed = if ($detail -match 'Enabling ([A-Za-z ]+) \(') { $Matches[1] } else { 'another' }
+            Write-Host ''
+            Write-Host "Your Stripe key is missing the $needed permission." -ForegroundColor Yellow
+            Write-Host 'Add it, or make a new restricted key, at:' -ForegroundColor Yellow
+            Write-Host '  https://dashboard.stripe.com/apikeys' -ForegroundColor Yellow
+            Write-Host ''
+            Write-Host 'Nothing was changed.' -ForegroundColor Green
+            exit 1
+        }
+        throw
     }
-    $encoded = ($Body.GetEnumerator() | ForEach-Object {
-        "$([uri]::EscapeDataString($_.Key))=$([uri]::EscapeDataString([string]$_.Value))"
-    }) -join '&'
-    return Invoke-RestMethod -Method $Method -Headers ($headers + $form) -Uri $uri -Body $encoded
 }
 
 # --- what is there now -------------------------------------------------------

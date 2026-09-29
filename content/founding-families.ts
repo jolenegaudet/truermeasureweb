@@ -14,9 +14,19 @@
  *   countdown, no future regular price, no discount percentage, and no promise
  *   of unlimited uploads, storage, questions or report generation.
  *
- * There is no US$79 monthly price in Stripe. The only recurring price on the
- * account is the US$597 annual membership, which this offer must not be wired
- * to. `checkoutReady` stays false until a monthly price and payment link exist.
+ * FOUNDER'S RULING: US$79 a month REPLACES the US$597 annual membership. The
+ * annual price is to be archived and its payment link deactivated once the
+ * monthly one works, and FOUNDING40 retires with it. The one existing annual
+ * subscriber keeps paying US$597 a year until they cancel, which is what Stripe
+ * does with a subscription when its price is archived, and is correct.
+ *
+ * There is still no US$79 monthly price in Stripe, so `checkoutReady` stays
+ * false and nothing here is wired to the annual checkout. Two scripts do the
+ * switch in the order that cannot strand the site with nothing to sell:
+ *
+ *   scripts/new-monthly-price.ps1     creates the monthly price and its link
+ *   scripts/retire-annual-price.ps1   takes the annual one down, and refuses
+ *                                     to run until the monthly one is live
  */
 
 export const PRICE_USD = 79;
