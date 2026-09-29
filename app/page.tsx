@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { BeforeDeadline } from "@/components/founding-rate-line";
+import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
+import { PRICE_USD } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
 
 const moments = [
@@ -116,12 +117,12 @@ export default function HomePage() {
           It was never designed to measure your whole child.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
-          <a
-            href="#tiers"
+          <Link
+            href="/hidden-report-card"
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
             GET STARTED
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -263,9 +264,8 @@ export default function HomePage() {
               years.
             </p>
             <p>
-              Then, as your child grows, you keep adding, and request an updated
-              Hidden Report Card when you&rsquo;re ready. Six updates a year are
-              included; extra updates are US$10 each.
+              Then, as your child grows, you keep adding, and ask for an
+              updated Hidden Report Card when you&rsquo;re ready.
             </p>
             <p>
               It&rsquo;s yours. You decide what goes in, who contributes, and
@@ -382,35 +382,6 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* The founding offer is announced once, here, above the cards. It is
-              deliberately not a second price printed on the card: the card
-              states the standing US$597 and carries the one button. Announcing
-              the discount separately is what stops a parent meeting two prices
-              and two buttons for the same membership.
-              This takes itself down at the end of 30 September 2026. */}
-          <BeforeDeadline>
-            <div className="mx-auto mb-12 max-w-[620px] border-y border-border py-7 text-center md:mb-16">
-              <p className="font-heading mb-2 text-[22px] text-bark">
-                40 founding parents. 40% off your first year.
-              </p>
-              <p
-                className="mb-1 text-smoke"
-                style={{ fontSize: 16, lineHeight: 1.7 }}
-              >
-                Pay only US$358.20 with code{" "}
-                <span className="font-semibold text-bark">FOUNDING40</span>.
-              </p>
-              <p className="text-rose" style={{ fontSize: 15, lineHeight: 1.7 }}>
-                Join before all 40 founding places are taken.
-              </p>
-              {/* The band spans all three cards, but the discount is tier 1
-                  only. Without this line a parent can read 40% off as applying
-                  to the Room or the Inner Circle as well. */}
-              <p className="mt-3 text-faint" style={{ fontSize: 13, lineHeight: 1.6 }}>
-                Applies to The Truer Measure (The Hidden Report Card) only.
-              </p>
-            </div>
-          </BeforeDeadline>
 
           <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1.08fr_1fr_1fr]">
             {/* Tier 1 — The Hidden Report Card.
@@ -426,26 +397,25 @@ export default function HomePage() {
                   Clarity
                 </div>
                 <div
-                  className="font-heading mb-[18px] font-medium text-parchment"
+                  className="font-heading mb-3 font-medium text-parchment"
                   style={{ fontSize: 40, lineHeight: 1.04 }}
                 >
-                  The Truer
+                  The Hidden
                   <br />
-                  Measure
+                  Report Card
                 </div>
+                <p className="font-heading mb-7 text-[19px] text-warm">
+                  Founding Families
+                </p>
                 <p
                   className="mb-8 text-parchment"
                   style={{ fontSize: 15.5, lineHeight: 1.55 }}
                 >
                   More than a grade to speak for your child.
                 </p>
-                {/* Compliance spec §8-D2: the recurring renewal-discount promise is removed.
-                    A Stripe promotion code carries exactly one coupon, so FOUNDING40
-                    cannot deliver both the 40%-once and the 20%-forever discount. Do not
-                    restore that line unless a second discount exists in Stripe that a
-                    parent can actually redeem at checkout — a dedicated founding price
-                    (§8-D2 option b), not a coupon applied by hand after the fact. */}
-                <PriceInYourCurrency />
+                {/* The amount comes from content/founding-families.ts, which is
+                    the one place the proposed offer is defined. */}
+                <PriceInYourCurrency amountUSD={PRICE_USD} unit="per month" />
                 <p
                   className="mt-5 text-muted"
                   style={{ fontSize: 13, lineHeight: 1.7 }}
@@ -453,27 +423,22 @@ export default function HomePage() {
                   One membership covers one child.
                 </p>
                 <div className="flex-1" />
-                {/* Compliance spec §5.1: the renewal disclosure is required
-                    immediately above the CTA. Keep it here, and keep it last. */}
+                {/* Compliance spec §5.1 keeps the billing terms immediately
+                    above the CTA. This CTA opens the offer page rather than a
+                    checkout: there is no monthly price in Stripe, and it must
+                    never be pointed at the annual membership link. */}
                 <p
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
                 >
-                  Renews yearly unless you cancel. We email you before every
-                  renewal. Cancel anytime.
+                  Billed monthly. Cancel any time before your next renewal.
                 </p>
-                <a
-                  href="https://buy.stripe.com/bJe5kC3Mpefza2L13Oe7m05"
+                <Link
+                  href="/hidden-report-card"
                   className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                 >
-                  Start here
-                </a>
-                <p
-                  className="mt-6 text-muted"
-                  style={{ fontSize: 12, lineHeight: 1.6 }}
-                >
-                  (The Hidden Report Card)
-                </p>
+                  Explore the offer
+                </Link>
               </div>
             </div>
 
