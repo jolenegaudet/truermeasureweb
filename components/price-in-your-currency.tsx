@@ -3,27 +3,25 @@
 import { useEffect, useState } from "react";
 
 /**
- * The price on the tier 1 card, in the currency the parent picks.
+ * A price, in the currency the parent picks.
  *
  * The membership is priced and billed in US dollars. A Canadian parent can
- * switch the number on the card to her own currency to see roughly what that
- * costs today, before she reaches the Stripe page, which presents USD only and
- * does not label it for her.
+ * switch the number to her own currency to see roughly what that costs today,
+ * before she reaches a checkout page, which presents USD only and does not
+ * label it for her.
  *
- * Nothing here changes what is charged, and the card must never let a parent
- * believe otherwise. So in every converted state the card still states the real
- * charge, US$597, beside the converted figure. She sees CA$823 on the card and
- * US$597 on her statement, and the card said so before she clicked.
+ * Nothing here changes what is charged, and the price must never let a parent
+ * believe otherwise. So in every converted state it still states the real
+ * charge beside the converted figure. She sees CA$110 and US$79 on her
+ * statement, and this said so before she clicked.
  *
  * USD is the state the server renders, so the page source and every link
- * preview carry the real price. The converted figures only ever appear after a
+ * preview carry the real price. Converted figures only ever appear after a
  * parent asks for them.
  *
  * Rates refresh in the browser on load. The fallbacks ship with the build so a
  * real number always renders, even if both lookups fail.
  */
-
-const PRICE_USD = 597;
 
 const FALLBACK_RATES: Record<string, number> = { CAD: 1.3785, EUR: 0.8562 };
 
@@ -87,9 +85,44 @@ function money(amount: number, locale: string, symbol: string): string {
   return `${symbol}${new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(Math.round(amount))}`;
 }
 
-export function PriceInYourCurrency() {
+type Tone = "dark" | "light";
+
+const TONE = {
+  dark: {
+    price: "text-parchment",
+    unit: "text-muted",
+    note: "text-muted",
+    on: "border-parchment bg-parchment text-bark",
+    off: "border-charcoal bg-transparent text-muted hover:border-warm hover:text-parchment",
+  },
+  light: {
+    price: "text-bark",
+    unit: "text-smoke",
+    note: "text-smoke",
+    on: "border-bark bg-bark text-parchment",
+    off: "border-border bg-transparent text-dusk hover:border-rose hover:text-bark",
+  },
+} satisfies Record<Tone, Record<string, string>>;
+
+export function PriceInYourCurrency({
+  amountUSD,
+  unit,
+  thenUSD,
+  thenUnit,
+  tone = "dark",
+}: {
+  amountUSD: number;
+  /** What the amount buys, e.g. "per month". */
+  unit: string;
+  /** The standing price the headline steps up to, if it does. */
+  thenUSD?: number;
+  /** How to describe that step up, e.g. "a month after that". */
+  thenUnit?: string;
+  tone?: Tone;
+}) {
   const [rates, setRates] = useState<Rates>(FALLBACK_RATES);
   const [selected, setSelected] = useState<string>(BILLING.code);
+  const skin = TONE[tone];
 
   useEffect(() => {
     const controller = new AbortController();
@@ -104,23 +137,36 @@ export function PriceInYourCurrency() {
   const isBilling = active.code === BILLING.code;
 
   const rate = rates[active.code] ?? FALLBACK_RATES[active.code] ?? 1;
-  const billed = money(PRICE_USD, BILLING.locale, BILLING.symbol);
+  const billed = money(amountUSD, BILLING.locale, BILLING.symbol);
+
+  const show = (usd: number) =>
+    isBilling
+      ? money(usd, BILLING.locale, BILLING.symbol)
+      : money(usd * rate, active.locale, active.symbol);
 
   return (
     <div className="w-full">
       <div
-        className="font-heading font-medium text-parchment"
+        className={`font-heading font-medium ${skin.price}`}
         style={{ fontSize: 52, lineHeight: 1 }}
       >
-        {isBilling ? billed : money(PRICE_USD * rate, active.locale, active.symbol)}
+        {show(amountUSD)}
       </div>
 
-      <p className="mt-2 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-        {isBilling ? "per year" : "per year, approximately"}
+      <p className={`mt-2 ${skin.unit}`} style={{ fontSize: 13, lineHeight: 1.7 }}>
+        {isBilling ? unit : `${unit}, approximately`}
       </p>
 
-      {/* The toggle sits under the number it changes, on the dark card, so the
-          connection between the two is not something a parent has to work out. */}
+      {/* The step up is part of the price, not small print, so it moves with
+          the currency buttons like the headline figure does. */}
+      {thenUSD === undefined ? null : (
+        <p className={`mt-2 ${skin.unit}`} style={{ fontSize: 13, lineHeight: 1.7 }}>
+          {`then ${show(thenUSD)} ${thenUnit ?? "after that"}`}
+        </p>
+      )}
+
+      {/* The toggle sits under the number it changes, so the connection between
+          the two is not something a parent has to work out. */}
       <div
         role="group"
         aria-label="Show the price in another currency"
@@ -137,9 +183,7 @@ export function PriceInYourCurrency() {
               className={[
                 "cursor-pointer rounded-[2px] border px-[11px] py-[5px]",
                 "text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors",
-                on
-                  ? "border-parchment bg-parchment text-bark"
-                  : "border-charcoal bg-transparent text-muted hover:border-warm hover:text-parchment",
+                on ? skin.on : skin.off,
               ].join(" ")}
             >
               {currency.label}
@@ -150,12 +194,15 @@ export function PriceInYourCurrency() {
 
       {/* Nothing is shown for USD: the figure above is already the charge. The
           conversion warning only matters to someone seeing a converted number,
-          who reads it here the moment she switches, and again on the Stripe
-          checkout page. */}
+          who reads it here the moment she switches, and again at checkout. */}
       {isBilling ? null : (
-        <p className="mt-4 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
-          {`You are billed ${billed}. Your bank converts at its own rate on each `}
-          {`billing date, 1 USD = ${rate.toFixed(4)} ${active.code} today, and may add a fee.`}
+        <p className={`mt-4 ${skin.note}`} style={{ fontSize: 11.5, lineHeight: 1.6 }}>
+          {`You are billed ${billed}`}
+          {thenUSD === undefined
+            ? ""
+            : `, then ${money(thenUSD, BILLING.locale, BILLING.symbol)}`}
+          {`. Your bank converts at its own rate on each billing date, `}
+          {`1 USD = ${rate.toFixed(4)} ${active.code} today, and may add a fee.`}
         </p>
       )}
     </div>
