@@ -41,6 +41,66 @@ const CONVERTED: Currency[] = [
 
 const SYMBOLS = CONVERTED.map((c) => c.code).join(",");
 
+/**
+ * Which currency to open in.
+ *
+ * The buttons are always there and always all three. This only decides which
+ * one is already pressed when a parent arrives, so a Canadian is not doing
+ * arithmetic in her head before she has decided anything.
+ *
+ * Timezone is checked before language because it is the better signal for the
+ * case that matters most here: a Canadian whose browser is set to en-US, which
+ * is extremely common. Language region is the fallback, and USD is the answer
+ * whenever neither is conclusive.
+ *
+ * This runs in the browser only. The server renders USD, so the page source,
+ * search results and link previews always carry the real billing currency.
+ */
+
+const CANADA_TZ = new Set([
+  "America/St_Johns", "America/Halifax", "America/Glace_Bay", "America/Moncton",
+  "America/Goose_Bay", "America/Toronto", "America/Montreal", "America/Nipigon",
+  "America/Thunder_Bay", "America/Iqaluit", "America/Pangnirtung",
+  "America/Winnipeg", "America/Rainy_River", "America/Rankin_Inlet",
+  "America/Resolute", "America/Regina", "America/Swift_Current",
+  "America/Edmonton", "America/Cambridge_Bay", "America/Yellowknife",
+  "America/Inuvik", "America/Creston", "America/Dawson_Creek",
+  "America/Fort_Nelson", "America/Vancouver", "America/Whitehorse",
+  "America/Dawson", "America/Atikokan", "America/Blanc-Sablon",
+]);
+
+const EURO_REGIONS = new Set([
+  "AT", "BE", "HR", "CY", "EE", "FI", "FR", "DE", "GR", "IE", "IT", "LV",
+  "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES",
+]);
+
+function guessCurrency(): string {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (tz && CANADA_TZ.has(tz)) return "CAD";
+  } catch {
+    // Intl is missing or the timezone is unavailable. Fall through to language.
+  }
+
+  try {
+    const tags = navigator.languages?.length
+      ? navigator.languages
+      : [navigator.language];
+    for (const tag of tags) {
+      if (!tag) continue;
+      const region = new Intl.Locale(tag).region;
+      if (!region) continue;
+      if (region === "CA") return "CAD";
+      if (EURO_REGIONS.has(region)) return "EUR";
+      if (region === "US") return "USD";
+    }
+  } catch {
+    // Intl.Locale is unsupported, or the language tag is malformed.
+  }
+
+  return BILLING.code;
+}
+
 type Rates = Record<string, number>;
 
 async function readRates(url: string, signal: AbortSignal): Promise<Rates | null> {
@@ -122,7 +182,17 @@ export function PriceInYourCurrency({
 }) {
   const [rates, setRates] = useState<Rates>(FALLBACK_RATES);
   const [selected, setSelected] = useState<string>(BILLING.code);
+  // Once a parent presses a button, that is the answer. Detection never
+  // overrides a choice someone has actually made.
+  const [chosen, setChosen] = useState(false);
   const skin = TONE[tone];
+
+  useEffect(() => {
+    if (!chosen) setSelected(guessCurrency());
+    // Runs once. `chosen` is read, not depended on: re-running this after a
+    // click is exactly what must not happen.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -179,7 +249,10 @@ export function PriceInYourCurrency({
               key={currency.code}
               type="button"
               aria-pressed={on}
-              onClick={() => setSelected(currency.code)}
+              onClick={() => {
+                setChosen(true);
+                setSelected(currency.code);
+              }}
               className={[
                 "cursor-pointer rounded-[2px] border px-[11px] py-[5px]",
                 "text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors",
