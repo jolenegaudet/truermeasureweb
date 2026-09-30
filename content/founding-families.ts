@@ -57,6 +57,17 @@ export const CHECKOUT_URL: string =
   "https://buy.stripe.com/cNidR8er37Rbej18wge7m09?prefilled_promo_code=FOUNDINGFAMILY";
 export const checkoutReady = CHECKOUT_URL !== "";
 
+/**
+ * Stripe customer portal sign-in, created 30 September 2026 (configuration
+ * bpc default): cancel at the end of the billing period, update card and
+ * email, see invoices. A parent signs in with the email she paid with and a
+ * one-time code Stripe sends her. Needed for online cancellation (California
+ * Bus. & Prof. Code 17602(d) requires it for online sign-ups).
+ */
+export const MANAGE_URL = "https://billing.stripe.com/p/login/eVq00igzb9Zj6Qz5k4e7m00";
+
+export const TERMS_PATH = "/terms-of-service";
+
 export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
 
 /**
@@ -72,7 +83,7 @@ export const offerNote =
 
 export const billingTerms: string[] = [
   `Then ${STANDARD_LIST} per month, plus applicable taxes.`,
-  "Billed monthly. Cancel any time. You keep the month you have paid for.",
+  "Billed monthly. Cancel online any time before your next payment, or by email. You keep access until the end of the billing period you have paid for.",
 ];
 
 /** What a founding family gets, and for how long. */

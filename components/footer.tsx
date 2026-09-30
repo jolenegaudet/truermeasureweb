@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MANAGE_URL } from "@/content/founding-families";
 
 export default function Footer() {
   return (
@@ -13,12 +14,16 @@ export default function Footer() {
       </div>
       <div className="mx-auto mt-8 flex max-w-[1180px] flex-wrap items-center justify-center gap-x-8 gap-y-2 border-t border-charcoal pt-6 text-center text-[12px] tracking-[0.04em] text-subdued">
         {/* Terms of Service published 30 September 2026 as interim terms, by
-            Jolene's decision, while legal review completes (the checkout was
-            live without any). The Privacy Policy follows when it is final:
-            its route is at git checkout e3bb129 -- app/privacy-policy */}
+            Jolene's decision (the checkout was live without any). The Privacy
+            Policy follows when it is final: its route is at
+            git checkout e3bb129 -- app/privacy-policy */}
         <Link href="/terms-of-service" className="text-subdued no-underline hover:text-parchment">
           Terms of Service
         </Link>
+        {/* Online cancellation for members, through the Stripe customer portal. */}
+        <a href={MANAGE_URL} className="text-subdued no-underline hover:text-parchment">
+          Manage or cancel your membership
+        </a>
         <span>© {new Date().getFullYear()} Truer Measure. All rights reserved.</span>
       </div>
     </footer>
