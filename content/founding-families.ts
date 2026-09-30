@@ -19,11 +19,7 @@
  * The Terms of Service draft (app repo, legal/terms-of-service.md section 2)
  * was rewritten the same day to match.
  *
- * STRIPE IS NOT CONFIGURED FOR THIS YET. The live account still sells the old
- * offer (US$67 price, FOUNDING47). Until the new multi-currency price, the
- * 3-month coupon and a link capped at 50 exist, `checkoutReady` is false and
- * no button on the site opens a checkout. Publish the site and the new
- * checkout together, never the site first.
+ * Stripe was configured for it the same day (see CHECKOUT_URL below).
  */
 
 export const PRICE_SCOPE = "one child";
@@ -48,11 +44,17 @@ export const INTRO_LIST = list((p) => p.intro);
 export const STANDARD_LIST = list((p) => p.standard);
 
 /**
- * The checkout for the NEW offer. Empty until it exists in Stripe; the old
- * FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) must not be used
- * again, because it charges the old prices.
+ * The checkout for the new offer, created in Stripe on 30 September 2026:
+ *   price   price_1ULPkSAJm8m0sW6oV8ZLcZaV  US$42 / CA$59 / EUR35 a month, tax exclusive
+ *   coupon  WAJkw9F9   US$15 / CA$20 / EUR12 off, repeating 3 months, max 50
+ *   code    FOUNDINGFAMILY (max 50), prefilled by the URL so nobody types it
+ *   link    plink_1ULPkTAJm8m0sW6oRUgngR3U, automatic tax on, closes after 50
+ *           completed checkouts (restrictions.completed_sessions.limit)
+ * The old FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) charges the
+ * old prices and is switched off once this site is published.
  */
-export const CHECKOUT_URL = "";
+export const CHECKOUT_URL: string =
+  "https://buy.stripe.com/cNidR8er37Rbej18wge7m09?prefilled_promo_code=FOUNDINGFAMILY";
 export const checkoutReady = CHECKOUT_URL !== "";
 
 export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
