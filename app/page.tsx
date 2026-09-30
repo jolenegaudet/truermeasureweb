@@ -194,8 +194,8 @@ export default function HomePage() {
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
                 >
-                  Billed monthly. We email you before the price changes.
-                  Cancel any time, and you keep the month you have paid for.
+                  Billed monthly. Cancel any time. You keep the month you have
+                  paid for.
                 </p>
                 <a
                   href={CHECKOUT_URL}
