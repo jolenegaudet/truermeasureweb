@@ -89,10 +89,6 @@ export const billingTerms: string[] = [
 /** What a founding family gets, and for how long. */
 export const foundingIncludes: { what: string; howLong: string }[] = [
   {
-    what: "One recorded onboarding session",
-    howLong: "Once, when you join",
-  },
-  {
     what: "The Feedback button inside the product",
     howLong: `For the first ${INTRO_MONTHS} months`,
   },
@@ -116,7 +112,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does being a founding family involve?",
-    a: `You are joining early and helping shape what gets built. That means a recorded onboarding session, and the Feedback button in the product for your first ${INTRO_MONTHS} months. Jolene reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
+    a: `You are joining early and helping shape what gets built. That means the Feedback button in the product for your first ${INTRO_MONTHS} months. Jolene reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
   },
   {
     q: "How often can I get an updated report?",
