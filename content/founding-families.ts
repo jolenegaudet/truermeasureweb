@@ -125,7 +125,7 @@ export const foundingIncludes: { what: string; howLong: string }[] = [
     howLong: "For as long as you are a member",
   },
   {
-    what: "A Truer Measure itself",
+    what: "Access to Truer Measure and your child’s record",
     howLong: "For as long as you are a member",
   },
 ];

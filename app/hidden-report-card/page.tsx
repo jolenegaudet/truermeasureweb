@@ -75,10 +75,11 @@ const moments = [
   "Before a parent–teacher meeting",
   "Before applying for a program, team, or scholarship",
   "When the report card doesn’t match the child you know",
-  "When your kid shines everywhere except on paper",
+  "When your child shines everywhere except on paper",
   "When confidence drops",
   "When a hard week starts to feel like a bad year",
-  "When your child says, “I’m not smart”.",
+  "When your child says, “I’m not smart.”",
+  "When you notice something about your child you don’t want to forget",
 ];
 
 // Jolène's wording, 30 September 2026.
@@ -99,7 +100,7 @@ const experience = [
   {
     feature: "Insights",
     outcome:
-      "Notice patterns over time, including where school and life show the same or different things.",
+      "Notice patterns over time and see where school and everyday life tell the same or different stories.",
   },
   {
     feature: "Ask",
@@ -250,7 +251,7 @@ export default function HiddenReportCardPage() {
             style={{ fontSize: 17, lineHeight: 1.75, maxWidth: 640 }}
           >
             <p className="font-heading italic text-dusk" style={{ fontSize: "clamp(20px,2.4vw,25px)" }}>
-              Your child is revealing these every day.
+              Some you may already recognize. Others you may not have seen yet.
             </p>
             <p>
               But the evidence is scattered across people, places, experiences
@@ -296,7 +297,7 @@ export default function HiddenReportCardPage() {
             <p>
               You start by bringing together what already exists: report cards,
               assessments, teacher comments, your own observations, and evidence
-              of learning from all the places your child learns and grows.
+              from all the places your child learns and grows.
             </p>
             <p>
               Truer Measure brings that evidence together and generates your
@@ -305,30 +306,23 @@ export default function HiddenReportCardPage() {
             </p>
             <p>
               Now you can see what keeps showing up, what&rsquo;s changing, where
-              the evidence is strong, and what hasn&rsquo;t had much opportunity
-              to reveal itself yet.
+              the evidence is strong, and what you simply haven&rsquo;t seen
+              enough of yet.
             </p>
             <p>
-              Then you keep adding: a new report card, a project, something a
-              teacher said, a moment from outside school, something your child
-              did that you don&rsquo;t want to lose.
+              Then keep adding as your child grows: a new report card, a project,
+              something a teacher said, a photo, or a moment you don&rsquo;t want
+              to forget.
             </p>
-            <p>The dashboard grows as your child grows.</p>
             <p>
-              And once you can see the evidence, you start noticing differently.
-              You notice what keeps showing up. You notice what&rsquo;s emerging.
-              And you notice where your child may need more opportunities to show
-              you what&rsquo;s there.
+              Over time, you build a record of your child that no single report
+              card, teacher or school year could give you.
             </p>
             <p>
               It&rsquo;s yours. You decide what goes in, who contributes, and who
               can see it.
             </p>
           </div>
-
-          <p className="font-heading italic text-dusk" style={{ fontSize: 25 }}>
-            That&rsquo;s the foundation.
-          </p>
         </div>
       </section>
 
