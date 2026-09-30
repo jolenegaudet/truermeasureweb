@@ -64,9 +64,9 @@ export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
  */
 export const RETENTION_AFTER_END = "a year";
 
-/** Jolene's wording, 30 September 2026. */
+/** Jolene's wording, 30 September 2026 ("a Feedback button or possible private calls"). */
 export const offerNote =
-  "You’re joining early, so you get an introductory rate and a direct line to tell us what to build next.";
+  "You’re joining early, so you get an introductory rate and ways to tell us what to build next: a Feedback button, and possibly private calls.";
 
 export const billingTerms: string[] = [
   `Then ${STANDARD_LIST} per month, plus applicable taxes.`,
