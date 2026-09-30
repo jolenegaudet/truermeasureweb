@@ -450,8 +450,12 @@ export default function HiddenReportCardPage() {
                     By joining, you agree to our{" "}
                     <a href={TERMS_PATH} className="text-parchment underline underline-offset-2">
                       Terms of Service
+                    </a>{" "}
+                    (
+                    <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
+                      en français
                     </a>
-                    .
+                    ).
                   </p>
                 </>
               ) : (

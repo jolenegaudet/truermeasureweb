@@ -14,6 +14,11 @@ const ALLOWED_TAGS = new Set([
   "waitlist-hidden-report-card",
   "waitlist-elite-learning-leaders",
   "applied-inner-circle",
+  // EU right of withdrawal (/withdraw). A member is already a contact, so a
+  // duplicate must not be treated as done: the tag is added to the existing
+  // contact below. The confirmation email is sent by the GoHighLevel workflow
+  // triggered by this tag.
+  "withdrawal-request",
 ]);
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
@@ -89,7 +94,31 @@ export const handler = async (event: { httpMethod: string; body: string | null }
   if (!contactRes.ok) {
     console.error("GHL contact create failed", contactRes.status, contactText);
     if (contactRes.status === 400 && /duplicat/i.test(contactText)) {
-      return json(200, { ok: true, duplicate: true });
+      if (tag !== "withdrawal-request") return json(200, { ok: true, duplicate: true });
+      // Tag the existing contact; if that is not possible, fail loudly so the
+      // member is told to email instead of believing the withdrawal was sent.
+      let contactId: string | undefined;
+      try {
+        contactId = JSON.parse(contactText)?.meta?.contactId;
+      } catch {
+        contactId = undefined;
+      }
+      if (!contactId) return json(502, { error: "Could not record your withdrawal." });
+      const tagRes = await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Version: GHL_VERSION,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ tags: [tag] }),
+      });
+      if (!tagRes.ok) {
+        console.error("GHL tag add failed", tagRes.status, await tagRes.text());
+        return json(502, { error: "Could not record your withdrawal." });
+      }
+      return json(200, { ok: true, existing: true });
     }
     return json(502, { error: "Could not save your details. Please try again." });
   }

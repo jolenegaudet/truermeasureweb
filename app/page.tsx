@@ -177,7 +177,8 @@ export default function HomePage() {
                 </div>
                 <OfferPrice />
                 <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  Then {STANDARD_LIST} per month, plus applicable taxes.
+                  Then {STANDARD_LIST} per month. Plus applicable taxes on CA$
+                  and US$ prices; euro prices include VAT.
                 </p>
                 <p
                   className="mt-5 text-muted"
@@ -208,8 +209,12 @@ export default function HomePage() {
                   By joining, you agree to our{" "}
                   <a href={TERMS_PATH} className="text-parchment underline underline-offset-2">
                     Terms of Service
+                  </a>{" "}
+                  (
+                  <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
+                    en français
                   </a>
-                  .
+                  ).
                 </p>
                 {/* The product page is the second door, not the first. Start
                     Here has to reach a checkout, not another page to read. */}

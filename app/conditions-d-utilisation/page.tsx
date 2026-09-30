@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TermsContent from "@/content/terms-of-service.mdx";
+import TermsContent from "@/content/conditions-d-utilisation.mdx";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
+  title: "Conditions d’utilisation",
 };
 
-export default function TermsOfServicePage() {
+export default function ConditionsPage() {
   return (
     <>
       <section className="mx-auto max-w-[920px] px-6 pb-[40px] pt-16 text-center md:px-10 md:pt-24">
@@ -17,7 +17,7 @@ export default function TermsOfServicePage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(36px,5vw,64px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
         >
-          Terms of Service
+          Conditions d’utilisation
         </h1>
       </section>
 
@@ -27,8 +27,8 @@ export default function TermsOfServicePage() {
 
       <section className="mx-auto max-w-[720px] px-6 py-16 md:px-10 md:py-[72px]">
         <p className="mb-10 text-smoke" style={{ fontSize: 15 }}>
-          <Link href="/conditions-d-utilisation" className="text-rose underline underline-offset-2">
-            Version française
+          <Link href="/terms-of-service" className="text-rose underline underline-offset-2">
+            English version
           </Link>
         </p>
         <TermsContent />
@@ -38,7 +38,7 @@ export default function TermsOfServicePage() {
             href="/"
             className="text-[13px] font-semibold uppercase tracking-[0.14em] text-rose hover:text-bark transition-colors"
           >
-            ← Back
+            ← Retour
           </Link>
         </div>
       </section>

@@ -82,7 +82,7 @@ export const offerNote =
   "You’re joining early, so you get an introductory rate and ways to tell us what to build next: a Feedback button, and possibly private calls.";
 
 export const billingTerms: string[] = [
-  `Then ${STANDARD_LIST} per month, plus applicable taxes.`,
+  `Then ${STANDARD_LIST} per month. Plus applicable taxes on CA$ and US$ prices; euro prices include VAT.`,
   "Billed monthly. Cancel online any time before your next payment, or by email. You keep access until the end of the billing period you have paid for.",
 ];
 

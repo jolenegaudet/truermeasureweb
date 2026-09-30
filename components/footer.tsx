@@ -20,10 +20,17 @@ export default function Footer() {
         <Link href="/terms-of-service" className="text-subdued no-underline hover:text-parchment">
           Terms of Service
         </Link>
+        <Link href="/conditions-d-utilisation" className="text-subdued no-underline hover:text-parchment">
+          Conditions d’utilisation
+        </Link>
         {/* Online cancellation for members, through the Stripe customer portal. */}
         <a href={MANAGE_URL} className="text-subdued no-underline hover:text-parchment">
           Manage or cancel your membership
         </a>
+        {/* EU right of withdrawal: the label the directive suggests. */}
+        <Link href="/withdraw" className="text-subdued no-underline hover:text-parchment">
+          Withdraw from contract here
+        </Link>
         <span>© {new Date().getFullYear()} Truer Measure. All rights reserved.</span>
       </div>
     </footer>
