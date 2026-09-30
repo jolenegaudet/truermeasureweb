@@ -269,10 +269,9 @@ export default function HomePage() {
               years.
             </p>
             <p>
-              Then, as your child grows, you keep adding. Whenever there is
-              something new in the record, you can ask for an updated Hidden
-              Report Card, as often as you like. Add nothing and there is
-              nothing new to say, which is the only limit there is.
+              Then you keep adding: a new report card, a project, something a
+              teacher said, a moment from outside school. Regenerate a new
+              Hidden Report Card whenever you want.
             </p>
             <p>
               It&rsquo;s yours. You decide what goes in, who contributes, and

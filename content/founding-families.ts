@@ -154,7 +154,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How often can I get an updated report?",
-    a: "As often as you like, with one condition: there has to be something new in your child's record since the last one. Add a report card, a photo, an observation, and you can ask for an update. Add nothing and there is nothing new to say, so there is no update to make. There is no monthly allowance and no charge for extra ones.",
+    a: "Whenever you want. Add something new, a report card, a project, a photo, something a coach or a teacher said, and regenerate. There is no monthly allowance and nothing to pay for extra ones.",
   },
   {
     q: "Is this suitable if I only have a few records?",
