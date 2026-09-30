@@ -32,7 +32,7 @@ const circleAccess = [
 /**
  * Section order, Jolène 30 September 2026.
  *
- *   1 Hero      the headline and one line
+ *   1 Hero      the headline
  *   2 Founder   who is behind it
  *   3 Tiers     Start with Clarity. Continue with Community. Grow with Proximity.
  *   4 Social    Instagram, Substack, LinkedIn
@@ -58,17 +58,6 @@ export default function HomePage() {
         >
           Here&rsquo;s a Truer Measure.
         </h1>
-        <p
-          className="font-heading mx-auto mb-10 italic text-dusk"
-          style={{
-            fontSize: "clamp(22px,3.2vw,30px)",
-            lineHeight: 1.45,
-            maxWidth: 680,
-          }}
-        >
-          A report card measures your child against a limited set of standards.
-          It was never designed to measure your whole child.
-        </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a
             href="#tiers"

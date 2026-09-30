@@ -4,7 +4,6 @@ import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import {
   CHECKOUT_URL,
-  DEMO_URL,
   FEEDBACK_MONTHS,
   FOUNDERS_ENDS_AT,
   FOUNDERS_ENDS_LABEL,
@@ -81,64 +80,37 @@ const moments = [
   "When your kid shines everywhere except on paper",
   "When confidence drops",
   "When a hard week starts to feel like a bad year",
-  "When your child says, “I’m not smart.”",
+  "When your child says, “I’m not smart”.",
 ];
 
-const benefits = [
-  {
-    title: "Bring the pieces together.",
-    body: "Keep school records, observations and experiences in one evolving account.",
-  },
-  {
-    title: "See what repeats and what changes.",
-    body: "Explore evidence across years and settings, including where school and life show different pictures.",
-  },
-  {
-    title: "Bring more context to the conversation.",
-    body: "Use relevant evidence and clearer questions when discussing your child's learning.",
-  },
-];
-
+// Jolène's wording, 30 September 2026.
 const experience = [
   {
     feature: "My Child",
-    outcome:
-      "One profile the whole record hangs from, so what you are looking at is a child rather than a file.",
+    outcome: "See a fuller picture of your child across school and everyday life.",
   },
   {
     feature: "Timeline",
-    outcome:
-      "The record in order, with the moments that mattered shown large, so a year is something you can actually look back across.",
+    outcome: "See important moments from school and life together over time.",
   },
   {
     feature: "Evidence",
     outcome:
-      "Report cards, school work, photos and your own notes kept as individual items, so a single observation does not get lost inside a document.",
+      "Keep report cards, schoolwork, certificates, photos, projects and your own observations in one place.",
   },
   {
     feature: "Insights",
     outcome:
-      "Patterns drawn across the record, each one linked back to the evidence behind it, so you can check where a statement came from instead of taking it on trust.",
+      "Notice patterns over time, including where school and life show the same or different things.",
   },
   {
     feature: "Ask",
-    outcome:
-      "Put a question to the record and get an answer drawn from what is in it, which is useful the week before a meeting.",
+    outcome: "Ask questions about your child and get answers based on what you’ve kept.",
   },
   {
-    feature: "Capture a moment",
+    feature: "Capture a Moment",
     outcome:
-      "Add something on the day it happens, before it turns into the thing you meant to write down.",
-  },
-  {
-    feature: "Report card interpretation",
-    outcome:
-      "Plain language for what a carefully worded comment is actually saying, and what it would be reasonable to ask about it.",
-  },
-  {
-    feature: "Child facing pages",
-    outcome:
-      "A printable page written for your child to read, about what your child is good at.",
+      "Quickly save something you noticed with a sentence, photo or your voice, before you forget it.",
   },
 ];
 
@@ -156,7 +128,8 @@ export default function HiddenReportCardPage() {
       {/* 1. Hero, 2. Contrast, 3. Qualities, 4. What you actually get,
           5. Moments: moved here from the home page, in Jolène's wording of
           30 September 2026. They replace this page's earlier hero and its
-          "How to start" section, which said the same things. */}
+          "How to start" section, which said the same things. "What it does for you"
+          was removed the same day: its cards repeated "What you actually get". */}
 
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
@@ -166,13 +139,13 @@ export default function HiddenReportCardPage() {
         <h1
           className="font-heading mb-8 text-bark"
           style={{
-            fontSize: "clamp(54px,9vw,120px)",
+            fontSize: "clamp(30px,4.4vw,48px)",
             fontWeight: 500,
-            lineHeight: 0.98,
-            letterSpacing: "-0.01em",
+            lineHeight: 1.1,
+            letterSpacing: "-0.005em",
           }}
         >
-          Here&rsquo;s a Truer Measure.
+          here&rsquo;s a Truer Measure.
         </h1>
         <p
           className="font-heading mx-auto mb-10 italic text-dusk"
@@ -191,14 +164,6 @@ export default function HiddenReportCardPage() {
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
             See the Founding Families offer
-          </a>
-          <a
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-[2px] border border-rose px-[26px] py-[15px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline"
-          >
-            Explore the demo
           </a>
         </div>
       </section>
@@ -307,7 +272,7 @@ export default function HiddenReportCardPage() {
               it reveals.
             </p>
             <p>
-              That&rsquo;s why I call it the{" "}
+              That&rsquo;s why we call it the{" "}
               <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>.
             </p>
           </div>
@@ -416,103 +381,7 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-            {/* 6. A concrete example */}
-      <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
-        <div className="mx-auto max-w-[1000px]">
-          <div className="mx-auto mb-10 max-w-[680px] text-center md:mb-14">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              Fictional demo content
-            </div>
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(26px,4.6vw,50px)", lineHeight: 1.12 }}
-            >
-              What it looks like when the two sit side by side.
-            </h2>
-          </div>
-
-          {/* Reuses the home page contrast grid so the two records read as two
-              columns of the same record, not as an argument between them. */}
-          <div className="grid grid-cols-1 gap-px border border-grid bg-grid md:grid-cols-2">
-            <div className="bg-blush px-6 py-7 md:px-9 md:py-[34px]">
-              <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-faint">
-                What school recorded
-              </div>
-              <p
-                className="font-heading text-smoke"
-                style={{ fontSize: "clamp(18px,2.2vw,23px)", lineHeight: 1.35 }}
-              >
-                Comments repeatedly mention difficulty planning longer
-                assignments.
-              </p>
-            </div>
-            <div className="bg-blush px-6 py-7 md:px-9 md:py-[34px]">
-              <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-                What the record also holds
-              </div>
-              <p
-                className="font-heading text-bark"
-                style={{ fontSize: "clamp(18px,2.2vw,23px)", lineHeight: 1.35 }}
-              >
-                Planning a meal. Managing a trip budget. Saving toward a goal.
-              </p>
-            </div>
-          </div>
-
-          <div className="mx-auto mt-10 max-w-[660px] text-center">
-            <p
-              className="font-heading mb-6 italic text-dusk"
-              style={{ fontSize: "clamp(19px,2.4vw,25px)", lineHeight: 1.45 }}
-            >
-              This gives you a more specific question to bring to the teacher:
-              which kinds of planning are difficult, and where is your child
-              already managing well?
-            </p>
-            <p className="text-smoke" style={{ fontSize: 16, lineHeight: 1.75 }}>
-              It does not mean the teacher is wrong, and it does not explain why
-              the two look different. Planning a meal and planning a three week
-              assignment are not the same task. What it gives you is a better
-              place to start asking.
-            </p>
-            <p className="mt-6 text-faint" style={{ fontSize: 12.5, lineHeight: 1.6 }}>
-              The example above is drawn from the fictional demo child. It is
-              not a real family, and not a result.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Three core benefits */}
-      <section className="bg-ghost px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto max-w-[1080px]">
-          <div className="mx-auto mb-12 max-w-[560px] text-center md:mb-16">
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(28px,5vw,50px)", lineHeight: 1.08 }}
-            >
-              What it does for you.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 gap-px border border-grid bg-grid md:grid-cols-3">
-            {benefits.map(({ title, body }) => (
-              <div key={title} className="bg-ghost px-7 py-9 md:px-9 md:py-[46px]">
-                <h3
-                  className="font-heading mb-4 font-medium text-bark"
-                  style={{ fontSize: "clamp(22px,2.8vw,28px)", lineHeight: 1.2 }}
-                >
-                  {title}
-                </h3>
-                <p className="text-smoke" style={{ fontSize: 16, lineHeight: 1.7 }}>
-                  {body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. The product experience */}
+      {/* 6. The product experience */}
       <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[900px]">
           <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">
@@ -541,40 +410,10 @@ export default function HiddenReportCardPage() {
             ))}
             <div className="border-t border-border" />
           </dl>
-
-          {/* Required honesty about the demo. The quoted strings are the demo's
-              own labels, taken from the running application. */}
-          <div className="mt-12 border border-border bg-parchment px-6 py-7 md:mt-16 md:px-9 md:py-8">
-            <h3 className="font-heading mb-4 text-[22px] text-bark">
-              What the demo shows, and what it does not.
-            </h3>
-            <div
-              className="flex flex-col gap-4 text-smoke"
-              style={{ fontSize: 15.5, lineHeight: 1.7 }}
-            >
-              <p>
-                The sample interpretations in the demo are marked{" "}
-                <span className="font-semibold text-bark">
-                  &ldquo;Written for this demo&rdquo;
-                </span>
-                . The demo describes them as hand written to show what Truer
-                Measure could say, and not produced by AI from that record.
-              </p>
-              <p>
-                The demo also states that live AI needs an invitation link from
-                Truer Measure.
-              </p>
-              <p>
-                So treat the demo as a demonstration of the experience rather
-                than a statement of what is running for a new member today. The
-                child in it is fictional.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* 9. The Founding Families offer */}
+      {/* 7. The Founding Families offer */}
       <section id="founding" className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[880px]">
           <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">
@@ -652,14 +491,6 @@ export default function HiddenReportCardPage() {
               )}
             </div>
 
-            <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-block text-[12.5px] font-semibold uppercase tracking-[0.14em] text-rose-dark no-underline hover:text-parchment"
-            >
-              Explore the demo
-            </a>
           </div>
 
           {/* What a founding family gets, and for how long. The right column is
@@ -708,7 +539,7 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 10. FAQ */}
+      {/* 8. FAQ */}
       <section className="bg-parchment px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[760px]">
           <h2
