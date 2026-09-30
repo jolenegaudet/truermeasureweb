@@ -153,6 +153,10 @@ export const faqs: Faq[] = [
     a: `You are joining early and helping shape what gets built. That means a live onboarding session, a monthly group feedback call for ${FEEDBACK_MONTHS} months, an optional private group, and the Feedback button in the product. Jolène reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
   },
   {
+    q: "How often can I get an updated report?",
+    a: "As often as you like, with one condition: there has to be something new in your child's record since the last one. Add a report card, a photo, an observation, and you can ask for an update. Add nothing and there is nothing new to say, so there is no update to make. There is no monthly allowance and no charge for extra ones.",
+  },
+  {
     q: "Is this suitable if I only have a few records?",
     a: "Yes. You start with whatever you already have, even if that is one report card and a few photos. The account is meant to grow as your child does, so there is no amount you need to gather first.",
   },
