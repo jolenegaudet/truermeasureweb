@@ -10,36 +10,11 @@ import {
   PRICE_USD,
 } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
-
-const moments = [
-  "Before a parent–teacher meeting",
-  "Before applying for a program, team, or scholarship",
-  "When the report card doesn’t match the child you know",
-  "When your kid shines everywhere except on paper",
-  "When confidence drops",
-  "When a hard week starts to feel like a bad year",
-  "When a child says, “I’m not smart.”",
-  "Anytime you need to remember who your child really is.",
-];
+import { SocialLinks } from "@/components/social-links";
 
 export const metadata: Metadata = {
   title: "A Truer Measure",
 };
-
-const qualities = [
-  "Confidence",
-  "Curiosity",
-  "Kindness",
-  "Imagination",
-  "Resilience",
-  "Creativity",
-  "Self-Regulation",
-  "Persistence",
-  "Empathy",
-  "Adaptability",
-  "Critical Thinking",
-  "Purpose",
-];
 
 const roomAccess = [
   "Live Room with Jolene, every week",
@@ -54,52 +29,24 @@ const circleAccess = [
   "A voice in what Truer Measure builds next",
 ];
 
-const contrasts = [
-  {
-    left: "Measures performance.",
-    right: "Sees the person behind the performance.",
-  },
-  {
-    left: "Gives you a snapshot.",
-    right: "Preserves the story.",
-  },
-  {
-    left: "Tells you how your child is doing in school.",
-    right: "Keeps a living account of your child's education, school and beyond.",
-  },
-];
-
 /**
- * Section order, and why it is this order.
+ * Section order, Jolène 30 September 2026.
  *
- * A parent reads down the page asking one question at a time, and each section
- * answers the question the one above it raises:
+ *   1 Hero      the headline and one line
+ *   2 Founder   who is behind it
+ *   3 Tiers     Start with Clarity. Continue with Community. Grow with Proximity.
+ *   4 Social    Instagram, Substack, LinkedIn
  *
- *   1 Hero      the problem
- *   2 Contrast  what a report card leaves out      ← what is this, in 5 seconds
- *   3 Qualities the things it leaves out, named
- *   4 Get       what the membership actually is    ← before any price
- *   5 Moments   when a parent would reach for it   ← desire before price
- *   6 Founder   who is behind it                   ← trust, spent just before the ask
- *   7 Tiers     what it costs
- *
- * Two rules this order exists to protect, so please do not undo them casually:
- *   - No price appears before the product has been explained.
- *   - The two sections that make a parent feel recognised (Contrast, Moments)
- *     sit above the buy button, not below it, where a parent who flinches at
- *     the price would never reach them.
- *
- * Backgrounds alternate blush / ghost so no two touching sections share a
- * ground. Moving a section means checking its neighbours.
+ * The explanation of the Hidden Report Card (the contrast with a report card,
+ * the qualities, what you get, when to pull it up) moved to /hidden-report-card
+ * by her decision, so the home page is the door to the three offers. The
+ * Clarity card's "See what is inside" link is where that explanation now lives.
  */
 export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
-        <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-          Because a report card was never designed to tell the whole story
-        </div>
         <h1
           className="font-heading mb-8 text-bark"
           style={{
@@ -132,198 +79,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Contrast */}
-      <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
-        <div className="mx-auto max-w-[1000px]">
-          <div className="mb-12 text-center md:mb-[60px]">
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(26px,4.6vw,50px)", lineHeight: 1.12 }}
-            >
-              Grades tell a story.
-              <br />
-              They just don&rsquo;t tell the whole story.
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-px border border-grid bg-grid">
-            {contrasts.map(({ left, right }, i) => (
-              <div key={i} className="grid grid-cols-1 bg-blush md:grid-cols-2">
-                <div className="border-b border-grid px-6 py-6 md:border-b-0 md:border-r md:px-9 md:py-[34px]">
-                  <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-faint">
-                    The report card
-                  </div>
-                  <div
-                    className="font-heading text-smoke"
-                    style={{
-                      fontSize: "clamp(19px,2.4vw,25px)",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {left}
-                  </div>
-                </div>
-                <div className="px-6 py-6 md:px-9 md:py-[34px]">
-                  <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-                    The Hidden Report Card
-                  </div>
-                  <div
-                    className="font-heading text-bark"
-                    style={{
-                      fontSize: "clamp(19px,2.4vw,25px)",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {right}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Qualities */}
-      <section className="bg-ghost px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-[1080px]">
-          <div className="mx-auto mb-12 max-w-[640px] text-center md:mb-16">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              THE HIDDEN REPORT CARD - THE TRUER MEASURE OF YOUR CHILD
-            </div>
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{
-                fontSize: "clamp(28px,5vw,54px)",
-                lineHeight: 1.08,
-                margin: 0,
-              }}
-            >
-              None of these receive a grade. Yet, they shape almost everything
-              that matters.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 gap-px border border-grid bg-grid md:grid-cols-3">
-            {qualities.map((word) => (
-              <div
-                key={word}
-                className="flex items-center justify-center bg-ghost px-4 py-8 text-center md:px-8 md:py-[46px]"
-              >
-                <div
-                  className="font-heading font-medium text-bark"
-                  style={{ fontSize: "clamp(22px,3.4vw,40px)" }}
-                >
-                  {word}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p
-            className="mx-auto mt-[54px] text-center text-smoke"
-            style={{ fontSize: 17, lineHeight: 1.7, maxWidth: 620 }}
-          >
-            They show up in patterns, moments, and conversations that go
-            unnoticed, because no one is collecting the data.
-          </p>
-        </div>
-      </section>
-
-      {/* 4. What you actually get.
-          This is now the only place the product is explained. It previously ran
-          three times: a dark "ongoing clarity" band, this section, and again in
-          full beneath the tier cards. The three tellings are merged here,
-          keeping every distinct line, so a parent reads it once and reaches the
-          price already knowing what the price is for. */}
-      <section className="bg-blush px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto max-w-[680px] text-center">
-          <div className="mb-6 text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-            Inside your membership
-          </div>
-          <h2
-            className="font-heading mb-7 font-medium text-bark"
-            style={{ fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1 }}
-          >
-            What you actually get
-          </h2>
-          <p
-            className="font-heading mb-9 italic text-dusk"
-            style={{ fontSize: "clamp(19px,2.4vw,24px)", lineHeight: 1.45 }}
-          >
-            School is part of your child&rsquo;s education. It is not the whole
-            of it.
-          </p>
-
-          <div
-            className="mb-10 flex flex-col gap-6 text-left text-smoke"
-            style={{ fontSize: 17, lineHeight: 1.8 }}
-          >
-            <p>
-              You start by bringing together what already exists: report cards,
-              assessments, teacher comments, your own observations, evidence of
-              learning from all the places your child learns and grows. Truer
-              Measure brings it together and generates the Hidden Report Card.
-            </p>
-            <p>
-              See what it reveals about your child&rsquo;s strengths,
-              capabilities and growth, across experiences, perspectives and
-              years.
-            </p>
-            <p>
-              Then you keep adding: a new report card, a project, something a
-              teacher said, a moment from outside school. Regenerate a new
-              Hidden Report Card whenever you want.
-            </p>
-            <p>
-              It&rsquo;s yours. You decide what goes in, who contributes, and
-              who can see it. It evolves alongside your child.
-            </p>
-          </div>
-
-          <p className="font-heading italic text-dusk" style={{ fontSize: 25 }}>
-            That&rsquo;s the foundation.
-          </p>
-        </div>
-      </section>
-
-      {/* 5. Moments */}
-      <section className="bg-ghost px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto max-w-[1000px]">
-          <div className="mx-auto mb-[60px] max-w-[620px] text-center">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              What it looks like in real life
-            </div>
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
-            >
-              Pull up the Hidden Report Card
-            </h2>
-          </div>
-
-          <div className="flex flex-col">
-            {moments.map((context, i) => (
-              <div
-                key={context}
-                className="border-t border-border px-1 py-7 text-center"
-              >
-                <div
-                  className={
-                    "font-heading text-dusk" +
-                    (i === moments.length - 1 ? " font-semibold" : " italic")
-                  }
-                  style={{ fontSize: "clamp(21px,2.8vw,29px)" }}
-                >
-                  {context}
-                </div>
-              </div>
-            ))}
-            <div className="border-t border-border" />
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Founder */}
+      {/* 2. Founder */}
       <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
           <div className="flex justify-center">
@@ -371,7 +127,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Tiers */}
+      {/* 3. Tiers */}
       <section
         id="tiers"
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
@@ -398,8 +154,8 @@ export default function HomePage() {
                 so the card names the membership and the document keeps its name
                 everywhere it is the document being talked about.
                 One price and one button for this membership, on this card and
-                nowhere else on the page. The full description that used to sit
-                below these cards now lives in "What you actually get", above. */}
+                nowhere else on the page. The full description lives in "What you
+                actually get" on /hidden-report-card. */}
             <div className="flex flex-col">
               <div
                 className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
@@ -539,6 +295,16 @@ export default function HomePage() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 4. Social */}
+      <section className="bg-ghost px-6 py-14 md:px-10 md:py-[72px]">
+        <div className="mx-auto max-w-[760px] text-center">
+          <div className="mb-8 text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            Follow along
+          </div>
+          <SocialLinks />
         </div>
       </section>
     </>
