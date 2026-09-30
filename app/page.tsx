@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import {
+  CHECKOUT_URL,
   FOUNDERS_ENDS_AT,
   FOUNDERS_ENDS_LABEL,
   FOUNDERS_USD,
@@ -451,11 +452,19 @@ export default function HomePage() {
                   Billed monthly. We email you before the price changes.
                   Cancel any time, and you keep the month you have paid for.
                 </p>
-                <Link
-                  href="/hidden-report-card"
+                <a
+                  href={CHECKOUT_URL}
                   className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                 >
-                  Explore the offer
+                  Start here
+                </a>
+                {/* The product page is the second door, not the first. Start
+                    Here has to reach a checkout, not another page to read. */}
+                <Link
+                  href="/hidden-report-card"
+                  className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.14em] text-muted no-underline hover:text-parchment"
+                >
+                  See what is inside
                 </Link>
               </div>
             </div>

@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { href: "/#tiers", label: "Start Here" },
+  { href: "/hidden-report-card", label: "The Hidden Report Card" },
   { href: "/learn", label: "Learn From The Room" },
   { href: "/inner-circle", label: "Be Part of the Inner Circle" },
 ];
