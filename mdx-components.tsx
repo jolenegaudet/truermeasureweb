@@ -54,6 +54,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </blockquote>
     ),
     hr: () => <hr className="my-12 border-border" />,
+    // The legal documents' price tables.
+    table: ({ children }) => (
+      <div className="mb-6 overflow-x-auto">
+        <table className="w-full border-collapse text-left text-smoke" style={{ fontSize: 15.5, lineHeight: 1.6 }}>
+          {children}
+        </table>
+      </div>
+    ),
+    th: ({ children }) => <th className="border-b border-border px-3 py-2 font-semibold text-bark">{children}</th>,
+    td: ({ children }) => <td className="border-b border-border px-3 py-2 align-top">{children}</td>,
     ...components,
   };
 }
