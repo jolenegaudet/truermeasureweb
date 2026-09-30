@@ -50,11 +50,17 @@ export const STANDARD_LIST = list((p) => p.standard);
  *   code    FOUNDINGFAMILY (max 50), prefilled by the URL so nobody types it
  *   link    plink_1ULPkTAJm8m0sW6oRUgngR3U, automatic tax on, closes after 50
  *           completed checkouts (restrictions.completed_sessions.limit)
- * The old FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) charges the
- * old prices and is switched off once this site is published.
+ * The old FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) was switched off.
+ *
+ * v2, 30 September 2026 (EU rules): price price_1ULR… "founding_families_monthly_v2"
+ * with the euro amount VAT-inclusive (CA$ and US$ still tax-exclusive), and
+ * link buy.stripe.com/28EeVc1Eh8Vf8YH6o8e7m0a: same cap of 50, same coupon and
+ * code, plus a required "Start my access right away" field recording the
+ * express request EU law needs for access within the 14-day withdrawal period.
+ * The v1 link (cNidR8er…m09) is switched off when this is published.
  */
 export const CHECKOUT_URL: string =
-  "https://buy.stripe.com/cNidR8er37Rbej18wge7m09?prefilled_promo_code=FOUNDINGFAMILY";
+  "https://buy.stripe.com/28EeVc1Eh8Vf8YH6o8e7m0a?prefilled_promo_code=FOUNDINGFAMILY";
 export const checkoutReady = CHECKOUT_URL !== "";
 
 /**
