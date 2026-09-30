@@ -1,0 +1,66 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Truer Measure//Founding rate//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:founding-rate-notice-2027@truermeasure.com
+DTSTAMP:20260929T210000Z
+DTSTART:20270601T120000Z
+DTEND:20270601T123000Z
+SUMMARY:Email founding families: price changes 1 July
+DESCRIPTION:The site promises notice before the founding rate ends.\n\nEve
+ ry founding family goes from US$47 to US$67 a month on 1 July 2027\, whic
+ hever month they joined.\n\nWho to email: double-click C:\\Users\\Visio\\
+ repos\\truermeasure\\web\\scripts\\Who is a member.cmd\nIt lists every me
+ mber and what they pay.\n\nSend the notice now. Ending the rate is the se
+ parate reminder on 1 July.
+PRIORITY:2
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:In a week: email founding families about the 1 July change
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Email founding families today. The price changes 1 July.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:founding-rate-ends-2027@truermeasure.com
+DTSTAMP:20260929T210000Z
+DTSTART:20270701T120000Z
+DTEND:20270701T123000Z
+SUMMARY:END THE FOUNDING RATE: run End founders rate.cmd
+DESCRIPTION:Founding families are on US$47 a month until 30 June 2027\, an
+ d US$67 from today.\n\nStripe will NOT do this by itself. The founding co
+ upon has no end date\, because Stripe can only count months from each mem
+ ber's own start date\, never to a fixed calendar date.\n\nIF THIS IS NOT 
+ RUN\, EVERY FOUNDING FAMILY STAYS AT US$47 INDEFINITELY.\n\nWHAT TO DO\n1
+ . Open C:\\Users\\Visio\\repos\\truermeasure\\web\\scripts\n2. Double-cli
+ ck: End founders rate.cmd\n   That is the dry run. It changes nothing and
+  shows who is affected.\n3. If the list looks right\, run it for real and
+  type END when asked.\n\nIt refuses to run before today\, asks whether yo
+ u have emailed members\, leaves EARLY100 families alone because their dis
+ count is permanent\, and counts subscriptions before and after to show no
+ body was cancelled.\n\nStripe coupon 7kTcuAi4. Code FOUNDING47 stops bein
+ g redeemable today.
+PRIORITY:1
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:In a month the founding rate ends. Give members notice.
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:In a week: end the founding rate. US$47 goes to US$67.
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:TODAY: run End founders rate.cmd\, or everyone stays at US$47.
+END:VALARM
+END:VEVENT
+END:VCALENDAR
