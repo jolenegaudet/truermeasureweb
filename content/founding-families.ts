@@ -1,102 +1,61 @@
 /**
- * PROPOSED TERMS FOR THE FOUNDING FAMILIES PREVIEW.
+ * THE FOUNDING FAMILIES OFFER. Every number and promise about it on the site
+ * comes from this one file.
  *
- * Every number and promise on the A Truer Measure page comes from this one
- * file, so the terms can be revised without touching page markup.
+ * Jolene's ruling, 30 September 2026, replacing the 29 September offer
+ * (US$47 until 30 June 2027, then US$67, charged in USD only):
  *
- * CONFIRMED by Jolene on 29 September 2026 and published: the price, the
- * founders rate and its length, cancellation, retention, export and deletion.
- * Nothing carries a `toConfirm` chip any more. The mechanism stays, so a future
- * unanswered question can be marked rather than guessed at.
+ *   - Founding Families, limited to the first 50 families. No closing date,
+ *     and no places-left counter on the site (she handles that on social).
+ *   - First 3 monthly payments: CA$39 / US$27 / EUR23. Counted from each
+ *     family's own start date, which Stripe does natively (a coupon that
+ *     repeats for 3 months), so the page and the billing cannot drift apart.
+ *   - Then CA$59 / US$42 / EUR35 a month.
+ *   - Charged in the family's currency, not converted from USD.
+ *   - Tax added on top at checkout ("plus applicable taxes"). How it is
+ *     calculated is an accountant question, still open.
+ *   - The Feedback button is included for the first 3 months.
  *
- * Deliberately absent, because the brief ruled them out:
- *   no family cap, no enrolment deadline, no remaining-places counter, no
- *   countdown, no future regular price, no discount percentage, and no promise
- *   of unlimited uploads, storage, questions or report generation.
+ * The Terms of Service draft (app repo, legal/terms-of-service.md section 2)
+ * was rewritten the same day to match.
  *
- * FOUNDER'S RULING: US$79 a month REPLACES the US$597 annual membership. The
- * annual price is to be archived and its payment link deactivated once the
- * monthly one works, and FOUNDING40 retires with it. The one existing annual
- * subscriber keeps paying US$597 a year until they cancel, which is what Stripe
- * does with a subscription when its price is archived, and is correct.
- *
- * There is still no US$79 monthly price in Stripe, so `checkoutReady` stays
- * false and nothing here is wired to the annual checkout. Two scripts do the
- * switch in the order that cannot strand the site with nothing to sell:
- *
- *   scripts/new-monthly-price.ps1     creates the monthly price and its link
- *   scripts/retire-annual-price.ps1   takes the annual one down, and refuses
- *                                     to run until the monthly one is live
+ * STRIPE IS NOT CONFIGURED FOR THIS YET. The live account still sells the old
+ * offer (US$67 price, FOUNDING47). Until the new multi-currency price, the
+ * 3-month coupon and a link capped at 50 exist, `checkoutReady` is false and
+ * no button on the site opens a checkout. Publish the site and the new
+ * checkout together, never the site first.
  */
 
-/** The standing price. What a member pays once the founders rate runs out. */
-export const PRICE_USD = 67;
-export const PRICE_PERIOD = "month";
 export const PRICE_SCOPE = "one child";
 
-/**
- * The founders rate. It runs to a fixed date, the same date for everyone,
- * rather than for a number of months counted from each member's own start.
- *
- * Jolene's ruling, 29 September 2026: US$47 until 30 June 2027, then US$67,
- * for every founding family at once, whenever they joined.
- *
- * Stripe cannot express that. A coupon's duration is always measured from the
- * subscriber's start date, so "repeating, 9 months" would run into March 2028
- * for someone joining in June 2027. The founding coupon is therefore `forever`
- * and is removed from every subscription on the day by
- * scripts/end-founders-rate.ps1. That script is the second half of this
- * promise: without it, every founding family stays at US$47 indefinitely.
- */
-export const FOUNDERS_USD = 47;
+/** Places at the introductory rate. Enforced by the checkout link, not here. */
+export const FOUNDING_CAP = 50;
+
+/** Monthly payments at the introductory rate, from each family's own start. */
+export const INTRO_MONTHS = 3;
+
+export type Price = { code: "CAD" | "USD" | "EUR"; symbol: string; intro: number; standard: number };
+
+/** Canadian first: most of the audience is in New Brunswick. */
+export const prices: Price[] = [
+  { code: "CAD", symbol: "CA$", intro: 39, standard: 59 },
+  { code: "USD", symbol: "US$", intro: 27, standard: 42 },
+  { code: "EUR", symbol: "€", intro: 23, standard: 35 },
+];
+
+const list = (pick: (p: Price) => number) => prices.map((p) => `${p.symbol}${pick(p)}`).join(" / ");
+export const INTRO_LIST = list((p) => p.intro);
+export const STANDARD_LIST = list((p) => p.standard);
 
 /**
- * When the founding offer closes to new members. Jolene's ruling, 29 September
- * 2026: end of 30 June 2027, Atlantic time, which is 1 July 2027 03:00 UTC.
- *
- * This is a closing date, not a deadline on anybody's discount. A parent who
- * joins on 30 June 2027 still gets her own nine months at US$47, running to
- * March 2028. A parent who arrives on 1 July 2027 pays US$67 from the start.
- *
- * FOUNDING47 in Stripe carries the same instant as `expires_at`, so the code
- * stops working on its own. The site stops advertising US$47 on its own too,
- * because this is passed to PriceInYourCurrency. What does NOT happen on its
- * own is existing members moving to US$67: run End founders rate.cmd that day.
+ * The checkout for the NEW offer. Empty until it exists in Stripe; the old
+ * FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) must not be used
+ * again, because it charges the old prices.
  */
-export const FOUNDERS_ENDS_AT = Date.UTC(2027, 6, 1, 3, 0, 0);
-export const FOUNDERS_ENDS_LABEL = "30 June 2027";
-
-/**
- * Live in Stripe as of 29 September 2026:
- *   product  prod_VLrZW1KcxNpyFR
- *   price    price_1ULA3DAJm8m0sW6o32xEAJ4i   US$67/month, tax exclusive
- *   coupon   dJ8nAmyA                         US$20 off, repeating, 9 months
- *   code     FOUNDING47                       uncapped
- *   link     plink_1ULA3DAJm8m0sW6o5xw2NhQy
- *
- * The standing price is US$67 rather than US$79 so that it stays under CA$100
- * a month. At 1.4161 that is about CA$95, and the dollar would have to reach
- * 1.4925 before it crossed CA$100. If it ever does, this number moves, not the
- * promise on the page.
- *
- * A first US$79 set (price_1UL9q5, coupon ZsoMprUb, link plink_1UL9q5) was
- * created and then archived the same day, before anyone bought anything. It is
- * inactive in Stripe and nothing points at it.
- *
- * The URL carries prefilled_promo_code so a parent never types the code. The
- * discount is a repeating coupon rather than a second price, so Stripe steps
- * the subscription up to US$79 on the tenth invoice by itself. Nobody has to
- * migrate anyone and nobody has to remember.
- */
-export const CHECKOUT_URL =
-  "https://buy.stripe.com/dRmfZg96J6N75MvaEoe7m08?prefilled_promo_code=FOUNDING47";
-
-export const checkoutReady = true;
+export const CHECKOUT_URL = "";
+export const checkoutReady = CHECKOUT_URL !== "";
 
 export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
-
-/** Months the founding feedback period runs for. */
-export const FEEDBACK_MONTHS = 3;
 
 /**
  * How long a child's record is kept after a membership ends, before it is
@@ -105,16 +64,16 @@ export const FEEDBACK_MONTHS = 3;
  */
 export const RETENTION_AFTER_END = "a year";
 
+/** Jolene's wording, 30 September 2026. */
+export const offerNote =
+  "You’re joining early, so you get an introductory rate and a direct line to tell us what to build next.";
+
 export const billingTerms: string[] = [
-  `US$${FOUNDERS_USD} a month until ${FOUNDERS_ENDS_LABEL}, for ${PRICE_SCOPE}. Join any time before then.`,
-  `US$${PRICE_USD} a month from 1 July 2027, whichever month you joined. We email you before it changes.`,
+  `Then ${STANDARD_LIST} per month, plus applicable taxes.`,
   "Billed monthly. Cancel any time. You keep the month you have paid for.",
 ];
 
-/** What a founding family gets, and for how long.
- * The monthly feedback call and the private feedback group were taken off the
- * page by Jolene on 30 September 2026. The FAQ answers below still mention
- * them; revise those before the FAQ goes back on the page. */
+/** What a founding family gets, and for how long. */
 export const foundingIncludes: { what: string; howLong: string }[] = [
   {
     what: "One recorded onboarding session",
@@ -122,7 +81,7 @@ export const foundingIncludes: { what: string; howLong: string }[] = [
   },
   {
     what: "The Feedback button inside the product",
-    howLong: "Until the end of June 2027",
+    howLong: `For the first ${INTRO_MONTHS} months`,
   },
   {
     what: "The Hidden Report Card™ platform and dashboard",
@@ -131,21 +90,20 @@ export const foundingIncludes: { what: string; howLong: string }[] = [
 ];
 
 /**
- * Questions whose honest answer depends on a policy that does not exist yet.
- * These render with a visible chip in the preview. They must be answered or
- * removed before this page is published: guessing at a retention or deletion
- * policy for children's records is the one thing this page must not do.
+ * The FAQ. OFF THE PAGE since 30 September 2026, until Jolene decides what it
+ * says. The price answers were brought in line with the new offer the same
+ * day so nothing here is stale when it returns; she has not reviewed them.
  */
 export type Faq = { q: string; a: string; toConfirm?: boolean };
 
 export const faqs: Faq[] = [
   {
     q: "What am I paying for?",
-    a: `Access to A Truer Measure for ${PRICE_SCOPE}, at US$${FOUNDERS_USD} a month until ${FOUNDERS_ENDS_LABEL} and US$${PRICE_USD} a month after: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
+    a: `Access to A Truer Measure for ${PRICE_SCOPE}, at ${INTRO_LIST} a month for your first ${INTRO_MONTHS} months and ${STANDARD_LIST} a month after, plus applicable taxes: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
   },
   {
     q: "What does being a founding family involve?",
-    a: `You are joining early and helping shape what gets built. That means a live onboarding session, a monthly group feedback call for ${FEEDBACK_MONTHS} months, an optional private group, and the Feedback button in the product. Jolene reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
+    a: `You are joining early and helping shape what gets built. That means a recorded onboarding session, and the Feedback button in the product for your first ${INTRO_MONTHS} months. Jolene reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
   },
   {
     q: "How often can I get an updated report?",
@@ -161,19 +119,15 @@ export const faqs: Faq[] = [
   },
   {
     q: "Is the price per child or per family?",
-    a: `US$${FOUNDERS_USD} a month covers ${PRICE_SCOPE}, and so does US$${PRICE_USD} a month after the founders rate ends.`,
+    a: `${INTRO_LIST} a month covers ${PRICE_SCOPE}, and so does ${STANDARD_LIST} a month after your first ${INTRO_MONTHS} months.`,
   },
   {
-    q: "What happens on 1 July 2027?",
-    a: `Your first payment on or after that date is US$${PRICE_USD}, and every one after it. The same date for every founding family, whichever month you joined, so joining earlier means longer at US$${FOUNDERS_USD}. Nothing else changes and you do not have to do anything. We email you before it happens.`,
+    q: `What happens after my first ${INTRO_MONTHS} months?`,
+    a: `Your next payment is at the standard price, ${STANDARD_LIST} a month plus applicable taxes, and so is every one after it. Nothing else changes and you do not have to do anything. We email you before it happens.`,
   },
   {
     q: "Does this include Learn From The Room or Inner Circle?",
     a: "No. Those are separate, and joining as a founding family does not include either of them.",
-  },
-  {
-    q: `What happens after the ${FEEDBACK_MONTHS} month feedback period?`,
-    a: `Your membership carries on as normal. The founding calls and the private group are part of the feedback period and end with it. The product itself, and your child's record inside it, do not change.`,
   },
   {
     // Jolene's wording, 29 September 2026: cancel any time, but the month

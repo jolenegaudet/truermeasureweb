@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PriceInYourCurrency } from "@/components/price-in-your-currency";
+import { OfferPrice } from "@/components/offer-price";
 import {
   CHECKOUT_URL,
-  FOUNDERS_ENDS_AT,
-  FOUNDERS_ENDS_LABEL,
-  FOUNDERS_USD,
-  PRICE_USD,
+  FOUNDING_CAP,
+  STANDARD_LIST,
+  checkoutReady,
 } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
 import { SocialLinks } from "@/components/social-links";
@@ -170,15 +169,15 @@ export default function HomePage() {
                 >
                   More than a grade to speak for your child.
                 </p>
-                {/* The amount comes from content/founding-families.ts, which is
-                    the one place the proposed offer is defined. */}
-                <PriceInYourCurrency
-                  amountUSD={FOUNDERS_USD}
-                  unit={`per month until ${FOUNDERS_ENDS_LABEL}`}
-                  thenUSD={PRICE_USD}
-                  thenUnit="a month from 1 July 2027"
-                  offerEndsAt={FOUNDERS_ENDS_AT}
-                />
+                {/* Amounts come from content/founding-families.ts, the one
+                    place the offer is defined. */}
+                <div className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose-dark">
+                  Limited to {FOUNDING_CAP} families
+                </div>
+                <OfferPrice />
+                <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+                  Then {STANDARD_LIST} per month, plus applicable taxes.
+                </p>
                 <p
                   className="mt-5 text-muted"
                   style={{ fontSize: 13, lineHeight: 1.7 }}
@@ -187,9 +186,9 @@ export default function HomePage() {
                 </p>
                 <div className="flex-1" />
                 {/* Compliance spec §5.1 keeps the billing terms immediately
-                    above the CTA. This CTA opens the offer page rather than a
-                    checkout: there is no monthly price in Stripe, and it must
-                    never be pointed at the annual membership link. */}
+                    above the CTA. Start here opens the checkout once the new
+                    offer exists in Stripe; until then it opens the offer on
+                    the product page. */}
                 <p
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
@@ -198,7 +197,7 @@ export default function HomePage() {
                   paid for.
                 </p>
                 <a
-                  href={CHECKOUT_URL}
+                  href={checkoutReady ? CHECKOUT_URL : "/hidden-report-card#founding"}
                   className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                 >
                   Start here

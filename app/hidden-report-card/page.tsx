@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import { PriceInYourCurrency } from "@/components/price-in-your-currency";
+import { OfferPrice } from "@/components/offer-price";
 import {
   CHECKOUT_URL,
-  FOUNDERS_ENDS_AT,
-  FOUNDERS_ENDS_LABEL,
-  FOUNDERS_USD,
+  FOUNDING_CAP,
   PRICE_SCOPE,
-  PRICE_USD,
   billingTerms,
   checkoutReady,
   foundingIncludes,
+  offerNote,
 } from "@/content/founding-families";
 
 export const metadata: Metadata = {
@@ -31,12 +29,8 @@ export const metadata: Metadata = {
  * /hidden-report-card path, which is the phrase a parent is most likely to
  * search for, but the product is named A Truer Measure on the page itself.
  *
- * PREVIEW ONLY. Nothing on this page can be bought. There is no US$79 monthly
- * price in Stripe: the only recurring price on the account is the US$597 annual
- * membership, and this offer must not be wired to it. The buy control stays
- * disabled until a monthly price and payment link exist, at which point
- * `checkoutReady` in content/founding-families.ts flips to true and the href
- * goes in beside it.
+ * The buy button stays disabled ("Opening soon") until the new offer's checkout
+ * exists in Stripe and CHECKOUT_URL in content/founding-families.ts is set.
  *
  * Every number and term comes from content/founding-families.ts so the offer
  * can be revised in one place. The FAQ is off the page until Jolene decides
@@ -410,16 +404,12 @@ export default function HiddenReportCardPage() {
           </div>
 
           <div className="mx-auto max-w-[520px] border border-charcoal px-8 py-10 text-center md:px-11 md:py-12">
-            <PriceInYourCurrency
-              amountUSD={FOUNDERS_USD}
-              unit={`per month until ${FOUNDERS_ENDS_LABEL}`}
-              thenUSD={PRICE_USD}
-              thenUnit="a month from 1 July 2027"
-              offerEndsAt={FOUNDERS_ENDS_AT}
-              tone="dark"
-            />
+            <div className="mb-6 text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
+              Limited to {FOUNDING_CAP} families
+            </div>
+            <OfferPrice />
 
-            <p className="mt-3 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
+            <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
               For {PRICE_SCOPE}.
             </p>
 
@@ -432,6 +422,10 @@ export default function HiddenReportCardPage() {
               ))}
             </ul>
 
+            <p className="mt-6 text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
+              {offerNote}
+            </p>
+
             <div className="mt-8 border-t border-charcoal pt-8">
               {checkoutReady ? (
                 <>
@@ -441,15 +435,12 @@ export default function HiddenReportCardPage() {
                   >
                     Join as a Founding Family
                   </a>
-                  {/* The URL carries prefilled_promo_code, so the founders rate
-                      is already applied when the Stripe page opens and nobody
-                      has to remember a code. */}
                   <p
                     className="mt-4 text-subdued"
                     style={{ fontSize: 12.5, lineHeight: 1.65 }}
                   >
-                    The founders rate is applied for you. There is no code to
-                    enter.
+                    The introductory rate is applied for you. There is no code
+                    to enter.
                   </p>
                 </>
               ) : (
@@ -465,8 +456,7 @@ export default function HiddenReportCardPage() {
                     className="mt-4 text-subdued"
                     style={{ fontSize: 12.5, lineHeight: 1.65 }}
                   >
-                    Disabled until a monthly price exists in Stripe. This button
-                    will never be pointed at the annual membership checkout.
+                    Opening soon.
                   </p>
                 </>
               )}
