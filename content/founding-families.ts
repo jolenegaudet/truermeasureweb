@@ -111,19 +111,14 @@ export const billingTerms: string[] = [
   "Billed monthly. Cancel any time. You keep the month you have paid for, and you are not billed again.",
 ];
 
-/** What a founding family gets for the feedback period, and for how long. */
+/** What a founding family gets, and for how long.
+ * The monthly feedback call and the private feedback group were taken off the
+ * page by Jolène on 30 September 2026. The FAQ answers below still mention
+ * them; revise those before the FAQ goes back on the page. */
 export const foundingIncludes: { what: string; howLong: string }[] = [
   {
     what: "One live onboarding session, with a recording",
     howLong: "Once, when you join",
-  },
-  {
-    what: "One group product feedback call each month",
-    howLong: `During the ${FEEDBACK_MONTHS} month feedback period`,
-  },
-  {
-    what: "An optional private feedback group",
-    howLong: `During the ${FEEDBACK_MONTHS} month feedback period`,
   },
   {
     what: "The Feedback button inside the product",

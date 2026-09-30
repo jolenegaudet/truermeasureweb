@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import {
   CHECKOUT_URL,
-  FEEDBACK_MONTHS,
   FOUNDERS_ENDS_AT,
   FOUNDERS_ENDS_LABEL,
   FOUNDERS_USD,
@@ -12,7 +10,6 @@ import {
   PRICE_USD,
   billingTerms,
   checkoutReady,
-  faqs,
   foundingIncludes,
 } from "@/content/founding-families";
 
@@ -42,8 +39,9 @@ export const metadata: Metadata = {
  * goes in beside it.
  *
  * Every number and term comes from content/founding-families.ts so the offer
- * can be revised in one place. Answers that depend on a policy Truer Measure
- * has not written yet carry a visible chip rather than an invented answer.
+ * can be revised in one place. The FAQ is off the page until Jolène decides
+ * what it says (30 September 2026); its answers stay in that file. Nothing on
+ * this page mentions the demo for now, by her decision.
  */
 
 const contrasts = [
@@ -114,14 +112,6 @@ const experience = [
   },
 ];
 
-function ToConfirm() {
-  return (
-    <span className="ml-2 inline-block rounded-[2px] border border-rose px-2 py-[2px] align-middle text-[10px] font-semibold uppercase tracking-[0.14em] text-rose">
-      Needs your decision
-    </span>
-  );
-}
-
 export default function HiddenReportCardPage() {
   return (
     <>
@@ -133,15 +123,15 @@ export default function HiddenReportCardPage() {
 
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
-        <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
+        <div className="mb-[30px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
           Because a report card was never designed to tell the whole story
         </div>
         <h1
           className="font-heading mb-8 text-bark"
           style={{
-            fontSize: "clamp(30px,4.4vw,48px)",
+            fontSize: "clamp(38px,5.6vw,64px)",
             fontWeight: 500,
-            lineHeight: 1.1,
+            lineHeight: 1.06,
             letterSpacing: "-0.005em",
           }}
         >
@@ -150,9 +140,9 @@ export default function HiddenReportCardPage() {
         <p
           className="font-heading mx-auto mb-10 italic text-dusk"
           style={{
-            fontSize: "clamp(22px,3.2vw,30px)",
-            lineHeight: 1.45,
-            maxWidth: 680,
+            fontSize: "clamp(18px,2.2vw,23px)",
+            lineHeight: 1.5,
+            maxWidth: 620,
           }}
         >
           A report card measures your child against a limited set of standards.
@@ -529,48 +519,7 @@ export default function HiddenReportCardPage() {
                 every suggestion becomes a feature. Jolène reads what founding
                 families send, and decides what gets built.
               </p>
-              <p>
-                After the {FEEDBACK_MONTHS} month feedback period the membership
-                carries on. The founding calls and the private group end with the
-                feedback period.
-              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. FAQ */}
-      <section className="bg-parchment px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto max-w-[760px]">
-          <h2
-            className="font-heading mb-12 text-center font-medium text-bark md:mb-16"
-            style={{ fontSize: "clamp(28px,5vw,50px)", lineHeight: 1.08 }}
-          >
-            Questions.
-          </h2>
-
-          <dl className="flex flex-col">
-            {faqs.map(({ q, a, toConfirm }) => (
-              <div key={q} className="border-t border-border py-7">
-                <dt className="font-heading mb-3 text-[22px] text-bark">
-                  {q}
-                  {toConfirm ? <ToConfirm /> : null}
-                </dt>
-                <dd className="text-smoke" style={{ fontSize: 16, lineHeight: 1.75 }}>
-                  {a}
-                </dd>
-              </div>
-            ))}
-            <div className="border-t border-border" />
-          </dl>
-
-          <div className="mt-14 border-t border-border pt-10 text-center">
-            <Link
-              href="/"
-              className="text-[13px] font-semibold uppercase tracking-[0.14em] text-rose transition-colors hover:text-bark"
-            >
-              ← Back
-            </Link>
           </div>
         </div>
       </section>
