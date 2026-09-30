@@ -4,7 +4,7 @@
  * Every number and promise on the A Truer Measure page comes from this one
  * file, so the terms can be revised without touching page markup.
  *
- * CONFIRMED by Jolène on 29 September 2026 and published: the price, the
+ * CONFIRMED by Jolene on 29 September 2026 and published: the price, the
  * founders rate and its length, cancellation, retention, export and deletion.
  * Nothing carries a `toConfirm` chip any more. The mechanism stays, so a future
  * unanswered question can be marked rather than guessed at.
@@ -38,7 +38,7 @@ export const PRICE_SCOPE = "one child";
  * The founders rate. It runs to a fixed date, the same date for everyone,
  * rather than for a number of months counted from each member's own start.
  *
- * Jolène's ruling, 29 September 2026: US$47 until 30 June 2027, then US$67,
+ * Jolene's ruling, 29 September 2026: US$47 until 30 June 2027, then US$67,
  * for every founding family at once, whenever they joined.
  *
  * Stripe cannot express that. A coupon's duration is always measured from the
@@ -51,7 +51,7 @@ export const PRICE_SCOPE = "one child";
 export const FOUNDERS_USD = 47;
 
 /**
- * When the founding offer closes to new members. Jolène's ruling, 29 September
+ * When the founding offer closes to new members. Jolene's ruling, 29 September
  * 2026: end of 30 June 2027, Atlantic time, which is 1 July 2027 03:00 UTC.
  *
  * This is a closing date, not a deadline on anybody's discount. A parent who
@@ -108,24 +108,24 @@ export const RETENTION_AFTER_END = "a year";
 export const billingTerms: string[] = [
   `US$${FOUNDERS_USD} a month until ${FOUNDERS_ENDS_LABEL}, for ${PRICE_SCOPE}. Join any time before then.`,
   `US$${PRICE_USD} a month from 1 July 2027, whichever month you joined. We email you before it changes.`,
-  "Billed monthly. Cancel any time. You keep the month you have paid for, and you are not billed again.",
+  "Billed monthly. Cancel any time. You keep the month you have paid for.",
 ];
 
 /** What a founding family gets, and for how long.
  * The monthly feedback call and the private feedback group were taken off the
- * page by Jolène on 30 September 2026. The FAQ answers below still mention
+ * page by Jolene on 30 September 2026. The FAQ answers below still mention
  * them; revise those before the FAQ goes back on the page. */
 export const foundingIncludes: { what: string; howLong: string }[] = [
   {
-    what: "One live onboarding session, with a recording",
+    what: "One recorded onboarding session",
     howLong: "Once, when you join",
   },
   {
     what: "The Feedback button inside the product",
-    howLong: "For as long as you are a member",
+    howLong: "Until the end of June 2027",
   },
   {
-    what: "Access to Truer Measure and your child’s record",
+    what: "The Hidden Report Card™ platform and dashboard",
     howLong: "For as long as you are a member",
   },
 ];
@@ -145,7 +145,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does being a founding family involve?",
-    a: `You are joining early and helping shape what gets built. That means a live onboarding session, a monthly group feedback call for ${FEEDBACK_MONTHS} months, an optional private group, and the Feedback button in the product. Jolène reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
+    a: `You are joining early and helping shape what gets built. That means a live onboarding session, a monthly group feedback call for ${FEEDBACK_MONTHS} months, an optional private group, and the Feedback button in the product. Jolene reads what founding families send. Not every suggestion will be built, and this is not individual consulting.`,
   },
   {
     q: "How often can I get an updated report?",
@@ -176,7 +176,7 @@ export const faqs: Faq[] = [
     a: `Your membership carries on as normal. The founding calls and the private group are part of the feedback period and end with it. The product itself, and your child's record inside it, do not change.`,
   },
   {
-    // Jolène's wording, 29 September 2026: cancel any time, but the month
+    // Jolene's wording, 29 September 2026: cancel any time, but the month
     // already paid for is not refunded.
     //
     // There is no Stripe customer portal on this account, so a parent cannot

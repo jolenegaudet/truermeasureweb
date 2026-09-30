@@ -39,7 +39,7 @@ export const metadata: Metadata = {
  * goes in beside it.
  *
  * Every number and term comes from content/founding-families.ts so the offer
- * can be revised in one place. The FAQ is off the page until Jolène decides
+ * can be revised in one place. The FAQ is off the page until Jolene decides
  * what it says (30 September 2026); its answers stay in that file. Nothing on
  * this page mentions the demo for now, by her decision.
  */
@@ -82,7 +82,7 @@ const moments = [
   "When you notice something about your child you don’t want to forget",
 ];
 
-// Jolène's wording, 30 September 2026.
+// Jolene's wording, 30 September 2026.
 const experience = [
   {
     feature: "My Child",
@@ -117,7 +117,7 @@ export default function HiddenReportCardPage() {
   return (
     <>
       {/* 1. Hero, 2. Contrast, 3. Qualities, 4. What you actually get,
-          5. Moments: moved here from the home page, in Jolène's wording of
+          5. Moments: moved here from the home page, in Jolene's wording of
           30 September 2026. They replace this page's earlier hero and its
           "How to start" section, which said the same things. "What it does for you"
           was removed the same day: its cards repeated "What you actually get". */}
@@ -273,9 +273,6 @@ export default function HiddenReportCardPage() {
       {/* 4. What you actually get */}
       <section className="bg-blush px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[680px] text-center">
-          <div className="mb-6 text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-            Inside your membership
-          </div>
           <h2
             className="font-heading mb-7 font-medium text-bark"
             style={{ fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1 }}
@@ -510,7 +507,7 @@ export default function HiddenReportCardPage() {
               </p>
               <p>
                 It is not individual consulting, and it is not a promise that
-                every suggestion becomes a feature. Jolène reads what founding
+                every suggestion becomes a feature. Jolene reads what founding
                 families send, and decides what gets built.
               </p>
             </div>
