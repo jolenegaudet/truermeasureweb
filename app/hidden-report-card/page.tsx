@@ -6,7 +6,7 @@ import {
   DEMO_URL,
   FEEDBACK_MONTHS,
   FOUNDERS_ENDS_AT,
-  FOUNDERS_MONTHS,
+  FOUNDERS_ENDS_LABEL,
   FOUNDERS_USD,
   PRICE_SCOPE,
   PRICE_USD,
@@ -397,9 +397,9 @@ export default function HiddenReportCardPage() {
           <div className="mx-auto max-w-[520px] border border-charcoal px-8 py-10 text-center md:px-11 md:py-12">
             <PriceInYourCurrency
               amountUSD={FOUNDERS_USD}
-              unit={`per month for your first ${FOUNDERS_MONTHS} months`}
+              unit={`per month until ${FOUNDERS_ENDS_LABEL}`}
               thenUSD={PRICE_USD}
-              thenUnit="a month after that"
+              thenUnit="a month from 1 July 2027"
               offerEndsAt={FOUNDERS_ENDS_AT}
               tone="dark"
             />

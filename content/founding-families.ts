@@ -34,9 +34,21 @@ export const PRICE_USD = 67;
 export const PRICE_PERIOD = "month";
 export const PRICE_SCOPE = "one child";
 
-/** The founders rate, and how long it lasts. */
+/**
+ * The founders rate. It runs to a fixed date, the same date for everyone,
+ * rather than for a number of months counted from each member's own start.
+ *
+ * Jolène's ruling, 29 September 2026: US$47 until 30 June 2027, then US$67,
+ * for every founding family at once, whenever they joined.
+ *
+ * Stripe cannot express that. A coupon's duration is always measured from the
+ * subscriber's start date, so "repeating, 9 months" would run into March 2028
+ * for someone joining in June 2027. The founding coupon is therefore `forever`
+ * and is removed from every subscription on the day by
+ * scripts/end-founders-rate.ps1. That script is the second half of this
+ * promise: without it, every founding family stays at US$47 indefinitely.
+ */
 export const FOUNDERS_USD = 47;
-export const FOUNDERS_MONTHS = 9;
 
 /**
  * When the founding offer closes to new members. Jolène's ruling, 29 September
@@ -47,10 +59,9 @@ export const FOUNDERS_MONTHS = 9;
  * March 2028. A parent who arrives on 1 July 2027 pays US$67 from the start.
  *
  * FOUNDING47 in Stripe carries the same instant as `expires_at`, so the code
- * stops working on its own. The site must stop advertising US$47 on its own
- * too, which is what passing this to PriceInYourCurrency does: after the date
- * it shows the standing price and drops the founders framing, without anyone
- * having to remember to redeploy.
+ * stops working on its own. The site stops advertising US$47 on its own too,
+ * because this is passed to PriceInYourCurrency. What does NOT happen on its
+ * own is existing members moving to US$67: run End founders rate.cmd that day.
  */
 export const FOUNDERS_ENDS_AT = Date.UTC(2027, 6, 1, 3, 0, 0);
 export const FOUNDERS_ENDS_LABEL = "30 June 2027";
@@ -95,10 +106,9 @@ export const FEEDBACK_MONTHS = 3;
 export const RETENTION_AFTER_END = "a year";
 
 export const billingTerms: string[] = [
-  `US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months, for ${PRICE_SCOPE}.`,
-  `US$${PRICE_USD} a month after that. The change happens on its own, and we email you before it does.`,
+  `US$${FOUNDERS_USD} a month until ${FOUNDERS_ENDS_LABEL}, for ${PRICE_SCOPE}. Join any time before then.`,
+  `US$${PRICE_USD} a month from 1 July 2027, whichever month you joined. We email you before it changes.`,
   "Billed monthly. Cancel any time. You keep the month you have paid for, and you are not billed again.",
-  `The founding rate is open until ${FOUNDERS_ENDS_LABEL}. Join before then and your first ${FOUNDERS_MONTHS} months are US$${FOUNDERS_USD} whenever those months fall.`,
 ];
 
 /** What a founding family gets for the feedback period, and for how long. */
@@ -136,7 +146,7 @@ export type Faq = { q: string; a: string; toConfirm?: boolean };
 export const faqs: Faq[] = [
   {
     q: "What am I paying for?",
-    a: `Access to A Truer Measure for ${PRICE_SCOPE}, at US$${FOUNDERS_USD} a month for your first ${FOUNDERS_MONTHS} months and US$${PRICE_USD} a month after that: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
+    a: `Access to A Truer Measure for ${PRICE_SCOPE}, at US$${FOUNDERS_USD} a month until ${FOUNDERS_ENDS_LABEL} and US$${PRICE_USD} a month after: a place to bring together report cards, teacher comments, your own observations, projects and moments from beyond school, and to look at what they show together over time. Your membership continues for as long as you keep it.`,
   },
   {
     q: "What does being a founding family involve?",
@@ -155,8 +165,8 @@ export const faqs: Faq[] = [
     a: `US$${FOUNDERS_USD} a month covers ${PRICE_SCOPE}, and so does US$${PRICE_USD} a month after the founders rate ends.`,
   },
   {
-    q: `What happens after ${FOUNDERS_MONTHS} months at US$${FOUNDERS_USD}?`,
-    a: `Your tenth monthly payment is US$${PRICE_USD}, and every one after that. Nothing else changes and you do not have to do anything. We email you before the first US$${PRICE_USD} payment so it is never a surprise on a statement.`,
+    q: "What happens on 1 July 2027?",
+    a: `Your first payment on or after that date is US$${PRICE_USD}, and every one after it. The same date for every founding family, whichever month you joined, so joining earlier means longer at US$${FOUNDERS_USD}. Nothing else changes and you do not have to do anything. We email you before it happens.`,
   },
   {
     q: "Does this include Learn From The Room or Inner Circle?",

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PriceInYourCurrency } from "@/components/price-in-your-currency";
 import {
   FOUNDERS_ENDS_AT,
-  FOUNDERS_MONTHS,
+  FOUNDERS_ENDS_LABEL,
   FOUNDERS_USD,
   PRICE_USD,
 } from "@/content/founding-families";
@@ -427,9 +427,9 @@ export default function HomePage() {
                     the one place the proposed offer is defined. */}
                 <PriceInYourCurrency
                   amountUSD={FOUNDERS_USD}
-                  unit={`per month for your first ${FOUNDERS_MONTHS} months`}
+                  unit={`per month until ${FOUNDERS_ENDS_LABEL}`}
                   thenUSD={PRICE_USD}
-                  thenUnit="a month after that"
+                  thenUnit="a month from 1 July 2027"
                   offerEndsAt={FOUNDERS_ENDS_AT}
                 />
                 <p
@@ -447,9 +447,8 @@ export default function HomePage() {
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
                 >
-                  Billed monthly. The price changes on its own after{" "}
-                  {FOUNDERS_MONTHS} months and we email you first. Cancel any
-                  time, and you keep the month you have paid for.
+                  Billed monthly. We email you before the price changes.
+                  Cancel any time, and you keep the month you have paid for.
                 </p>
                 <Link
                   href="/hidden-report-card"
