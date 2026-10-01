@@ -46,6 +46,15 @@ export default function HomePage() {
     <>
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
+        {/* The line above the headline states the problem, so the headline can
+            be the answer to it. Not an uppercase eyebrow: it is a full
+            sentence and tracked capitals make a sentence harder to read. */}
+        <p
+          className="mx-auto mb-6 max-w-[620px] text-smoke"
+          style={{ fontSize: "clamp(18px,2.3vw,23px)", lineHeight: 1.45 }}
+        >
+          A report card was never designed to tell the whole story.
+        </p>
         <h1
           className="font-heading mb-8 text-bark"
           style={{
