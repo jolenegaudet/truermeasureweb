@@ -95,6 +95,31 @@ export const foundingIncludes: { what: string; howLong: string }[] = [
 ];
 
 /**
+ * The same offer in French, added 1 October 2026 with the /fr tree. Separate
+ * exports rather than a locale-keyed rewrite of the ones above, so the English
+ * pages that are live and selling are not touched to add a second language.
+ * The NUMBERS are not duplicated: both languages read `prices`, INTRO_MONTHS
+ * and FOUNDING_CAP from this same file, so they cannot quote different ones.
+ */
+export const offerFr = {
+  offerNote:
+    "Vous vous joignez tôt, donc vous obtenez un tarif de lancement et des façons de nous dire quoi bâtir ensuite : un bouton de rétroaction, et peut-être des appels privés.",
+  cancellation:
+    "Facturé chaque mois. Annulez en tout temps. Le mois que vous avez payé vous reste.",
+  foundingIncludes: [
+    {
+      what: "Le bouton de rétroaction dans le produit",
+      howLong: `Pour les ${INTRO_MONTHS} premiers mois`,
+    },
+    {
+      what: "La plateforme et le tableau de bord The Hidden Report Card™",
+      howLong: "Aussi longtemps que vous êtes membre",
+    },
+  ],
+  scope: "un enfant",
+};
+
+/**
  * The FAQ. OFF THE PAGE since 30 September 2026, until Jolene decides what it
  * says. The price answers were brought in line with the new offer the same
  * day so nothing here is stale when it returns; she has not reviewed them.

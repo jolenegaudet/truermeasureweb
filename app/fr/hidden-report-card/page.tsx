@@ -1,127 +1,126 @@
 import type { Metadata } from "next";
-import { alternatesFor } from "@/content/i18n";
 import { Fragment } from "react";
 import { OfferPrice } from "@/components/offer-price";
 import {
   CHECKOUT_URL,
   FOUNDING_CAP,
-  PRICE_SCOPE,
-  CANCELLATION_TERMS,
   checkoutReady,
-  foundingIncludes,
-  offerNote,
+  offerFr,
 } from "@/content/founding-families";
+import { alternatesFor, tiers } from "@/content/i18n";
+
+const DESCRIPTION =
+  "Réunissez les bulletins, les commentaires des enseignants, vos observations, les projets et les moments vécus hors de l'école, et voyez ce qui revient d'une expérience à l'autre chez votre enfant.";
 
 export const metadata: Metadata = {
-  // The layout template appends " | Truer Measure", and the home page is
-  // already titled "A Truer Measure", so titling this page the same gave both
-  // "A Truer Measure | Truer Measure" and two pages with identical titles.
-  // This one is the founding offer, so it says so.
-  title: "Founding Families",
-  description:
-    "Bring together report cards, teacher comments, your observations, projects and moments from beyond school, and see what keeps showing up across your child's experiences.",
-  alternates: alternatesFor("/hidden-report-card"),
+  title: "Familles fondatrices",
+  description: DESCRIPTION,
+  alternates: alternatesFor("/hidden-report-card", "fr"),
+  openGraph: {
+    siteName: "Truer Measure",
+    type: "website",
+    locale: "fr_CA",
+    url: "/fr/hidden-report-card",
+    title: "Familles fondatrices",
+    description: DESCRIPTION,
+  },
+  twitter: { description: DESCRIPTION },
 };
 
 /**
- * A Truer Measure, and the proposed Founding Families offer.
+ * The French counterpart of app/hidden-report-card/page.tsx. Same sections, in
+ * the same order, so the language toggle never changes which page you are on.
  *
- * Naming rule, Jolene 29 September 2026: A Truer Measure is what a parent buys.
- * The Hidden Report Card is the document it produces. The route keeps its
- * /hidden-report-card path, which is the phrase a parent is most likely to
- * search for, but the product is named A Truer Measure on the page itself.
+ * NAMING. The Hidden Report Card™ keeps its English name in both languages: it
+ * is the document the product produces, it carries a trademark claim, and
+ * Jolène has not asked for it to change. The product itself is Une Juste
+ * Valeur in French, from content/i18n.ts, where she translated the tier names on
+ * 1 October 2026.
  *
- * The buy button stays disabled ("Opening soon") until the new offer's checkout
- * exists in Stripe and CHECKOUT_URL in content/founding-families.ts is set.
- *
- * Every number and term comes from content/founding-families.ts so the offer
- * can be revised in one place. The FAQ is off the page until Jolene decides
- * what it says (30 September 2026); its answers stay in that file. Nothing on
- * this page mentions the demo for now, by her decision.
+ * The route keeps the /hidden-report-card path on both sides, which is also the
+ * phrase a parent is most likely to search for.
  */
 
 const contrasts = [
   {
-    left: "Measures performance.",
-    right: "Sees the person behind the performance.",
+    left: "Mesure la performance.",
+    right: "Voit la personne derrière la performance.",
   },
   {
-    left: "Gives you a snapshot.",
-    right: "Preserves the story over time.",
+    left: "Vous donne un instantané.",
+    right: "Garde l'histoire au fil du temps.",
   },
   {
-    left: "Tells you how your child is doing in school.",
-    right: "Keeps a living account of your child’s education, in school and beyond.",
+    left: "Vous dit comment votre enfant va à l'école.",
+    right:
+      "Tient un portrait vivant de l'éducation de votre enfant, à l'école et au-delà.",
   },
 ];
 
 // Her rows of four, kept as rows: the grouping is part of the reading.
 const qualityRows = [
-  ["Curiosity", "Imagination", "Creativity", "Critical Thinking"],
-  ["Confidence", "Courage", "Self-Knowledge", "Independence"],
-  ["Persistence", "Resilience", "Conscientiousness", "Initiative"],
-  ["Kindness", "Empathy", "Honesty", "Integrity"],
-  ["Collaboration", "Communication", "Leadership", "Emotional Intelligence"],
-  ["Adaptability", "Judgment", "Problem-Solving", "Practical Life Skills"],
-  ["Self-Regulation", "Responsibility", "Follow-Through", "Agency"],
-  ["Cultural Awareness", "Civic-Mindedness", "Purpose"],
+  ["Curiosité", "Imagination", "Créativité", "Esprit critique"],
+  ["Confiance", "Courage", "Connaissance de soi", "Autonomie"],
+  ["Persévérance", "Résilience", "Rigueur", "Initiative"],
+  ["Bienveillance", "Empathie", "Honnêteté", "Intégrité"],
+  ["Collaboration", "Communication", "Leadership", "Intelligence émotionnelle"],
+  ["Adaptabilité", "Jugement", "Résolution de problèmes", "Débrouillardise"],
+  ["Autorégulation", "Responsabilité", "Suivi jusqu'au bout", "Pouvoir d'agir"],
+  ["Ouverture aux cultures", "Sens civique", "Sens du but"],
 ];
 
 const moments = [
-  "Before a parent–teacher meeting",
-  "Before applying for a program, team, or scholarship",
-  "When the report card doesn’t match the child you know",
-  "When your child shines everywhere except on paper",
-  "When confidence drops",
-  "When a hard week starts to feel like a bad year",
-  "When your child says, “I’m not smart.”",
-  "When you notice something about your child you don’t want to forget",
+  "Avant une rencontre avec l'enseignante",
+  "Avant une demande pour un programme, une équipe ou une bourse",
+  "Quand le bulletin ne correspond pas à l'enfant que vous connaissez",
+  "Quand votre enfant brille partout sauf sur papier",
+  "Quand la confiance tombe",
+  "Quand une semaine difficile commence à ressembler à une mauvaise année",
+  "Quand votre enfant dit : « Je ne suis pas bon. »",
+  "Quand vous remarquez chez votre enfant quelque chose que vous ne voulez pas oublier",
 ];
 
-// Jolene's wording, 30 September 2026.
 const experience = [
   {
-    feature: "My Child",
-    outcome: "See a fuller picture of your child across school and everyday life.",
-  },
-  {
-    feature: "Timeline",
-    outcome: "See important moments from school and life together over time.",
-  },
-  {
-    feature: "Evidence",
+    feature: "Mon enfant",
     outcome:
-      "Keep report cards, schoolwork, certificates, photos, projects and your own observations in one place.",
+      "Voyez un portrait plus complet de votre enfant, à l'école et dans la vie de tous les jours.",
   },
   {
-    feature: "Insights",
+    feature: "Chronologie",
     outcome:
-      "Notice patterns over time and see where school and everyday life tell the same or different stories.",
+      "Voyez ensemble, au fil du temps, les moments importants venus de l'école et de la vie.",
   },
   {
-    feature: "Ask",
-    outcome: "Ask questions about your child and get answers based on what you’ve kept.",
-  },
-  {
-    feature: "Capture a Moment",
+    feature: "Preuves",
     outcome:
-      "Quickly save something you noticed with a sentence, photo or your voice, before you forget it.",
+      "Gardez au même endroit les bulletins, les travaux scolaires, les certificats, les photos, les projets et vos propres observations.",
+  },
+  {
+    feature: "Constats",
+    outcome:
+      "Remarquez ce qui se répète au fil du temps et voyez où l'école et la vie quotidienne racontent la même histoire ou deux histoires différentes.",
+  },
+  {
+    feature: "Demander",
+    outcome:
+      "Posez des questions sur votre enfant et obtenez des réponses fondées sur ce que vous avez gardé.",
+  },
+  {
+    feature: "Saisir un moment",
+    outcome:
+      "Enregistrez vite ce que vous venez de remarquer, en une phrase, une photo ou votre voix, avant de l'oublier.",
   },
 ];
 
-export default function HiddenReportCardPage() {
+export default function FrenchHiddenReportCardPage() {
   return (
-    <>
-      {/* 1. Hero, 2. Contrast, 3. Qualities, 4. What you actually get,
-          5. Moments: moved here from the home page, in Jolene's wording of
-          30 September 2026. They replace this page's earlier hero and its
-          "How to start" section, which said the same things. "What it does for you"
-          was removed the same day: its cards repeated "What you actually get". */}
-
+    <div lang="fr">
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
         <div className="mb-[30px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
-          Because a report card was never designed to tell the whole story
+          Parce qu&rsquo;un bulletin n&rsquo;a jamais été conçu pour raconter
+          toute l&rsquo;histoire
         </div>
         <h1
           className="font-heading mb-8 text-bark"
@@ -132,7 +131,7 @@ export default function HiddenReportCardPage() {
             letterSpacing: "-0.005em",
           }}
         >
-          here&rsquo;s a Truer Measure.
+          voici une juste valeur.
         </h1>
         <p
           className="font-heading mx-auto mb-10 italic text-dusk"
@@ -142,15 +141,16 @@ export default function HiddenReportCardPage() {
             maxWidth: 620,
           }}
         >
-          A report card measures your child against a limited set of standards.
-          It was never designed to measure your whole child.
+          Un bulletin mesure votre enfant par rapport à un ensemble limité de
+          critères. Il n&rsquo;a jamais été conçu pour mesurer votre enfant au
+          complet.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a
             href="#founding"
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
-            See the Founding Families offer
+            Voir l&rsquo;offre Familles fondatrices
           </a>
         </div>
       </section>
@@ -163,9 +163,9 @@ export default function HiddenReportCardPage() {
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(26px,4.6vw,50px)", lineHeight: 1.12 }}
             >
-              Grades tell a story.
+              Les notes racontent une histoire.
               <br />
-              They just don&rsquo;t tell the whole story.
+              Elles ne racontent simplement pas toute l&rsquo;histoire.
             </h2>
           </div>
 
@@ -174,7 +174,7 @@ export default function HiddenReportCardPage() {
               <div key={i} className="grid grid-cols-1 bg-blush md:grid-cols-2">
                 <div className="border-b border-grid px-6 py-6 md:border-b-0 md:border-r md:px-9 md:py-[34px]">
                   <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-faint">
-                    The report card
+                    Le bulletin
                   </div>
                   <div
                     className="font-heading text-smoke"
@@ -207,14 +207,14 @@ export default function HiddenReportCardPage() {
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               The Hidden Report Card&trade;
               <br />
-              A Truer Measure of your child
+              Une juste valeur de votre enfant
             </div>
             <h2
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
             >
-              None of these receive a grade. Yet they shape so much of who your
-              child is becoming.
+              Aucune de ces qualités ne reçoit de note. Pourtant, elles façonnent
+              une grande part de ce que votre enfant devient.
             </h2>
           </div>
 
@@ -247,19 +247,21 @@ export default function HiddenReportCardPage() {
             style={{ fontSize: 17, lineHeight: 1.75, maxWidth: 640 }}
           >
             <p className="font-heading italic text-dusk" style={{ fontSize: "clamp(20px,2.4vw,25px)" }}>
-              Some you may already recognize. Others you may not have seen yet.
+              Vous en reconnaissez peut-être déjà certaines. D&rsquo;autres, vous
+              ne les avez peut-être pas encore vues.
             </p>
             <p>
-              But the evidence is scattered across people, places, experiences
-              and years. A teacher sees one piece. You see another. A coach sees
-              another. Your child experiences all of it.
+              Mais les preuves sont éparpillées entre des personnes, des lieux,
+              des expériences et des années. Une enseignante en voit un morceau.
+              Vous en voyez un autre. Un entraîneur en voit un autre. Votre
+              enfant, lui, vit tout cela.
             </p>
             <p>
-              Until you bring that evidence together, it&rsquo;s hard to see what
-              it reveals.
+              Tant que ces preuves ne sont pas réunies, il est difficile de voir
+              ce qu&rsquo;elles révèlent.
             </p>
             <p>
-              That&rsquo;s why we call it the{" "}
+              C&rsquo;est pour cela que nous l&rsquo;appelons le{" "}
               <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>.
             </p>
           </div>
@@ -273,14 +275,14 @@ export default function HiddenReportCardPage() {
             className="font-heading mb-7 font-medium text-bark"
             style={{ fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1 }}
           >
-            What you actually get
+            Ce que vous obtenez vraiment
           </h2>
           <p
             className="font-heading mb-9 italic text-dusk"
             style={{ fontSize: "clamp(19px,2.4vw,24px)", lineHeight: 1.45 }}
           >
-            School is part of your child&rsquo;s education. It is not the whole
-            of it.
+            L&rsquo;école fait partie de l&rsquo;éducation de votre enfant. Elle
+            n&rsquo;en est pas la totalité.
           </p>
 
           <div
@@ -288,32 +290,35 @@ export default function HiddenReportCardPage() {
             style={{ fontSize: 17, lineHeight: 1.8 }}
           >
             <p>
-              You start by bringing together what already exists: report cards,
-              assessments, teacher comments, your own observations, and evidence
-              from all the places your child learns and grows.
+              Vous commencez par réunir ce qui existe déjà : les bulletins, les
+              évaluations, les commentaires des enseignants, vos propres
+              observations, et des preuves venues de tous les endroits où votre
+              enfant apprend et grandit.
             </p>
             <p>
-              Truer Measure brings that evidence together and generates your
-              child&rsquo;s{" "}
-              <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>.
+              Truer Measure réunit ces preuves et génère le{" "}
+              <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>{" "}
+              de votre enfant.
             </p>
             <p>
-              Now you can see what keeps showing up, what&rsquo;s changing, where
-              the evidence is strong, and what you simply haven&rsquo;t seen
-              enough of yet.
+              Vous pouvez maintenant voir ce qui revient, ce qui change, où les
+              preuves sont solides, et ce que vous n&rsquo;avez simplement pas
+              encore assez vu.
             </p>
             <p>
-              Then keep adding as your child grows: a new report card, a project,
-              something a teacher said, a photo, or a moment you don&rsquo;t want
-              to forget.
+              Ensuite, vous continuez d&rsquo;ajouter à mesure que votre enfant
+              grandit : un nouveau bulletin, un projet, une parole d&rsquo;une
+              enseignante, une photo, ou un moment que vous ne voulez pas
+              oublier.
             </p>
             <p>
-              Over time, you build a record of your child that no single report
-              card, teacher or school year could give you.
+              Au fil du temps, vous bâtissez un portrait de votre enfant
+              qu&rsquo;aucun bulletin, aucune enseignante et aucune année
+              scolaire ne pourrait vous donner seul.
             </p>
             <p>
-              It&rsquo;s yours. You decide what goes in, who contributes, and who
-              can see it.
+              Il est à vous. Vous décidez ce qui y entre, qui y contribue et qui
+              peut le voir.
             </p>
           </div>
         </div>
@@ -324,13 +329,13 @@ export default function HiddenReportCardPage() {
         <div className="mx-auto max-w-[1000px]">
           <div className="mx-auto mb-[60px] max-w-[620px] text-center">
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              What it looks like in real life
+              À quoi cela ressemble dans la vraie vie
             </div>
             <h2
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
             >
-              Pull up the Hidden Report Card<span className="align-super text-[0.55em]">&trade;</span>
+              Ouvrez le Hidden Report Card<span className="align-super text-[0.55em]">&trade;</span>
             </h2>
           </div>
 
@@ -350,7 +355,7 @@ export default function HiddenReportCardPage() {
                 className="font-heading font-semibold text-bark"
                 style={{ fontSize: "clamp(21px,2.8vw,29px)" }}
               >
-                Anytime you need to see the evidence.
+                Chaque fois que vous avez besoin de voir les preuves.
               </div>
             </div>
             <div className="border-t border-border" />
@@ -363,13 +368,13 @@ export default function HiddenReportCardPage() {
         <div className="mx-auto max-w-[900px]">
           <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              Inside the product
+              À l&rsquo;intérieur du produit
             </div>
             <h2
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(28px,5vw,50px)", lineHeight: 1.08 }}
             >
-              What you would actually use.
+              Ce que vous utiliseriez vraiment.
             </h2>
           </div>
 
@@ -395,38 +400,36 @@ export default function HiddenReportCardPage() {
         <div className="mx-auto max-w-[880px]">
           <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
-              Founding Families
+              Familles fondatrices
             </div>
             <h2
               className="font-heading font-medium text-parchment"
               style={{ fontSize: "clamp(28px,5vw,50px)", lineHeight: 1.08 }}
             >
-              Join early, and help shape what gets built.
+              Joignez-vous tôt et aidez à façonner ce qui se bâtit.
             </h2>
           </div>
 
           <div className="mx-auto max-w-[520px] border border-charcoal px-8 py-10 text-center md:px-11 md:py-12">
             <div className="mb-6 text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
-              Limited to {FOUNDING_CAP} families
+              Limité à {FOUNDING_CAP} familles
             </div>
-            <OfferPrice showStandard />
+            <OfferPrice showStandard locale="fr" />
 
             <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-              For {PRICE_SCOPE}.
+              Pour {offerFr.scope}.
             </p>
 
-            {/* Compliance spec 5.1: this stays immediately above the CTA. The
-                standing price is no longer repeated here, because the price
-                block above now states it in the currency the parent chose. */}
+            {/* Compliance spec 5.1: this stays immediately above the CTA. */}
             <p
               className="mt-8 border-t border-charcoal pt-8 text-center text-muted"
               style={{ fontSize: 14.5, lineHeight: 1.65 }}
             >
-              {CANCELLATION_TERMS}
+              {offerFr.cancellation}
             </p>
 
             <p className="mt-6 text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
-              {offerNote}
+              {offerFr.offerNote}
             </p>
 
             <div className="mt-8 border-t border-charcoal pt-8">
@@ -436,14 +439,14 @@ export default function HiddenReportCardPage() {
                     href={CHECKOUT_URL}
                     className="inline-block w-full rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                   >
-                    Join as a Founding Family
+                    Devenir une famille fondatrice
                   </a>
                   <p
                     className="mt-4 text-subdued"
                     style={{ fontSize: 12.5, lineHeight: 1.65 }}
                   >
-                    The introductory rate is applied for you. There is no code
-                    to enter.
+                    Le tarif de lancement est appliqué pour vous. Il n&rsquo;y a
+                    aucun code à entrer.
                   </p>
                 </>
               ) : (
@@ -453,28 +456,26 @@ export default function HiddenReportCardPage() {
                     disabled
                     className="w-full cursor-not-allowed rounded-[2px] border border-charcoal bg-transparent px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-subdued"
                   >
-                    Join as a Founding Family
+                    Devenir une famille fondatrice
                   </button>
                   <p
                     className="mt-4 text-subdued"
                     style={{ fontSize: 12.5, lineHeight: 1.65 }}
                   >
-                    Opening soon.
+                    Ouverture bientôt.
                   </p>
                 </>
               )}
             </div>
-
           </div>
 
-          {/* What a founding family gets, and for how long. The right column is
-              what stops "founding" reading as a permanent entitlement. */}
+          {/* What a founding family gets, and for how long. */}
           <div className="mx-auto mt-14 max-w-[720px] md:mt-16">
             <h3 className="font-heading mb-6 text-center text-[26px] text-parchment">
-              What is included
+              Ce qui est inclus
             </h3>
             <dl className="flex flex-col">
-              {foundingIncludes.map(({ what, howLong }) => (
+              {offerFr.foundingIncludes.map(({ what, howLong }) => (
                 <div
                   key={what}
                   className="grid grid-cols-1 gap-1 border-t border-charcoal py-5 md:grid-cols-[1fr_auto] md:gap-8"
@@ -495,18 +496,20 @@ export default function HiddenReportCardPage() {
               style={{ fontSize: 14, lineHeight: 1.7 }}
             >
               <p>
-                This does not include Learn From The Room or Inner Circle. Those
-                are separate, and joining here does not include either.
+                Cela ne comprend pas {tiers.fr.twoFlat} ni le{" "}
+                {tiers.fr.threeFlat}. Ce sont des offres distinctes, et vous
+                joindre ici ne vous donne ni l&rsquo;une ni l&rsquo;autre.
               </p>
               <p>
-                It is not individual consulting, and it is not a promise that
-                every suggestion becomes a feature. Jolene reads what founding
-                families send, and decides what gets built.
+                Ce n&rsquo;est pas de la consultation individuelle, et ce
+                n&rsquo;est pas la promesse que chaque suggestion devienne une
+                fonctionnalité. Jolene lit ce que les familles fondatrices
+                envoient, et décide de ce qui se bâtit.
               </p>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

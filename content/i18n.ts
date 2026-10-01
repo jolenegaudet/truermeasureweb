@@ -62,6 +62,34 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
 }
 
 /** Strings that live in the shell rather than on any one page. */
+/**
+ * The three tiers. Jolène, 1 October 2026: translate the tier names too, which
+ * makes tier 1 "Une Juste Valeur" and lines the French site up with the phrase
+ * in its headline and with justevaleur.ca.
+ *
+ * The Hidden Report Card keeps its English name on both sides. It is the
+ * document the product produces rather than a tier, it carries a trademark
+ * claim, and she has not asked for it to change.
+ */
+export const tiers = {
+  en: {
+    one: ["A Truer", "Measure"],
+    oneFlat: "A Truer Measure",
+    two: ["Learn from", "the Room"],
+    twoFlat: "Learn From The Room",
+    three: ["Inner", "Circle"],
+    threeFlat: "Inner Circle",
+  },
+  fr: {
+    one: ["Une Juste", "Valeur"],
+    oneFlat: "Une Juste Valeur",
+    two: ["Apprendre", "du Salon"],
+    twoFlat: "Apprendre du Salon",
+    three: ["Cercle", "Restreint"],
+    threeFlat: "Cercle Restreint",
+  },
+} as const;
+
 export const shell = {
   en: {
     // Stays up while only part of the tree is translated, because it is still
@@ -76,6 +104,7 @@ export const shell = {
     },
     toggle: { label: "FR", aria: "Voir cette page en français" },
     footer: {
+      brand: "A Truer Measure",
       tagline: "The Truer Measure of a Child!",
       follow: "Follow along",
       terms: "Terms of Service",
@@ -89,12 +118,12 @@ export const shell = {
     nav: {
       start: "Commencez ici",
       hiddenReportCard: "The Hidden Report Card",
-      learn: "Learn From The Room",
-      // The three offers keep their English names, so the nav uses the name.
-      innerCircle: "Faites partie du Inner Circle",
+      learn: "Apprendre du Salon",
+      innerCircle: "Faites partie du Cercle Restreint",
     },
     toggle: { label: "EN", aria: "View this page in English" },
     footer: {
+      brand: "Une Juste Valeur",
       tagline: "La juste valeur d’un enfant!",
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",

@@ -21,7 +21,7 @@ export default function Footer() {
     <footer className="bg-bark px-6 py-12 md:px-10 md:py-[64px]">
       <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-4 md:gap-6">
         <div className="font-heading text-[21px] text-parchment">
-          A Truer Measure
+          {t.brand}
         </div>
         <div className="text-[13px] tracking-[0.04em] text-subdued">
           {t.tagline}

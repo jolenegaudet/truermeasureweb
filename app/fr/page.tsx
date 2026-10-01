@@ -8,7 +8,7 @@ import {
   checkoutReady,
 } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
-import { alternatesFor } from "@/content/i18n";
+import { alternatesFor, tiers } from "@/content/i18n";
 
 const DESCRIPTION =
   "Un portrait vivant de l'apprentissage, des forces et du cheminement de votre enfant, qui réunit ce qui vient de l'école et d'ailleurs.";
@@ -139,7 +139,7 @@ export default function FrenchHomePage() {
               trouvaient nulle part dans ces pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              C&rsquo;est pourquoi j&rsquo;ai créé A Truer Measure : un portrait
+              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat} : un portrait
               vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
               <em className="italic text-bark">au-delà</em>.
             </p>
@@ -179,9 +179,9 @@ export default function FrenchHomePage() {
                   className="font-heading mb-3 font-medium text-parchment"
                   style={{ fontSize: 40, lineHeight: 1.04 }}
                 >
-                  A Truer
+                  {tiers.fr.one[0]}
                   <br />
-                  Measure
+                  {tiers.fr.one[1]}
                 </div>
                 <p className="font-heading mb-7 text-[19px] text-warm">
                   Familles fondatrices
@@ -243,9 +243,9 @@ export default function FrenchHomePage() {
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Learn from
+                {tiers.fr.two[0]}
                 <br />
-                the Room
+                {tiers.fr.two[1]}
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
                 Des parents d&rsquo;exception comme leaders de
@@ -264,7 +264,7 @@ export default function FrenchHomePage() {
                 locale="fr"
                 tag="waitlist-elite-learning-leaders"
                 label={"Liste d’attente"}
-                modalEyebrow="Learn From The Room"
+                modalEyebrow={tiers.fr.twoFlat}
                 modalTitle={"Inscrivez-vous à la liste d’attente."}
                 submitLabel={"S’inscrire"}
                 variant="outline-rose-dark"
@@ -280,9 +280,9 @@ export default function FrenchHomePage() {
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Inner
+                {tiers.fr.three[0]}
                 <br />
-                Circle
+                {tiers.fr.three[1]}
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
                 Aidez à façonner la suite
@@ -301,7 +301,7 @@ export default function FrenchHomePage() {
                 tag="applied-inner-circle"
                 label="Postuler"
                 modalEyebrow="Aidez à façonner la suite"
-                modalTitle="Postulez au Inner Circle."
+                modalTitle={`Postulez au ${tiers.fr.threeFlat}.`}
                 submitLabel="Envoyer la demande"
                 variant="outline-rose"
               />
