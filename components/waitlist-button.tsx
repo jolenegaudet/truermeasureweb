@@ -1,8 +1,49 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Locale } from "@/content/i18n";
 
 type Variant = "dark" | "outline-rose-dark" | "outline-rose" | "bark";
+
+/** Form chrome. The eyebrow, title and button labels come from the page. */
+const copy = {
+  en: {
+    close: "Close",
+    onList: "You’re on the list",
+    thanks: "Thanks. We’ll be in touch.",
+    added: "We’ve added you to the list. Watch for an email from Jolene with next steps.",
+    first: "First name",
+    last: "Last name",
+    email: "Email",
+    phone: "Phone",
+    kids: "Number of kids and ages",
+    kidsHint: "e.g. Two kids, ages 7 and 10",
+    city: "City",
+    region: "State / Province",
+    postal: "Zip / Postal",
+    sending: "Sending…",
+    failed: "Something went wrong. Please try again.",
+    network: "Network error. Please try again.",
+  },
+  fr: {
+    close: "Fermer",
+    onList: "Vous êtes inscrite",
+    thanks: "Merci. Nous vous écrirons.",
+    added: "Nous vous avons ajoutée à la liste. Surveillez un courriel de Jolene avec la suite.",
+    first: "Prénom",
+    last: "Nom",
+    email: "Courriel",
+    phone: "Téléphone",
+    kids: "Nombre d’enfants et leur âge",
+    kidsHint: "ex. Deux enfants, 7 et 10 ans",
+    city: "Ville",
+    region: "Province ou état",
+    postal: "Code postal",
+    sending: "Envoi…",
+    failed: "Une erreur est survenue. Veuillez réessayer.",
+    network: "Erreur de réseau. Veuillez réessayer.",
+  },
+} as const;
 
 export type WaitlistTag =
   | "waitlist-hidden-report-card"
@@ -16,11 +57,13 @@ type ModalProps = {
   modalTitle: string;
   modalEyebrow: string;
   submitLabel: string;
+  locale: Locale;
 };
 
-type Props = Omit<ModalProps, "open" | "onClose"> & {
+type Props = Omit<ModalProps, "open" | "onClose" | "locale"> & {
   label: string;
   variant: Variant;
+  locale?: Locale;
 };
 
 const buttonClass: Record<Variant, string> = {
@@ -48,6 +91,7 @@ const emptyForm = {
 };
 
 export function WaitlistModal(props: ModalProps) {
+  const t = copy[props.locale];
   const { open, onClose } = props;
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -92,13 +136,13 @@ export function WaitlistModal(props: ModalProps) {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setErrorMsg(data?.error || "Something went wrong. Please try again.");
+        setErrorMsg(data?.error || t.failed);
         setStatus("error");
         return;
       }
       setStatus("success");
     } catch {
-      setErrorMsg("Network error. Please try again.");
+      setErrorMsg(t.network);
       setStatus("error");
     }
   };
@@ -120,7 +164,7 @@ export function WaitlistModal(props: ModalProps) {
       >
         <button
           type="button"
-          aria-label="Close"
+          aria-label={t.close}
           onClick={close}
           className="absolute right-4 top-4 text-[24px] leading-none text-smoke hover:text-bark"
         >
@@ -130,23 +174,23 @@ export function WaitlistModal(props: ModalProps) {
         {status === "success" ? (
           <div className="py-6 text-center">
             <div className="mb-[14px] text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              You&rsquo;re on the list
+              {t.onList}
             </div>
             <h3
               className="font-heading mb-4 font-medium text-bark"
               style={{ fontSize: 30, lineHeight: 1.15 }}
             >
-              Thanks. We&rsquo;ll be in touch.
+              {t.thanks}
             </h3>
             <p className="mb-7 text-smoke" style={{ fontSize: 15, lineHeight: 1.6 }}>
-              We&rsquo;ve added you to the list. Watch for an email from Jolene with next steps.
+              {t.added}
             </p>
             <button
               type="button"
               onClick={close}
               className="inline-block rounded-[2px] bg-bark px-7 py-[14px] text-[12.5px] font-bold uppercase tracking-[0.14em] text-parchment"
             >
-              Close
+              {t.close}
             </button>
           </div>
         ) : (
@@ -164,32 +208,32 @@ export function WaitlistModal(props: ModalProps) {
             <form onSubmit={onSubmit} className="flex flex-col gap-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
-                  <label className={labelCls} htmlFor="wf-first">First name</label>
+                  <label className={labelCls} htmlFor="wf-first">{t.first}</label>
                   <input id="wf-first" required className={inputCls} value={form.firstName} onChange={onChange("firstName")} />
                 </div>
                 <div>
-                  <label className={labelCls} htmlFor="wf-last">Last name</label>
+                  <label className={labelCls} htmlFor="wf-last">{t.last}</label>
                   <input id="wf-last" required className={inputCls} value={form.lastName} onChange={onChange("lastName")} />
                 </div>
               </div>
 
               <div>
-                <label className={labelCls} htmlFor="wf-email">Email</label>
+                <label className={labelCls} htmlFor="wf-email">{t.email}</label>
                 <input id="wf-email" type="email" required className={inputCls} value={form.email} onChange={onChange("email")} />
               </div>
 
               <div>
-                <label className={labelCls} htmlFor="wf-phone">Phone</label>
+                <label className={labelCls} htmlFor="wf-phone">{t.phone}</label>
                 <input id="wf-phone" type="tel" className={inputCls} value={form.phone} onChange={onChange("phone")} />
               </div>
 
               <div>
-                <label className={labelCls} htmlFor="wf-kids">Number of kids and ages</label>
+                <label className={labelCls} htmlFor="wf-kids">{t.kids}</label>
                 <textarea
                   id="wf-kids"
                   rows={2}
                   className={inputCls + " resize-none"}
-                  placeholder="e.g. Two kids, ages 7 and 10"
+                  placeholder={t.kidsHint}
                   value={form.kids}
                   onChange={onChange("kids")}
                 />
@@ -197,15 +241,15 @@ export function WaitlistModal(props: ModalProps) {
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-[1.4fr_1fr_1fr]">
                 <div>
-                  <label className={labelCls} htmlFor="wf-city">City</label>
+                  <label className={labelCls} htmlFor="wf-city">{t.city}</label>
                   <input id="wf-city" className={inputCls} value={form.city} onChange={onChange("city")} />
                 </div>
                 <div>
-                  <label className={labelCls} htmlFor="wf-state">State / Province</label>
+                  <label className={labelCls} htmlFor="wf-state">{t.region}</label>
                   <input id="wf-state" className={inputCls} value={form.state} onChange={onChange("state")} />
                 </div>
                 <div>
-                  <label className={labelCls} htmlFor="wf-postal">Zip / Postal</label>
+                  <label className={labelCls} htmlFor="wf-postal">{t.postal}</label>
                   <input id="wf-postal" className={inputCls} value={form.postalCode} onChange={onChange("postalCode")} />
                 </div>
               </div>
@@ -221,7 +265,7 @@ export function WaitlistModal(props: ModalProps) {
                 disabled={status === "submitting"}
                 className="mt-2 inline-block rounded-[2px] bg-bark px-9 py-[16px] text-[13px] font-bold uppercase tracking-[0.14em] text-parchment disabled:opacity-60"
               >
-                {status === "submitting" ? "Sending…" : props.submitLabel}
+                {status === "submitting" ? t.sending : props.submitLabel}
               </button>
             </form>
           </>
@@ -231,7 +275,7 @@ export function WaitlistModal(props: ModalProps) {
   );
 }
 
-export function WaitlistButton({ label, variant, ...modal }: Props) {
+export function WaitlistButton({ label, variant, locale = "en", ...modal }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -239,7 +283,7 @@ export function WaitlistButton({ label, variant, ...modal }: Props) {
       <button type="button" className={buttonClass[variant]} onClick={() => setOpen(true)}>
         {label}
       </button>
-      <WaitlistModal open={open} onClose={() => setOpen(false)} {...modal} />
+      <WaitlistModal open={open} onClose={() => setOpen(false)} locale={locale} {...modal} />
     </>
   );
 }

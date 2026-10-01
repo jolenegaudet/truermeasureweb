@@ -10,56 +10,71 @@ import {
 import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor } from "@/content/i18n";
 
+const DESCRIPTION =
+  "Un portrait vivant de l'apprentissage, des forces et du cheminement de votre enfant, qui réunit ce qui vient de l'école et d'ailleurs.";
+
 export const metadata: Metadata = {
   title: "A Truer Measure",
-  // hreflang, so the English and French home pages read as one page in two
-  // languages rather than two pages competing for the same searches.
-  alternates: alternatesFor("/"),
+  description: DESCRIPTION,
+  alternates: alternatesFor("/", "fr"),
+  // Without this the page inherits the English Open Graph block from the root
+  // layout, so sharing the French page previews in English.
+  openGraph: {
+    // A page-level openGraph replaces the root block rather than merging into
+    // it, so siteName and type have to be restated here. The preview image
+    // comes from app/fr/opengraph-image.png, its own copy of the file, because
+    // a page that sets openGraph stops inheriting the root segment's image and
+    // would otherwise share with no picture at all.
+    siteName: "Truer Measure",
+    type: "website",
+    locale: "fr_CA",
+    url: "/fr",
+    title: "A Truer Measure",
+    description: DESCRIPTION,
+  },
+  twitter: { description: DESCRIPTION },
 };
 
 const roomAccess = [
-  "Live Room with Jolene, every week",
-  "Guest experts",
-  "Community between calls",
-  "Group Q&A",
+  "Salon en direct avec Jolene, chaque semaine",
+  "Experts invités",
+  "Une communauté entre les rencontres",
+  "Questions et réponses en groupe",
 ];
 
 const circleAccess = [
-  "Direct access to Jolene",
-  "A small circle, by application",
-  "A voice in what Truer Measure builds next",
+  "Accès direct à Jolene",
+  "Un petit cercle, sur demande",
+  "Une voix dans ce que Truer Measure bâtira ensuite",
 ];
 
 /**
- * Section order, Jolène 30 September 2026.
+ * The French home page. Same order and same structure as app/page.tsx, which is
+ * deliberate: a parent who switches language should land on the same page, not
+ * a different one.
  *
- *   1 Hero      the headline
- *   2 Founder   who is behind it
- *   3 Tiers     Start with Clarity. Continue with Community. Grow with Proximity.
+ * NAMING, following Jolène's ruling of 1 October 2026 (one brand, two
+ * languages). The three offers keep their English names, because they are the
+ * products: A Truer Measure, Learn from the Room, Inner Circle. The tier words
+ * are translated, because they describe rather than name, and the section
+ * heading translates them anyway. The headline uses "une juste valeur", the
+ * phrase behind justevaleur.ca, because "Voici A Truer Measure" reads like a
+ * translation accident.
  *
- * Social was section 4 until 1 October 2026, when Jolène asked for the links on
- * every page. They moved into the footer, which the root layout puts on all of
- * them, and the section came out rather than repeat the same three links
- * immediately above the footer that now holds them.
- *
- * The explanation of the Hidden Report Card (the contrast with a report card,
- * the qualities, what you get, when to pull it up) moved to /hidden-report-card
- * by her decision, so the home page is the door to the three offers. The
- * Clarity card's "See what is inside" link is where that explanation now lives.
+ * Prices and offer terms come from content/founding-families.ts, the same file
+ * the English page reads, so the two languages cannot quote different numbers.
  */
-export default function HomePage() {
+export default function FrenchHomePage() {
   return (
-    <>
+    <div lang="fr">
       {/* 1. Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
-        {/* The line above the headline states the problem, so the headline can
-            be the answer to it. Not an uppercase eyebrow: it is a full
-            sentence and tracked capitals make a sentence harder to read. */}
         <p
           className="mx-auto mb-6 max-w-[620px] text-smoke"
           style={{ fontSize: "clamp(18px,2.3vw,23px)", lineHeight: 1.45 }}
         >
-          A report card was never designed to tell the whole story.
+          Un bulletin n&rsquo;a jamais été conçu pour raconter toute
+          l&rsquo;histoire.
         </p>
         <h1
           className="font-heading mb-8 text-bark"
@@ -70,14 +85,14 @@ export default function HomePage() {
             letterSpacing: "-0.01em",
           }}
         >
-          Here&rsquo;s a Truer Measure.
+          Voici une juste valeur.
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a
             href="#tiers"
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
-            GET STARTED
+            COMMENCER
           </a>
         </div>
       </section>
@@ -88,7 +103,7 @@ export default function HomePage() {
           <div className="flex justify-center">
             <Image
               src="/founder.png"
-              alt="Jolene, founder of Truer Measure"
+              alt="Jolene, fondatrice de Truer Measure"
               width={400}
               height={400}
               className="block rounded-full object-cover object-top"
@@ -97,7 +112,7 @@ export default function HomePage() {
           </div>
           <div>
             <div className="mb-[26px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              A note from the founder
+              Un mot de la fondatrice
             </div>
             <p
               className="font-heading mb-7 text-bark"
@@ -106,25 +121,27 @@ export default function HomePage() {
                 lineHeight: 1.4,
               }}
             >
-              For nearly <em>25 years</em> I helped create the report cards
-              families bring home, first as a teacher writing them, later as a
-              principal signing them.
+              Pendant près de <em>25 ans</em>, j&rsquo;ai contribué aux bulletins
+              que les familles rapportent à la maison, d&rsquo;abord comme
+              enseignante qui les rédigeait, ensuite comme directrice qui les
+              signait.
             </p>
             <p
               className="mb-[22px] text-smoke"
               style={{ fontSize: 17, lineHeight: 1.75 }}
             >
-              I sat through hundreds of parent–teacher meetings watching families
-              try to find their child inside a paragraph of carefully worded
-              comments. And I kept seeing the same thing: the qualities and
-              skills that mattered most, the quiet belief that a child is capable
-              of more than the box they&rsquo;ve just been placed in, were
-              nowhere on the pages.
+              J&rsquo;ai assisté à des centaines de rencontres parents
+              enseignants en regardant des familles chercher leur enfant dans un
+              paragraphe de commentaires soigneusement formulés. Et je voyais
+              toujours la même chose : les qualités et les habiletés qui
+              comptaient le plus, la conviction discrète qu&rsquo;un enfant est
+              capable de plus que la case où on vient de le placer, ne se
+              trouvaient nulle part dans ces pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That&rsquo;s why I created A Truer Measure: a living account of
-              your child&rsquo;s education, school and{" "}
-              <em className="italic text-bark">beyond</em>.
+              C&rsquo;est pourquoi j&rsquo;ai créé A Truer Measure : un portrait
+              vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
+              <em className="italic text-bark">au-delà</em>.
             </p>
           </div>
         </div>
@@ -141,31 +158,22 @@ export default function HomePage() {
               className="font-heading mb-[18px] font-medium text-bark"
               style={{ fontSize: "clamp(28px,5vw,52px)", lineHeight: 1.08 }}
             >
-              Start with Clarity.
+              Commencez par la clarté.
             </h2>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.7 }}>
-              Continue with Community. Grow with Proximity.
+              Continuez par la communauté. Grandissez par la proximité.
             </p>
           </div>
 
-
-          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1.08fr_1fr_1fr]">
-            {/* Tier 1 — A Truer Measure, the membership.
-                Naming rule, Jolene 29 September 2026: A Truer Measure is what a
-                parent buys. The Hidden Report Card is the document it produces.
-                Her own copy in "What you actually get" already drew that line,
-                so the card names the membership and the document keeps its name
-                everywhere it is the document being talked about.
-                One price and one button for this membership, on this card and
-                nowhere else on the page. The full description lives in "What you
-                actually get" on /hidden-report-card. */}
+          <div className="grid grid-cols-1 items-stretch gap-7 md:grid-cols-3 md:gap-8">
+            {/* Tier 1 — A Truer Measure */}
             <div className="flex flex-col">
               <div
                 className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
                 style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
               >
                 <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
-                  Clarity
+                  Clarté
                 </div>
                 <div
                   className="font-heading mb-3 font-medium text-parchment"
@@ -176,51 +184,52 @@ export default function HomePage() {
                   Measure
                 </div>
                 <p className="font-heading mb-7 text-[19px] text-warm">
-                  Founding Families
+                  Familles fondatrices
                 </p>
                 <p
                   className="mb-8 text-parchment"
                   style={{ fontSize: 15.5, lineHeight: 1.55 }}
                 >
-                  More than a grade to speak for your child.
+                  Plus qu&rsquo;une note pour parler de votre enfant.
                 </p>
                 {/* Amounts come from content/founding-families.ts, the one
-                    place the offer is defined. */}
+                    place the offer is defined, so the two languages cannot
+                    quote different prices. */}
                 <div className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose-dark">
-                  Limited to {FOUNDING_CAP} families
+                  Limité à {FOUNDING_CAP} familles
                 </div>
-                <OfferPrice showStandard />
+                <OfferPrice showStandard locale="fr" />
                 <p
                   className="mt-5 text-muted"
                   style={{ fontSize: 13, lineHeight: 1.7 }}
                 >
-                  One membership covers one child.
+                  Une adhésion couvre un enfant.
                 </p>
                 <div className="flex-1" />
-                {/* Compliance spec §5.1 keeps the billing terms immediately
-                    above the CTA. Start here opens the checkout once the new
-                    offer exists in Stripe; until then it opens the offer on
-                    the product page. */}
+                {/* Compliance spec 5.1 keeps the billing terms immediately
+                    above the CTA, in both languages. */}
                 <p
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
                 >
-                  Billed monthly. Cancel any time. You keep the month you have
-                  paid for.
+                  Facturé chaque mois. Annulez en tout temps. Le mois que vous
+                  avez payé vous reste.
                 </p>
                 <a
-                  href={checkoutReady ? CHECKOUT_URL : "/hidden-report-card#founding"}
+                  href={
+                    checkoutReady
+                      ? CHECKOUT_URL
+                      : "/fr/hidden-report-card#founding"
+                  }
                   className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                 >
-                  Start here
+                  Commencez ici
                 </a>
-                {/* The product page is the second door, not the first. Start
-                    Here has to reach a checkout, not another page to read. */}
                 <Link
-                  href="/hidden-report-card"
+                  href="/fr/hidden-report-card"
                   className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.14em] text-muted no-underline hover:text-parchment"
                 >
-                  See what is inside
+                  Voir ce qu&rsquo;il y a dedans
                 </Link>
               </div>
             </div>
@@ -228,7 +237,7 @@ export default function HomePage() {
             {/* Tier 2 — Learn from the Room */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-                Community
+                Communauté
               </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
@@ -239,7 +248,8 @@ export default function HomePage() {
                 the Room
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
-                Elite Parents as Learning Leaders
+                Des parents d&rsquo;exception comme leaders de
+                l&rsquo;apprentissage
               </p>
               <div
                 className="mb-9 flex flex-col gap-[10px] text-smoke"
@@ -251,11 +261,12 @@ export default function HomePage() {
               </div>
               <div className="flex-1" />
               <WaitlistButton
+                locale="fr"
                 tag="waitlist-elite-learning-leaders"
-                label="Join the waitlist"
+                label={"Liste d’attente"}
                 modalEyebrow="Learn From The Room"
-                modalTitle="Join the Elite Parents as Learning Leaders waitlist."
-                submitLabel="Join the waitlist"
+                modalTitle={"Inscrivez-vous à la liste d’attente."}
+                submitLabel={"S’inscrire"}
                 variant="outline-rose-dark"
               />
             </div>
@@ -263,7 +274,7 @@ export default function HomePage() {
             {/* Tier 3 — Inner Circle */}
             <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-9 pb-[46px] pt-[50px] text-center">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-                Proximity
+                Proximité
               </div>
               <div
                 className="font-heading mb-[18px] font-medium text-bark"
@@ -274,7 +285,7 @@ export default function HomePage() {
                 Circle
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
-                Help shape what&rsquo;s next
+                Aidez à façonner la suite
               </p>
               <div
                 className="mb-9 flex flex-col gap-[10px] text-smoke"
@@ -286,17 +297,18 @@ export default function HomePage() {
               </div>
               <div className="flex-1" />
               <WaitlistButton
+                locale="fr"
                 tag="applied-inner-circle"
-                label="Apply"
-                modalEyebrow="Help Shape What's Next"
-                modalTitle="Apply to Inner Circle."
-                submitLabel="Submit application"
+                label="Postuler"
+                modalEyebrow="Aidez à façonner la suite"
+                modalTitle="Postulez au Inner Circle."
+                submitLabel="Envoyer la demande"
                 variant="outline-rose"
               />
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

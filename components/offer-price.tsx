@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { INTRO_MONTHS, prices, type Price } from "@/content/founding-families";
+import type { Locale } from "@/content/i18n";
 
 /**
  * One price, and three buttons under it to change the currency.
@@ -21,13 +22,31 @@ import { INTRO_MONTHS, prices, type Price } from "@/content/founding-families";
 
 const CODES: Price["code"][] = ["USD", "CAD", "EUR"];
 
+const copy = {
+  en: {
+    first: (n: number) => `Your first ${n} months`,
+    per: "/ month",
+    then: (amount: string) => `Then ${amount} per month, plus applicable taxes.`,
+    aria: (c: string) => `Show prices in ${c}`,
+  },
+  fr: {
+    first: (n: number) => `Vos ${n} premiers mois`,
+    per: "/ mois",
+    then: (amount: string) => `Ensuite ${amount} par mois, plus les taxes applicables.`,
+    aria: (c: string) => `Afficher les prix en ${c}`,
+  },
+} as const;
+
 export function OfferPrice({
   tone = "dark",
   showStandard = false,
+  locale = "en",
 }: {
   tone?: "dark" | "light";
   showStandard?: boolean;
+  locale?: Locale;
 }) {
+  const t = copy[locale];
   const [code, setCode] = useState<Price["code"]>("USD");
   const price = prices.find((p) => p.code === code) ?? prices[1];
 
@@ -55,7 +74,7 @@ export function OfferPrice({
           "mb-5 text-[11.5px] font-semibold uppercase tracking-[0.22em] " + eyebrow
         }
       >
-        Your first {INTRO_MONTHS} months
+        {t.first(INTRO_MONTHS)}
       </div>
 
       <div
@@ -64,7 +83,7 @@ export function OfferPrice({
       >
         {price.symbol}
         {price.intro}
-        <span className={"ml-2 font-sans text-[14px] " + quiet}>/ month</span>
+        <span className={"ml-2 font-sans text-[14px] " + quiet}>{t.per}</span>
       </div>
 
       {/* The buttons sit directly under the price, because they change it. */}
@@ -75,7 +94,7 @@ export function OfferPrice({
             type="button"
             onClick={() => setCode(c)}
             aria-pressed={c === code}
-            aria-label={`Show prices in ${c}`}
+            aria-label={t.aria(c)}
             className={button(c === code)}
           >
             {c}
@@ -87,8 +106,7 @@ export function OfferPrice({
           three here under a single-currency headline reads as a contradiction. */}
       {showStandard ? (
         <p className={"mt-5 " + quiet} style={{ fontSize: 13, lineHeight: 1.7 }}>
-          Then {price.symbol}
-          {price.standard} per month, plus applicable taxes.
+          {t.then(`${price.symbol}${price.standard}`)}
         </p>
       ) : null}
     </div>
