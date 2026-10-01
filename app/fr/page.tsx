@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 const roomAccess = [
-  "Salon en direct avec Jolene, chaque semaine",
+  "Rencontre en direct avec Jolene, chaque semaine",
   "Experts invités",
   "Une communauté entre les rencontres",
   "Questions et réponses en groupe",
@@ -76,16 +76,19 @@ export default function FrenchHomePage() {
           Un bulletin n&rsquo;a jamais été conçu pour raconter toute
           l&rsquo;histoire.
         </p>
+        {/* Jolene's wording, 1 October 2026. Six words where the English
+            headline has four, so it is set smaller: at the English clamp the
+            French sentence fills a phone screen on its own. */}
         <h1
-          className="font-heading mb-8 text-bark"
+          className="font-heading mx-auto mb-8 max-w-[880px] text-bark"
           style={{
-            fontSize: "clamp(54px,9vw,120px)",
+            fontSize: "clamp(40px,6.6vw,82px)",
             fontWeight: 500,
-            lineHeight: 0.98,
+            lineHeight: 1.0,
             letterSpacing: "-0.01em",
           }}
         >
-          Voici une juste valeur.
+          Voici une plus juste valeur pour votre enfant.
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a

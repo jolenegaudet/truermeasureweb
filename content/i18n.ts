@@ -83,8 +83,11 @@ export const tiers = {
   fr: {
     one: ["Une Juste", "Valeur"],
     oneFlat: "Une Juste Valeur",
-    two: ["Apprendre", "du Salon"],
-    twoFlat: "Apprendre du Salon",
+    // "Apprendre du Salon" was rejected by Jolene on 1 October 2026. A noun
+    // phrase keeps the set parallel, and "entre parents" says the thing: you
+    // learn among other parents rather than being taught at.
+    two: ["Entre", "parents"],
+    twoFlat: "Entre parents",
     three: ["Cercle", "Restreint"],
     threeFlat: "Cercle Restreint",
   },
@@ -118,7 +121,7 @@ export const shell = {
     nav: {
       start: "Commencez ici",
       hiddenReportCard: "The Hidden Report Card",
-      learn: "Apprendre du Salon",
+      learn: "Entre parents",
       innerCircle: "Faites partie du Cercle Restreint",
     },
     toggle: { label: "EN", aria: "View this page in English" },

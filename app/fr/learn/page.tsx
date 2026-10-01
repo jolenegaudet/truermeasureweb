@@ -5,9 +5,9 @@ import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 export const metadata: Metadata = {
-  title: "Apprendre du Salon",
+  title: "Entre parents",
   description:
-    "Une communauté choisie pour des parents qui prennent l'apprentissage au sérieux : salon en direct avec Jolene, experts invités, et des questions posées en contexte.",
+    "Une communauté choisie pour des parents qui prennent l'apprentissage au sérieux : rencontre en direct avec Jolene, experts invités, et des questions posées en contexte.",
   alternates: alternatesFor("/learn", "fr"),
 };
 
