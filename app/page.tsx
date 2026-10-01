@@ -5,7 +5,6 @@ import { OfferPrice } from "@/components/offer-price";
 import {
   CHECKOUT_URL,
   FOUNDING_CAP,
-  STANDARD_LIST,
   checkoutReady,
 } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
@@ -183,10 +182,7 @@ export default function HomePage() {
                 <div className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose-dark">
                   Limited to {FOUNDING_CAP} families
                 </div>
-                <OfferPrice />
-                <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-                  Then {STANDARD_LIST} per month, plus applicable taxes.
-                </p>
+                <OfferPrice showStandard />
                 <p
                   className="mt-5 text-muted"
                   style={{ fontSize: 13, lineHeight: 1.7 }}
