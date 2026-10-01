@@ -95,9 +95,10 @@ export const tiers = {
 
 export const shell = {
   en: {
-    // Stays up while only part of the tree is translated, because it is still
-    // true. It comes down when every page has a French counterpart.
-    banner: "La version française arrive bientôt.",
+    // Empty since 1 October 2026: the French site shipped, so announcing it as
+    // coming was no longer true, and the FR toggle sits in the nav below it.
+    // The mechanism stays for the next announcement.
+    banner: "",
     brand: "Welcome to the Truer Measure of your child!",
     nav: {
       start: "Start Here",
