@@ -3,6 +3,10 @@
  * Marks are inline SVG (Substack and LinkedIn paths from Simple Icons, CC0;
  * Instagram drawn as the outline glyph) so there is no image request and they
  * take the text colour of wherever they sit.
+ *
+ * 1 October 2026: moved into the footer so they appear on every page, and each
+ * one given a button of its own. Three words in a row on a dark background read
+ * as small print; three bordered buttons read as something to press.
  */
 const accounts = [
   {
@@ -38,16 +42,17 @@ const accounts = [
 
 export function SocialLinks() {
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+    <ul className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
       {accounts.map(({ name, href, icon }) => (
         <li key={name}>
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-dusk no-underline transition-colors hover:text-rose"
+            aria-label={`Jolene Gaudet on ${name} (opens in a new tab)`}
+            className="flex items-center gap-[10px] rounded-[2px] border border-charcoal px-[18px] py-[11px] text-[12.5px] font-semibold uppercase tracking-[0.14em] text-parchment no-underline transition-colors hover:border-parchment hover:bg-parchment hover:text-bark"
           >
-            <span className="block h-[22px] w-[22px]">{icon}</span>
+            <span className="block h-[19px] w-[19px]">{icon}</span>
             {name}
           </a>
         </li>

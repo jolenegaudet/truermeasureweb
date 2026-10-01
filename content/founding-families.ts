@@ -70,10 +70,17 @@ export const RETENTION_AFTER_END = "a year";
 export const offerNote =
   "You’re joining early, so you get an introductory rate and ways to tell us what to build next: a Feedback button, and possibly private calls.";
 
-export const billingTerms: string[] = [
-  `Then ${STANDARD_LIST} per month, plus applicable taxes.`,
-  "Billed monthly. Cancel any time. You keep the month you have paid for.",
-];
+/**
+ * Split in two on 1 October 2026. The price block now states the standing
+ * price in the currency the parent chose, so a page that shows the price block
+ * must not also list all three underneath it.
+ */
+export const STANDARD_AFTER_INTRO = `Then ${STANDARD_LIST} per month, plus applicable taxes.`;
+export const CANCELLATION_TERMS =
+  "Billed monthly. Cancel any time. You keep the month you have paid for.";
+
+/** Both lines together, for anywhere that needs the whole statement at once. */
+export const billingTerms: string[] = [STANDARD_AFTER_INTRO, CANCELLATION_TERMS];
 
 /** What a founding family gets, and for how long. */
 export const foundingIncludes: { what: string; howLong: string }[] = [

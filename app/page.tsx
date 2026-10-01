@@ -8,7 +8,6 @@ import {
   checkoutReady,
 } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
-import { SocialLinks } from "@/components/social-links";
 
 export const metadata: Metadata = {
   title: "A Truer Measure",
@@ -33,7 +32,11 @@ const circleAccess = [
  *   1 Hero      the headline
  *   2 Founder   who is behind it
  *   3 Tiers     Start with Clarity. Continue with Community. Grow with Proximity.
- *   4 Social    Instagram, Substack, LinkedIn
+ *
+ * Social was section 4 until 1 October 2026, when Jolène asked for the links on
+ * every page. They moved into the footer, which the root layout puts on all of
+ * them, and the section came out rather than repeat the same three links
+ * immediately above the footer that now holds them.
  *
  * The explanation of the Hidden Report Card (the contrast with a report card,
  * the qualities, what you get, when to pull it up) moved to /hidden-report-card
@@ -288,16 +291,6 @@ export default function HomePage() {
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 4. Social */}
-      <section className="bg-ghost px-6 py-14 md:px-10 md:py-[72px]">
-        <div className="mx-auto max-w-[760px] text-center">
-          <div className="mb-8 text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-            Follow along
-          </div>
-          <SocialLinks />
         </div>
       </section>
     </>

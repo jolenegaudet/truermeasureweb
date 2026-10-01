@@ -5,7 +5,7 @@ import {
   CHECKOUT_URL,
   FOUNDING_CAP,
   PRICE_SCOPE,
-  billingTerms,
+  CANCELLATION_TERMS,
   checkoutReady,
   foundingIncludes,
   offerNote,
@@ -407,20 +407,21 @@ export default function HiddenReportCardPage() {
             <div className="mb-6 text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
               Limited to {FOUNDING_CAP} families
             </div>
-            <OfferPrice />
+            <OfferPrice showStandard />
 
             <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
               For {PRICE_SCOPE}.
             </p>
 
-            <ul
-              className="mt-8 flex flex-col gap-3 border-t border-charcoal pt-8 text-left text-muted"
+            {/* Compliance spec 5.1: this stays immediately above the CTA. The
+                standing price is no longer repeated here, because the price
+                block above now states it in the currency the parent chose. */}
+            <p
+              className="mt-8 border-t border-charcoal pt-8 text-center text-muted"
               style={{ fontSize: 14.5, lineHeight: 1.65 }}
             >
-              {billingTerms.map((term) => (
-                <li key={term}>{term}</li>
-              ))}
-            </ul>
+              {CANCELLATION_TERMS}
+            </p>
 
             <p className="mt-6 text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
               {offerNote}
@@ -488,7 +489,7 @@ export default function HiddenReportCardPage() {
             </dl>
 
             <div
-              className="mt-10 flex flex-col gap-3 text-subdued"
+              className="mx-auto mt-10 flex max-w-[620px] flex-col gap-3 text-center text-subdued"
               style={{ fontSize: 14, lineHeight: 1.7 }}
             >
               <p>
