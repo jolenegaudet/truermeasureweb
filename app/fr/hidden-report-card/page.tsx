@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import { OfferPrice } from "@/components/offer-price";
-import {
-  CHECKOUT_URL,
-  FOUNDING_CAP,
-  checkoutReady,
-  offerFr,
-} from "@/content/founding-families";
-import { alternatesFor, tiers } from "@/content/i18n";
+import { salesPause } from "@/content/founding-families";
+import { alternatesFor } from "@/content/i18n";
 
 const DESCRIPTION =
   "Réunissez les bulletins, les commentaires des enseignants, vos observations, les projets et les moments vécus hors de l'école, et voyez ce qui revient d'une expérience à l'autre chez votre enfant.";
 
 export const metadata: Metadata = {
-  title: "Familles fondatrices",
+  title: "Le rapport caché",
   description: DESCRIPTION,
   alternates: alternatesFor("/hidden-report-card", "fr"),
   openGraph: {
@@ -21,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CA",
     url: "/fr/hidden-report-card",
-    title: "Familles fondatrices",
+    title: "Le rapport caché",
     description: DESCRIPTION,
   },
   twitter: { description: DESCRIPTION },
@@ -113,6 +107,8 @@ const experience = [
   },
 ];
 
+const pause = salesPause.fr;
+
 export default function FrenchHiddenReportCardPage() {
   return (
     <div lang="fr">
@@ -145,14 +141,6 @@ export default function FrenchHiddenReportCardPage() {
           critères. Il n&rsquo;a jamais été conçu pour mesurer votre enfant au
           complet.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-[18px]">
-          <a
-            href="#founding"
-            className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
-          >
-            Voyez l&rsquo;offre Familles fondatrices
-          </a>
-        </div>
       </section>
 
       {/* 2. Contrast */}
@@ -395,135 +383,29 @@ export default function FrenchHiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 7. The Founding Families offer */}
-      <section id="founding" className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto max-w-[880px]">
-          <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
-              Familles fondatrices
-            </div>
-            <h2
-              className="font-heading font-medium text-parchment"
-              style={{ fontSize: "clamp(28px,5vw,50px)", lineHeight: 1.08 }}
-            >
-              Joignez-vous tôt et aidez à façonner ce qui se bâtit.
-            </h2>
-          </div>
-
-          <div className="mx-auto max-w-[520px] border border-charcoal px-8 py-10 text-center md:px-11 md:py-12">
-            <div className="mb-6 text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
-              Limité à {FOUNDING_CAP} familles
-            </div>
-            <OfferPrice showStandard locale="fr" />
-
-            <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-              Pour {offerFr.scope}.
-            </p>
-
-            {/* Compliance spec 5.1: this stays immediately above the CTA. */}
-            <p
-              className="mt-8 border-t border-charcoal pt-8 text-center text-muted"
-              style={{ fontSize: 14.5, lineHeight: 1.65 }}
-            >
-              {offerFr.cancellation}
-            </p>
-
-            <p className="mt-6 text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
-              {offerFr.offerNote}
-            </p>
-
-            <div className="mt-8 border-t border-charcoal pt-8">
-              {checkoutReady ? (
-                <>
-                  <a
-                    href={CHECKOUT_URL}
-                    className="inline-block w-full rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                  >
-                    Devenez une famille fondatrice
-                  </a>
-                  <p
-                    className="mt-4 text-subdued"
-                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                  >
-                    Le tarif de lancement est appliqué pour vous. Il n&rsquo;y a
-                    aucun code à entrer.
-                  </p>
-                  {/* Compliance: the agreement to the Terms sits with the
-                      button that takes the money, in the reader's language. */}
-                  <p
-                    className="mt-3 text-subdued"
-                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                  >
-                    En vous joignant, vous acceptez nos{" "}
-                    <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
-                      Conditions d&rsquo;utilisation
-                    </a>{" "}
-                    (
-                    <a href="/terms-of-service" className="text-parchment underline underline-offset-2">
-                      in English
-                    </a>
-                    ).
-                  </p>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    disabled
-                    className="w-full cursor-not-allowed rounded-[2px] border border-charcoal bg-transparent px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-subdued"
-                  >
-                    Devenez une famille fondatrice
-                  </button>
-                  <p
-                    className="mt-4 text-subdued"
-                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                  >
-                    Ouverture bientôt.
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* What a founding family gets, and for how long. */}
-          <div className="mx-auto mt-14 max-w-[720px] md:mt-16">
-            <h3 className="font-heading mb-6 text-center text-[26px] text-parchment">
-              Ce qui est inclus
-            </h3>
-            <dl className="flex flex-col">
-              {offerFr.foundingIncludes.map(({ what, howLong }) => (
-                <div
-                  key={what}
-                  className="grid grid-cols-1 gap-1 border-t border-charcoal py-5 md:grid-cols-[1fr_auto] md:gap-8"
-                >
-                  <dt className="text-parchment" style={{ fontSize: 16, lineHeight: 1.6 }}>
-                    {what}
-                  </dt>
-                  <dd className="text-subdued md:text-right" style={{ fontSize: 13.5, lineHeight: 1.6 }}>
-                    {howLong}
-                  </dd>
-                </div>
-              ))}
-              <div className="border-t border-charcoal" />
-            </dl>
-
-            <div
-              className="mx-auto mt-10 flex max-w-[620px] flex-col gap-3 text-center text-subdued"
-              style={{ fontSize: 14, lineHeight: 1.7 }}
-            >
-              <p>
-                Cela ne comprend pas {tiers.fr.twoFlat} ni le{" "}
-                {tiers.fr.threeFlat}. Ce sont des offres distinctes, et vous
-                joindre ici ne vous donne ni l&rsquo;une ni l&rsquo;autre.
-              </p>
-              <p>
-                Ce n&rsquo;est pas de la consultation individuelle, et ce
-                n&rsquo;est pas la promesse que chaque suggestion devienne une
-                fonctionnalité. Jolene lit ce que les familles fondatrices
-                envoient, et décide de ce qui se bâtit.
-              </p>
-            </div>
-          </div>
+      {/* SALES PAUSED, 2 October 2026, same as the English page. Section 7
+          was the Founding Families offer. It is in git at 1cb767c, and every
+          amount and id is still in content/founding-families.ts. */}
+      <section className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto max-w-[640px] text-center">
+          <h2
+            className="font-heading font-medium text-parchment"
+            style={{ fontSize: "clamp(28px,5vw,46px)", lineHeight: 1.1 }}
+          >
+            {pause.heading}
+          </h2>
+          <p className="mt-7 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
+            {pause.story}
+          </p>
+          <p className="mt-5 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
+            {pause.building}
+          </p>
+          <p
+            className="font-heading mt-7 text-parchment"
+            style={{ fontSize: "clamp(20px,2.6vw,26px)", lineHeight: 1.4 }}
+          >
+            {pause.peek}
+          </p>
         </div>
       </section>
     </div>

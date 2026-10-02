@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { OfferPrice } from "@/components/offer-price";
-import {
-  CHECKOUT_URL,
-  FOUNDING_CAP,
-  TERMS_PATH,
-  checkoutReady,
-} from "@/content/founding-families";
+import { salesPause } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor } from "@/content/i18n";
 
@@ -48,6 +42,8 @@ const circleAccess = [
  * by her decision, so the home page is the door to the three offers. The
  * Clarity card's "See what is inside" link is where that explanation now lives.
  */
+const pause = salesPause.en;
+
 export default function HomePage() {
   return (
     <>
@@ -176,67 +172,35 @@ export default function HomePage() {
                   <br />
                   Measure
                 </div>
-                <p className="font-heading mb-7 text-[19px] text-warm">
-                  Founding Families
-                </p>
                 <p
                   className="mb-8 text-parchment"
                   style={{ fontSize: 15.5, lineHeight: 1.55 }}
                 >
                   More than a grade to speak for your child.
                 </p>
-                {/* Amounts come from content/founding-families.ts, the one
-                    place the offer is defined. */}
-                <div className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose-dark">
-                  Limited to {FOUNDING_CAP} families
-                </div>
-                {/* The standing price and its tax sentence are inside the
-                    price block, so both follow the currency the parent chose.
-                    The euro price has VAT in it; the other two do not. */}
-                <OfferPrice showStandard />
-                <p
-                  className="mt-5 text-muted"
-                  style={{ fontSize: 13, lineHeight: 1.7 }}
-                >
-                  One membership covers one child.
-                </p>
                 <div className="flex-1" />
-                {/* Compliance spec §5.1 keeps the billing terms immediately
-                    above the CTA. Start here opens the checkout once the new
-                    offer exists in Stripe; until then it opens the offer on
-                    the product page. */}
+                {/* SALES PAUSED, 2 October 2026. The offer is being
+                    restructured; see content/founding-families.ts, which still
+                    holds every amount, the Stripe ids and the price component.
+                    The card stays where it is and keeps its name: the product
+                    is not discontinued, it is not for sale this week. */}
                 <p
-                  className="mb-7 mt-8 text-muted"
-                  style={{ fontSize: 11.5, lineHeight: 1.6 }}
+                  className="font-heading mt-10 text-parchment"
+                  style={{ fontSize: 22, lineHeight: 1.3 }}
                 >
-                  Billed monthly. Cancel online any time before your next
-                  payment. You keep access until the end of the billing period
-                  you have paid for.
+                  {pause.heading}
                 </p>
-                <a
-                  href={checkoutReady ? CHECKOUT_URL : "/hidden-report-card#founding"}
-                  className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                >
-                  Start here
-                </a>
-                <p className="mt-4 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
-                  By joining, you agree to our{" "}
-                  <a href={TERMS_PATH} className="text-parchment underline underline-offset-2">
-                    Terms of Service
-                  </a>{" "}
-                  (
-                  <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
-                    en français
-                  </a>
-                  ).
+                <p className="mt-4 text-muted" style={{ fontSize: 15, lineHeight: 1.65 }}>
+                  {pause.building}
                 </p>
-                {/* The product page is the second door, not the first. Start
-                    Here has to reach a checkout, not another page to read. */}
+                <p className="mt-2 font-semibold text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
+                  {pause.peek}
+                </p>
                 <Link
-                  href="/hidden-report-card"
-                  className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.14em] text-muted no-underline hover:text-parchment"
+                  href={pause.ctaHref}
+                  className="mt-8 inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                 >
-                  See what is inside
+                  {pause.cta}
                 </Link>
               </div>
             </div>

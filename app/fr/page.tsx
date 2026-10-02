@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { OfferPrice } from "@/components/offer-price";
-import {
-  CHECKOUT_URL,
-  FOUNDING_CAP,
-  checkoutReady,
-} from "@/content/founding-families";
+import { salesPause } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor, tiers } from "@/content/i18n";
 
@@ -64,6 +59,8 @@ const circleAccess = [
  * Prices and offer terms come from content/founding-families.ts, the same file
  * the English page reads, so the two languages cannot quote different numbers.
  */
+const pause = salesPause.fr;
+
 export default function FrenchHomePage() {
   return (
     <div lang="fr">
@@ -186,64 +183,33 @@ export default function FrenchHomePage() {
                   <br />
                   {tiers.fr.one[1]}
                 </div>
-                <p className="font-heading mb-7 text-[19px] text-warm">
-                  Familles fondatrices
-                </p>
                 <p
                   className="mb-8 text-parchment"
                   style={{ fontSize: 15.5, lineHeight: 1.55 }}
                 >
                   Plus qu&rsquo;une note pour parler de votre enfant.
                 </p>
-                {/* Amounts come from content/founding-families.ts, the one
-                    place the offer is defined, so the two languages cannot
-                    quote different prices. */}
-                <div className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose-dark">
-                  Limité à {FOUNDING_CAP} familles
-                </div>
-                <OfferPrice showStandard locale="fr" />
-                <p
-                  className="mt-5 text-muted"
-                  style={{ fontSize: 13, lineHeight: 1.7 }}
-                >
-                  Une adhésion couvre un enfant.
-                </p>
                 <div className="flex-1" />
-                {/* Compliance spec 5.1 keeps the billing terms immediately
-                    above the CTA, in both languages. */}
+                {/* SALES PAUSED, 2 October 2026, in both languages: pausing
+                    only the English pages would have left the offer on sale to
+                    every French visitor. See content/founding-families.ts. */}
                 <p
-                  className="mb-7 mt-8 text-muted"
-                  style={{ fontSize: 11.5, lineHeight: 1.6 }}
+                  className="font-heading mt-10 text-parchment"
+                  style={{ fontSize: 22, lineHeight: 1.3 }}
                 >
-                  Facturé chaque mois. Annulez en tout temps. Le mois que vous
-                  avez payé vous reste.
+                  {pause.heading}
                 </p>
-                <a
-                  href={
-                    checkoutReady
-                      ? CHECKOUT_URL
-                      : "/fr/hidden-report-card#founding"
-                  }
-                  className="inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                >
-                  Commencez ici
-                </a>
-                <p className="mt-4 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
-                  En vous joignant, vous acceptez nos{" "}
-                  <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
-                    Conditions d&rsquo;utilisation
-                  </a>{" "}
-                  (
-                  <a href="/terms-of-service" className="text-parchment underline underline-offset-2">
-                    in English
-                  </a>
-                  ).
+                <p className="mt-4 text-muted" style={{ fontSize: 15, lineHeight: 1.65 }}>
+                  {pause.building}
+                </p>
+                <p className="mt-2 font-semibold text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
+                  {pause.peek}
                 </p>
                 <Link
-                  href="/fr/hidden-report-card"
-                  className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.14em] text-muted no-underline hover:text-parchment"
+                  href={pause.ctaHref}
+                  className="mt-8 inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                 >
-                  Voyez ce qu&rsquo;il y a dedans
+                  {pause.cta}
                 </Link>
               </div>
             </div>

@@ -22,6 +22,60 @@
  * Stripe was configured for it the same day (see CHECKOUT_URL below).
  */
 
+/**
+ * ================= SALES PAUSED, 2 October 2026 =================
+ *
+ * Jolene is restructuring the offer, the feature packaging and the pricing for
+ * The Hidden Report Card. Until she gives the new structure, a visitor must not
+ * be able to buy the current one, in either language.
+ *
+ * WHAT WAS REMOVED FROM THE PUBLIC PAGES, and nothing else:
+ *   the price block and its currency buttons, "Limited to 50 families",
+ *   "Your first 3 months", "Founding Families", the billing terms line, the
+ *   Terms consent line that belonged to the buy button, "Start here", "Join as
+ *   a Founding Family", the offer section on the product page, and the hero
+ *   link to it. Elite Parents and Inner Circle are untouched.
+ *
+ * WHAT IS STILL HERE, intact and ready: every amount, the cap, the intro
+ * length, the Stripe ids below, CHECKOUT_URL, `checkoutReady`, `offerFr`, and
+ * components/offer-price.tsx with its currency switching and per-currency tax
+ * wording. Nothing was deleted from this file.
+ *
+ * THE MARKUP that rendered the offer is in git, not in comments here, which is
+ * the cleaner recovery path: `git show 1cb767c -- app/page.tsx
+ * app/fr/page.tsx app/hidden-report-card/page.tsx
+ * app/fr/hidden-report-card/page.tsx` is the last state before the pause.
+ *
+ * STILL LIVE IN STRIPE, deliberately: both payment links are active and
+ * reachable by anyone holding the url, because deactivating a live link is a
+ * decision about money and about whatever already carries that url (social
+ * posts, emails, the GoHighLevel welcome workflow). Neither has ever been
+ * bought from: 0 of 50 on each, checked 2 October 2026.
+ */
+export const SALES_PAUSED = true;
+
+/** The temporary state shown where the offer used to be. Her wording. */
+export const salesPause = {
+  en: {
+    heading: "The Hidden Report Card™ is evolving.",
+    story:
+      "What started as a way to see more of your child than a traditional report card could show is becoming something much more.",
+    building: "I’m building what comes next.",
+    peek: "Sneak peek coming soon.",
+    cta: "See what’s coming",
+    ctaHref: "/hidden-report-card",
+  },
+  fr: {
+    heading: "Le rapport caché est en évolution.",
+    story:
+      "Ce qui a commencé comme une façon de voir votre enfant au-delà de ce qu’un bulletin traditionnel pouvait montrer devient quelque chose de bien plus grand.",
+    building: "Je bâtis ce qui vient ensuite.",
+    peek: "Un aperçu arrive bientôt.",
+    cta: "Voyez ce qui arrive",
+    ctaHref: "/fr/hidden-report-card",
+  },
+} as const;
+
 export const PRICE_SCOPE = "one child";
 
 /** Places at the introductory rate. Enforced by the checkout link, not here. */

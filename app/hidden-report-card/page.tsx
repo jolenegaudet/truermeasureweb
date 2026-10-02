@@ -1,24 +1,14 @@
 import type { Metadata } from "next";
 import { alternatesFor } from "@/content/i18n";
 import { Fragment } from "react";
-import { OfferPrice } from "@/components/offer-price";
-import {
-  CHECKOUT_URL,
-  FOUNDING_CAP,
-  TERMS_PATH,
-  PRICE_SCOPE,
-  CANCELLATION_TERMS,
-  checkoutReady,
-  foundingIncludes,
-  offerNote,
-} from "@/content/founding-families";
+import { salesPause } from "@/content/founding-families";
 
 export const metadata: Metadata = {
   // The layout template appends " | Truer Measure", and the home page is
   // already titled "A Truer Measure", so titling this page the same gave both
   // "A Truer Measure | Truer Measure" and two pages with identical titles.
   // This one is the founding offer, so it says so.
-  title: "Founding Families",
+  title: "The Hidden Report Card",
   description:
     "Bring together report cards, teacher comments, your observations, projects and moments from beyond school, and see what keeps showing up across your child's experiences.",
   alternates: alternatesFor("/hidden-report-card"),
@@ -110,6 +100,8 @@ const experience = [
   },
 ];
 
+const pause = salesPause.en;
+
 export default function HiddenReportCardPage() {
   return (
     <>
@@ -146,14 +138,6 @@ export default function HiddenReportCardPage() {
           A report card measures your child against a limited set of standards.
           It was never designed to measure your whole child.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-[18px]">
-          <a
-            href="#founding"
-            className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
-          >
-            See the Founding Families offer
-          </a>
-        </div>
       </section>
 
       {/* 2. Contrast */}
@@ -391,135 +375,32 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 7. The Founding Families offer */}
-      <section id="founding" className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto max-w-[880px]">
-          <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
-              Founding Families
-            </div>
-            <h2
-              className="font-heading font-medium text-parchment"
-              style={{ fontSize: "clamp(28px,5vw,50px)", lineHeight: 1.08 }}
-            >
-              Join early, and help shape what gets built.
-            </h2>
-          </div>
-
-          <div className="mx-auto max-w-[520px] border border-charcoal px-8 py-10 text-center md:px-11 md:py-12">
-            <div className="mb-6 text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
-              Limited to {FOUNDING_CAP} families
-            </div>
-            <OfferPrice showStandard />
-
-            <p className="mt-4 text-muted" style={{ fontSize: 13, lineHeight: 1.7 }}>
-              For {PRICE_SCOPE}.
-            </p>
-
-            {/* Compliance spec 5.1: this stays immediately above the CTA. The
-                standing price is no longer repeated here, because the price
-                block above now states it in the currency the parent chose. */}
-            <p
-              className="mt-8 border-t border-charcoal pt-8 text-center text-muted"
-              style={{ fontSize: 14.5, lineHeight: 1.65 }}
-            >
-              {CANCELLATION_TERMS}
-            </p>
-
-            <p className="mt-6 text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
-              {offerNote}
-            </p>
-
-            <div className="mt-8 border-t border-charcoal pt-8">
-              {checkoutReady ? (
-                <>
-                  <a
-                    href={CHECKOUT_URL}
-                    className="inline-block w-full rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                  >
-                    Join as a Founding Family
-                  </a>
-                  <p
-                    className="mt-4 text-subdued"
-                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                  >
-                    The introductory rate is applied for you. There is no code
-                    to enter.
-                  </p>
-                  <p
-                    className="mt-3 text-subdued"
-                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                  >
-                    By joining, you agree to our{" "}
-                    <a href={TERMS_PATH} className="text-parchment underline underline-offset-2">
-                      Terms of Service
-                    </a>{" "}
-                    (
-                    <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
-                      en français
-                    </a>
-                    ).
-                  </p>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    disabled
-                    className="w-full cursor-not-allowed rounded-[2px] border border-charcoal bg-transparent px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-subdued"
-                  >
-                    Join as a Founding Family
-                  </button>
-                  <p
-                    className="mt-4 text-subdued"
-                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
-                  >
-                    Opening soon.
-                  </p>
-                </>
-              )}
-            </div>
-
-          </div>
-
-          {/* What a founding family gets, and for how long. The right column is
-              what stops "founding" reading as a permanent entitlement. */}
-          <div className="mx-auto mt-14 max-w-[720px] md:mt-16">
-            <h3 className="font-heading mb-6 text-center text-[26px] text-parchment">
-              What is included
-            </h3>
-            <dl className="flex flex-col">
-              {foundingIncludes.map(({ what, howLong }) => (
-                <div
-                  key={what}
-                  className="grid grid-cols-1 gap-1 border-t border-charcoal py-5 md:grid-cols-[1fr_auto] md:gap-8"
-                >
-                  <dt className="text-parchment" style={{ fontSize: 16, lineHeight: 1.6 }}>
-                    {what}
-                  </dt>
-                  <dd className="text-subdued md:text-right" style={{ fontSize: 13.5, lineHeight: 1.6 }}>
-                    {howLong}
-                  </dd>
-                </div>
-              ))}
-              <div className="border-t border-charcoal" />
-            </dl>
-
-            <div
-              className="mx-auto mt-10 flex max-w-[620px] flex-col gap-3 text-center text-subdued"
-              style={{ fontSize: 14, lineHeight: 1.7 }}
-            >
-              <p>
-                This does not include Elite Parents or Inner Circle. Those
-                are separate, and joining here does not include either.
-              </p>
-              <p>
-                It is not individual consulting, and it is not a promise that
-                every suggestion becomes a feature. Jolene reads what founding
-                families send, and decides what gets built.
-              </p>
-            </div>
-          </div>
+      {/* SALES PAUSED, 2 October 2026. Section 7 was the Founding Families
+          offer: the price, the cap, what was included, the checkout button and
+          the Terms consent beside it. It is in git at 1cb767c, and every amount
+          and id is still in content/founding-families.ts. Sections 1 to 6 above
+          are untouched, because someone arriving from social media still has to
+          be able to understand what this is and why it exists. */}
+      <section className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto max-w-[640px] text-center">
+          <h2
+            className="font-heading font-medium text-parchment"
+            style={{ fontSize: "clamp(28px,5vw,46px)", lineHeight: 1.1 }}
+          >
+            {pause.heading}
+          </h2>
+          <p className="mt-7 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
+            {pause.story}
+          </p>
+          <p className="mt-5 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
+            {pause.building}
+          </p>
+          <p
+            className="font-heading mt-7 text-parchment"
+            style={{ fontSize: "clamp(20px,2.6vw,26px)", lineHeight: 1.4 }}
+          >
+            {pause.peek}
+          </p>
         </div>
       </section>
     </>
