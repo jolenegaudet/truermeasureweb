@@ -91,8 +91,10 @@ export const tiers = {
     // learn among other parents rather than being taught at.
     two: ["Entre", "parents"],
     twoFlat: "Entre parents",
-    three: ["Cercle", "Restreint"],
-    threeFlat: "Cercle Restreint",
+    // Lowercase r, her correction of 2 October 2026: "restreint" is an
+    // adjective, not part of a proper noun.
+    three: ["Cercle", "restreint"],
+    threeFlat: "Cercle restreint",
   },
 } as const;
 
@@ -109,7 +111,7 @@ export const shell = {
       learn: "Learn From The Room",
       innerCircle: "Be Part of the Inner Circle",
     },
-    toggle: { label: "FR", aria: "Voir cette page en français" },
+    toggle: { label: "FR", aria: "Voyez cette page en français" },
     footer: {
       brand: "A Truer Measure",
       tagline: "The Truer Measure of a Child!",
@@ -126,7 +128,7 @@ export const shell = {
       start: "Commencez ici",
       hiddenReportCard: "The Hidden Report Card",
       learn: "Entre parents",
-      innerCircle: "Faites partie du Cercle Restreint",
+      innerCircle: "Faites partie du Cercle restreint",
     },
     toggle: { label: "EN", aria: "View this page in English" },
     footer: {

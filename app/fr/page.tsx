@@ -95,7 +95,7 @@ export default function FrenchHomePage() {
             href="#tiers"
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
-            COMMENCER
+            COMMENCEZ
           </a>
         </div>
       </section>
@@ -232,7 +232,7 @@ export default function FrenchHomePage() {
                   href="/fr/hidden-report-card"
                   className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.14em] text-muted no-underline hover:text-parchment"
                 >
-                  Voir ce qu&rsquo;il y a dedans
+                  Voyez ce qu&rsquo;il y a dedans
                 </Link>
               </div>
             </div>
@@ -266,10 +266,10 @@ export default function FrenchHomePage() {
               <WaitlistButton
                 locale="fr"
                 tag="waitlist-elite-learning-leaders"
-                label={"Liste d’attente"}
+                label={"Rejoignez la liste d’attente"}
                 modalEyebrow={tiers.fr.twoFlat}
                 modalTitle={"Inscrivez-vous à la liste d’attente."}
-                submitLabel={"S’inscrire"}
+                submitLabel={"Inscrivez-vous"}
                 variant="outline-rose-dark"
               />
             </div>
@@ -302,10 +302,10 @@ export default function FrenchHomePage() {
               <WaitlistButton
                 locale="fr"
                 tag="applied-inner-circle"
-                label="Postuler"
+                label={"Faites une demande"}
                 modalEyebrow="Aidez à façonner la suite"
-                modalTitle={`Postulez au ${tiers.fr.threeFlat}.`}
-                submitLabel="Envoyer la demande"
+                modalTitle={`Faites votre demande pour le ${tiers.fr.threeFlat}.`}
+                submitLabel={"Envoyez la demande"}
                 variant="outline-rose"
               />
             </div>

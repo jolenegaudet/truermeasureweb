@@ -150,7 +150,7 @@ export default function FrenchHiddenReportCardPage() {
             href="#founding"
             className="inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[14px] font-semibold uppercase tracking-[0.12em] text-parchment no-underline"
           >
-            Voir l&rsquo;offre Familles fondatrices
+            Voyez l&rsquo;offre Familles fondatrices
           </a>
         </div>
       </section>
@@ -439,7 +439,7 @@ export default function FrenchHiddenReportCardPage() {
                     href={CHECKOUT_URL}
                     className="inline-block w-full rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
                   >
-                    Devenir une famille fondatrice
+                    Devenez une famille fondatrice
                   </a>
                   <p
                     className="mt-4 text-subdued"
@@ -456,7 +456,7 @@ export default function FrenchHiddenReportCardPage() {
                     disabled
                     className="w-full cursor-not-allowed rounded-[2px] border border-charcoal bg-transparent px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-subdued"
                   >
-                    Devenir une famille fondatrice
+                    Devenez une famille fondatrice
                   </button>
                   <p
                     className="mt-4 text-subdued"

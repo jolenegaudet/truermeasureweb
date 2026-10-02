@@ -50,10 +50,10 @@ export default function FrenchLearnPage() {
           <WaitlistButton
             locale="fr"
             tag="waitlist-elite-learning-leaders"
-            label="Liste d’attente"
+            label={"Rejoignez la liste d’attente"}
             modalEyebrow={tiers.fr.twoFlat}
             modalTitle="Inscrivez-vous à la liste d’attente."
-            submitLabel="S’inscrire"
+            submitLabel={"Inscrivez-vous"}
             variant="bark"
           />
           <Link
