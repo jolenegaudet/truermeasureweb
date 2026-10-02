@@ -189,12 +189,16 @@ export default function FrenchHomePage() {
                 >
                   Plus qu&rsquo;une note pour parler de votre enfant.
                 </p>
-                <div className="flex-1" />
+                {/* No flex-1 spacer here any more. It was sized for a card
+                    full of pricing; with this much less content it would push
+                    the message to the bottom and open a hole in the middle. The
+                    card still stretches to the row, and the slack now falls
+                    below the button, where it reads as padding. */}
                 {/* SALES PAUSED, 2 October 2026, in both languages: pausing
                     only the English pages would have left the offer on sale to
                     every French visitor. See content/founding-families.ts. */}
                 <p
-                  className="font-heading mt-10 text-parchment"
+                  className="font-heading mt-4 text-parchment"
                   style={{ fontSize: 22, lineHeight: 1.3 }}
                 >
                   {pause.heading}

@@ -153,9 +153,9 @@ export default function HomePage() {
                 Her own copy in "What you actually get" already drew that line,
                 so the card names the membership and the document keeps its name
                 everywhere it is the document being talked about.
-                One price and one button for this membership, on this card and
-                nowhere else on the page. The full description lives in "What you
-                actually get" on /hidden-report-card. */}
+                Sales of this offer are paused (2 October 2026), so the card
+                carries the temporary message and a link to the product page
+                instead of a price and a checkout button. */}
             <div className="flex flex-col">
               <div
                 className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
@@ -178,14 +178,18 @@ export default function HomePage() {
                 >
                   More than a grade to speak for your child.
                 </p>
-                <div className="flex-1" />
+                {/* No flex-1 spacer here any more. It was sized for a card
+                    full of pricing; with this much less content it would push
+                    the message to the bottom and open a hole in the middle. The
+                    card still stretches to the row, and the slack now falls
+                    below the button, where it reads as padding. */}
                 {/* SALES PAUSED, 2 October 2026. The offer is being
                     restructured; see content/founding-families.ts, which still
                     holds every amount, the Stripe ids and the price component.
                     The card stays where it is and keeps its name: the product
                     is not discontinued, it is not for sale this week. */}
                 <p
-                  className="font-heading mt-10 text-parchment"
+                  className="font-heading mt-4 text-parchment"
                   style={{ fontSize: 22, lineHeight: 1.3 }}
                 >
                   {pause.heading}

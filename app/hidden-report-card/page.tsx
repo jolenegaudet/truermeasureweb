@@ -22,8 +22,8 @@ export const metadata: Metadata = {
  * /hidden-report-card path, which is the phrase a parent is most likely to
  * search for, but the product is named A Truer Measure on the page itself.
  *
- * The buy button stays disabled ("Opening soon") until the new offer's checkout
- * exists in Stripe and CHECKOUT_URL in content/founding-families.ts is set.
+ * Sales of the current offer are paused (2 October 2026). The offer section is
+ * gone from public view; everything that explains the product is still here.
  *
  * Every number and term comes from content/founding-families.ts so the offer
  * can be revised in one place. The FAQ is off the page until Jolene decides
