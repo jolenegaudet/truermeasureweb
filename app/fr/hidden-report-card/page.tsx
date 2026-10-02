@@ -31,11 +31,11 @@ export const metadata: Metadata = {
  * The French counterpart of app/hidden-report-card/page.tsx. Same sections, in
  * the same order, so the language toggle never changes which page you are on.
  *
- * NAMING. The Hidden Report Card™ keeps its English name in both languages: it
- * is the document the product produces, it carries a trademark claim, and
- * Jolène has not asked for it to change. The product itself is Une Juste
- * Mesure in French, from content/i18n.ts, where she translated the tier names on
- * 1 October 2026.
+ * NAMING, her four terms of 2 October 2026. The document is "Le rapport caché"
+ * in French, with no trademark symbol: she wrote the mark on the English name
+ * and not on the French one. The product itself is Une Juste Mesure, and the
+ * other two offers are Parents leaders and Cercle privé, all in
+ * content/i18n.ts.
  *
  * The route keeps the /hidden-report-card path on both sides, which is also the
  * phrase a parent is most likely to search for.
@@ -185,7 +185,7 @@ export default function FrenchHiddenReportCardPage() {
                 </div>
                 <div className="px-6 py-6 md:px-9 md:py-[34px]">
                   <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-                    The Hidden Report Card&trade;
+                    Le rapport caché
                   </div>
                   <div
                     className="font-heading text-bark"
@@ -205,7 +205,7 @@ export default function FrenchHiddenReportCardPage() {
         <div className="mx-auto max-w-[1080px]">
           <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-16">
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              The Hidden Report Card&trade;
+              Le rapport caché
               <br />
               Une juste mesure de votre enfant
             </div>
@@ -262,7 +262,7 @@ export default function FrenchHiddenReportCardPage() {
             </p>
             <p>
               C&rsquo;est pour cela que nous l&rsquo;appelons le{" "}
-              <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>.
+              <strong className="font-semibold text-bark">rapport caché</strong>.
             </p>
           </div>
         </div>
@@ -297,7 +297,7 @@ export default function FrenchHiddenReportCardPage() {
             </p>
             <p>
               Truer Measure réunit ces preuves et génère le{" "}
-              <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>{" "}
+              <strong className="font-semibold text-bark">rapport caché</strong>{" "}
               de votre enfant.
             </p>
             <p>
@@ -335,7 +335,7 @@ export default function FrenchHiddenReportCardPage() {
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
             >
-              Ouvrez le Hidden Report Card<span className="align-super text-[0.55em]">&trade;</span>
+              Ouvrez le rapport caché
             </h2>
           </div>
 

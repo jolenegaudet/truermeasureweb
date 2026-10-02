@@ -64,39 +64,44 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
   };
 }
 
-/** Strings that live in the shell rather than on any one page. */
 /**
- * The three tiers. Jolène, 1 October 2026: translate the tier names too, which
- * makes tier 1 "Une Juste Mesure" and lines the French site up with the phrase
- * in its headline and with justemesure.ca.
+ * THE FOUR TERMS, dictated by Jolene on 2 October 2026. These are the names, in
+ * both languages, and nothing should paraphrase them:
  *
- * The Hidden Report Card keeps its English name on both sides. It is the
- * document the product produces rather than a tier, it carries a trademark
- * claim, and she has not asked for it to change.
+ *   Start Here      Commencez ici
+ *   The Hidden Report Card(TM)   Le rapport caché
+ *   Elite Parents   Parents leaders
+ *   Inner Circle    Cercle privé
+ *
+ * She wrote the trademark on the English and not on the French, so the French
+ * name carries no (TM). The mark is claimed in English.
+ *
+ * Two earlier French names are dead and must not come back. "Apprendre du
+ * Salon" she rejected outright. "Entre parents" she rejected because it makes
+ * membership mean parenthood, which writes her out of her own room: she is not
+ * a parent. The same flaw was in two body lines, now fixed.
  */
 export const tiers = {
   en: {
     one: ["A Truer", "Measure"],
     oneFlat: "A Truer Measure",
-    two: ["Learn from", "the Room"],
-    twoFlat: "Learn From The Room",
+    two: ["Elite", "Parents"],
+    twoFlat: "Elite Parents",
     three: ["Inner", "Circle"],
     threeFlat: "Inner Circle",
   },
   fr: {
     one: ["Une Juste", "Mesure"],
     oneFlat: "Une Juste Mesure",
-    // "Apprendre du Salon" was rejected by Jolene on 1 October 2026. A noun
-    // phrase keeps the set parallel, and "entre parents" says the thing: you
-    // learn among other parents rather than being taught at.
-    two: ["Entre", "parents"],
-    twoFlat: "Entre parents",
-    // Lowercase r, her correction of 2 October 2026: "restreint" is an
-    // adjective, not part of a proper noun.
-    three: ["Cercle", "restreint"],
-    threeFlat: "Cercle restreint",
+    two: ["Parents", "leaders"],
+    twoFlat: "Parents leaders",
+    three: ["Cercle", "privé"],
+    threeFlat: "Cercle privé",
   },
 } as const;
+
+/** The document the product produces. Named, not paraphrased. */
+export const hiddenReportCard = { en: "The Hidden Report Card", fr: "Le rapport caché" } as const;
 
 export const shell = {
   en: {
@@ -107,9 +112,9 @@ export const shell = {
     brand: "Welcome to the Truer Measure of your child!",
     nav: {
       start: "Start Here",
-      hiddenReportCard: "The Hidden Report Card",
-      learn: "Learn From The Room",
-      innerCircle: "Be Part of the Inner Circle",
+      hiddenReportCard: "The Hidden Report Card™",
+      learn: "Elite Parents",
+      innerCircle: "Inner Circle",
     },
     toggle: { label: "FR", aria: "Voyez cette page en français" },
     footer: {
@@ -126,9 +131,9 @@ export const shell = {
     brand: "Bienvenue à la juste mesure de votre enfant!",
     nav: {
       start: "Commencez ici",
-      hiddenReportCard: "The Hidden Report Card",
-      learn: "Entre parents",
-      innerCircle: "Faites partie du Cercle restreint",
+      hiddenReportCard: "Le rapport caché",
+      learn: "Parents leaders",
+      innerCircle: "Cercle privé",
     },
     toggle: { label: "EN", aria: "View this page in English" },
     footer: {

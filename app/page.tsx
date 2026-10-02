@@ -225,7 +225,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Tier 2 — Learn from the Room */}
+            {/* Tier 2 — Elite Parents */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Community
@@ -234,9 +234,9 @@ export default function HomePage() {
                 className="font-heading mb-[18px] font-medium text-bark"
                 style={{ fontSize: 34, lineHeight: 1.06 }}
               >
-                Learn from
+                Elite
                 <br />
-                the Room
+                Parents
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
                 Elite Parents as Learning Leaders
@@ -253,8 +253,8 @@ export default function HomePage() {
               <WaitlistButton
                 tag="waitlist-elite-learning-leaders"
                 label="Join the waitlist"
-                modalEyebrow="Learn From The Room"
-                modalTitle="Join the Elite Parents as Learning Leaders waitlist."
+                modalEyebrow="Elite Parents"
+                modalTitle="Join the Elite Parents waitlist."
                 submitLabel="Join the waitlist"
                 variant="outline-rose-dark"
               />

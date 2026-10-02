@@ -5,7 +5,7 @@ import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 export const metadata: Metadata = {
-  title: "Faites partie du Cercle restreint",
+  title: "Cercle privé",
   description:
     "Un accès direct à Jolene et une voix dans ce que Truer Measure crée ensuite. Les places sont limitées et l'admission se fait sur demande.",
   alternates: alternatesFor("/inner-circle", "fr"),
@@ -34,7 +34,7 @@ export default function FrenchInnerCirclePage() {
             className="font-heading mx-auto italic text-dusk"
             style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
           >
-            Faites partie du Cercle restreint
+            Faites partie du Cercle privé
           </p>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function FrenchInnerCirclePage() {
             tag="applied-inner-circle"
             label={"Faites une demande"}
             modalEyebrow="Aidez à façonner la suite"
-            modalTitle={"Faites votre demande pour le Cercle restreint."}
+            modalTitle={`Faites votre demande pour le ${tiers.fr.threeFlat}.`}
             submitLabel={"Envoyez la demande"}
             variant="bark"
           />

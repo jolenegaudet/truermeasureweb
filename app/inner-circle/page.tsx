@@ -5,7 +5,7 @@ import BuildContent from "@/content/build.mdx";
 import { WaitlistButton } from "@/components/waitlist-button";
 
 export const metadata: Metadata = {
-  title: "Be Part of the Inner Circle",
+  title: "Inner Circle",
   alternates: alternatesFor("/inner-circle"),
 };
 

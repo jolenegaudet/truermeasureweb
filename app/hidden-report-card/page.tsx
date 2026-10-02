@@ -495,7 +495,7 @@ export default function HiddenReportCardPage() {
               style={{ fontSize: 14, lineHeight: 1.7 }}
             >
               <p>
-                This does not include Learn From The Room or Inner Circle. Those
+                This does not include Elite Parents or Inner Circle. Those
                 are separate, and joining here does not include either.
               </p>
               <p>

@@ -55,7 +55,7 @@ const circleAccess = [
  *
  * NAMING, following Jolène's ruling of 1 October 2026 (one brand, two
  * languages). The three offers keep their English names, because they are the
- * products: A Truer Measure, Learn from the Room, Inner Circle. The tier words
+ * products: A Truer Measure, Elite Parents, Inner Circle. The tier words
  * are translated, because they describe rather than name, and the section
  * heading translates them anyway. The headline uses "une juste mesure", the
  * phrase behind justemesure.ca, because "Voici A Truer Measure" reads like a
@@ -237,7 +237,7 @@ export default function FrenchHomePage() {
               </div>
             </div>
 
-            {/* Tier 2 — Learn from the Room */}
+            {/* Tier 2 — Parents leaders */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Communauté

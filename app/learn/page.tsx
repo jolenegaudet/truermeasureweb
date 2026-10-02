@@ -5,7 +5,7 @@ import LearnContent from "@/content/learn.mdx";
 import { WaitlistButton } from "@/components/waitlist-button";
 
 export const metadata: Metadata = {
-  title: "Learn From The Room",
+  title: "Elite Parents",
   alternates: alternatesFor("/learn"),
 };
 
@@ -15,7 +15,7 @@ export default function LearnPage() {
       {/* Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
         <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-          Learn From The Room
+          Community
         </div>
         <h1
           className="font-heading mb-8 font-medium text-bark"
@@ -44,8 +44,8 @@ export default function LearnPage() {
           <WaitlistButton
             tag="waitlist-elite-learning-leaders"
             label="Join the Waitlist"
-            modalEyebrow="Learn From The Room"
-            modalTitle="Join the Elite Parents as Learning Leaders waitlist."
+            modalEyebrow="Elite Parents"
+            modalTitle="Join the Elite Parents waitlist."
             submitLabel="Join the waitlist"
             variant="bark"
           />

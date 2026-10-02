@@ -5,7 +5,7 @@ import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 export const metadata: Metadata = {
-  title: "Entre parents",
+  title: "Parents leaders",
   description:
     "Une communauté choisie pour des parents qui prennent l'apprentissage au sérieux : rencontre en direct avec Jolene, experts invités, et des questions posées en contexte.",
   alternates: alternatesFor("/learn", "fr"),
@@ -21,13 +21,13 @@ export default function FrenchLearnPage() {
       {/* Hero */}
       <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
         <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-          {tiers.fr.twoFlat}
+          Communauté
         </div>
         <h1
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(44px,7vw,88px)", lineHeight: 1.0, letterSpacing: "-0.01em" }}
         >
-          Parents d&rsquo;exception
+          Parents leaders
         </h1>
         <p
           className="font-heading mx-auto italic text-dusk"

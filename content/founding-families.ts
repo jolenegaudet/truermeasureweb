@@ -112,7 +112,7 @@ export const offerFr = {
       howLong: `Pour les ${INTRO_MONTHS} premiers mois`,
     },
     {
-      what: "La plateforme et le tableau de bord The Hidden Report Card™",
+      what: "La plateforme et le tableau de bord Le rapport caché",
       howLong: "Aussi longtemps que vous êtes membre",
     },
   ],
@@ -156,7 +156,7 @@ export const faqs: Faq[] = [
     a: `Your next payment is at the standard price, ${STANDARD_LIST} a month plus applicable taxes, and so is every one after it. Nothing else changes and you do not have to do anything. We email you before it happens.`,
   },
   {
-    q: "Does this include Learn From The Room or Inner Circle?",
+    q: "Does this include Elite Parents or Inner Circle?",
     a: "No. Those are separate, and joining as a founding family does not include either of them.",
   },
   {
