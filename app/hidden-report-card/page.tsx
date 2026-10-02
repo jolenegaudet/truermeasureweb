@@ -5,6 +5,7 @@ import { OfferPrice } from "@/components/offer-price";
 import {
   CHECKOUT_URL,
   FOUNDING_CAP,
+  TERMS_PATH,
   PRICE_SCOPE,
   CANCELLATION_TERMS,
   checkoutReady,
@@ -444,6 +445,20 @@ export default function HiddenReportCardPage() {
                   >
                     The introductory rate is applied for you. There is no code
                     to enter.
+                  </p>
+                  <p
+                    className="mt-3 text-subdued"
+                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
+                  >
+                    By joining, you agree to our{" "}
+                    <a href={TERMS_PATH} className="text-parchment underline underline-offset-2">
+                      Terms of Service
+                    </a>{" "}
+                    (
+                    <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
+                      en français
+                    </a>
+                    ).
                   </p>
                 </>
               ) : (

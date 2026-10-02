@@ -24,15 +24,32 @@ export type Locale = "en" | "fr";
 
 export const LOCALE_PREFIX = "/fr";
 
-/** The locale a path belongs to. Everything under /fr is French. */
+/**
+ * Pages whose French URL is a French phrase rather than /fr + the English path.
+ * The Terms are one, by Jolène's naming: a parent reading a contract in French
+ * should see a French address. Each entry is a path the prefix rule cannot
+ * derive, so keep this list as short as it is.
+ */
+export const FRENCH_PATHS: Record<string, string> = {
+  "/terms-of-service": "/conditions-d-utilisation",
+};
+const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
+  Object.entries(FRENCH_PATHS).map(([en, fr]) => [fr, en]),
+);
+
+/**
+ * The locale a path belongs to: everything under /fr, plus the French paths
+ * above. Getting this wrong puts an English nav and footer on a French page.
+ */
 export function localeFromPath(pathname: string): Locale {
-  return pathname === LOCALE_PREFIX || pathname.startsWith(LOCALE_PREFIX + "/")
-    ? "fr"
-    : "en";
+  if (pathname === LOCALE_PREFIX || pathname.startsWith(LOCALE_PREFIX + "/")) return "fr";
+  return pathname in ENGLISH_PATHS ? "fr" : "en";
 }
 
 /** The same page in the other language. */
 export function otherLocalePath(pathname: string): string {
+  if (pathname in FRENCH_PATHS) return FRENCH_PATHS[pathname];
+  if (pathname in ENGLISH_PATHS) return ENGLISH_PATHS[pathname];
   if (localeFromPath(pathname) === "fr") {
     const rest = pathname.slice(LOCALE_PREFIX.length);
     return rest === "" ? "/" : rest;
@@ -43,6 +60,7 @@ export function otherLocalePath(pathname: string): string {
 /** A path in a given locale, for links written once and used in both. */
 export function localePath(locale: Locale, path: string): string {
   if (locale === "en") return path;
+  if (path in FRENCH_PATHS) return FRENCH_PATHS[path];
   return path === "/" ? LOCALE_PREFIX : LOCALE_PREFIX + path;
 }
 
@@ -122,6 +140,13 @@ export const shell = {
       tagline: "The Truer Measure of a Child!",
       follow: "Follow along",
       terms: "Terms of Service",
+      termsPath: "/terms-of-service",
+      // Online cancellation, through the Stripe customer portal. California
+      // Bus. & Prof. Code 17602(d) requires it for an online sign-up.
+      manage: "Manage or cancel your membership",
+      // The EU directive's own suggested label.
+      withdraw: "Withdraw from contract here",
+      withdrawPath: "/withdraw",
       rights: "Truer Measure. All rights reserved.",
     },
   },
@@ -141,6 +166,10 @@ export const shell = {
       tagline: "La juste mesure d’un enfant!",
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
+      termsPath: "/conditions-d-utilisation",
+      manage: "Gérez ou annulez votre adhésion",
+      withdraw: "Rétractez-vous de votre contrat ici",
+      withdrawPath: "/fr/withdraw",
       rights: "Truer Measure. Tous droits réservés.",
     },
   },

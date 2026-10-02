@@ -30,13 +30,25 @@ export const FOUNDING_CAP = 50;
 /** Monthly payments at the introductory rate, from each family's own start. */
 export const INTRO_MONTHS = 3;
 
-export type Price = { code: "CAD" | "USD" | "EUR"; symbol: string; intro: number; standard: number };
+/**
+ * `tax` is how the amount is quoted, not a preference: in Stripe the euro price
+ * is tax-inclusive and the other two are tax-exclusive (price
+ * price_1ULSNkAJm8m0sW6o4QAKiVLB, 30 September 2026). A page must say which,
+ * because "plus applicable taxes" under a euro price would be false.
+ */
+export type Price = {
+  code: "CAD" | "USD" | "EUR";
+  symbol: string;
+  intro: number;
+  standard: number;
+  tax: "exclusive" | "inclusive";
+};
 
 /** Canadian first: most of the audience is in New Brunswick. */
 export const prices: Price[] = [
-  { code: "CAD", symbol: "CA$", intro: 39, standard: 59 },
-  { code: "USD", symbol: "US$", intro: 27, standard: 42 },
-  { code: "EUR", symbol: "€", intro: 23, standard: 35 },
+  { code: "CAD", symbol: "CA$", intro: 39, standard: 59, tax: "exclusive" },
+  { code: "USD", symbol: "US$", intro: 27, standard: 42, tax: "exclusive" },
+  { code: "EUR", symbol: "€", intro: 23, standard: 35, tax: "inclusive" },
 ];
 
 const list = (pick: (p: Price) => number) => prices.map((p) => `${p.symbol}${pick(p)}`).join(" / ");
@@ -50,12 +62,29 @@ export const STANDARD_LIST = list((p) => p.standard);
  *   code    FOUNDINGFAMILY (max 50), prefilled by the URL so nobody types it
  *   link    plink_1ULPkTAJm8m0sW6oRUgngR3U, automatic tax on, closes after 50
  *           completed checkouts (restrictions.completed_sessions.limit)
- * The old FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) charges the
- * old prices and is switched off once this site is published.
+ * The old FOUNDING47 link (buy.stripe.com/dRmfZg96J6N75MvaEoe7m08) was switched off.
+ *
+ * v2, 30 September 2026 (EU rules): price price_1ULSNkAJm8m0sW6o4QAKiVLB "founding_families_monthly_v2"
+ * with the euro amount VAT-inclusive (CA$ and US$ still tax-exclusive), and
+ * link buy.stripe.com/28EeVc1Eh8Vf8YH6o8e7m0a: same cap of 50, same coupon and
+ * code, plus a required "Start my access right away" field recording the
+ * express request EU law needs for access within the 14-day withdrawal period.
+ * The v1 link (cNidR8er…m09) is switched off when this is published.
  */
 export const CHECKOUT_URL: string =
-  "https://buy.stripe.com/cNidR8er37Rbej18wge7m09?prefilled_promo_code=FOUNDINGFAMILY";
+  "https://buy.stripe.com/28EeVc1Eh8Vf8YH6o8e7m0a?prefilled_promo_code=FOUNDINGFAMILY";
 export const checkoutReady = CHECKOUT_URL !== "";
+
+/**
+ * Stripe customer portal sign-in, created 30 September 2026 (configuration
+ * bpc default): cancel at the end of the billing period, update card and
+ * email, see invoices. A parent signs in with the email she paid with and a
+ * one-time code Stripe sends her. Needed for online cancellation (California
+ * Bus. & Prof. Code 17602(d) requires it for online sign-ups).
+ */
+export const MANAGE_URL = "https://billing.stripe.com/p/login/eVq00igzb9Zj6Qz5k4e7m00";
+
+export const TERMS_PATH = "/terms-of-service";
 
 export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/#home";
 
@@ -71,13 +100,20 @@ export const offerNote =
   "You’re joining early, so you get an introductory rate and ways to tell us what to build next: a Feedback button, and possibly private calls.";
 
 /**
- * Split in two on 1 October 2026. The price block now states the standing
- * price in the currency the parent chose, so a page that shows the price block
- * must not also list all three underneath it.
+ * Split in two on 1 October 2026. The price block states the standing price in
+ * the currency the parent chose, so a page showing that block must not list all
+ * three underneath it.
+ *
+ * The tax sentence is per currency, from `prices` above: CA$ and US$ are quoted
+ * before tax, the euro price has VAT inside it. One sentence covering all three
+ * was only possible while all three were on screen at once.
  */
-export const STANDARD_AFTER_INTRO = `Then ${STANDARD_LIST} per month, plus applicable taxes.`;
+export const STANDARD_AFTER_INTRO =
+  `Then ${STANDARD_LIST} per month. Plus applicable taxes on CA$ and US$ prices; euro prices include VAT.`;
+
+/** Cancellation is online since the Stripe customer portal went up, 30 September 2026. */
 export const CANCELLATION_TERMS =
-  "Billed monthly. Cancel any time. You keep the month you have paid for.";
+  "Billed monthly. Cancel online any time before your next payment, or by email. You keep access until the end of the billing period you have paid for.";
 
 /** Both lines together, for anywhere that needs the whole statement at once. */
 export const billingTerms: string[] = [STANDARD_AFTER_INTRO, CANCELLATION_TERMS];

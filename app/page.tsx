@@ -5,6 +5,7 @@ import { OfferPrice } from "@/components/offer-price";
 import {
   CHECKOUT_URL,
   FOUNDING_CAP,
+  TERMS_PATH,
   checkoutReady,
 } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
@@ -189,6 +190,9 @@ export default function HomePage() {
                 <div className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose-dark">
                   Limited to {FOUNDING_CAP} families
                 </div>
+                {/* The standing price and its tax sentence are inside the
+                    price block, so both follow the currency the parent chose.
+                    The euro price has VAT in it; the other two do not. */}
                 <OfferPrice showStandard />
                 <p
                   className="mt-5 text-muted"
@@ -205,8 +209,9 @@ export default function HomePage() {
                   className="mb-7 mt-8 text-muted"
                   style={{ fontSize: 11.5, lineHeight: 1.6 }}
                 >
-                  Billed monthly. Cancel any time. You keep the month you have
-                  paid for.
+                  Billed monthly. Cancel online any time before your next
+                  payment. You keep access until the end of the billing period
+                  you have paid for.
                 </p>
                 <a
                   href={checkoutReady ? CHECKOUT_URL : "/hidden-report-card#founding"}
@@ -214,6 +219,17 @@ export default function HomePage() {
                 >
                   Start here
                 </a>
+                <p className="mt-4 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
+                  By joining, you agree to our{" "}
+                  <a href={TERMS_PATH} className="text-parchment underline underline-offset-2">
+                    Terms of Service
+                  </a>{" "}
+                  (
+                  <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
+                    en français
+                  </a>
+                  ).
+                </p>
                 {/* The product page is the second door, not the first. Start
                     Here has to reach a checkout, not another page to read. */}
                 <Link

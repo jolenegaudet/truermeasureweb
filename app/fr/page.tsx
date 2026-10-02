@@ -228,6 +228,17 @@ export default function FrenchHomePage() {
                 >
                   Commencez ici
                 </a>
+                <p className="mt-4 text-muted" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
+                  En vous joignant, vous acceptez nos{" "}
+                  <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
+                    Conditions d&rsquo;utilisation
+                  </a>{" "}
+                  (
+                  <a href="/terms-of-service" className="text-parchment underline underline-offset-2">
+                    in English
+                  </a>
+                  ).
+                </p>
                 <Link
                   href="/fr/hidden-report-card"
                   className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.14em] text-muted no-underline hover:text-parchment"

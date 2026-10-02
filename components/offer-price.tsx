@@ -22,17 +22,29 @@ import type { Locale } from "@/content/i18n";
 
 const CODES: Price["code"][] = ["USD", "CAD", "EUR"];
 
+/**
+ * The tax sentence follows the currency, not the language. In Stripe the euro
+ * price has VAT inside it and the other two are quoted before tax, so "plus
+ * applicable taxes" under a euro price would be a false statement about what
+ * the parent is charged.
+ */
 const copy = {
   en: {
     first: (n: number) => `Your first ${n} months`,
     per: "/ month",
-    then: (amount: string) => `Then ${amount} per month, plus applicable taxes.`,
+    then: (amount: string, tax: Price["tax"]) =>
+      tax === "inclusive"
+        ? `Then ${amount} per month, VAT included.`
+        : `Then ${amount} per month, plus applicable taxes.`,
     aria: (c: string) => `Show prices in ${c}`,
   },
   fr: {
     first: (n: number) => `Vos ${n} premiers mois`,
     per: "/ mois",
-    then: (amount: string) => `Ensuite ${amount} par mois, plus les taxes applicables.`,
+    then: (amount: string, tax: Price["tax"]) =>
+      tax === "inclusive"
+        ? `Ensuite ${amount} par mois, TVA incluse.`
+        : `Ensuite ${amount} par mois, plus les taxes applicables.`,
     aria: (c: string) => `Afficher les prix en ${c}`,
   },
 } as const;
@@ -106,7 +118,7 @@ export function OfferPrice({
           three here under a single-currency headline reads as a contradiction. */}
       {showStandard ? (
         <p className={"mt-5 " + quiet} style={{ fontSize: 13, lineHeight: 1.7 }}>
-          {t.then(`${price.symbol}${price.standard}`)}
+          {t.then(`${price.symbol}${price.standard}`, price.tax)}
         </p>
       ) : null}
     </div>

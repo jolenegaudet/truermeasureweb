@@ -448,6 +448,22 @@ export default function FrenchHiddenReportCardPage() {
                     Le tarif de lancement est appliqué pour vous. Il n&rsquo;y a
                     aucun code à entrer.
                   </p>
+                  {/* Compliance: the agreement to the Terms sits with the
+                      button that takes the money, in the reader's language. */}
+                  <p
+                    className="mt-3 text-subdued"
+                    style={{ fontSize: 12.5, lineHeight: 1.65 }}
+                  >
+                    En vous joignant, vous acceptez nos{" "}
+                    <a href="/conditions-d-utilisation" className="text-parchment underline underline-offset-2">
+                      Conditions d&rsquo;utilisation
+                    </a>{" "}
+                    (
+                    <a href="/terms-of-service" className="text-parchment underline underline-offset-2">
+                      in English
+                    </a>
+                    ).
+                  </p>
                 </>
               ) : (
                 <>
