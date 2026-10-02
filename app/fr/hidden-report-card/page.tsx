@@ -34,7 +34,7 @@ export const metadata: Metadata = {
  * NAMING. The Hidden Report Card™ keeps its English name in both languages: it
  * is the document the product produces, it carries a trademark claim, and
  * Jolène has not asked for it to change. The product itself is Une Juste
- * Valeur in French, from content/i18n.ts, where she translated the tier names on
+ * Mesure in French, from content/i18n.ts, where she translated the tier names on
  * 1 October 2026.
  *
  * The route keeps the /hidden-report-card path on both sides, which is also the
@@ -131,7 +131,7 @@ export default function FrenchHiddenReportCardPage() {
             letterSpacing: "-0.005em",
           }}
         >
-          voici une juste valeur.
+          voici une plus juste mesure.
         </h1>
         <p
           className="font-heading mx-auto mb-10 italic text-dusk"
@@ -207,7 +207,7 @@ export default function FrenchHiddenReportCardPage() {
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               The Hidden Report Card&trade;
               <br />
-              Une juste valeur de votre enfant
+              Une juste mesure de votre enfant
             </div>
             <h2
               className="font-heading font-medium text-bark"

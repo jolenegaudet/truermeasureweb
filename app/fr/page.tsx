@@ -57,8 +57,8 @@ const circleAccess = [
  * languages). The three offers keep their English names, because they are the
  * products: A Truer Measure, Learn from the Room, Inner Circle. The tier words
  * are translated, because they describe rather than name, and the section
- * heading translates them anyway. The headline uses "une juste valeur", the
- * phrase behind justevaleur.ca, because "Voici A Truer Measure" reads like a
+ * heading translates them anyway. The headline uses "une juste mesure", the
+ * phrase behind justemesure.ca, because "Voici A Truer Measure" reads like a
  * translation accident.
  *
  * Prices and offer terms come from content/founding-families.ts, the same file
@@ -88,7 +88,7 @@ export default function FrenchHomePage() {
             letterSpacing: "-0.01em",
           }}
         >
-          Voici une plus juste valeur pour votre enfant.
+          Voici une plus juste mesure pour votre enfant.
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a

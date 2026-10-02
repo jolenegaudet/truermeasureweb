@@ -2,8 +2,11 @@
  * Two languages, one brand.
  *
  * Jolène's ruling, 1 October 2026: the French site is Truer Measure in French,
- * not a second brand. She owns justevaleur.ca, which forwards to
- * truermeasure.com/fr at the registrar rather than carrying a name of its own.
+ * not a second brand. She owns justemesure.ca, which forwards to
+ * truermeasure.com/fr rather than carrying a name of its own. (The domain was
+ * reported as justevaleur.ca on 1 October and corrected the next day; that one
+ * belongs to someone else, and "valeur" is the accounting term for fair value.
+ * "Mesure" is both the real domain and the direct counterpart of "Measure".)
  *
  * WHY FRENCH PAGES ARE ROUTES AND NOT NEXT'S LOCALES
  * next.config.ts sets output: "export". Next's built-in locale routing needs
@@ -64,8 +67,8 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
 /** Strings that live in the shell rather than on any one page. */
 /**
  * The three tiers. Jolène, 1 October 2026: translate the tier names too, which
- * makes tier 1 "Une Juste Valeur" and lines the French site up with the phrase
- * in its headline and with justevaleur.ca.
+ * makes tier 1 "Une Juste Mesure" and lines the French site up with the phrase
+ * in its headline and with justemesure.ca.
  *
  * The Hidden Report Card keeps its English name on both sides. It is the
  * document the product produces rather than a tier, it carries a trademark
@@ -81,8 +84,8 @@ export const tiers = {
     threeFlat: "Inner Circle",
   },
   fr: {
-    one: ["Une Juste", "Valeur"],
-    oneFlat: "Une Juste Valeur",
+    one: ["Une Juste", "Mesure"],
+    oneFlat: "Une Juste Mesure",
     // "Apprendre du Salon" was rejected by Jolene on 1 October 2026. A noun
     // phrase keeps the set parallel, and "entre parents" says the thing: you
     // learn among other parents rather than being taught at.
@@ -118,7 +121,7 @@ export const shell = {
   fr: {
     // Nothing to announce to someone already reading the French site.
     banner: "",
-    brand: "Bienvenue à la juste valeur de votre enfant!",
+    brand: "Bienvenue à la juste mesure de votre enfant!",
     nav: {
       start: "Commencez ici",
       hiddenReportCard: "The Hidden Report Card",
@@ -127,8 +130,8 @@ export const shell = {
     },
     toggle: { label: "EN", aria: "View this page in English" },
     footer: {
-      brand: "Une Juste Valeur",
-      tagline: "La juste valeur d’un enfant!",
+      brand: "Une Juste Mesure",
+      tagline: "La juste mesure d’un enfant!",
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
       rights: "Truer Measure. Tous droits réservés.",
