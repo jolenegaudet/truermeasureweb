@@ -400,12 +400,6 @@ export default function FrenchHiddenReportCardPage() {
           <p className="mt-5 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
             {pause.building}
           </p>
-          <p
-            className="font-heading mt-7 text-parchment"
-            style={{ fontSize: "clamp(20px,2.6vw,26px)", lineHeight: 1.4 }}
-          >
-            {pause.peek}
-          </p>
         </div>
       </section>
     </div>

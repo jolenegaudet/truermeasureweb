@@ -85,7 +85,7 @@ export default function FrenchHomePage() {
             letterSpacing: "-0.01em",
           }}
         >
-          Voici une plus juste mesure pour votre enfant.
+          Voici une plus juste mesure de votre enfant.
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-[18px]">
           <a
@@ -205,9 +205,6 @@ export default function FrenchHomePage() {
                 </p>
                 <p className="mt-4 text-muted" style={{ fontSize: 15, lineHeight: 1.65 }}>
                   {pause.building}
-                </p>
-                <p className="mt-2 font-semibold text-parchment" style={{ fontSize: 15, lineHeight: 1.65 }}>
-                  {pause.peek}
                 </p>
                 <Link
                   href={pause.ctaHref}
