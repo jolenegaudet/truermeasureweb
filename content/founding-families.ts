@@ -60,9 +60,8 @@ export const salesPause = {
     heading: "The Hidden Report Card™ is evolving.",
     story:
       "What started as a way to see more of your child than a traditional report card could show is becoming something much more.",
-    building: "I’m building what comes next.",
-    // "Sneak peek coming soon" came out on 3 October 2026: that line is for
-    // her social media, not for the site.
+    // Two lines came out on 3 October 2026: "Sneak peek coming soon", which
+    // belongs on her social media, and "I'm building what comes next".
     cta: "Coming soon.",
     ctaHref: "/hidden-report-card",
   },
@@ -70,7 +69,6 @@ export const salesPause = {
     heading: "Le rapport caché est en évolution.",
     story:
       "Ce qui a commencé comme une façon de voir votre enfant au-delà de ce qu’un bulletin traditionnel pouvait montrer devient quelque chose de bien plus grand.",
-    building: "Je bâtis ce qui vient ensuite.",
     cta: "À venir.",
     ctaHref: "/fr/hidden-report-card",
   },

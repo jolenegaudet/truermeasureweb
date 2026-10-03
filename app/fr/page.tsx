@@ -203,9 +203,6 @@ export default function FrenchHomePage() {
                 >
                   {pause.heading}
                 </p>
-                <p className="mt-4 text-muted" style={{ fontSize: 15, lineHeight: 1.65 }}>
-                  {pause.building}
-                </p>
                 <Link
                   href={pause.ctaHref}
                   className="mt-8 inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"

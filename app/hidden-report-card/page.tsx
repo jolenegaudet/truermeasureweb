@@ -392,9 +392,6 @@ export default function HiddenReportCardPage() {
           <p className="mt-7 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
             {pause.story}
           </p>
-          <p className="mt-5 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
-            {pause.building}
-          </p>
         </div>
       </section>
     </>
