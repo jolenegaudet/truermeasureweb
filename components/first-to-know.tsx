@@ -298,13 +298,16 @@ function FirstToKnowModal({
                 {t.consent}
                 {privacyPath && (
                   <>
-                    {" "}
+                    {` ${t.privacyLead} `}
                     <Link
                       href={privacyPath}
                       className="text-rose underline underline-offset-2"
                     >
                       {t.privacyLabel}
                     </Link>
+                    {/* The full stop belongs to the sentence, not the link, so
+                        it sits outside and is not underlined. */}
+                    .
                   </>
                 )}
               </p>

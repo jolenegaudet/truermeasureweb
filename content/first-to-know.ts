@@ -51,20 +51,19 @@ export const SIGNUP_SOURCE = "hidden-report-card:be-first-to-know";
 export const CONSENT_PURPOSE = "launch news and occasional product updates";
 
 /**
- * The Privacy Policy link in the consent line.
+ * The Privacy Policy link in the consent line, one path per language.
  *
- * null on purpose. content/privacy-policy.mdx exists but is marked DRAFT, is
- * awaiting legal review, still carries unfilled placeholders, and has no route
- * (it was removed deliberately; it is in git at e3bb129). Linking the words
- * "Privacy Policy" to a 404 is worse than not linking them, so while this is
- * null the consent sentence simply ends at "You can unsubscribe anytime."
+ * These point at the WEBSITE policy, which covers the forms, the Kit list and
+ * Plausible. The full product policy is a separate document and is still a
+ * draft. Wired 4 October 2026, once privacy@truermeasure.com was live and
+ * monitored; before that the sentence ended at "You can unsubscribe anytime."
+ * rather than pointing at a page that did not exist.
  *
- * Publishing the policy is one edit: put its path here per locale and the link
- * appears in both languages.
+ * Setting either back to null removes that language's link and nothing else.
  */
 export const PRIVACY_PATH: Record<Locale, string | null> = {
-  en: null,
-  fr: null,
+  en: "/privacy-policy",
+  fr: "/politique-de-confidentialite",
 };
 
 /**
@@ -97,6 +96,7 @@ export const firstToKnow = {
     sending: "Sending…",
     consent:
       "By signing up, you agree to receive launch news and occasional product updates from Truer Measure. You can unsubscribe anytime.",
+    privacyLead: "See our",
     privacyLabel: "Privacy Policy",
     close: "Close",
     successEyebrow: "You’re on the list.",
@@ -118,6 +118,7 @@ export const firstToKnow = {
     sending: "Envoi…",
     consent:
       "En vous inscrivant, vous acceptez de recevoir des nouvelles du lancement et, à l’occasion, des nouvelles du produit Truer Measure. Vous pouvez vous désabonner à tout moment.",
+    privacyLead: "Consultez notre",
     privacyLabel: "Politique de confidentialité",
     close: "Fermer",
     successEyebrow: "Vous êtes sur la liste.",

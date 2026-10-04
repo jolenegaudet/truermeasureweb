@@ -20,8 +20,10 @@ import { localeFromPath, shell } from "@/content/i18n";
  *   Manage or cancel   online cancellation, through the Stripe customer portal.
  *   Withdraw           the EU withdrawal function, which must be reachable from
  *                      every page for the whole 14 days.
- * Each one points at its own language. The Privacy Policy follows when it is
- * final: its route is at git checkout e3bb129 -- app/privacy-policy
+ * Each one points at its own language. The Privacy Policy joined them on
+ * 4 October 2026: the website policy, not the full product one, which is
+ * still a draft. See app/privacy-policy/page.tsx for why that distinction
+ * matters.
  */
 export default function Footer() {
   const locale = localeFromPath(usePathname() || "/");
@@ -49,6 +51,9 @@ export default function Footer() {
       <div className="mx-auto mt-10 flex max-w-[1180px] flex-wrap items-center justify-center gap-x-7 gap-y-2 border-t border-charcoal pt-6 text-center text-[12px] tracking-[0.04em] text-subdued">
         <Link href={t.termsPath} className={link}>
           {t.terms}
+        </Link>
+        <Link href={t.privacyPath} className={link}>
+          {t.privacy}
         </Link>
         <a href={MANAGE_URL} className={link}>
           {t.manage}

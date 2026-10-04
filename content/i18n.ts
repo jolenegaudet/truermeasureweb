@@ -32,6 +32,8 @@ export const LOCALE_PREFIX = "/fr";
  */
 export const FRENCH_PATHS: Record<string, string> = {
   "/terms-of-service": "/conditions-d-utilisation",
+  // A legal document is found by its own name, so these two sit outside /fr.
+  "/privacy-policy": "/politique-de-confidentialite",
 };
 const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
   Object.entries(FRENCH_PATHS).map(([en, fr]) => [fr, en]),
@@ -141,6 +143,8 @@ export const shell = {
       follow: "Follow along",
       terms: "Terms of Service",
       termsPath: "/terms-of-service",
+      privacy: "Privacy Policy",
+      privacyPath: "/privacy-policy",
       // Online cancellation, through the Stripe customer portal. California
       // Bus. & Prof. Code 17602(d) requires it for an online sign-up.
       manage: "Manage or cancel your membership",
@@ -167,6 +171,8 @@ export const shell = {
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
       termsPath: "/conditions-d-utilisation",
+      privacy: "Politique de confidentialité",
+      privacyPath: "/politique-de-confidentialite",
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",
       withdrawPath: "/fr/withdraw",
