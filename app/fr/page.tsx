@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { salesPause } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
+import { FirstToKnowButton } from "@/components/first-to-know";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 const DESCRIPTION =
@@ -203,12 +203,16 @@ export default function FrenchHomePage() {
                 >
                   {pause.heading}
                 </p>
-                <Link
-                  href={pause.ctaHref}
-                  className="mt-8 inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                >
-                  {pause.cta}
-                </Link>
+                {/* "Be the first to know", her brief of 4 October 2026.
+                    This replaced a link to the product page that read
+                    "Coming soon."; that page is still one click away in
+                    the nav on every page. The classes are the ones the
+                    link had, so the card does not move. */}
+                <FirstToKnowButton
+                  locale="fr"
+                  place="home-card"
+                  className="mt-8 inline-block cursor-pointer rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+                />
               </div>
             </div>
 

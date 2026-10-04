@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
 import { salesPause } from "@/content/founding-families";
+import { FirstToKnowButton } from "@/components/first-to-know";
 import { alternatesFor } from "@/content/i18n";
 
 const DESCRIPTION =
@@ -397,6 +398,14 @@ export default function FrenchHiddenReportCardPage() {
           <p className="mt-7 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
             {pause.story}
           </p>
+          {/* The one thing to do at the end of the page. Section 7 used to be
+              the offer and the checkout button; while sales are paused this is
+              an email address and nothing else. Her brief, 4 October 2026. */}
+          <FirstToKnowButton
+            locale="fr"
+            place="hidden-report-card"
+            className="mt-9 inline-block cursor-pointer rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+          />
         </div>
       </section>
     </div>
