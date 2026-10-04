@@ -208,26 +208,18 @@ export const handler = async (event: { httpMethod: string; body: string | null }
   const tagId = await resolveTagId(key);
   if (tagId === null) return fail(502, "upstream");
 
-  // The consent record: what was agreed to, when, and from where.
-  const fieldKeys = await resolveFieldKeys(key);
-  const values = [
-    `${SIGNUP_SOURCE} (${place}, ${locale})`,
-    `${CONSENT_PURPOSE}, ${new Date().toISOString()}`,
-  ];
-  const fields: Record<string, string> = {};
-  fieldKeys.forEach((k, i) => {
-    if (values[i]) fields[k] = values[i];
-  });
-
-  // Upsert. No "state" is sent, so an existing subscriber keeps theirs.
+  // Upsert, with no fields on this call. Kit's create endpoint updates an
+  // existing subscriber, so sending the source here would overwrite the page
+  // someone first came from with the page they came from most recently. The
+  // origin is the thing worth keeping, so the fields are written only when
+  // this call reports a new subscriber.
+  //
+  // No "state" is sent either, which Kit does not allow on an update anyway:
+  // anyone who unsubscribed stays unsubscribed.
   const subRes = await fetch(`${KIT}/subscribers`, {
     method: "POST",
     headers: kitHeaders(key),
-    body: JSON.stringify(
-      Object.keys(fields).length > 0
-        ? { email_address: email, fields }
-        : { email_address: email },
-    ),
+    body: JSON.stringify({ email_address: email }),
   });
   if (!subRes.ok) {
     console.error("Kit subscriber upsert failed", subRes.status, await subRes.text());
@@ -235,6 +227,31 @@ export const handler = async (event: { httpMethod: string; body: string | null }
   }
   // 200 means Kit already had this address; 201 means it is new.
   const duplicate = subRes.status === 200;
+
+  // The consent record, written once, on the first opt-in only. A failure here
+  // must not fail the signup: the tag and Kit's own created_at still show that
+  // the person opted in and when.
+  if (!duplicate) {
+    const fieldKeys = await resolveFieldKeys(key);
+    const values = [
+      `${SIGNUP_SOURCE} (${place}, ${locale})`,
+      `${CONSENT_PURPOSE}, ${new Date().toISOString()}`,
+    ];
+    const fields: Record<string, string> = {};
+    fieldKeys.forEach((k, i) => {
+      if (values[i]) fields[k] = values[i];
+    });
+    if (Object.keys(fields).length > 0) {
+      const fieldRes = await fetch(`${KIT}/subscribers`, {
+        method: "POST",
+        headers: kitHeaders(key),
+        body: JSON.stringify({ email_address: email, fields }),
+      });
+      if (!fieldRes.ok) {
+        console.error("Kit consent fields not written", fieldRes.status, await fieldRes.text());
+      }
+    }
+  }
 
   const tagRes = await fetch(`${KIT}/tags/${tagId}/subscribers`, {
     method: "POST",
