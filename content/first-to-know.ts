@@ -54,10 +54,17 @@ export const PRIVACY_PATH: Record<Locale, string | null> = {
 };
 
 /**
- * Her English copy, verbatim from the brief. The French is my draft for her to
- * correct, written to the rules she set on 2 October 2026: vous, every verb in
- * the -ez form, feminine agreement to match the existing French forms, and the
- * brand name unchanged in both languages.
+ * Her English copy, verbatim from the brief. The French follows the rules she
+ * set on 2 October 2026: vous, every verb in the -ez form, and the brand name
+ * unchanged in both languages.
+ *
+ * It also carries no agreement with the reader's gender, her decision of
+ * 4 October 2026. French forces a choice on "be the first" (la première or le
+ * premier) that English never makes, and either one tells half the readers the
+ * sentence was not written for them. "Sachez-le en premier" sidesteps it: en
+ * premier is adverbial and agrees with nothing. Keep it that way when adding
+ * copy here, and watch for past participles after "vous êtes" and "nous vous
+ * avons", which is where the agreement creeps back in.
  */
 export const firstToKnow = {
   en: {
@@ -82,9 +89,9 @@ export const firstToKnow = {
     network: "Network error. Please try again.",
   },
   fr: {
-    button: "Soyez la première à le savoir",
+    button: "Sachez-le en premier",
     eyebrow: "Truer Measure",
-    heading: "Soyez la première à savoir quand Truer Measure sera prêt.",
+    heading: "Sachez en premier quand Truer Measure sera prêt.",
     body:
       "Laissez votre courriel et nous vous écrirons dès que la nouvelle version sera disponible, ainsi que quelques nouvelles occasionnelles sur Truer Measure.",
     emailLabel: "Adresse courriel",

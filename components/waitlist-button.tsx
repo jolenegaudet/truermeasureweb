@@ -6,6 +6,10 @@ import type { Locale } from "@/content/i18n";
 type Variant = "dark" | "outline-rose-dark" | "outline-rose" | "bark";
 
 /** Form chrome. The eyebrow, title and button labels come from the page. */
+/* The French carries no agreement with the reader's gender, her decision of
+   4 October 2026. This used to read "Vous êtes inscrite" and "Nous vous avons
+   ajoutée", which were written for a woman and told a father the form was not
+   meant for him. "votre nom" takes the agreement instead of the reader. */
 const copy = {
   en: {
     close: "Close",
@@ -27,9 +31,9 @@ const copy = {
   },
   fr: {
     close: "Fermer",
-    onList: "Vous êtes inscrite",
+    onList: "Vous êtes sur la liste",
     thanks: "Merci. Nous vous écrirons.",
-    added: "Nous vous avons ajoutée à la liste. Surveillez un courriel de Jolene avec la suite.",
+    added: "Nous avons ajouté votre nom à la liste. Surveillez un courriel de Jolene avec la suite.",
     first: "Prénom",
     last: "Nom",
     email: "Courriel",
