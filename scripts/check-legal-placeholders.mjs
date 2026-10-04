@@ -35,6 +35,9 @@ function walk(dir) {
 const routed = new Map(); // mdx path -> the route file that imports it
 for (const file of walk(join(ROOT, "app"))) {
   if (!/\.(tsx|ts)$/.test(file)) continue;
+  // A path segment beginning with "_" is a Next private folder: it is not a
+  // route, so whatever it imports is not published and may stay unfinished.
+  if (file.slice(ROOT.length).split(/[\\/]/).some((seg) => seg.startsWith("_"))) continue;
   const src = readFileSync(file, "utf8");
   for (const m of src.matchAll(/from\s+"@\/content\/([^"]+\.mdx)"/g)) {
     routed.set(join(ROOT, "content", m[1]), file.slice(ROOT.length + 1));

@@ -143,8 +143,6 @@ export const shell = {
       follow: "Follow along",
       terms: "Terms of Service",
       termsPath: "/terms-of-service",
-      privacy: "Privacy Policy",
-      privacyPath: "/privacy-policy",
       // Online cancellation, through the Stripe customer portal. California
       // Bus. & Prof. Code 17602(d) requires it for an online sign-up.
       manage: "Manage or cancel your membership",
@@ -171,8 +169,6 @@ export const shell = {
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
       termsPath: "/conditions-d-utilisation",
-      privacy: "Politique de confidentialité",
-      privacyPath: "/politique-de-confidentialite",
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",
       withdrawPath: "/fr/withdraw",

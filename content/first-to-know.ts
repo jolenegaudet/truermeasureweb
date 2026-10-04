@@ -51,20 +51,41 @@ export const SIGNUP_SOURCE = "hidden-report-card:be-first-to-know";
 export const CONSENT_PURPOSE = "launch news and occasional product updates";
 
 /**
+ * Whether the Privacy Policy is published.
+ *
+ * false while counsel reviews it. Her instruction, 4 October 2026: hold until
+ * counsel is done. The policy is written, translated and routed, and none of it
+ * is reachable.
+ *
+ * TO PUBLISH, four steps, in this order:
+ *   1. Set the effective date in BOTH content/privacy-policy.website.mdx and
+ *      content/politique-de-confidentialite.mdx, replacing [EFFECTIVE_DATE].
+ *   2. Delete the draft banner from the top of both, the blockquote beginning
+ *      "DRAFT for counsel" and "EBAUCHE destinee au conseiller juridique".
+ *   3. git mv app/_pending/privacy-policy app/privacy-policy
+ *      git mv app/_pending/politique-de-confidentialite app/politique-de-confidentialite
+ *   4. Set this to true.
+ *
+ * Miss step 1 or 2 and scripts/check-legal-placeholders.mjs stops the build, so
+ * an unfinished policy cannot reach the site. That guard ignores app/_pending
+ * because a folder starting with "_" is not a route.
+ */
+export const PRIVACY_POLICY_PUBLISHED = false;
+
+/**
  * The Privacy Policy link in the consent line, one path per language.
  *
- * These point at the WEBSITE policy, which covers the forms, the Kit list and
- * Plausible. The full product policy is a separate document and is still a
- * draft. Wired 4 October 2026, once privacy@truermeasure.com was live and
- * monitored; before that the sentence ended at "You can unsubscribe anytime."
- * rather than pointing at a page that did not exist.
+ * While the policy is held back these are null and the consent sentence simply
+ * ends at "You can unsubscribe anytime." A link to a page that 404s would be
+ * worse than no link, and the sentence was written to stand without it.
  *
- * Setting either back to null removes that language's link and nothing else.
+ * These point at the WEBSITE policy, which covers the forms, the Kit list and
+ * Plausible. The full product policy is a separate document and a separate
+ * route, for when the product opens.
  */
-export const PRIVACY_PATH: Record<Locale, string | null> = {
-  en: "/privacy-policy",
-  fr: "/politique-de-confidentialite",
-};
+export const PRIVACY_PATH: Record<Locale, string | null> = PRIVACY_POLICY_PUBLISHED
+  ? { en: "/privacy-policy", fr: "/politique-de-confidentialite" }
+  : { en: null, fr: null };
 
 /**
  * Her English copy, verbatim from the brief. The French follows the rules she
