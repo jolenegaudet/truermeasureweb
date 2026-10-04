@@ -37,6 +37,21 @@ const ALLOWED_LOCALES = new Set(["en", "fr"]);
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * Compares two tag names tolerantly, because the name can reach Kit by more
+ * than one route. Kit itself preserves the en dash, but PowerShell 5.1 sends
+ * a body in a non-UTF-8 encoding unless handed bytes, which is how this tag
+ * was first created with an ASCII hyphen instead; and the name can be edited
+ * by hand in Kit's UI. Matching byte for byte would miss the tag that exists
+ * and create a second one on every cold start, splitting the list in two.
+ * Dashes, case and runs of whitespace are normalised on both sides.
+ */
+const sameTag = (a: string, b: string) => {
+  const norm = (v: string) =>
+    v.trim().toLowerCase().replace(/[‐-―]/g, "-").replace(/\s+/g, " ");
+  return norm(a) === norm(b);
+};
+
 /** The client holds the wording, in the reader's language. This is a code. */
 type ErrorCode = "method" | "bad_request" | "invalid_email" | "not_configured" | "upstream";
 
@@ -87,9 +102,7 @@ async function resolveTagId(key: string): Promise<number | null> {
       tags?: { id: number; name: string }[];
       pagination?: { has_next_page?: boolean; end_cursor?: string };
     };
-    const hit = data.tags?.find(
-      (t) => t.name.trim().toLowerCase() === TAG_NAME.toLowerCase(),
-    );
+    const hit = data.tags?.find((t) => sameTag(t.name, TAG_NAME));
     if (hit) {
       cachedTagId = hit.id;
       return cachedTagId;

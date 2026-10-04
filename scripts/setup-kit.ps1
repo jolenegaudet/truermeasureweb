@@ -65,6 +65,9 @@ $ErrorActionPreference = 'Stop'
 # These three names must match content/first-to-know.ts and
 # netlify/functions/kit-subscribe.ts. The tag name carries an en dash, the same
 # character Jolene used when she named it.
+# Her en dash. Kit stores it exactly; it was an earlier version of this
+# script that put an ASCII hyphen there, by sending the body in the wrong
+# encoding. See the UTF-8 note in Invoke-Kit below.
 $TagName      = 'Truer Measure ' + [char]0x2013 + ' First to Know'
 $FieldSource  = 'TM signup source'
 $FieldConsent = 'TM consent'
@@ -105,6 +108,14 @@ $Headers = @{
     'Accept'        = 'application/json'
 }
 
+function Get-NormalizedTagName {
+    # Matches netlify/functions/kit-subscribe.ts. Any dash, any case and
+    # any run of whitespace compare equal, so this script can never create
+    # a second tag that differs from the live one only by its dash.
+    param([string]$Name)
+    return (($Name -replace '[‐-―]', '-') -replace '\s+', ' ').Trim().ToLower()
+}
+
 function Invoke-Kit {
     param([string]$Method, [string]$Path, $Body)
     $req = @{
@@ -113,7 +124,13 @@ function Invoke-Kit {
         Headers     = $Headers
         ContentType = 'application/json'
     }
-    if ($Body) { $req.Body = ($Body | ConvertTo-Json -Compress) }
+    if ($Body) {
+        # PowerShell 5.1 encodes a string body with the system codepage,
+        # which silently turns the en dash in the tag name into a plain
+        # hyphen. Handing it bytes is the only reliable fix.
+        $req.ContentType = 'application/json; charset=utf-8'
+        $req.Body = [Text.Encoding]::UTF8.GetBytes(($Body | ConvertTo-Json -Compress))
+    }
     return Invoke-RestMethod @req
 }
 
@@ -146,7 +163,7 @@ do {
     $path = '/tags?per_page=500'
     if ($after) { $path += "&after=$after" }
     $page = Invoke-Kit -Method GET -Path $path
-    $tag = $page.tags | Where-Object { $_.name.Trim().ToLower() -eq $TagName.ToLower() } | Select-Object -First 1
+    $tag = $page.tags | Where-Object { (Get-NormalizedTagName $_.name) -eq (Get-NormalizedTagName $TagName) } | Select-Object -First 1
     $after = if ($page.pagination.has_next_page) { $page.pagination.end_cursor } else { $null }
 } while (-not $tag -and $after)
 

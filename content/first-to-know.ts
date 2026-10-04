@@ -19,9 +19,23 @@ import type { Locale } from "@/content/i18n";
  */
 
 /**
- * The tag applied in Kit, spelled exactly as she wrote it, en dash included.
- * The function looks this up by name and creates it if it is missing, so this
- * string is the only definition of it anywhere.
+ * The tag applied in Kit, spelled as she wrote it, en dash included. Kit
+ * stores and returns it exactly, verified against the live account on
+ * 4 October 2026 (tag id 24276662).
+ *
+ * Two things to know before editing this string.
+ *
+ * Kit reads are eventually consistent. A tag is invisible to GET /v4/tags for
+ * several seconds after it is created, so a lookup that runs in that window
+ * sees nothing and would create a second tag.
+ *
+ * And the two writers here can disagree about the dash: PowerShell 5.1 sends
+ * a request body in a non-UTF-8 encoding unless it is handed bytes, which is
+ * how the first version of this tag reached Kit with an ASCII hyphen instead.
+ * scripts/setup-kit.ps1 now encodes explicitly.
+ *
+ * Because of both, the lookup in netlify/functions/kit-subscribe.ts compares
+ * dash-insensitively rather than trusting this string to match byte for byte.
  */
 export const KIT_TAG = "Truer Measure – First to Know";
 
