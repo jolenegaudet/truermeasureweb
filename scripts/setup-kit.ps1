@@ -28,7 +28,8 @@
   the environment, then from the secrets file, and otherwise prompts for it.
 
   Get one at  https://app.kit.com/account_settings/developer_settings
-  under "API Key" (the V4 key, not the older "API Secret").
+  under "V4 Keys", click "Add a new key". Kit shows the key once and never
+  again, so paste it straight into this script.
 
 .PARAMETER SaveToSecrets
   Also writes KIT_API_KEY into the secrets file outside the repository, so the
@@ -92,7 +93,7 @@ if (-not $ApiKey) {
     Write-Host ''
     Write-Host 'Kit API key needed.' -ForegroundColor Yellow
     Write-Host 'Get one at https://app.kit.com/account_settings/developer_settings' -ForegroundColor DarkGray
-    Write-Host 'Use the V4 "API Key", not the older "API Secret".' -ForegroundColor DarkGray
+    Write-Host 'Under "V4 Keys", click "Add a new key". Kit shows it once.' -ForegroundColor DarkGray
     $secure = Read-Host 'Paste your Kit API key' -AsSecureString
     $ApiKey = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
         [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure))
@@ -131,7 +132,7 @@ try {
 } catch {
     Write-Host '   The key was rejected by Kit.' -ForegroundColor Red
     Write-Host "   $($_.Exception.Message)" -ForegroundColor DarkGray
-    Write-Host '   Check you copied the V4 "API Key" and not the "API Secret".' -ForegroundColor Yellow
+    Write-Host '   Check it is a key from the "V4 Keys" section, not an older one.' -ForegroundColor Yellow
     throw 'Stopping: the key is not valid, so nothing was changed.'
 }
 
