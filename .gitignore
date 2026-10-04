@@ -45,3 +45,15 @@ Thumbs.db
 # Local secrets (never commit)
 .cf-token
 *.local.ps1
+
+# Tripwires. The real credentials live in ..\.secrets, a sibling of this repo
+# and outside its working tree, so git cannot see them at all. These patterns
+# exist so that if anything ever recreates one of these paths INSIDE the repo,
+# git refuses it instead of quietly tracking it.
+.secrets/
+*.env
+!.env.example
+*.key
+*.pem
+*secret*.txt
+*api*key*.txt
