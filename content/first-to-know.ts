@@ -58,6 +58,11 @@ export const PRIVACY_PATH: Record<Locale, string | null> = {
  * set on 2 October 2026: vous, every verb in the -ez form, and the brand name
  * unchanged in both languages.
  *
+ * Every string here that is a sentence ends in punctuation, her instruction of
+ * 4 October 2026. Field labels and single-word controls (Email address, Close,
+ * Privacy Policy) correctly take none. The button this replaced was her own
+ * "Coming soon.", which carried a period, so the buttons keep one.
+ *
  * It also carries no agreement with the reader's gender, her decision of
  * 4 October 2026. French forces a choice on "be the first" (la première or le
  * premier) that English never makes, and either one tells half the readers the
@@ -68,13 +73,13 @@ export const PRIVACY_PATH: Record<Locale, string | null> = {
  */
 export const firstToKnow = {
   en: {
-    button: "Be the first to know",
+    button: "Be the first to know.",
     eyebrow: "Truer Measure",
     heading: "Be first to know when Truer Measure is ready.",
     body:
       "Leave your email and we’ll let you know when the new version is available, along with occasional Truer Measure product updates.",
     emailLabel: "Email address",
-    submit: "Keep me posted",
+    submit: "Keep me posted.",
     sending: "Sending…",
     consent:
       "By signing up, you agree to receive launch news and occasional product updates from Truer Measure. You can unsubscribe anytime.",
@@ -89,13 +94,13 @@ export const firstToKnow = {
     network: "Network error. Please try again.",
   },
   fr: {
-    button: "Sachez-le en premier",
+    button: "Sachez-le en premier.",
     eyebrow: "Truer Measure",
     heading: "Sachez en premier quand Truer Measure sera prêt.",
     body:
       "Laissez votre courriel et nous vous écrirons dès que la nouvelle version sera disponible, ainsi que quelques nouvelles occasionnelles sur Truer Measure.",
     emailLabel: "Adresse courriel",
-    submit: "Tenez-moi au courant",
+    submit: "Tenez-moi au courant.",
     sending: "Envoi…",
     consent:
       "En vous inscrivant, vous acceptez de recevoir des nouvelles du lancement et, à l’occasion, des nouvelles du produit Truer Measure. Vous pouvez vous désabonner à tout moment.",

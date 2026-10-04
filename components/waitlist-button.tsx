@@ -13,7 +13,7 @@ type Variant = "dark" | "outline-rose-dark" | "outline-rose" | "bark";
 const copy = {
   en: {
     close: "Close",
-    onList: "You’re on the list",
+    onList: "You’re on the list.",
     thanks: "Thanks. We’ll be in touch.",
     added: "We’ve added you to the list. Watch for an email from Jolene with next steps.",
     first: "First name",
@@ -31,7 +31,7 @@ const copy = {
   },
   fr: {
     close: "Fermer",
-    onList: "Vous êtes sur la liste",
+    onList: "Vous êtes sur la liste.",
     thanks: "Merci. Nous vous écrirons.",
     added: "Nous avons ajouté votre nom à la liste. Surveillez un courriel de Jolene avec la suite.",
     first: "Prénom",
