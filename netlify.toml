@@ -1,3 +1,28 @@
+# Truer Measure website.
+#
+# SERVER-SIDE ENVIRONMENT VARIABLES
+# Set these in the Netlify UI, never in this file and never in the repository:
+#   Site configuration > Environment variables
+#
+#   KIT_API_KEY   required.  The Kit V4 API key. Read only by
+#                            netlify/functions/kit-subscribe.ts, which runs on
+#                            the server. It is never sent to the browser: the
+#                            site is a static export and nothing in it is built
+#                            from this value. Scope it to Functions.
+#                            Create the key in Kit under Settings > Developer >
+#                            V4 Keys. Kit shows it once.
+#
+#   KIT_TAG_ID    optional.  Numeric id of the "Truer Measure - First to Know"
+#                            tag. Saves one lookup per cold start. The function
+#                            finds the tag by name, and creates it, without this.
+#
+#   GHL_API_TOKEN       required for netlify/functions/contact-submit.ts, the
+#   GHL_LOCATION_ID     older waitlist and withdrawal form.
+#
+# Environment variable names cannot contain spaces. The name you give a key
+# inside Kit ("Truer Measure Website") is Kit's own label for it and is not the
+# variable name here.
+
 [build]
   command   = "npm run build"
   publish   = "out"
