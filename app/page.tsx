@@ -93,7 +93,7 @@ export default function HomePage() {
             />
           </div>
           <div>
-            <div className="mb-[26px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
               A note from the founder
             </div>
             <p
@@ -158,7 +158,7 @@ export default function HomePage() {
                 instead of a price and a checkout button. */}
             <div className="flex flex-col">
               <div
-                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
+                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-7 pb-[52px] pt-[58px] text-center md:px-11"
                 style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
               >
                 <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
@@ -207,7 +207,7 @@ export default function HomePage() {
             </div>
 
             {/* Tier 2 — Elite Parents */}
-            <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
+            <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Community
               </div>
@@ -242,7 +242,7 @@ export default function HomePage() {
             </div>
 
             {/* Tier 3 — Inner Circle */}
-            <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-9 pb-[46px] pt-[50px] text-center">
+            <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Proximity
               </div>

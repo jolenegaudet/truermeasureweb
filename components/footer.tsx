@@ -34,7 +34,9 @@ export default function Footer() {
 
   return (
     <footer className="bg-bark px-6 py-12 md:px-10 md:py-[64px]">
-      <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-4 md:gap-6">
+      {/* Stacked and centred on a phone, where these two sat squeezed against
+          opposite edges of a 390px screen. Side by side from md up, as before. */}
+      <div className="mx-auto flex max-w-[1180px] flex-col items-center gap-2 text-center md:flex-row md:flex-wrap md:justify-between md:gap-6 md:text-left">
         <div className="font-heading text-[21px] text-parchment">{t.brand}</div>
         <div className="text-[13px] tracking-[0.04em] text-subdued">
           {t.tagline}

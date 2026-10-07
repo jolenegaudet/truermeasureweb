@@ -155,7 +155,7 @@ export const shell = {
   fr: {
     // Nothing to announce to someone already reading the French site.
     banner: "",
-    brand: "Bienvenue à la juste mesure de votre enfant!",
+    brand: "Bienvenue à la juste mesure de votre enfant !",
     nav: {
       start: "Commencez ici",
       hiddenReportCard: "Le rapport caché",
@@ -165,7 +165,7 @@ export const shell = {
     toggle: { label: "EN", aria: "View this page in English" },
     footer: {
       brand: "Une Juste Mesure",
-      tagline: "La juste mesure d’un enfant!",
+      tagline: "La juste mesure d’un enfant !",
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
       termsPath: "/conditions-d-utilisation",

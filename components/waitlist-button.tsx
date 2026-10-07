@@ -73,10 +73,18 @@ type Props = Omit<ModalProps, "open" | "onClose" | "locale"> & {
 const buttonClass: Record<Variant, string> = {
   dark:
     "inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline cursor-pointer",
+  // These two sit inside the tier cards, which are the narrowest columns on the
+  // site. "Rejoignez la liste d'attente" is 28 characters against the English
+  // 17, and at 0.14em of tracking it needed 298px on one line: 21px more than a
+  // 375px phone could give it, and 0.4px more than the desktop column. It was
+  // wrapping to two lines at every width except 430. The label is hers and the
+  // font size is the system's, so the slack came out of the two decorative
+  // measurements instead, tracking and side padding, which is what was actually
+  // too big for the space.
   "outline-rose-dark":
-    "mt-9 inline-block rounded-[2px] border border-rose-dark px-[26px] py-[14px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline cursor-pointer bg-transparent",
+    "mt-9 inline-block rounded-[2px] border border-rose-dark px-5 py-[14px] text-[13px] font-semibold uppercase tracking-[0.11em] text-bark no-underline cursor-pointer bg-transparent md:px-[26px]",
   "outline-rose":
-    "mt-9 inline-block rounded-[2px] border border-rose px-[26px] py-[14px] text-[13px] font-semibold uppercase tracking-[0.14em] text-bark no-underline cursor-pointer bg-transparent",
+    "mt-9 inline-block rounded-[2px] border border-rose px-5 py-[14px] text-[13px] font-semibold uppercase tracking-[0.11em] text-bark no-underline cursor-pointer bg-transparent md:px-[26px]",
   bark:
     "inline-block rounded-[2px] bg-bark px-[34px] py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-parchment no-underline cursor-pointer",
 };

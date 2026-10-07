@@ -33,14 +33,14 @@ export const metadata: Metadata = {
 const roomAccess = [
   "Rencontre en direct avec Jolene, chaque semaine",
   "Experts invités",
-  "Une communauté entre les rencontres",
+  "La communauté entre les rencontres",
   "Questions et réponses en groupe",
 ];
 
 const circleAccess = [
   "Accès direct à Jolene",
   "Un petit cercle, sur demande",
-  "Une voix dans ce que Truer Measure bâtira ensuite",
+  "Votre mot à dire sur la suite de Truer Measure",
 ];
 
 /**
@@ -70,8 +70,7 @@ export default function FrenchHomePage() {
           className="mx-auto mb-6 max-w-[620px] text-smoke"
           style={{ fontSize: "clamp(18px,2.3vw,23px)", lineHeight: 1.45 }}
         >
-          Un bulletin n&rsquo;a jamais été conçu pour raconter toute
-          l&rsquo;histoire.
+          Un bulletin n&rsquo;a jamais été conçu pour tout dire.
         </p>
         {/* Jolene's wording, 1 October 2026. Six words where the English
             headline has four, so it is set smaller: at the English clamp the
@@ -111,7 +110,7 @@ export default function FrenchHomePage() {
             />
           </div>
           <div>
-            <div className="mb-[26px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
               Un mot de la fondatrice
             </div>
             <p
@@ -121,25 +120,25 @@ export default function FrenchHomePage() {
                 lineHeight: 1.4,
               }}
             >
-              Pendant près de <em>25 ans</em>, j&rsquo;ai contribué aux bulletins
-              que les familles rapportent à la maison, d&rsquo;abord comme
-              enseignante qui les rédigeait, ensuite comme directrice qui les
-              signait.
+              Pendant près de <em>25 ans</em>, j&rsquo;ai participé à la
+              rédaction des bulletins que les familles rapportent à la maison :
+              d&rsquo;abord comme enseignante, qui les écrivait, puis comme
+              directrice, qui les signait.
             </p>
             <p
               className="mb-[22px] text-smoke"
               style={{ fontSize: 17, lineHeight: 1.75 }}
             >
-              J&rsquo;ai assisté à des centaines de rencontres parents
-              enseignants en regardant des familles chercher leur enfant dans un
-              paragraphe de commentaires soigneusement formulés. Et je voyais
-              toujours la même chose : les qualités et les habiletés qui
-              comptaient le plus, la conviction discrète qu&rsquo;un enfant est
-              capable de plus que la case où on vient de le placer, ne se
-              trouvaient nulle part dans ces pages.
+              J&rsquo;ai assisté à des centaines de rencontres
+              parents-enseignants, à regarder des familles chercher leur enfant
+              dans un paragraphe de commentaires soigneusement choisis. Et
+              chaque fois, je voyais la même chose : les qualités et les
+              habiletés qui comptaient le plus, la conviction discrète
+              qu&rsquo;un enfant est capable de plus que la case où on vient de
+              le placer, ne se trouvaient nulle part dans ces pages.
             </p>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat} : un portrait
+              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat}&nbsp;: un portrait
               vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
               <em className="italic text-bark">au-delà</em>.
             </p>
@@ -161,7 +160,7 @@ export default function FrenchHomePage() {
               Commencez par la clarté.
             </h2>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.7 }}>
-              Continuez par la communauté. Grandissez par la proximité.
+              Poursuivez avec la communauté. Grandissez avec la proximité.
             </p>
           </div>
 
@@ -169,7 +168,7 @@ export default function FrenchHomePage() {
             {/* Tier 1 — A Truer Measure */}
             <div className="flex flex-col">
               <div
-                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-11 pb-[52px] pt-[58px] text-center"
+                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-7 pb-[52px] pt-[58px] text-center md:px-11"
                 style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
               >
                 <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
@@ -217,7 +216,7 @@ export default function FrenchHomePage() {
             </div>
 
             {/* Tier 2 — Parents leaders */}
-            <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-9 pb-[46px] pt-[50px] text-center">
+            <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Communauté
               </div>
@@ -230,8 +229,7 @@ export default function FrenchHomePage() {
                 {tiers.fr.two[1]}
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
-                Des parents d&rsquo;exception comme leaders de
-                l&rsquo;apprentissage
+                Des parents d&rsquo;exception, leaders de l&rsquo;apprentissage
               </p>
               <div
                 className="mb-9 flex flex-col gap-[10px] text-smoke"
@@ -254,7 +252,7 @@ export default function FrenchHomePage() {
             </div>
 
             {/* Tier 3 — Inner Circle */}
-            <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-9 pb-[46px] pt-[50px] text-center">
+            <div className="flex flex-col items-center rounded-[2px] border border-warm bg-blush px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Proximité
               </div>
@@ -267,7 +265,7 @@ export default function FrenchHomePage() {
                 {tiers.fr.three[1]}
               </div>
               <p className="font-heading mb-7 text-[19px] text-dusk">
-                Aidez à façonner la suite
+                Aidez-nous à façonner la suite
               </p>
               <div
                 className="mb-9 flex flex-col gap-[10px] text-smoke"
@@ -282,7 +280,7 @@ export default function FrenchHomePage() {
                 locale="fr"
                 tag="applied-inner-circle"
                 label={"Faites une demande"}
-                modalEyebrow="Aidez à façonner la suite"
+                modalEyebrow="Aidez-nous à façonner la suite"
                 modalTitle={`Faites votre demande pour le ${tiers.fr.threeFlat}.`}
                 submitLabel={"Envoyez la demande"}
                 variant="outline-rose"
