@@ -5,7 +5,7 @@ import { FirstToKnowButton } from "@/components/first-to-know";
 import { alternatesFor } from "@/content/i18n";
 
 const DESCRIPTION =
-  "Réunissez les bulletins, les commentaires des enseignants, vos observations, les projets et les moments vécus hors de l'école, et voyez ce qui revient d'une expérience à l'autre chez votre enfant.";
+  "Réunissez les bulletins, les commentaires des enseignants, vos observations, les projets et les moments vécus hors de l’école, et voyez ce qui revient d’une expérience à l’autre chez votre enfant.";
 
 export const metadata: Metadata = {
   title: "Le rapport caché",
@@ -43,12 +43,12 @@ const contrasts = [
   },
   {
     left: "Vous donne un instantané.",
-    right: "Garde l'histoire au fil du temps.",
+    right: "Garde l’histoire au fil du temps.",
   },
   {
-    left: "Vous dit comment votre enfant va à l'école.",
+    left: "Vous dit comment votre enfant va à l’école.",
     right:
-      "Tient un portrait vivant de l'éducation de votre enfant, à l'école et au-delà.",
+      "Tient un portrait vivant de l’éducation de votre enfant, à l’école et au-delà.",
   },
 ];
 
@@ -60,14 +60,14 @@ const qualityRows = [
   ["Bienveillance", "Empathie", "Honnêteté", "Intégrité"],
   ["Collaboration", "Communication", "Leadership", "Intelligence émotionnelle"],
   ["Adaptabilité", "Jugement", "Résolution de problèmes", "Débrouillardise"],
-  ["Autorégulation", "Responsabilité", "Suivi jusqu'au bout", "Pouvoir d'agir"],
+  ["Autorégulation", "Responsabilité", "Suivi jusqu’au bout", "Pouvoir d’agir"],
   ["Ouverture aux cultures", "Sens civique", "Sens du but"],
 ];
 
 const moments = [
-  "Avant une rencontre avec l'enseignante",
+  "Avant une rencontre avec l’enseignante",
   "Avant une demande pour un programme, une équipe ou une bourse",
-  "Quand le bulletin ne correspond pas à l'enfant que vous connaissez",
+  "Quand le bulletin ne correspond pas à l’enfant que vous connaissez",
   "Quand votre enfant brille partout sauf sur papier",
   "Quand la confiance tombe",
   "Quand une semaine difficile commence à ressembler à une mauvaise année",
@@ -79,12 +79,12 @@ const experience = [
   {
     feature: "Mon enfant",
     outcome:
-      "Voyez un portrait plus complet de votre enfant, à l'école et dans la vie de tous les jours.",
+      "Voyez un portrait plus complet de votre enfant, à l’école et dans la vie de tous les jours.",
   },
   {
     feature: "Chronologie",
     outcome:
-      "Voyez ensemble, au fil du temps, les moments importants venus de l'école et de la vie.",
+      "Voyez ensemble, au fil du temps, les moments importants venus de l’école et de la vie.",
   },
   {
     feature: "Preuves",
@@ -94,7 +94,7 @@ const experience = [
   {
     feature: "Constats",
     outcome:
-      "Remarquez ce qui se répète au fil du temps et voyez où l'école et la vie quotidienne racontent la même histoire ou deux histoires différentes.",
+      "Remarquez ce qui se répète au fil du temps et voyez où l’école et la vie quotidienne racontent la même histoire ou deux histoires différentes.",
   },
   {
     feature: "Demander",
@@ -104,7 +104,7 @@ const experience = [
   {
     feature: "Saisir un moment",
     outcome:
-      "Enregistrez vite ce que vous venez de remarquer, en une phrase, une photo ou votre voix, avant de l'oublier.",
+      "Enregistrez vite ce que vous venez de remarquer, en une phrase, une photo ou votre voix, avant de l’oublier.",
   },
 ];
 
@@ -154,7 +154,7 @@ export default function FrenchHiddenReportCardPage() {
             >
               Les notes racontent une histoire.
               <br />
-              Elles ne racontent simplement pas toute l&rsquo;histoire.
+              Elles ne racontent tout simplement pas toute l&rsquo;histoire.
             </h2>
           </div>
 
@@ -291,7 +291,7 @@ export default function FrenchHiddenReportCardPage() {
             </p>
             <p>
               Vous pouvez maintenant voir ce qui revient, ce qui change, où les
-              preuves sont solides, et ce que vous n&rsquo;avez simplement pas
+              preuves sont solides, et ce que vous n&rsquo;avez tout simplement pas
               encore assez vu.
             </p>
             <p>

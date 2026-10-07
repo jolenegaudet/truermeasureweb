@@ -7,7 +7,7 @@ import { alternatesFor, tiers } from "@/content/i18n";
 export const metadata: Metadata = {
   title: "Parents leaders",
   description:
-    "Une communauté choisie pour des parents qui prennent l'apprentissage au sérieux : rencontre en direct avec Jolene, experts invités, et des questions posées en contexte.",
+    "Une communauté choisie pour des parents qui prennent l’apprentissage au sérieux : rencontre en direct avec Jolene, experts invités, et des questions posées en contexte.",
   alternates: alternatesFor("/learn", "fr"),
 };
 
@@ -33,7 +33,7 @@ export default function FrenchLearnPage() {
           className="font-heading mx-auto italic text-dusk"
           style={{ fontSize: "clamp(20px,2.8vw,28px)", lineHeight: 1.45, maxWidth: 600 }}
         >
-          Des parents d&rsquo;exception comme leaders de l&rsquo;apprentissage
+          Des parents d&rsquo;exception, leaders de l&rsquo;apprentissage
         </p>
       </section>
 

@@ -6,7 +6,7 @@ import { FirstToKnowButton } from "@/components/first-to-know";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 const DESCRIPTION =
-  "Un portrait vivant de l'apprentissage, des forces et du cheminement de votre enfant, qui réunit ce qui vient de l'école et d'ailleurs.";
+  "Un portrait vivant de l’apprentissage, des forces et du cheminement de votre enfant, qui réunit ce qui vient de l’école et d’ailleurs.";
 
 export const metadata: Metadata = {
   title: "A Truer Measure",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     // A page-level openGraph replaces the root block rather than merging into
     // it, so siteName and type have to be restated here. The preview image
     // comes from app/fr/opengraph-image.png, its own copy of the file, because
-    // a page that sets openGraph stops inheriting the root segment's image and
+    // a page that sets openGraph stops inheriting the root segment’s image and
     // would otherwise share with no picture at all.
     siteName: "Truer Measure",
     type: "website",
@@ -48,7 +48,7 @@ const circleAccess = [
  * deliberate: a parent who switches language should land on the same page, not
  * a different one.
  *
- * NAMING, following Jolène's ruling of 1 October 2026 (one brand, two
+ * NAMING, following Jolène’s ruling of 1 October 2026 (one brand, two
  * languages). The three offers keep their English names, because they are the
  * products: A Truer Measure, Elite Parents, Inner Circle. The tier words
  * are translated, because they describe rather than name, and the section
@@ -72,7 +72,7 @@ export default function FrenchHomePage() {
         >
           Un bulletin n&rsquo;a jamais été conçu pour tout dire.
         </p>
-        {/* Jolene's wording, 1 October 2026. Six words where the English
+        {/* Jolene’s wording, 1 October 2026. Six words where the English
             headline has four, so it is set smaller: at the English clamp the
             French sentence fills a phone screen on its own. */}
         <h1

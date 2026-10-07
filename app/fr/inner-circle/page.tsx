@@ -7,7 +7,7 @@ import { alternatesFor, tiers } from "@/content/i18n";
 export const metadata: Metadata = {
   title: "Cercle privé",
   description:
-    "Un accès direct à Jolene et une voix dans ce que Truer Measure crée ensuite. Les places sont limitées et l'admission se fait sur demande.",
+    "Un accès direct à Jolene et votre mot à dire sur la suite de Truer Measure. Les places sont limitées et l’admission se fait sur demande.",
   alternates: alternatesFor("/inner-circle", "fr"),
 };
 
@@ -22,7 +22,7 @@ export default function FrenchInnerCirclePage() {
       <section className="bg-blush px-6 pb-[60px] pt-16 md:px-10 md:pb-[72px] md:pt-24">
         <div className="mx-auto max-w-[920px] text-center">
           <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-            Aidez à façonner la suite
+            Aidez-nous à façonner la suite
           </div>
           <h1
             className="font-heading mb-8 font-medium text-bark"
@@ -48,7 +48,7 @@ export default function FrenchInnerCirclePage() {
             locale="fr"
             tag="applied-inner-circle"
             label={"Faites une demande"}
-            modalEyebrow="Aidez à façonner la suite"
+            modalEyebrow="Aidez-nous à façonner la suite"
             modalTitle={`Faites votre demande pour le ${tiers.fr.threeFlat}.`}
             submitLabel={"Envoyez la demande"}
             variant="bark"
