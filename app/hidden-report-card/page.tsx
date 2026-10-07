@@ -200,7 +200,7 @@ export default function HiddenReportCardPage() {
               style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
             >
               None of these receive a grade. Yet they shape so much of who your
-              child is becoming.
+              child is capable of becoming.
             </h2>
           </div>
 

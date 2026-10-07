@@ -203,7 +203,7 @@ export default function FrenchHiddenReportCardPage() {
               style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
             >
               Aucune de ces qualités ne reçoit de note. Pourtant, elles façonnent
-              une grande part de ce que votre enfant devient.
+              une grande part de ce que votre enfant est capable de devenir.
             </h2>
           </div>
 
