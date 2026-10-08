@@ -208,16 +208,29 @@ export default function HiddenReportCardPage() {
             {qualityRows.map((row) => (
               <p
                 key={row[0]}
-                className="font-heading border-b border-grid py-5 text-center font-medium text-bark last:border-b-0 md:py-6"
+                className="font-heading border-b-0 border-grid py-0 text-center font-medium text-bark last:border-b-0 md:border-b md:py-6"
                 style={{ fontSize: "clamp(20px,2.8vw,32px)", lineHeight: 1.3 }}
               >
                 {row.map((word, i) => (
                   <Fragment key={word}>
-                    <span className="whitespace-nowrap">{word}</span>
+                    {/* One word per line on a phone. Four-word rows wrapped
+                        wherever they ran out of room, which stranded separators
+                        at the ends of lines and started others with one, and
+                        the rules between rows then marked boundaries that do
+                        not exist: these are not categories. Below md the words
+                        stack, the separators go, and the rules go with them.
+                        The frame around the whole list stays. From md up every
+                        row fits on one line and the original reading holds. */}
+                    <span className="block whitespace-nowrap py-[7px] md:inline md:py-0">
+                      {word}
+                    </span>
                     {i < row.length - 1 ? (
                       <>
                         {" "}
-                        <span className="px-2 text-warm md:px-3" aria-hidden="true">
+                        <span
+                          className="hidden px-2 text-warm md:inline md:px-3"
+                          aria-hidden="true"
+                        >
                           &middot;
                         </span>{" "}
                       </>
