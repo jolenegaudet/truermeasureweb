@@ -10,59 +10,56 @@ import {
   APP_CURRENCY_ORDER,
   APP_PRICES,
   DEFAULT_CURRENCY,
-  DEMO_URL,
+  GOES_TO_DEMO,
   PRICE_PREVIEW,
   appPlansFor,
+  planHref,
 } from "@/content/app-plans";
 import type { Locale } from "@/content/i18n";
 
 /**
- * One product, two plans: School · Free and School & Life · Paid.
+ * The app offer: School and School & Life, as two cards a parent can act on.
  *
- * Her brief of 28 October 2026: "two clear cards side by side on desktop and
- * stacked on phones. Keep the cards concise. Below them, provide enough detail
- * to explain the paid experience without cramming everything into the cards."
+ * Her brief of 28 October 2026 (third): "The page's purpose is to get parents
+ * to register. Keep it clean, readable and easy to act on." So the cards carry
+ * a plan name, a price, a headline, a short list, one supporting line and a
+ * button, and nothing else. Everything they used to carry is in the
+ * "What's included" section underneath, which opens on a tap.
  *
- * All copy, in both languages, is in content/app-plans.ts with its sources
- * named there. This file is layout.
+ * All copy, both languages, is in content/app-plans.ts with its sources named
+ * there. This file is layout.
  *
  * ── WHY THIS IS A CLIENT COMPONENT ────────────────────────────────────────
  *
- * Her second brief asked for a currency selector ABOVE the cards that changes
- * a price INSIDE one of them. That is one piece of state spanning two parts of
- * the section, so the section owns it. Everything here is static text, so
- * being a client component costs a little JavaScript and no data fetching.
+ * The currency selector sits above the cards and changes a price inside one of
+ * them: one piece of state spanning two parts of the section, so the section
+ * owns it. Everything else here is static text.
  *
- * ── WHY THE PAID CARD IS THE DARK ONE ─────────────────────────────────────
+ * ── WHERE THE BUTTONS GO ──────────────────────────────────────────────────
  *
- * The card this replaces was the dark one, and it sat first in the row. Making
- * the paid plan dark keeps the page's existing weight where it was, so nothing
- * above or below has to move and Elite Parents and Inner Circle keep the
- * relationship to it they already had.
+ * planHref() in content/app-plans.ts, which answers the demo until the
+ * production app exists. That file holds the evidence and the list of what
+ * remains to connect. Nothing here hardcodes a destination.
  *
- * ── BUTTONS ───────────────────────────────────────────────────────────────
+ * ── BUTTON ALIGNMENT ──────────────────────────────────────────────────────
  *
- * Full width inside the card, which is the one choice that cannot wrap badly.
- * The uppercase tracked button is the site's, and a long tracked label is
- * exactly what broke the waitlist button at every width except 430px: measured
- * at 68px against a one-line button's 51px on a 390px phone. The labels are
- * short and the destination is said underneath instead.
+ * Her brief: "Align the buttons on desktop." The free card has two bullets and
+ * the paid card five, so the cards would end at different heights. The grid is
+ * items-stretch and each card pushes its button down with flex-1, which puts
+ * both buttons on the same baseline whatever the lists do.
  */
 
 export function PlanCards({ locale = "en" }: { locale?: Locale }) {
   const t = appPlansFor(locale);
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
   const price = APP_PRICES.find((p) => p.code === currency) ?? APP_PRICES[0];
-
-  /* The paid card's amount. An approved amount renders; an unapproved one
-     renders her placeholder. With the preview flag off neither exists. */
   const paidAmount =
     price.amount === null ? null : `${price.symbol}${price.amount}`;
 
   return (
     <>
       {/* ---------- Heading ---------- */}
-      <div className="mx-auto mb-10 max-w-[560px] text-center md:mb-12">
+      <div className="mx-auto mb-8 max-w-[560px] text-center">
         <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
           {t.sectionEyebrow}
         </div>
@@ -77,21 +74,26 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
         </p>
       </div>
 
-      {/* Availability, above the buttons rather than under them. Her brief:
-          "Make availability clear." A parent should know what the button does
-          before reaching for it, not after. */}
-      <p
-        className="mx-auto mb-8 max-w-[680px] rounded-[2px] border border-border bg-linen px-5 py-4 text-center text-dusk"
-        style={{ fontSize: 14.5, lineHeight: 1.6 }}
-      >
-        {t.availability}
-      </p>
+      {/* Availability, and the one action a parent can complete today. The Kit
+          signup used to sit inside the paid card; it moved here so the card
+          could be the single clear choice her brief asks for, and so the
+          working form is not lost. */}
+      <div className="mx-auto mb-9 flex max-w-[680px] flex-col items-center gap-4 rounded-[2px] border border-border bg-linen px-5 py-5 text-center">
+        <p className="text-dusk" style={{ fontSize: 14.5, lineHeight: 1.6 }}>
+          {t.availability}
+        </p>
+        <FirstToKnowButton
+          locale={locale}
+          place="home-card"
+          className="inline-block cursor-pointer rounded-[2px] border border-rose bg-transparent px-6 py-[11px] text-[11.5px] font-bold uppercase tracking-[0.13em] text-bark"
+        />
+      </div>
 
-      {/* The currency selector, above the cards as her brief asks. Preview
-          only: with NEXT_PUBLIC_TM_PRICE_PREVIEW unset this is absent from the
-          HTML, along with every amount, because no price is approved. */}
+      {/* The currency selector, directly above the plans, as her brief asks.
+          Preview only: with NEXT_PUBLIC_TM_PRICE_PREVIEW unset this and every
+          amount are absent from the HTML, not hidden with CSS. */}
       {PRICE_PREVIEW && (
-        <div className="mb-9 flex justify-center">
+        <div className="mb-8 flex justify-center">
           <CurrencyToggle
             value={currency}
             onChange={setCurrency}
@@ -104,265 +106,211 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
       )}
 
       {/* ---------- The two cards ---------- */}
-      <div className="mx-auto grid max-w-[940px] grid-cols-1 items-stretch gap-6 md:grid-cols-2">
+      <div className="mx-auto grid max-w-[900px] grid-cols-1 items-stretch gap-5 md:grid-cols-2 md:gap-6">
         {/* School · Free */}
-        <div className="flex flex-col rounded-[2px] border border-border bg-ghost px-6 pb-9 pt-10 text-center md:px-9 md:pt-12">
-          <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+        <div className="flex flex-col rounded-[2px] border border-border bg-ghost px-6 pb-8 pt-9 text-center md:px-8">
+          <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-rose">
             {t.free.eyebrow}
           </div>
+          <div
+            className="font-heading mt-3 text-bark"
+            style={{ fontSize: 38, lineHeight: 1.05 }}
+          >
+            {t.freePrice}
+          </div>
           <h3
-            className="font-heading mb-4 font-medium text-bark"
-            style={{ fontSize: 27, lineHeight: 1.14 }}
+            className="font-heading mt-6 font-medium text-bark"
+            style={{ fontSize: 23, lineHeight: 1.2 }}
           >
             {t.free.heading}
           </h3>
-          <p
-            className="mb-6 text-smoke"
-            style={{ fontSize: 15.5, lineHeight: 1.6 }}
-          >
-            {t.free.body}
-          </p>
           <Bullets items={t.free.includes} tone="light" />
-          <p
-            className="mb-7 text-dusk"
-            style={{ fontSize: 13.5, lineHeight: 1.55 }}
-          >
+          <p className="text-smoke" style={{ fontSize: 13, lineHeight: 1.55 }}>
             {t.free.only}
           </p>
-          {/* Pushes both cards' buttons to the same baseline on desktop. */}
           <div className="flex-1" />
-          {/* Mirrors the paid card's price block, position for position, so
-              the two cards' buttons line up with the same text above them.
-              Her brief: "School stays free in every currency", which is why
-              this slot ignores the selector entirely. */}
-          <div className="mb-6">
-            {PRICE_PREVIEW ? (
-              <>
-                <div
-                  className="font-heading text-bark"
-                  style={{ fontSize: 40, lineHeight: 1.05 }}
-                >
-                  {t.freePrice}
-                </div>
-                <p
-                  className="mt-2 text-smoke"
-                  style={{ fontSize: 12.5, lineHeight: 1.5 }}
-                >
-                  {t.free.noCard}
-                </p>
-              </>
-            ) : (
-              <p className="text-bark" style={{ fontSize: 14.5, lineHeight: 1.5 }}>
-                {t.free.billing}
-              </p>
-            )}
-            <p
-              className="mt-2 text-smoke"
-              style={{ fontSize: 12.5, lineHeight: 1.5 }}
-            >
-              {t.free.addLater}
-            </p>
-          </div>
           <a
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener"
-            className="block w-full rounded-[2px] border border-rose bg-transparent px-5 py-[15px] text-[12.5px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
+            href={planHref("school")}
+            {...(GOES_TO_DEMO ? { target: "_blank", rel: "noopener" } : {})}
+            className="mt-7 block w-full rounded-[2px] border border-rose bg-transparent px-5 py-[15px] text-[12.5px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
           >
             {t.free.cta}
           </a>
-          <p className="mt-3 text-smoke" style={{ fontSize: 12, lineHeight: 1.5 }}>
-            {t.demoNote}
-          </p>
+          {GOES_TO_DEMO && (
+            <p
+              className="mt-[10px] text-smoke"
+              style={{ fontSize: 11.5, lineHeight: 1.5 }}
+            >
+              {t.demoNote}
+            </p>
+          )}
         </div>
 
         {/* School & Life · Paid */}
         <div
-          className="flex flex-col rounded-[2px] bg-bark px-6 pb-9 pt-10 text-center md:px-9 md:pt-12"
+          /* A transparent border so this card has the same box as the free one,
+             which has a visible 1px border. Without it the two cards differ by
+             2px and the buttons sit on slightly different baselines. */
+          className="flex flex-col rounded-[2px] border border-transparent bg-bark px-6 pb-8 pt-9 text-center md:px-8"
           style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
         >
-          <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
+          <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
             {t.paid.eyebrow}
           </div>
+          <div className="mt-3">
+            {PRICE_PREVIEW ? (
+              paidAmount ? (
+                <div
+                  className="font-heading text-parchment"
+                  style={{ fontSize: 38, lineHeight: 1.05 }}
+                >
+                  {paidAmount}
+                  <span className="ml-2 font-sans text-[13.5px] text-muted">
+                    {t.perMonth}
+                  </span>
+                </div>
+              ) : (
+                <div className="inline-block rounded-[2px] border border-dashed border-rose-dark px-3 py-[7px] text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-dark">
+                  {t.priceToBeConfirmed}
+                </div>
+              )
+            ) : (
+              /* No approved price to show, so the card states the shape of the
+                 billing instead of leaving a hole where a price belongs. */
+              <div
+                className="font-heading text-parchment"
+                style={{ fontSize: 21, lineHeight: 1.2 }}
+              >
+                {t.paid.billing}
+              </div>
+            )}
+          </div>
           <h3
-            className="font-heading mb-4 font-medium text-parchment"
-            style={{ fontSize: 27, lineHeight: 1.14 }}
+            className="font-heading mt-6 font-medium text-parchment"
+            style={{ fontSize: 23, lineHeight: 1.2 }}
           >
             {t.paid.heading}
           </h3>
           <p
-            className="mb-6 text-parchment/90"
-            style={{ fontSize: 15.5, lineHeight: 1.6 }}
-          >
-            {t.paid.body}
-          </p>
-          <p
-            className="mb-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-rose-dark"
+            className="mt-5 text-[11.5px] font-semibold uppercase tracking-[0.16em] text-rose-dark"
             style={{ lineHeight: 1.4 }}
           >
             {t.paid.plus}
           </p>
-          <Bullets items={t.paid.includes} tone="dark" />
+          <Bullets items={t.paid.includes} tone="dark" compact />
+          <p
+            className="text-parchment/70"
+            style={{ fontSize: 13, lineHeight: 1.55 }}
+          >
+            {t.paid.tagline}
+          </p>
           <div className="flex-1" />
-
-          <div className="mb-6">
-            {PRICE_PREVIEW && (
-              <div className="mb-3">
-                {paidAmount ? (
-                  <div
-                    className="font-heading text-parchment"
-                    style={{ fontSize: 40, lineHeight: 1.05 }}
-                  >
-                    {paidAmount}
-                    <span className="ml-2 font-sans text-[14px] text-muted">
-                      {t.perMonth}
-                    </span>
-                  </div>
-                ) : (
-                  /* Her instruction for USD and EUR until she approves an
-                     amount. Deliberately words, never a number. */
-                  <div className="inline-block rounded-[2px] border border-dashed border-rose-dark px-3 py-[7px] text-[11.5px] font-semibold uppercase tracking-[0.14em] text-rose-dark">
-                    {t.priceToBeConfirmed}
-                  </div>
-                )}
-                <p
-                  className="mt-3 text-parchment/60"
-                  style={{ fontSize: 11.5, lineHeight: 1.5 }}
-                >
-                  {t.taxPending}
-                </p>
-              </div>
-            )}
-            <p
-              className="text-parchment"
-              style={{ fontSize: 14.5, lineHeight: 1.5 }}
-            >
-              {t.paid.billing}
-            </p>
-            {/* What one subscription covers, which her brief asked to be
-                explained and which the app settles: the subscription is on the
-                account, not on a child (server: subscriptions.account_id). */}
-            <p
-              className="mt-2 text-parchment/80"
-              style={{ fontSize: 12.5, lineHeight: 1.5 }}
-            >
-              {t.covers}
-            </p>
-            <p
-              className="mt-2 text-parchment/70"
-              style={{ fontSize: 12.5, lineHeight: 1.5 }}
-            >
-              {t.paid.cancel}
-            </p>
-          </div>
           <a
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener"
-            className="block w-full rounded-[2px] bg-parchment px-5 py-[15px] text-[12.5px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
+            href={planHref("full")}
+            {...(GOES_TO_DEMO ? { target: "_blank", rel: "noopener" } : {})}
+            /* Transparent border to match the free card’s outlined button, so the
+               two buttons have identical boxes and their tops line up, not just
+               their baselines. */
+            className="mt-7 block w-full rounded-[2px] border border-transparent bg-parchment px-5 py-[15px] text-[12.5px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
           >
             {t.paid.cta}
           </a>
-          <p
-            className="mt-3 text-parchment/70"
-            style={{ fontSize: 12, lineHeight: 1.5 }}
-          >
-            {t.demoNote}
-          </p>
-          {/* The Kit signup that is already live, kept exactly as it is. It is
-              the only thing on this card a parent can actually complete today,
-              so it stays rather than being replaced by a dead checkout. */}
-          <p
-            className="mb-[10px] mt-6 text-parchment/70"
-            style={{ fontSize: 12.5, lineHeight: 1.5 }}
-          >
-            {t.paid.firstToKnow}
-          </p>
-          <FirstToKnowButton
-            locale={locale}
-            place="home-card"
-            className="block w-full cursor-pointer rounded-[2px] border border-rose-dark bg-transparent px-5 py-[13px] text-[12px] font-bold uppercase tracking-[0.13em] text-parchment"
-          />
+          {GOES_TO_DEMO && (
+            <p
+              className="mt-[10px] text-parchment/60"
+              style={{ fontSize: 11.5, lineHeight: 1.5 }}
+            >
+              {t.demoNote}
+            </p>
+          )}
         </div>
       </div>
 
       {/* Her brief: "Beside the demo links, clearly identify those as demo
-          previews unavailable in the customer app at launch." Directly under
-          the pair, so it sits with both buttons rather than being repeated
-          inside each card. The four are the DEFERRED list in js/account.js. */}
-      <p
-        className="mx-auto mt-6 max-w-[940px] rounded-[2px] border border-dashed border-warm px-5 py-4 text-center text-dusk"
-        style={{ fontSize: 13.5, lineHeight: 1.6 }}
-      >
-        {t.demoOnly}
-      </p>
-
-      {/* ---------- The reading allowance ---------- */}
-      <section className="mx-auto mt-12 max-w-[680px] rounded-[2px] border border-border bg-linen px-6 py-7 md:px-9 md:py-8">
-        <h3
-          className="font-heading mb-3 font-medium text-bark"
-          style={{ fontSize: 21, lineHeight: 1.25 }}
+          previews unavailable in the customer app at launch." */}
+      {GOES_TO_DEMO && (
+        <p
+          className="mx-auto mt-5 max-w-[900px] text-center text-smoke"
+          style={{ fontSize: 12.5, lineHeight: 1.6 }}
         >
-          {t.allowance.title}
-        </h3>
-        <p className="mb-3 text-dusk" style={{ fontSize: 15, lineHeight: 1.65 }}>
-          {t.allowance.body}
+          {t.demoOnly}
         </p>
-        <p className="mb-3 text-dusk" style={{ fontSize: 15, lineHeight: 1.65 }}>
-          {t.allowance.pauses}
-        </p>
-        <p className="mb-3 text-dusk" style={{ fontSize: 15, lineHeight: 1.65 }}>
-          {t.allowance.remains}
-        </p>
-        <p className="text-dusk" style={{ fontSize: 15, lineHeight: 1.65 }}>
-          {t.allowance.resumes}
-        </p>
-      </section>
+      )}
 
-      {/* ---------- The detail, under the cards ---------- */}
-      <div className="mx-auto mt-16 max-w-[1000px] md:mt-20">
-        <div className="mx-auto mb-11 max-w-[620px] text-center">
-          <h3
-            className="font-heading mb-[14px] font-medium text-bark"
-            style={{ fontSize: "clamp(25px,3.6vw,38px)", lineHeight: 1.12 }}
-          >
-            {t.detail.heading}
-          </h3>
-          <p className="text-smoke" style={{ fontSize: 16.5, lineHeight: 1.7 }}>
-            {t.detail.intro}
-          </p>
+      {/* ---------- What's included ---------- */}
+      <WhatsIncluded t={t} />
+    </>
+  );
+}
+
+/**
+ * The fuller explanation, folded away.
+ *
+ * Her brief: "Preserve the fuller product explanation in one compact,
+ * expandable 'What's included' section below the cards, within the Clarity
+ * offer. Keep account coverage, cancellation and reading-allowance details
+ * accessible there."
+ *
+ * A native <details>, so it works with JavaScript off, is reachable by
+ * keyboard without any code of ours, and announces its own open state. The
+ * marker is removed and replaced with a sign that follows the open state in
+ * CSS, so there is no state to manage here.
+ */
+function WhatsIncluded({ t }: { t: ReturnType<typeof appPlansFor> }) {
+  return (
+    <details className="group mx-auto mt-10 max-w-[900px] rounded-[2px] border border-border bg-ghost [&_summary::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left md:px-8">
+        <span
+          className="font-heading font-medium text-bark"
+          style={{ fontSize: 19, lineHeight: 1.25 }}
+        >
+          {t.whatsIncluded}
+        </span>
+        <span
+          aria-hidden="true"
+          className="shrink-0 text-[22px] leading-none text-rose transition-transform group-open:rotate-45"
+        >
+          +
+        </span>
+      </summary>
+
+      <div className="border-t border-border px-6 pb-9 pt-7 md:px-8">
+        {/* The three facts her brief wants kept reachable. */}
+        <div className="mb-9 flex flex-col gap-2 border-l border-warm pl-4 text-dusk">
+          <p style={{ fontSize: 14.5, lineHeight: 1.6 }}>{t.covers}</p>
+          <p style={{ fontSize: 14.5, lineHeight: 1.6 }}>{t.paid.billing}</p>
+          <p style={{ fontSize: 14.5, lineHeight: 1.6 }}>{t.paid.cancel}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-10 gap-y-9 md:grid-cols-2 md:gap-y-11">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-9 md:grid-cols-2">
           {t.detail.parts.map((part, i) => {
-            /* Seven parts in two columns leaves the last one alone beside a
-               gap. It is the one carrying what the app does NOT do, which
-               should not look like a leftover, so it takes the full row and
-               lays its own points out in two. */
             const wide =
               i === t.detail.parts.length - 1 && t.detail.parts.length % 2 === 1;
             return (
-              <section key={part.title} className={wide ? "md:col-span-2" : undefined}>
+              <section
+                key={part.title}
+                className={wide ? "md:col-span-2" : undefined}
+              >
                 <h4
                   className="font-heading mb-[10px] font-medium text-bark"
-                  style={{ fontSize: 20.5, lineHeight: 1.25 }}
+                  style={{ fontSize: 18.5, lineHeight: 1.25 }}
                 >
                   {part.title}
                 </h4>
                 <p
                   className="text-smoke"
-                  style={{ fontSize: 15.5, lineHeight: 1.65 }}
+                  style={{ fontSize: 15, lineHeight: 1.65 }}
                 >
                   {part.body}
                 </p>
                 {part.detail && (
                   <ul
-                    className={`mt-[14px] list-none gap-[7px] border-l border-border pl-4 text-dusk ${
+                    className={`mt-[13px] list-none gap-[7px] border-l border-border pl-4 text-dusk ${
                       wide
                         ? "flex flex-col md:grid md:grid-cols-2 md:gap-x-9"
                         : "flex flex-col"
                     }`}
-                    style={{ fontSize: 14, lineHeight: 1.55 }}
+                    style={{ fontSize: 13.5, lineHeight: 1.55 }}
                   >
                     {part.detail.map((line) => (
                       <li key={line}>{line}</li>
@@ -374,65 +322,91 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
           })}
         </div>
 
-        {/* The one example, labelled fictional before it is read, not after. */}
-        <figure className="mx-auto mt-14 max-w-[680px] rounded-[2px] border border-warm bg-blush px-6 py-7 md:mt-16 md:px-9 md:py-9">
-          <figcaption className="mb-5 flex flex-wrap items-center justify-between gap-2">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-rose">
+        {/* The reading allowance, which her brief wants kept available here. */}
+        <section className="mt-10 rounded-[2px] border border-border bg-linen px-5 py-6 md:px-7">
+          <h4
+            className="font-heading mb-3 font-medium text-bark"
+            style={{ fontSize: 18.5, lineHeight: 1.25 }}
+          >
+            {t.allowance.title}
+          </h4>
+          {[
+            t.allowance.body,
+            t.allowance.pauses,
+            t.allowance.remains,
+            t.allowance.resumes,
+          ].map((line) => (
+            <p
+              key={line}
+              className="mb-2 text-dusk last:mb-0"
+              style={{ fontSize: 14.5, lineHeight: 1.65 }}
+            >
+              {line}
+            </p>
+          ))}
+        </section>
+
+        {/* One example, labelled fictional before it is read, not after. */}
+        <figure className="mt-10 rounded-[2px] border border-warm bg-blush px-5 py-6 md:px-7">
+          <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <span className="text-[10.5px] font-semibold uppercase tracking-[0.2em] text-rose">
               {t.example.eyebrow}
             </span>
-            <span className="rounded-[2px] bg-bark/85 px-[9px] py-[4px] text-[10.5px] font-bold uppercase tracking-[0.14em] text-parchment">
+            <span className="rounded-[2px] bg-bark/85 px-[9px] py-[4px] text-[10px] font-bold uppercase tracking-[0.14em] text-parchment">
               {t.example.label}
             </span>
           </figcaption>
           <p
             className="font-heading mb-3 font-medium text-bark"
-            style={{ fontSize: 19.5, lineHeight: 1.3 }}
+            style={{ fontSize: 18, lineHeight: 1.3 }}
           >
             {t.example.title}
           </p>
-          <p className="mb-4 text-dusk" style={{ fontSize: 15.5, lineHeight: 1.7 }}>
+          <p className="mb-3 text-dusk" style={{ fontSize: 15, lineHeight: 1.7 }}>
             {t.example.text}
           </p>
           <p
-            className="mb-4 border-t border-warm pt-4 text-smoke"
-            style={{ fontSize: 13.5, lineHeight: 1.55 }}
+            className="mb-3 border-t border-warm pt-3 text-smoke"
+            style={{ fontSize: 13, lineHeight: 1.55 }}
           >
             {t.example.rests}
           </p>
-          <p className="text-smoke" style={{ fontSize: 12.5, lineHeight: 1.55 }}>
+          <p className="text-smoke" style={{ fontSize: 12, lineHeight: 1.55 }}>
             {t.example.note}
           </p>
         </figure>
 
         <p
-          className="mx-auto mt-12 max-w-[640px] text-center text-dusk"
-          style={{ fontSize: 15, lineHeight: 1.65 }}
+          className="mt-9 text-center text-dusk"
+          style={{ fontSize: 14.5, lineHeight: 1.65 }}
         >
           {t.detail.choice}
         </p>
         <p
-          className="font-heading mx-auto mt-6 max-w-[660px] text-center text-bark"
-          style={{ fontSize: "clamp(20px,2.6vw,27px)", lineHeight: 1.35 }}
+          className="font-heading mx-auto mt-5 max-w-[620px] text-center text-bark"
+          style={{ fontSize: "clamp(19px,2.4vw,25px)", lineHeight: 1.35 }}
         >
           {t.detail.close}
         </p>
       </div>
-    </>
+    </details>
   );
 }
 
 function Bullets({
   items,
   tone,
+  compact = false,
 }: {
   items: readonly string[];
   tone: "dark" | "light";
+  compact?: boolean;
 }) {
   return (
     <ul
-      className={`mb-7 flex list-none flex-col gap-[9px] text-left ${
-        tone === "dark" ? "text-parchment/85" : "text-smoke"
-      }`}
+      className={`mb-5 mt-5 flex list-none flex-col text-left ${
+        compact ? "gap-[7px]" : "gap-[9px]"
+      } ${tone === "dark" ? "text-parchment/85" : "text-smoke"}`}
       style={{ fontSize: 14.5, lineHeight: 1.5 }}
     >
       {items.map((item) => (

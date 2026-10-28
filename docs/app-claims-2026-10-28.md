@@ -219,3 +219,96 @@ matching domain is someone else's, and would contradict the ruling that gave
 the French product its name. So the mark kept here is the one that exists,
 **Juste Mesure™**, in `FRENCH_MARK` in `content/app-plans.ts`: a single
 constant, one word to change if she means the other.
+
+---
+
+# Third brief: simpler cards, and where the buttons go
+
+*Her third brief of 28 October 2026: "The page's purpose is to get parents to
+register. Keep it clean, readable and easy to act on."*
+
+## The cards
+
+Her copy, used as written. Each card is now: plan name, price, headline, a
+short list, one supporting line, one button. Measured at 1280px: the two cards
+are the same height and **the buttons align exactly** (skew 0px, after giving
+the dark card and its button transparent borders so both boxes match the
+outlined ones). At 390px they stack and size to their own content, with no
+horizontal overflow. Desktop card height fell from about 770px to 528px.
+
+What came off the cards: the long body paragraphs, the "rests on 5 records"
+proof, the tax note, the cancellation sentence, the account-coverage sentence
+and the reading allowance. Nothing was deleted; it moved into **What's
+included**, a native `<details>` under the cards, closed by default, which
+works with JavaScript off and is keyboard reachable without any code of ours.
+Verified in both languages that it still holds account coverage, cancellation,
+the reading allowance, the seven parts, the fictional example and the closing
+line.
+
+**Tax wording is off the page entirely**, as she asked: unresolved decisions
+belong in internal notes, so it lives in `docs/pricing-brief-2026-10-28.md`.
+
+The Kit signup moved out of the paid card and up into the availability note, so
+each card has exactly one action while the working form is kept.
+
+## THE PRODUCTION APP DOES NOT EXIST
+
+Her brief: "Use the actual production app URL and existing supported routes...
+If the production destination is not ready, identify exactly what remains to
+connect. Don't invent a URL."
+
+It is not ready, and not in the sense of unfinished. **The resources have never
+been created.** From the customer app's own deploy script,
+`prototype/.worktrees/launch/deploy/azure-accounts.sh`:
+
+```
+# NOT RUN YET. Creating these resources costs money every month and holds real
+# families' records: it waits for the founder's authorization.
+# To create them, run with TM_CONFIRM_CREATE=yes.
+```
+
+and, if run without it: *"The production resources don't exist. Creating them
+needs the founder's go-ahead."*
+
+The host it would create is `truermeasure-app.azurewebsites.net` (the script's
+default `TM_APP`, overridable with `TM_PUBLIC_URL`). **Checked 28 October 2026:
+that name does not resolve.** So it is not a URL, it is a guess about a future
+one, and writing it down is the thing her brief forbids.
+
+`demo.truermeasure.com` is live and is **not** a substitute. The demo runs with
+`TM_ACCOUNTS` unset, so in its own README's words "the site serves the demo,
+never an account". Nobody can register there.
+
+### What remains to connect
+
+1. **Her authorization**, then `TM_CONFIRM_CREATE=yes bash deploy/azure-accounts.sh`
+   (resource group, App Service plan, Postgres 16, web app, Canada Central).
+   This starts a monthly bill.
+2. **The secrets the script reads** from the workspace `.secrets` folder:
+   `anthropic.env` (ANTHROPIC_API_KEY) and `launch.env` (STRIPE_SECRET_KEY,
+   STRIPE_WEBHOOK_SECRET, the Stripe price ids, GRAPH_* for sending mail,
+   SERVICE_EMAIL_SENDER, TM_OPS_EMAIL).
+3. **The public hostname**: the azurewebsites default, or a custom one through
+   `TM_PUBLIC_URL` with a CNAME and managed certificate, as
+   demo.truermeasure.com was set up on 20 October.
+4. **A real price.** `plan.prices` in the app is still empty, and live payments
+   additionally need `TM_ALLOW_LIVE_PAYMENTS=1`, which the deploy script calls
+   the founder's switch to give.
+
+### Carrying the plan into registration: not supported
+
+Her brief said "where supported". It is not. The customer app reads exactly two
+query parameters: `?checkout=done|cancelled` (`js/account.js`) and `?code=` for
+an invite (`js/ai.js`). There is no `?plan=`. The plan is chosen inside
+onboarding, on the "How do you want to start with {name}?" screen, after the
+child's name.
+
+Adding one would be a change to the customer app, which this brief rules out.
+
+### How it is wired meanwhile
+
+`REGISTRATION` in `content/app-plans.ts` holds `{ url: null, planParam: false }`
+and `planHref()` answers the demo while `url` is null. Set `url` and both
+buttons switch to registration, the "opens the demo" lines disappear and the
+demo-only disclaimer goes with them, with no other edit. Set `planParam` to
+true once the app learns `?plan=` and the links carry `school` or `full`.

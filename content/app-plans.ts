@@ -111,7 +111,91 @@ export const APP_CURRENCY_ORDER: CurrencyCode[] = ["CAD", "USD", "EUR"];
  * buttons. Make availability clear." The availability line is not optional
  * decoration, it is what makes the destination honest.
  */
-export const DEMO_URL = "https://truermeasure-preview.azurewebsites.net/";
+export const DEMO_URL = "https://demo.truermeasure.com/";
+
+/**
+ * WHERE THE BUTTONS GO, and why they do not go to registration yet.
+ *
+ * Her brief, 28 October 2026: "Prepare both buttons to use the real customer
+ * app's registration flow when the landing-page update is published. Use the
+ * actual production app URL and existing supported routes... If the production
+ * destination is not ready, identify exactly what remains to connect. Don't
+ * invent a URL."
+ *
+ * ── THE PRODUCTION APP DOES NOT EXIST ─────────────────────────────────────
+ *
+ * Not "is not finished". Has never been created. From the customer app's own
+ * deploy script, prototype/.worktrees/launch/deploy/azure-accounts.sh:
+ *
+ *   # NOT RUN YET. Creating these resources costs money every month and holds
+ *   # real families' records: it waits for the founder's authorization.
+ *   # To create them, run with TM_CONFIRM_CREATE=yes.
+ *
+ * and, if anyone runs it without that:
+ *
+ *   "The production resources don't exist. Creating them needs the founder's
+ *    go-ahead: run with TM_CONFIRM_CREATE=yes."
+ *
+ * The host it WOULD create is truermeasure-app.azurewebsites.net (the script's
+ * default `TM_APP`), overridable with TM_PUBLIC_URL. Checked on 28 October
+ * 2026: that name does not resolve. It is therefore not a URL, it is a guess
+ * about a future one, and her brief says not to invent one.
+ *
+ * demo.truermeasure.com is live and is NOT a substitute: the demo runs with
+ * TM_ACCOUNTS unset, so, in its own README's words, "the site serves the demo,
+ * never an account". Nobody can register there.
+ *
+ * So `url` stays null, the buttons keep going to the demo, and each one says
+ * so underneath. Set `url` and every button switches over; nothing else needs
+ * editing.
+ *
+ * ── WHAT REMAINS TO CONNECT ───────────────────────────────────────────────
+ *
+ *  1. Her authorization to create the production resources, then
+ *     `TM_CONFIRM_CREATE=yes bash deploy/azure-accounts.sh` (resource group,
+ *     App Service plan, Postgres 16 and web app, Canada Central). This starts
+ *     a monthly bill.
+ *  2. The secrets the script reads from the workspace .secrets folder:
+ *     anthropic.env (ANTHROPIC_API_KEY) and launch.env (STRIPE_SECRET_KEY,
+ *     STRIPE_WEBHOOK_SECRET, the Stripe price ids, GRAPH_* for sending email,
+ *     SERVICE_EMAIL_SENDER, TM_OPS_EMAIL).
+ *  3. The public hostname: the azurewebsites default, or a custom one through
+ *     TM_PUBLIC_URL with a CNAME and a managed certificate, the way
+ *     demo.truermeasure.com was set up on 20 October.
+ *  4. A real price. The app's `plan.prices` is still empty, and live payments
+ *     additionally need TM_ALLOW_LIVE_PAYMENTS=1, which the deploy script
+ *     describes as the founder's switch to give.
+ *
+ * ── CARRYING THE PLAN INTO REGISTRATION ───────────────────────────────────
+ *
+ * Her brief: "Where supported, carry the selected plan into registration."
+ * It is not supported. The customer app reads exactly two query parameters,
+ * `?checkout=done|cancelled` (js/account.js) and `?code=` for an invite
+ * (js/ai.js). There is no `?plan=`. The plan is chosen inside onboarding, on
+ * the "How do you want to start with {name}?" screen, after the child's name.
+ *
+ * Adding one would be a change to the customer app, which this brief rules
+ * out. So `planParam` is false and no plan is appended; when the app learns
+ * `?plan=`, set it to true and the links carry `school` or `full`.
+ */
+export const REGISTRATION: {
+  url: string | null;
+  planParam: boolean;
+} = {
+  url: null,
+  planParam: false,
+};
+
+/** Where a plan's button actually points today. */
+export function planHref(plan: "school" | "full"): string {
+  if (!REGISTRATION.url) return DEMO_URL;
+  if (!REGISTRATION.planParam) return REGISTRATION.url;
+  const sep = REGISTRATION.url.includes("?") ? "&" : "?";
+  return `${REGISTRATION.url}${sep}plan=${plan}`;
+}
+
+/** True while the buttons still lead to the demo rather than registration. */
+export const GOES_TO_DEMO = REGISTRATION.url === null;
 
 /**
  * The unapproved price placeholder, confined to the local preview.
@@ -149,15 +233,12 @@ type AppPlans = {
   sectionIntro: string;
   availability: string;
   free: {
+    /** The plan name, at the top of the card where her brief wants it. */
     eyebrow: string;
     heading: string;
-    body: string;
-    only: string;
     includes: string[];
-    billing: string;
-    /** Used in place of billing when the price slot already says "Free". */
-    noCard: string;
-    addLater: string;
+    /** The one small supporting line under the list. */
+    only: string;
     cta: string;
   };
   /** Under each button, because a button label is the wrong place for it. */
@@ -166,13 +247,13 @@ type AppPlans = {
   demoOnly: string;
   /** The currency selector's visible label. */
   currencyLabel: string;
+  /** The expandable section under the cards. */
+  whatsIncluded: string;
   /** Shown for a currency whose amount she has not approved. */
   priceToBeConfirmed: string;
   perMonth: string;
   /** The free plan's amount, in any currency. */
   freePrice: string;
-  /** Tax wording is deliberately not settled yet. */
-  taxPending: string;
   /** What one subscription covers. */
   covers: string;
   allowance: {
@@ -185,13 +266,15 @@ type AppPlans = {
   paid: {
     eyebrow: string;
     heading: string;
-    body: string;
     plus: string;
     includes: string[];
-    billing: string;
-    cancel: string;
+    /** The one small supporting line under the list. */
+    tagline: string;
     cta: string;
     firstToKnow: string;
+    /** Below the cards, in "What's included", not on the card itself. */
+    billing: string;
+    cancel: string;
   };
   detail: {
     heading: string;
@@ -245,39 +328,21 @@ export const appPlans: Record<Locale, AppPlans> = {
        uploads-are-report-cards-only sentence, which she asked to appear
        wherever the free plan is described. */
     free: {
-      eyebrow: "School · Free",
+      eyebrow: "School",
       heading: "Understand your child’s report cards.",
-      body:
-        "Upload report cards for plain-language explanations, a school picture updated as you add cards, questions to ask the teacher and practical ideas for home.",
-      only: "Uploads are report cards only: PDFs, or photos of each page.",
-      /* plan.offer.free, her words. "Only what the app does today." */
       includes: [
-        "Your child’s first look, and everything you’ve added so far.",
-        "Report cards, any number, each explained.",
-        "The school reading across them, updated as you add.",
-        "The questions to ask the teacher and the ideas for home in each report card’s explanation.",
+        "Questions to ask the teacher.",
+        "Practical ideas for home.",
       ],
-      /* These two sit where the paid card's price and cancel terms sit, and
-         they exist for two reasons. A free plan beside a paid one raises
-         "do I have to give a card?" immediately, and the app's answer is no:
-         signing in is an emailed link and a checkout only ever opens on an
-         upgrade. And without them the free card was 280px of empty space
-         under its last line, which is the hollow middle the old Clarity card
-         had a comment warning about. */
-      billing: "Free, and no card.",
-      noCard: "No card, and nothing to cancel.",
-      addLater:
-        "Add School & Life later if you want to: everything you add with School stays.",
-      cta: "See School",
+      only: "Report cards only: PDFs or photos.",
+      cta: "Start free",
     },
 
-    /* The destination goes under the button, not inside it.
-       "SEE SCHOOL & LIFE IN THE DEMO" is 29 tracked uppercase characters, and
-       a 390px phone leaves 240px inside the card's padding: measured at 68px
-       tall against the free button's 51px, so it was wrapping to two lines.
-       Shortening both labels and saying where they go underneath is the fix
-       that also reads better, because a parent scanning a button wants the
-       verb, and a parent about to press one wants to know a new tab opens. */
+    /* Everything the cards used to carry and no longer do (what the plan
+       covers, cancellation, the reading allowance, the seven parts of the paid
+       experience) now sits in the expandable section underneath. Nothing was
+       deleted, it moved. */
+    whatsIncluded: "What’s included",
     demoNote: "Opens the demo in a new tab.",
 
     /* Her brief: "Beside the demo links, clearly identify those as demo
@@ -291,11 +356,6 @@ export const appPlans: Record<Locale, AppPlans> = {
     priceToBeConfirmed: "Price to be confirmed",
     perMonth: "/ month",
     freePrice: "Free",
-    /* Her brief: "Keep tax wording pending confirmation." The app has an
-       approved sentence ("Taxes are shown at checkout."), but it belongs to
-       the Stripe setup she has not pointed at this price, so the page says
-       the truth instead of borrowing it. */
-    taxPending: "Tax wording is still to be confirmed.",
     covers: "One subscription covers the children in your account.",
 
     /* Her brief: "Clarify the shared monthly reading allowance. Explain what
@@ -322,31 +382,24 @@ export const appPlans: Record<Locale, AppPlans> = {
     },
 
     paid: {
-      eyebrow: "School & Life · Paid",
-      /* Her brief asked for "A growing picture of who your child is becoming."
-         "who your child is becoming" is the phrase she banned on 7 October and
-         had removed from /hidden-report-card the same week; "capable of
-         becoming" is the replacement she supplied herself, and it is live in
-         both languages. Her brief's sentence with her own correction applied.
-         The app's card says "See what everyday moments reveal about your
-         child." if she would rather have that one. */
-      heading: "A growing picture of who your child is capable of becoming.",
-      body:
-        "Bring together what school sees, what you notice and what your child says. Truer Measure organizes the record and helps you see interests, strengths, developing capabilities and questions worth exploring, across school and everyday life, over time.",
+      eyebrow: "School & Life",
+      /* The app's own card headline (js/config.js, onboarding.choose.full.head),
+         which is also the line her brief asked for here. */
+      heading: "See what everyday moments reveal.",
       plus: "Everything in School, plus:",
-      /* plan.offer.full, her words. */
       includes: [
-        "Moments from beyond school, any time: a sentence, a photo, a coach’s email.",
-        "Readings that bring school and life together, updated as you add: what agrees, what differs, and what’s worth exploring.",
-        "Your own words about your child, read alongside the record.",
-        "Questions about everything, including notes for a parent-teacher meeting.",
+        "Your child’s fuller profile and timeline.",
+        "Capture moments and reflect together.",
+        "Keep photos, schoolwork and feedback.",
+        "Insights across school, travel and everyday life.",
+        "Ask questions about your child’s record.",
       ],
+      tagline: "Get the Truer Measure.",
+      cta: "Choose School & Life",
+      firstToKnow: "Or be told when it opens:",
       billing: "A monthly subscription.",
-      /* plan.terms.cancel, her words, 20 October 2026. */
       cancel:
         "Cancel any time: School & Life stays until the end of the paid period, and everything you added stays with you.",
-      cta: "See School & Life",
-      firstToKnow: "Or be told when it opens:",
     },
 
     detail: {
@@ -487,25 +540,17 @@ export const appPlans: Record<Locale, AppPlans> = {
       "L’application n’est pas encore ouverte aux familles. Les deux boutons ci-dessous ouvrent la démo, qui fonctionne avec un enfant fictif, pour que vous puissiez voir les vrais écrans avant de décider quoi que ce soit.",
 
     free: {
-      eyebrow: "École · Gratuit",
+      eyebrow: "École",
       heading: "Comprenez les bulletins de votre enfant.",
-      body:
-        "Téléversez des bulletins pour obtenir des explications en langage clair, un portrait scolaire mis à jour à mesure que vous ajoutez des bulletins, des questions à poser à l’enseignante et des idées concrètes pour la maison.",
-      only:
-        "Les téléversements sont des bulletins seulement : des PDF, ou des photos de chaque page.",
       includes: [
-        "Le premier portrait de votre enfant, et tout ce que vous avez ajouté jusqu’ici.",
-        "Des bulletins, autant que vous voulez, chacun expliqué.",
-        "La lecture scolaire qui les traverse, mise à jour à mesure que vous ajoutez.",
-        "Les questions à poser à l’enseignante et les idées pour la maison, dans l’explication de chaque bulletin.",
+        "Des questions à poser à l’enseignante.",
+        "Des idées concrètes pour la maison.",
       ],
-      billing: "Gratuit, et sans carte.",
-      noCard: "Sans carte, et rien à annuler.",
-      addLater:
-        "Ajoutez École et vie plus tard si vous le voulez : tout ce que vous ajoutez avec École reste.",
-      cta: "Voir École",
+      only: "Bulletins seulement : PDF ou photos.",
+      cta: "Commencer gratuitement",
     },
 
+    whatsIncluded: "Ce qui est inclus",
     demoNote: "Ouvre la démo dans un nouvel onglet.",
     demoOnly:
       "La démo montre aussi les bilans annuels, les pages pour votre enfant, la création d’un CV et la croissance depuis l’an dernier. Ce sont des aperçus dans la démo : ils ne font pas partie de l’application au lancement.",
@@ -514,7 +559,6 @@ export const appPlans: Record<Locale, AppPlans> = {
     priceToBeConfirmed: "Prix à confirmer",
     perMonth: "/ mois",
     freePrice: "Gratuit",
-    taxPending: "La formulation sur les taxes reste à confirmer.",
     covers: "Un seul abonnement couvre les enfants de votre compte.",
 
     allowance: {
@@ -530,25 +574,24 @@ export const appPlans: Record<Locale, AppPlans> = {
     },
 
     paid: {
-      eyebrow: "École et vie · Payant",
-      /* Her approved French, live on /fr/hidden-report-card since 8 October:
-         "ce que votre enfant est capable de devenir". */
-      heading:
-        "Un portrait qui grandit de ce que votre enfant est capable de devenir.",
-      body:
-        "Réunissez ce que l’école voit, ce que vous remarquez et ce que votre enfant dit. Truer Measure organise le dossier et vous aide à voir les intérêts, les forces, les capacités qui se développent et les questions qui valent la peine d’être explorées, à l’école comme dans la vie de tous les jours, au fil du temps.",
+      eyebrow: "École et vie",
+      heading: "Voyez ce que les moments du quotidien révèlent.",
       plus: "Tout ce qu’il y a dans École, plus :",
       includes: [
-        "Des moments de la vie en dehors de l’école, quand vous voulez : une phrase, une photo, le courriel d’un entraîneur.",
-        "Des lectures qui réunissent l’école et la vie, mises à jour à mesure que vous ajoutez : ce qui concorde, ce qui diffère et ce qui vaut la peine d’être exploré.",
-        "Vos propres mots sur votre enfant, lus à côté du dossier.",
-        "Des questions sur tout, y compris des notes pour une rencontre avec l’enseignante.",
+        "Le portrait complet et la chronologie de votre enfant.",
+        "Saisir des moments et réfléchir ensemble.",
+        "Garder photos, travaux scolaires et commentaires.",
+        "Des constats à l’école, en voyage et au quotidien.",
+        "Poser des questions sur le dossier de votre enfant.",
       ],
+      /* "Get the Truer Measure." in French keeps the French brand name,
+         Une Juste Mesure (content/i18n.ts, her ruling of 1 October). */
+      tagline: "Obtenez une juste mesure.",
+      cta: "Choisir École et vie",
+      firstToKnow: "Ou recevez un avis dès l’ouverture :",
       billing: "Un abonnement mensuel.",
       cancel:
         "Annulez quand vous voulez : École et vie reste jusqu’à la fin de la période payée, et tout ce que vous avez ajouté reste avec vous.",
-      cta: "Voir École et vie",
-      firstToKnow: "Ou recevez un avis dès l’ouverture :",
     },
 
     detail: {
