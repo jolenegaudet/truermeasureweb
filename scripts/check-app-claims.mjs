@@ -67,12 +67,22 @@ if (!existsSync(COPY)) {
   process.exit(0);
 }
 
-/* The comments in the copy file explain WHY these features are absent, and
-   name them to do it. Checking the comments would make the explanation itself
-   the violation, so they come out before anything is matched. */
+/* Two places in the copy file name these features on purpose, and neither is
+   a claim:
+
+   1. The comments, which explain why the features are absent.
+   2. The `demoOnly` strings, which are the sentence her brief of 28 October
+      asked for: "Beside the demo links, clearly identify those as demo
+      previews unavailable in the customer app at launch." Naming them is the
+      whole point of that sentence, in both languages.
+
+   Both come out before anything is matched, or the disclaimer would be the
+   violation. This is a narrow hole by design: `demoOnly` is, by definition,
+   the one string whose job is to say a feature is NOT in the app. */
 const text = readFileSync(COPY, "utf8")
   .replace(/\/\*[\s\S]*?\*\//g, " ")
-  .replace(/^\s*\/\/.*$/gm, " ");
+  .replace(/^\s*\/\/.*$/gm, " ")
+  .replace(/demoOnly:\s*(?:"(?:[^"\\]|\\.)*"\s*\+?\s*)+/g, " ");
 
 const { list, from } = deferred();
 const problems = [];

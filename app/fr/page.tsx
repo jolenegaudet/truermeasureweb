@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { salesPause } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
-import { FirstToKnowButton } from "@/components/first-to-know";
+import { PlanCards } from "@/components/plan-cards";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 const DESCRIPTION =
@@ -56,10 +55,17 @@ const circleAccess = [
  * phrase behind justemesure.ca, because "Voici A Truer Measure" reads like a
  * translation accident.
  *
- * Prices and offer terms come from content/founding-families.ts, the same file
- * the English page reads, so the two languages cannot quote different numbers.
+ * Prices and offer terms come from content/app-plans.ts, the same file the
+ * English page reads, so the two languages cannot quote different numbers.
+ *
+ * 28 OCTOBER 2026, her second brief: the app offer is one product with two
+ * plans here too, Ecole and Ecole et vie, and /fr now has the same four
+ * sections as the English page. Parents leaders and Cercle prive are
+ * untouched: same cards, same GoHighLevel forms, same French, same tags.
+ *
+ * The French plan copy is a DRAFT for her review (content/app-plans.ts, the
+ * fr block), not an approved translation.
  */
-const pause = salesPause.fr;
 
 export default function FrenchHomePage() {
   return (
@@ -152,69 +158,30 @@ export default function FrenchHomePage() {
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto mb-12 max-w-[560px] text-center md:mb-16">
+          <PlanCards locale="fr" />
+        </div>
+      </section>
+
+      {/* 4. Communauté et Proximité.
+          Parents leaders and Cercle privé, exactly as they were: the same
+          cards, the same GoHighLevel forms, the same tags, the same French.
+          Only the row width changed, from three columns to two, because the
+          app offer that used to sit beside them is now its own section above. */}
+      <section className="bg-linen px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[104px]">
+        <div className="mx-auto max-w-[860px]">
+          <div className="mx-auto mb-12 max-w-[560px] text-center md:mb-14">
             <h2
               className="font-heading mb-[18px] font-medium text-bark"
               style={{ fontSize: "clamp(28px,5vw,52px)", lineHeight: 1.08 }}
             >
-              Commencez par la clarté.
+              Poursuivez avec la communauté.
             </h2>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.7 }}>
-              Poursuivez avec la communauté. Grandissez avec la proximité.
+              Grandissez avec la proximité.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 items-stretch gap-7 md:grid-cols-3 md:gap-8">
-            {/* Tier 1 — A Truer Measure */}
-            <div className="flex flex-col">
-              <div
-                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-7 pb-[52px] pt-[58px] text-center md:px-11"
-                style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
-              >
-                <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
-                  Clarté
-                </div>
-                <div
-                  className="font-heading mb-3 font-medium text-parchment"
-                  style={{ fontSize: 40, lineHeight: 1.04 }}
-                >
-                  {tiers.fr.one[0]}
-                  <br />
-                  {tiers.fr.one[1]}
-                </div>
-                <p
-                  className="mb-8 text-parchment"
-                  style={{ fontSize: 15.5, lineHeight: 1.55 }}
-                >
-                  Plus qu&rsquo;une note pour parler de votre enfant.
-                </p>
-                {/* No flex-1 spacer here any more. It was sized for a card
-                    full of pricing; with this much less content it would push
-                    the message to the bottom and open a hole in the middle. The
-                    card still stretches to the row, and the slack now falls
-                    below the button, where it reads as padding. */}
-                {/* SALES PAUSED, 2 October 2026, in both languages: pausing
-                    only the English pages would have left the offer on sale to
-                    every French visitor. See content/founding-families.ts. */}
-                <p
-                  className="font-heading mt-4 text-parchment"
-                  style={{ fontSize: 22, lineHeight: 1.3 }}
-                >
-                  {pause.heading}
-                </p>
-                {/* "Be the first to know", her brief of 4 October 2026.
-                    This replaced a link to the product page that read
-                    "Coming soon."; that page is still one click away in
-                    the nav on every page. The classes are the ones the
-                    link had, so the card does not move. */}
-                <FirstToKnowButton
-                  locale="fr"
-                  place="home-card"
-                  className="mt-8 inline-block cursor-pointer rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                />
-              </div>
-            </div>
-
+          <div className="grid grid-cols-1 items-stretch gap-7 md:grid-cols-2 md:gap-8">
             {/* Tier 2 — Parents leaders */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">

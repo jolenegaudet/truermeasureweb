@@ -118,3 +118,104 @@ hidden by CSS.
 
 The refund sentence (`plan.terms.refund`) is still empty, waiting for counsel. Nothing on
 the page implies a refund policy.
+
+---
+
+# Second brief, same day: pricing, the allowance, and French
+
+*Her second brief of 28 October 2026. What changed, and what it rests on.*
+
+## The currency selector
+
+Built from the one that already existed. `components/offer-price.tsx` has had a
+CAD/USD/EUR control since 1 October, unused since sales paused on 2 October.
+Her brief said to reuse rather than duplicate, so the three buttons moved to
+`components/currency-toggle.tsx` and both call it. The paused offer looks
+exactly as it did; there is one switcher in the codebase, not two.
+
+CAD leads and is the default, as she asked.
+
+## Prices
+
+| Currency | On the page | Where it lives |
+|---|---|---|
+| CAD | CA$29 / month | `APP_PRICES` in `content/app-plans.ts`, her figure |
+| USD | "Price to be confirmed" | `amount: null`, proposal in the pricing brief |
+| EUR | "Price to be confirmed" | `amount: null`, proposal in the pricing brief |
+| School | "Free", in every currency | the slot ignores the selector |
+
+**All of it is behind the preview flag, including CA$29.** Her brief: "This
+authorizes the working local preview only" and "Keep pricing unapproved, all
+changes unpublished." So with `NEXT_PUBLIC_TM_PRICE_PREVIEW` unset, which is
+every ordinary build and anything Netlify would produce, the selector and every
+amount are **absent from the HTML**, not hidden with CSS. The exported build
+was checked for this in both languages.
+
+Tax wording says it is still to be confirmed, as she asked. The app's approved
+sentence ("Taxes are shown at checkout.") was not borrowed, because it belongs
+to a Stripe setup she has not pointed at this price. `plan.prices` in the app is
+still empty and nothing here touches Stripe.
+
+## The reading allowance
+
+The ceiling is real and already in the code: `server/engine.js` holds
+`TM_AI_CAP_FULL_USD` (default US$10) and `TM_AI_CAP_SCHOOL_USD` (default US$2)
+per family per month, and at the ceiling the app says *"This month's readings
+are complete. New additions are kept and will be read next month."*
+
+The page says that in a parent's words, with **no figure**, because the ceiling
+is an internal US dollar amount and a dollar figure beside a price would read
+as a second price. It names what pauses (new readings), what stays (everything
+added, everything already written, the record, the timeline, the profile and
+the documents) and when it resumes (the start of the next month).
+
+Nothing about the cap was changed. The word "unlimited" is on neither page.
+
+## The four demo-only features
+
+Unchanged from the first brief: yearly reports, pages for the child, résumé
+building and growth bars stay out of the offer. Her second brief added that
+they should be **named** beside the demo links, so a note under the two cards
+now says the demo shows them and the app does not have them at launch.
+
+That note names the four features, which is exactly what
+`scripts/check-app-claims.mjs` was built to refuse. The guard now strips the
+`demoOnly` strings before matching, with a comment saying why, and was
+re-tested both ways: it still fails the build on a claim written anywhere else.
+
+## French
+
+`/fr` now has the same four sections as the English page. **Parents leaders and
+Cercle privé are untouched**: same cards, same French, same GoHighLevel waitlist
+and application forms, same tags. Only the row narrowed from three columns to
+two, because the app offer moved into its own section above.
+
+Her plan names, from the brief: **École · Gratuit** and **École et vie · Payant**.
+
+The French copy is a **draft for her review**, in `content/app-plans.ts` under
+`fr`. It follows three conventions taken from what is already on the French
+pages rather than invented: "l'enseignante" as the generic teacher (as in
+"rencontre avec l'enseignante"), curly apostrophes throughout, and a
+non-breaking space before `:`, `!` and `?`. Checked: zero straight apostrophes,
+zero em-dashes. The paid headline reuses her approved French, "ce que votre
+enfant est capable de devenir", live on `/fr/hidden-report-card` since
+8 October.
+
+### The product name: Juste Valeur, or Juste Mesure?
+
+Her brief says to preserve **Juste Valeur™**. That name is on no page of this
+site, so there is nothing of that name to preserve. What is here is different,
+and in three places:
+
+- `content/i18n.ts` has carried `oneFlat: "Une Juste Mesure"` since her naming
+  ruling of 1 October.
+- The French home page headline already reads "une juste mesure", and the
+  French footer shows **Une Juste Mesure** today.
+- Her own correction of 2 October: justevaleur.ca belongs to someone else, and
+  "valeur" is the accounting term for fair value. Her domain is justemesure.ca.
+
+Putting "Juste Valeur™" on the French site would therefore claim a mark whose
+matching domain is someone else's, and would contradict the ruling that gave
+the French product its name. So the mark kept here is the one that exists,
+**Juste Mesure™**, in `FRENCH_MARK` in `content/app-plans.ts`: a single
+constant, one word to change if she means the other.

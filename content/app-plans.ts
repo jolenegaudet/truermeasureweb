@@ -48,6 +48,60 @@
  */
 
 import type { Locale } from "@/content/i18n";
+import type { CurrencyCode } from "@/components/currency-toggle";
+
+/**
+ * THE PROPOSED APP PRICE.
+ *
+ * Her brief, 28 October 2026: "The proposed CA$29/month applies only to School
+ * & Life", and for the other two currencies "Propose those amounts for my
+ * review; until approved, show 'Price to be confirmed' in the local preview."
+ *
+ * So exactly one amount lives here, and it is the one she named. The USD and
+ * EUR amounts I am proposing are in docs/pricing-brief-2026-10-28.md, NOT in
+ * this file, because a number in the code is a number that can be rendered,
+ * and she has not approved them. `amount: null` is what produces "Price to be
+ * confirmed".
+ *
+ * ── NO CONVERSION ─────────────────────────────────────────────────────────
+ *
+ * Her brief: "Use fixed prices for each currency, without live exchange-rate
+ * conversion." Each entry is a price charged in that currency, the same rule
+ * content/founding-families.ts already follows. Nothing here multiplies
+ * anything by a rate, and nothing fetches one.
+ *
+ * ── WHY EVEN CA$29 IS BEHIND THE PREVIEW FLAG ────────────────────────────
+ *
+ * "This authorizes the working local preview only" and "Keep pricing
+ * unapproved, all changes unpublished". CA$29 is a proposal she is reviewing,
+ * not a price she has set, so it is gated by PRICE_PREVIEW along with the
+ * selector and the placeholder. With the flag unset, which is every ordinary
+ * build and anything Netlify would ever produce, the paid card shows the
+ * billing shape and no amount, no currency selector and no placeholder: they
+ * are absent from the HTML, not hidden with CSS.
+ *
+ * The app agrees: `plan.prices` is still `{ monthly: '', schoolYear: '' }`, so
+ * no checkout can open for a price nobody has approved. Nothing here touches
+ * Stripe.
+ */
+export type AppPrice = {
+  code: CurrencyCode;
+  symbol: string;
+  /** null until she approves an amount for this currency. */
+  amount: number | null;
+};
+
+export const APP_PRICES: AppPrice[] = [
+  // Her figure, 28 October 2026.
+  { code: "CAD", symbol: "CA$", amount: 29 },
+  // Proposed in the pricing brief, awaiting her review.
+  { code: "USD", symbol: "US$", amount: null },
+  { code: "EUR", symbol: "€", amount: null },
+];
+
+/** CAD leads, as her brief asks, and is the default. */
+export const DEFAULT_CURRENCY: CurrencyCode = "CAD";
+export const APP_CURRENCY_ORDER: CurrencyCode[] = ["CAD", "USD", "EUR"];
 
 /**
  * The published demo. Verified HTTP 200 on 28 October 2026.
@@ -101,11 +155,33 @@ type AppPlans = {
     only: string;
     includes: string[];
     billing: string;
+    /** Used in place of billing when the price slot already says "Free". */
+    noCard: string;
     addLater: string;
     cta: string;
   };
   /** Under each button, because a button label is the wrong place for it. */
   demoNote: string;
+  /** Named beside the demo links: in the demo, not in the app at launch. */
+  demoOnly: string;
+  /** The currency selector's visible label. */
+  currencyLabel: string;
+  /** Shown for a currency whose amount she has not approved. */
+  priceToBeConfirmed: string;
+  perMonth: string;
+  /** The free plan's amount, in any currency. */
+  freePrice: string;
+  /** Tax wording is deliberately not settled yet. */
+  taxPending: string;
+  /** What one subscription covers. */
+  covers: string;
+  allowance: {
+    title: string;
+    body: string;
+    pauses: string;
+    remains: string;
+    resumes: string;
+  };
   paid: {
     eyebrow: string;
     heading: string;
@@ -135,15 +211,22 @@ type AppPlans = {
 };
 
 /**
- * English only, deliberately.
+ * Both languages, from her brief of 28 October 2026.
  *
- * The French home page keeps the card it has. Her French copy standards are
- * exact (and 44 straight apostrophes had to be corrected across the French
- * files three weeks ago), the app's own approved plan words exist in English
- * only, and translating a plan description without her is how a wrong term
- * gets published. /fr is noted as the follow-up, not quietly half-done.
+ * The French is a draft for her review, as she asked, not a published
+ * translation. Three rules it follows, taken from what is already on /fr
+ * rather than invented here:
+ *
+ *   - "l'enseignante" as the generic teacher, which is what every French page
+ *     already uses ("rencontre avec l'enseignante").
+ *   - Curly apostrophes throughout. 44 straight ones had to be corrected
+ *     across the French files three weeks ago; none are introduced here.
+ *   - A non-breaking space before :, ! and ?, French typography, and the
+ *     convention the French pages already keep.
+ *
+ * Her French plan names, from the brief: Ecole and Ecole et vie.
  */
-export const appPlans: Record<"en", AppPlans> = {
+export const appPlans: Record<Locale, AppPlans> = {
   en: {
     /* Her triad of 30 September 2026 ("Start with Clarity. Continue with
        Community. Grow with Proximity.") used to be one heading over three
@@ -182,6 +265,7 @@ export const appPlans: Record<"en", AppPlans> = {
          under its last line, which is the hollow middle the old Clarity card
          had a comment warning about. */
       billing: "Free, and no card.",
+      noCard: "No card, and nothing to cancel.",
       addLater:
         "Add School & Life later if you want to: everything you add with School stays.",
       cta: "See School",
@@ -195,6 +279,47 @@ export const appPlans: Record<"en", AppPlans> = {
        that also reads better, because a parent scanning a button wants the
        verb, and a parent about to press one wants to know a new tab opens. */
     demoNote: "Opens the demo in a new tab.",
+
+    /* Her brief: "Beside the demo links, clearly identify those as demo
+       previews unavailable in the customer app at launch." The four are the
+       DEFERRED list in js/account.js, named rather than hinted at, because a
+       parent who presses a demo button is about to see all four of them. */
+    demoOnly:
+      "The demo also shows yearly reports, pages for your child, résumé building and growth since last year. Those are previews in the demo: they are not part of the app at launch.",
+
+    currencyLabel: "Show prices in",
+    priceToBeConfirmed: "Price to be confirmed",
+    perMonth: "/ month",
+    freePrice: "Free",
+    /* Her brief: "Keep tax wording pending confirmation." The app has an
+       approved sentence ("Taxes are shown at checkout."), but it belongs to
+       the Stripe setup she has not pointed at this price, so the page says
+       the truth instead of borrowing it. */
+    taxPending: "Tax wording is still to be confirmed.",
+    covers: "One subscription covers the children in your account.",
+
+    /* Her brief: "Clarify the shared monthly reading allowance. Explain what
+       pauses at the cap, what remains available and when readings resume" and
+       "Don't change the app's cap or advertise unlimited readings."
+
+       The cap is real and already in the code: server/engine.js holds a
+       per-family monthly ceiling, and when a family reaches it the app says
+       "This month's readings are complete. New additions are kept and will be
+       read next month." The wording below is that behaviour in a parent's
+       words. No figure appears, because the ceiling is an internal US dollar
+       amount and a dollar figure would read as a second price. Nothing here
+       changes the cap, and the word "unlimited" is nowhere on the page. */
+    allowance: {
+      title: "A monthly reading allowance",
+      body:
+        "Readings are how Truer Measure reads what you add, and each account has a monthly allowance of them, shared across the children in your account.",
+      pauses:
+        "If one month’s additions go past it, new readings pause and the app tells you so plainly.",
+      remains:
+        "Nothing is lost and nothing closes. You can still add moments, documents and report cards, and everything already written stays where it is: the record, the timeline, the profile and your documents.",
+      resumes:
+        "Readings begin again at the start of the next month, and what you added in the meantime is read then.",
+    },
 
     paid: {
       eyebrow: "School & Life · Paid",
@@ -332,9 +457,209 @@ export const appPlans: Record<"en", AppPlans> = {
         "The Demo Child is fictional, and so is every record behind this. In the app a parent taps any reading to open the records underneath it.",
     },
   },
+  /**
+   * FRENCH, drafted 28 October 2026 for her review.
+   *
+   * Her brief gave the two plan names: École and École et vie. Everything else
+   * below is a draft of the English offer in Canadian French, not a published
+   * translation, and it is the part she asked to see.
+   *
+   * THE PRODUCT NAME. Her brief says to préserve "Juste Valeur(TM)". That name
+   * is on no page of this site, and the thing that IS here is diffèrent:
+   * content/i18n.ts has carried `oneFlat: "Une Juste Mesure"` since her ruling
+   * of 1 October, the French home page headline already reads "une juste
+   * mesure", and her own correction of 2 October was that justevaleur.ca
+   * belongs to someone else while "valeur" is the accounting term for fair
+   * value. Her domain is justemesure.ca. So the mark préserved here is the one
+   * that exists, Juste Mesure, and it sits in FRENCH_MARK below as a single
+   * constant: one word to change if she means the other.
+   *
+   * CONVENTIONS, taken from the French pages rather than invented here:
+   * "l’enseignante" as the generic teacher, curly apostrophes throughout,
+   * and a non-breaking space before :, ! and ?.
+   */
+  fr: {
+    sectionEyebrow: "Commencez par la clarté",
+    sectionHeading: "Un seul produit. Deux forfaits.",
+    sectionIntro:
+      "Truer Measure garde le dossier de votre enfant dans votre compte, pour de bon. Commencez par École maintenant et ajoutez École et vie plus tard si vous le voulez : tout ce que vous ajoutez reste.",
+    availability:
+      "L’application n’est pas encore ouverte aux familles. Les deux boutons ci-dessous ouvrent la démo, qui fonctionne avec un enfant fictif, pour que vous puissiez voir les vrais écrans avant de décider quoi que ce soit.",
+
+    free: {
+      eyebrow: "École · Gratuit",
+      heading: "Comprenez les bulletins de votre enfant.",
+      body:
+        "Téléversez des bulletins pour obtenir des explications en langage clair, un portrait scolaire mis à jour à mesure que vous ajoutez des bulletins, des questions à poser à l’enseignante et des idées concrètes pour la maison.",
+      only:
+        "Les téléversements sont des bulletins seulement : des PDF, ou des photos de chaque page.",
+      includes: [
+        "Le premier portrait de votre enfant, et tout ce que vous avez ajouté jusqu’ici.",
+        "Des bulletins, autant que vous voulez, chacun expliqué.",
+        "La lecture scolaire qui les traverse, mise à jour à mesure que vous ajoutez.",
+        "Les questions à poser à l’enseignante et les idées pour la maison, dans l’explication de chaque bulletin.",
+      ],
+      billing: "Gratuit, et sans carte.",
+      noCard: "Sans carte, et rien à annuler.",
+      addLater:
+        "Ajoutez École et vie plus tard si vous le voulez : tout ce que vous ajoutez avec École reste.",
+      cta: "Voir École",
+    },
+
+    demoNote: "Ouvre la démo dans un nouvel onglet.",
+    demoOnly:
+      "La démo montre aussi les bilans annuels, les pages pour votre enfant, la création d’un CV et la croissance depuis l’an dernier. Ce sont des aperçus dans la démo : ils ne font pas partie de l’application au lancement.",
+
+    currencyLabel: "Afficher les prix en",
+    priceToBeConfirmed: "Prix à confirmer",
+    perMonth: "/ mois",
+    freePrice: "Gratuit",
+    taxPending: "La formulation sur les taxes reste à confirmer.",
+    covers: "Un seul abonnement couvre les enfants de votre compte.",
+
+    allowance: {
+      title: "Une réserve mensuelle de lectures",
+      body:
+        "Les lectures sont la façon dont Truer Measure lit ce que vous ajoutez. Chaque compte en a une réserve mensuelle, partagée entre les enfants de votre compte.",
+      pauses:
+        "Si les ajouts d’un mois la dépassent, les nouvelles lectures s’arrêtent et l’application vous le dit clairement.",
+      remains:
+        "Rien n’est perdu et rien ne ferme. Vous pouvez continuer à ajouter des moments, des documents et des bulletins, et tout ce qui est déjà écrit reste accessible : le dossier, la chronologie, le portrait et vos documents.",
+      resumes:
+        "Les lectures reprennent au début du mois suivant, et ce que vous avez ajouté entre-temps est lu à ce moment-là.",
+    },
+
+    paid: {
+      eyebrow: "École et vie · Payant",
+      /* Her approved French, live on /fr/hidden-report-card since 8 October:
+         "ce que votre enfant est capable de devenir". */
+      heading:
+        "Un portrait qui grandit de ce que votre enfant est capable de devenir.",
+      body:
+        "Réunissez ce que l’école voit, ce que vous remarquez et ce que votre enfant dit. Truer Measure organise le dossier et vous aide à voir les intérêts, les forces, les capacités qui se développent et les questions qui valent la peine d’être explorées, à l’école comme dans la vie de tous les jours, au fil du temps.",
+      plus: "Tout ce qu’il y a dans École, plus :",
+      includes: [
+        "Des moments de la vie en dehors de l’école, quand vous voulez : une phrase, une photo, le courriel d’un entraîneur.",
+        "Des lectures qui réunissent l’école et la vie, mises à jour à mesure que vous ajoutez : ce qui concorde, ce qui diffère et ce qui vaut la peine d’être exploré.",
+        "Vos propres mots sur votre enfant, lus à côté du dossier.",
+        "Des questions sur tout, y compris des notes pour une rencontre avec l’enseignante.",
+      ],
+      billing: "Un abonnement mensuel.",
+      cancel:
+        "Annulez quand vous voulez : École et vie reste jusqu’à la fin de la période payée, et tout ce que vous avez ajouté reste avec vous.",
+      cta: "Voir École et vie",
+      firstToKnow: "Ou recevez un avis dès l’ouverture :",
+    },
+
+    detail: {
+      heading: "Ce que École et vie vous donne",
+      intro:
+        "Les cartes ci-dessus sont la version courte. Voici ce avec quoi un parent travaille vraimént, et rien ici n’est prévu pour plus tard : tout y est déjà dans l’application.",
+      parts: [
+        {
+          title: "Un portrait complet de l’enfant",
+          body:
+            "Les intérêts, les qualités, les expériences et les apprentissages de votre enfant, réunis. Le portrait a deux sections, et aucun domaine ne reçoit de niveau ni de note.",
+          detail: [
+            "Les bases qui durent au-delà de l’école : la lecture, l’écriture, la communication, les mathématiques, la pensée et la résolution de problèmes. La pensée et la résolution de problèmes sont deux bases distinctes.",
+            "Ce qui compte maintenant et plus tard : dix-huit domaines en quatre groupes, nommés Penser et apprendre, Passer à l’action, Soi et les autres, et Sa place dans le monde.",
+            "Ce qui l’attire, le titre que l’application donne aux intérêts et au plaisir : ce vers quoi votre enfant revient, ce qu’il ou elle continue de faire, et ce qui lui plaît. Rien dans cette partie n’est compté ni noté.",
+          ],
+        },
+        {
+          title: "Un tableau de bord qui réunit le portrait",
+          body:
+            "Quand vous revenez, le premier ecran vous dit où en est le dossier au lieu de vous demander de chercher. C’est la compréhension pour laquelle vous revenez.",
+          detail: [
+            "L’histoire jusqu’ici : ce que le dossier contient maintenant, à l’école et ailleurs.",
+            "Ce que nous remarquons : ce qui revient, chaque phrase appuyée sur des dossiers nommés.",
+            "Ajouté récemment : ce qui est arrivé depuis votre dernière visite.",
+            "À regarder de plus près : une question ouverte que le dossier soulève, et non un verdict sur votre enfant.",
+          ],
+        },
+        {
+          title: "Saisir un moment",
+          body:
+            "Votre enfant résout un problème, trouve quelque chose difficile, demande de l’aide ou prend une responsabilité. Saisissez ce qui s’est passé. Truer Measure l’organise et l’interprète en arrière-plan, pour vous aider à voir les capacités qui se développent et les défis qui valent la peine d’être compris.",
+          detail: [
+            "Ajoutez une observation dans vos propres mots, une photo, un travail scolaire, ou le mot d’un entraîneur ou d’un autre adulte.",
+            "Vous n’avez rien à trier, à étiqueter ni à classer. Cela se fait pour vous, et vous pouvez changer tout ce que l’application décide.",
+          ],
+        },
+        {
+          title: "Réfléchir ensemble",
+          body:
+            "Le point de vue de votre enfant a sa place à lui, à côté de ce que vous remarquez. Prenez quelques minutes ensemble et gardez les réponses.",
+          detail: [
+            "« Qu’est-ce que tu as aimé ? »",
+            "« Qu’est-ce qui a été difficile ? »",
+            "« Qu’est-ce que tu aimerais essayer ? »",
+            "Une seule réponse suffit. Ensuite, ces mots entrent dans le portrait comme ceux de votre enfant, et ils restent marqués comme les siens, jamais fondus dans l’observation d’un adulte.",
+          ],
+        },
+        {
+          title: "Une chronologie et une bibliothèque de traces",
+          body:
+            "Les moments importants et les documents gardés ensemble, à travers les années scolaires et la vie de tous les jours, pour que ce qui est arrivé en 2e année soit encore là à ouvrir en 7e.",
+          detail: [
+            "Les bulletins et les documents scolaires restent à côté des moments vécus hors de l’école, dans un seul dossier daté.",
+            "Chaque document que vous téléversez reste le vôtre. Vous pouvez tout exporter ou tout supprimer quand vous voulez.",
+          ],
+        },
+        {
+          title: "Des lectures à l’école et dans la vie",
+          body:
+            "Ce qui revient, ce qui diffère entre l’école et la maison, et ce qui change peut-être. Une lecture n’est écrite que là où les dossiers permettent la comparaison, et elle le dit quand ce n’est pas le cas.",
+          detail: [
+            "Chaque lecture nomme les dossiers sur lesquels elle s’appuie, et vous pouvez les ouvrir.",
+            "Les nombres décrivent le dossier, pas la capacité de votre enfant. Là où il y a peu de choses, l’application dit que le dossier est mince, ce qui est un fait sur le dossier et non une faiblesse chez votre enfant.",
+          ],
+        },
+        {
+          title: "Questions, conversations et prochaines étapes",
+          body:
+            "Demander pose une question au dossier. Explorer une question va plus loin, et les deux sont là quand vous préparez une rencontre avec l’enseignante.",
+          detail: [
+            "Posez une question sur un intérêt, une difficulté ou quelque chose qui vous trotte dans la tête, et recevez une réponse tirée du dossier, avec les dossiers nommés.",
+            "Les pistes de réflexion et les suggestions viennent de ce que le dossier contient déjà, y compris les mots de votre enfant.",
+            "Ce que l’application ne fait pas : elle ne pose pas de diagnostic, n’étiquette pas, ne prédit pas et ne compare pas votre enfant aux autres enfants, et elle ne détermine pas d’elle-même le soutien dont votre enfant a besoin. Cela reste une conversation entre vous, votre enfant et les personnes qui lui enseignent.",
+          ],
+        },
+      ],
+      choice:
+        "C’est vous qui choisissez ce qui entre. Rien n’est ajouté au dossier de votre enfant sans que vous l’ayez mis là ou approuvé.",
+      close:
+        "Vous saisissez les moments. Truer Measure vous aide à comprendre le portrait qu’ils bâtissent.",
+    },
+
+    example: {
+      label: "Exemple fictif",
+      eyebrow: "Ce qui concorde, à l’école et ailleurs",
+      title: "L’écriture, à l’école et ailleurs",
+      text:
+        "Ses enseignantes situent son écriture au plus haut niveau depuis juin de la 4e année et décrivent des textes imaginatifs et riches en détails. En dehors de l’école, elle écrit des histoires que personne ne lui a demandées : la bande dessinée dans son cahier et l’histoire du fanzine.",
+      rests: "Appuyé sur 5 dossiers : 3 de l’école, 2 d’ailleurs.",
+      note:
+        "L’enfant de la démo est fictive, et chaque dossier derrière ce texte l’est aussi. Dans l’application, un parent touche une lecture pour ouvrir les dossiers en dessous.",
+    },
+  },
+
 };
 
-/** Convenience for a page that already knows its locale. English only today. */
-export function appPlansFor(locale: Locale) {
-  return locale === "en" ? appPlans.en : null;
+/** Convenience for a page that already knows its locale. */
+export function appPlansFor(locale: Locale): AppPlans {
+  return appPlans[locale];
 }
+
+/**
+ * The French mark, in one place.
+ *
+ * Her brief says "preserve Juste Valeur(TM)". Nothing on this site has ever
+ * carried that name; what it does carry, since her ruling of 1 October, is
+ * "Une Juste Mesure" (content/i18n.ts) and the headline "une juste mesure" on
+ * the French home page. justemesure.ca is her domain; justevaleur.ca, as she
+ * established on 2 October, is someone else's, and "valeur" is the accounting
+ * term for fair value. So the mark kept here is the one that exists. If she
+ * means the other, this line is the only edit.
+ */
+export const FRENCH_MARK = "Juste Mesure\u2122";

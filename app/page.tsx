@@ -150,7 +150,7 @@ export default function HomePage() {
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <PlanCards />
+          <PlanCards locale="en" />
         </div>
       </section>
 
