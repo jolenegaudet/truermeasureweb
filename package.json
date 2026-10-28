@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "node scripts/check-legal-placeholders.mjs"
+    "prebuild": "node scripts/check-legal-placeholders.mjs && node scripts/check-app-claims.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
