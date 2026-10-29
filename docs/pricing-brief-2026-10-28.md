@@ -447,11 +447,13 @@ evaluation runs and retries that no parent causes.
    longer the binding constraint; the ceiling still keeps the tail off the
    margin. Two questions the single figure leaves open are in §1: the CAD/USD
    parity, and what the euro keeps after VAT.
-6. **Six checkout checks, in test mode**, once the key is replaced and the
-   currency reaches the app: monthly and yearly in each currency, each on its
-   own account, showing the displayed amount, the checkout amount, the tax
-   lines and the total. The plan is in
-   `docs/currency-handoff-2026-10-29.md`.
+6. ~~**Six checkout checks, in test mode.**~~ Run on 29 October, all six
+   passing: CA$47 charged as CA$54.05 with HST added, CA$507.60 as CA$583.74,
+   €47 charged as **€47** with €7.83 of VAT inside it, €507.60 as €507.60 with
+   €84.60 inside, and the two US rows at 47.00 and 507.60 with no tax
+   collected. Each returned to the app with School & Life active. Read back
+   from Stripe's own invoices; the rows are in
+   `docs/currency-handoff-2026-10-29.md` §3.
 
 Two measurements remain cheap and would firm up the floor: a **multi-page**
 card, and the reading across a **ten-card** record rather than a one-card one.

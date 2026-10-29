@@ -273,7 +273,51 @@ The business keeps €39.17 of a €47 month.
 
 ---
 
-## 3. What I will run once both are confirmed
+## 3. The six checkout checks: run, and verified (29 October)
+
+Run once, in the sandbox, by the app session, using the two prices above rather
+than the old CA$1 placeholders, with a fresh account and a fresh Stripe customer
+per combination. **All six passed, and each returned to the app with School &
+Life active.** The figures below are not their report: I read them back from
+Stripe's own paid invoices afterwards, and they match row for row.
+
+| Combination | The page showed | Stripe's invoice: subtotal / tax / total |
+|---|---|---|
+| CAD monthly, New Brunswick | CA$47, plus tax | 47.00 / 7.05 HST added / **CA$54.05** |
+| CAD yearly, New Brunswick | CA$507.60, plus tax | 507.60 / 76.14 added / **CA$583.74** |
+| USD monthly, New York | US$47, plus tax | 47.00 / 0.00, not collecting / **US$47.00** |
+| USD yearly, New York | US$507.60, plus tax | 507.60 / 0.00, not collecting / **US$507.60** |
+| EUR monthly, Paris | €47, VAT included | 47.00 / 7.83 VAT inside / **€47.00** |
+| EUR yearly, Paris | €507.60, VAT included | 507.60 / 84.60 VAT inside / **€507.60** |
+
+**The euro question her brief asked is answered.** The total charged equals the
+amount the page showed, to the cent, with the VAT taken out of it rather than
+added to it. Stripe records it as `inclusive` on the invoice. The two United
+States zeros are `not_collecting`, which is correct: the sandbox is registered
+for Canada and France only.
+
+Two things worth keeping in the record, both from the app session's own account
+of the run:
+
+- The two United States checkouts stopped on Stripe's page the first time,
+  because a US card needs a street, city and state and the script typed only
+  the ZIP. Nothing was charged; the script was fixed and those two were re-run
+  alone.
+- In the first pass the euro tax was labelled "(added)" in the script's output.
+  That was the script's label, not Stripe's: the total of €47.00 is what proves
+  the VAT was inside it. Fixed.
+
+**Sandbox state afterwards**, read back from Stripe: the six subscriptions the
+run created are cancelled, and the four active subscriptions from 28 October are
+untouched and still on the old placeholder prices. The probe and the failed
+first attempts left 13 expired and 2 open checkout sessions and a few empty
+customers, with no subscription or charge against any of them. They are worth
+leaving alone: in a sandbox they cost nothing, and they are the audit trail of
+this run.
+
+---
+
+## 3b. What was planned before the run (kept for the record)
 
 Her gate: the exposed test key replaced, and the handoff above landed in the
 app. Then, in test mode only, the six combinations — monthly and yearly in CAD,
