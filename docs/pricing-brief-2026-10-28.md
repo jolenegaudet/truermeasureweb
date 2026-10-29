@@ -22,7 +22,8 @@ every figure comes from logs that already existed.*
 | One report card, processed | **US$0.16 to US$0.20, measured 29 October** |
 | A reading across the record, free School | **US$0.173, once per sitting** |
 | A free School account | **about US$0.75 to US$1.10 a year, plus US$0.21 to create** |
-| The ceilings already in the code | **US$10 per paying family per month, US$2 per free family** |
+| The ceilings in the code | **US$10 per paying family per month, US$3 per free family** |
+| What one subscription covers | **one child**, her decision of 29 October |
 
 **At CA$47 the AI cost stops being the thing to worry about.** CA$47 is about
 US$33 at her own CAD-to-USD ratio, and a Canadian parent is the cheapest of the
@@ -39,9 +40,10 @@ because the run behind it never got its cards into the record and so never paid
 for the reading across them. Corrected, a report card is three separate costs,
 not one: **US$0.16 to US$0.20 to process the card, US$0.209 to onboard the
 account once, and US$0.173 for a reading across the record, once per sitting.**
-A ten-card signup therefore costs at least US$2.38 against a US$2 ceiling, and
-the parent is cut off around the eighth card rather than the fourth. The
-breakage is real; only the number moved. Both runs are kept in
+A ten-card signup therefore costs at least US$2.38, which did not fit the US$2
+free ceiling and cut the parent off around the eighth card. **She answered that
+on 29 October by raising the free ceiling to US$3 per family**, so a ten-card
+first day now fits with about US$0.60 to spare (§5). Both runs are kept in
 `launch-local\data` as `report-card-costs-2026-10-29.jsonl` and
 `photo-card-costs-2026-10-29.jsonl`, outside every repository, with their
 console output beside them.
@@ -118,28 +120,36 @@ stale by the time anyone reaches Stripe.
 
 ## 2. What one subscription covers
 
-**The account, with no limit on children.** This is a finding, not a decision
-she has recorded, and the two parts of the business currently disagree:
+**ONE CHILD. Her decision, 29 October 2026**, which settles what this section
+used to call an open disagreement. It also puts the website back in line with
+her retired offer, where `content/founding-families.ts` has always said
+`PRICE_SCOPE = "one child"`.
 
-- The app bills per account: `subscriptions.account_id`, one row per account,
-  and one plan for the whole family. No per-child billing exists, and there is
-  no cap on how many children an account may hold.
-- The retired offer said otherwise. `content/founding-families.ts` still has
-  `export const PRICE_SCOPE = "one child"`.
+The website says it in both languages, on the paid card beside the price:
+*"One subscription covers one child."* / *"Un abonnement couvre un enfant."*
 
-The page now says the app's version, in her words: *"One subscription covers
-the children in your account."*
+**The app still covers the whole account**, and that is recorded rather than
+fixed, at her instruction: `subscriptions.account_id` gives School & Life to
+every child in an account, with no per-child concept anywhere in
+`server/billing.js`. The app session has logged the mismatch in its launch
+checklist; the website's copy of the record is in
+`docs/currency-handoff-2026-10-29.md` §2h. Nothing about how additional
+children would be bought has been designed, because her brief says not to
+invent it.
 
-**Cost scales per child and the ceiling does not.** Readings are written per
-child, so three children cost roughly three times the AI, while the US$10
-ceiling is on the account. A three-child family doing ordinary things reaches
-the cap at about a third of the activity a one-child family gets. They pay the
-same and are throttled first.
+**What her decision does to the cost picture, which is the part this brief
+exists for.** The old worry was that cost scales per child while the ceiling
+does not: readings are written per child, so a three-child family cost roughly
+three times the AI against one US$10 account ceiling, and the best customer got
+throttled first. One subscription per child removes that: the revenue and the
+ceiling now scale together, one of each per child. The arithmetic in §4 is
+already per child, so it stands unchanged.
 
-Three ways out, all hers to pick: price per child; keep one price and make the
-ceiling per child; or keep one price and one ceiling and say plainly how many
-children it covers. Doing nothing means the best customer gets the worst
-experience.
+**What is left open** is only the gap between the two, until the app changes: a
+parent who reads "covers one child" and adds a second child to one account gets
+both covered today. The page promises less than the app delivers, which is the
+safer direction, but it is still a difference between what is sold and what is
+given.
 
 ---
 
@@ -315,21 +325,30 @@ report card. They upload the drawer. Two cards a year for five years is ten.
 | One reading across the record | US$0.17 |
 | **First-day floor** | **US$2.38** |
 
-**The free ceiling is US$2 a month, so this parent is cut off around the eighth
-card**, and is told *"This month's readings are complete. New additions are
-kept and will be read next month."* Taking the lower per-card figure of
-US$0.16, it is around the tenth card. Either way the drawer does not fit.
+**This no longer breaks, because she raised the ceiling.** Her decision of
+29 October, in the app session's record of her words: *"Raising School's
+internal monthly AI ceiling to US$3 per free family. School remains free to
+parents."* It is in the app as the default (`6d6894e`, `server/engine.js` and
+`deploy/azure-accounts.sh`).
 
-**That total is a floor, not an estimate.** Both the per-card checks and the
-reading grow with the record: the reading measured here read one card, with
-3,389 output tokens, and a ten-card record gives it ten cards to read. So the
-real first day is higher than US$2.38, and the cut-off is earlier than the
-eighth card.
+At US$3 a ten-card first day of US$2.38 fits, with about US$0.60 of room. At
+the US$2 ceiling it did not: the parent was cut off around the eighth card and
+told *"This month's readings are complete. New additions are kept and will be
+read next month."*
 
-**So the signup problem is real after all.** Yesterday's revision said it had
-gone away. That was wrong, and the cause was mine: the run behind it never put
-the cards into the record, so it never paid for a reading. Corrected, the
-breakage is back, at the eighth card rather than the fourth.
+**But that total is a floor, not an estimate, and the room is thinner than it
+looks.** Both the per-card checks and the reading grow with the record: the
+reading measured here read one card, with 3,389 output tokens, and a ten-card
+record gives it ten cards to read. A twelve-card drawer, or a reading that
+costs twice the measured one, puts the first day back over US$3. The headroom
+is real but it is not generous, and the measurement that would settle it is
+named at the end of §7.
+
+**One thing this section got wrong on the way here.** The 29 October revision
+said the signup problem had gone away. It had not: the run behind that claim
+never put the cards into the record, so it never paid for a reading across
+them. The problem was real, and it is her ceiling decision that answers it, not
+the earlier measurement.
 
 **Two ways out, in the order I would try them:**
 
@@ -339,11 +358,13 @@ breakage is back, at the eighth card rather than the fourth.
    the ceiling. The parent's record is whole immediately, which is what they
    came for, and the explanations and the reading spread out behind it. This is
    the only option that scales with a back catalogue of any size.
-2. **Raise the allowance.** The cap is a configuration value
-   (`TM_AI_CAP_SCHOOL_USD`), so this is a setting, not a rebuild. US$4 carries
-   about eighteen cards and a reading. But the app has one monthly cap, not a
-   separate first-month one, so raising it raises it every month and weakens
-   the ceiling as a brake for the other eleven months.
+2. ~~**Raise the allowance.**~~ Chosen, on 29 October: US$3, which is the
+   route taken. The cap is a configuration value (`TM_AI_CAP_SCHOOL_USD`), so
+   it was a setting rather than a rebuild. The cost of taking it: the app has
+   one monthly cap, not a separate first-month one, so the raise applies to
+   every month and not just the first, and it weakens the ceiling as a brake
+   for the other eleven. Option 1 remains the only answer that scales to a
+   back catalogue of any size, and it is still a customer-app change.
 
 Option 1 is a change to the customer app, which is outside this brief. Option 2
 is a configuration value you set.
@@ -432,14 +453,17 @@ evaluation runs and retries that no parent causes.
 1. ~~**Cost one report card.**~~ Done, 29 October, in three parts:
    **US$0.16 to US$0.20** per card, **US$0.209** to onboard, **US$0.173** per
    reading across the record. A photograph costs what a PDF costs.
-2. **Fix the free signup.** A ten-card drawer costs at least US$2.38 against a
-   US$2 ceiling, so it does not fit, and that floor rises with the record. My
-   recommendation is to keep every card at signup for US$0.041 each and explain
-   them over the following weeks, which is a customer-app change rather than a
-   setting. Raising `TM_AI_CAP_SCHOOL_USD` is the one-line alternative, and it
-   raises the ceiling for every month, not just the first.
-3. **Decide the child question.** One child, or the account? It changes the
-   ceiling, the cost per family and what the page may say.
+2. ~~**Fix the free signup.**~~ Answered on 29 October by raising the free
+   ceiling to **US$3 per family** (`6d6894e`), which fits a ten-card first day
+   of US$2.38 with about US$0.60 to spare. Two things stay true: the raise
+   applies every month, not only the first, and the floor rises with the
+   record, so a larger drawer can still reach it. Keeping every card at signup
+   for US$0.041 each and explaining them over the following weeks remains the
+   answer that scales, and it is a customer-app change.
+3. ~~**Decide the child question.**~~ Decided on 29 October: one subscription
+   covers one child. Revenue and the ceiling now scale together, one of each
+   per child. The app still covers the whole account and that mismatch is
+   recorded in §2, not fixed.
 4. **Check the configured rates against a real Anthropic invoice.**
 5. ~~**Then confirm CA$29, US$21 and €19.**~~ Set on 29 October: CA$47, US$47
    and €47, monthly or yearly with 10% off the year. At CA$47 a regular family

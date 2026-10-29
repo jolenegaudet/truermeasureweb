@@ -61,7 +61,7 @@ const circleAccess = [
  *
  * 28 OCTOBER 2026, her second brief: the app offer is one product with two
  * plans here too, Ecole and Ecole et vie, and /fr now has the same four
- * sections as the English page. Parents leaders and Cercle prive are
+ * sections as the English page. Parents Élites and Cercle prive are
  * untouched: same cards, same GoHighLevel forms, same French, same tags.
  *
  * The French plan copy is a DRAFT for her review (content/app-plans.ts, the
@@ -164,7 +164,7 @@ export default function FrenchHomePage() {
       </section>
 
       {/* 4. Communauté et Proximité.
-          Parents leaders and Cercle privé, exactly as they were: the same
+          Parents Élites and Cercle privé, exactly as they were: the same
           cards, the same GoHighLevel forms, the same tags, the same French.
           Only the row width changed, from three columns to two, because the
           app offer that used to sit beside them is now its own section above. */}
@@ -183,7 +183,7 @@ export default function FrenchHomePage() {
           </div>
 
           <div className="grid grid-cols-1 items-stretch gap-7 md:grid-cols-2 md:gap-8">
-            {/* Tier 2 — Parents leaders */}
+            {/* Tier 2: Parents Élites */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Communauté

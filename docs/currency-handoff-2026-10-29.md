@@ -223,6 +223,54 @@ bookkeeping problem rather than a pricing one.
 
 ---
 
+## 2g. Her brief of 29 October, evening: no currency control anywhere
+
+**"Parents must not see buttons, a dropdown or any other control for switching
+between CAD, USD and EUR."** The selector is off the website. The currency is
+decided from the visitor's country before the page paints and there is nothing
+on the page to change it. The monthly/yearly choice stays.
+
+**Recorded for the app, at her instruction: registration and checkout must not
+reintroduce a currency selector.** The currency arrives on the link and is the
+parent's for the rest of the journey. The app session has this and has
+confirmed none will be added.
+
+**Stripe's hosted page, honestly stated.** The app session checked rather than
+assumed, and found something worth keeping: **Adaptive Pricing was enabled on
+every sandbox session, including all six checkout runs.** No currency control
+appeared on the pages they captured (USD and EUR screenshots at 1280px; the CAD
+page's scraped text showed none either), but with Adaptive Pricing on, a parent
+elsewhere could in principle have been offered a local currency. The app now
+sends `adaptive_pricing[enabled]=false` on every Checkout Session (`afb6dc7`),
+confirmed on one sandbox session. The account-level setting in the Stripe
+dashboard is unchanged in both modes.
+
+So the accurate sentence, and the one to use: *Stripe's page showed no currency
+control in the sessions captured, and the app now switches Adaptive Pricing off
+for every checkout, so Stripe cannot offer one.* Not: the whole journey has been
+verified for every parent in every country.
+
+## 2h. One subscription covers ONE CHILD: a mismatch, recorded not fixed
+
+**Her decision, 29 October 2026**, replacing the per-account wording of
+28 October. The website now says "One subscription covers one child." and "Un
+abonnement couvre un enfant.", on the paid card beside the price and in the
+comparison.
+
+**The app does the other thing.** `subscriptions.account_id` gives School & Life
+to the whole account, with no limit on the children in it, and
+`server/billing.js` has no per-child concept at all. Her instruction was to
+record the mismatch and change nothing: no app edit, no Stripe edit, and no
+invented scheme for how more children would be bought or billed. The app session
+has logged it in the launch checklist and at the top of its legal CHANGES.md;
+this is the website's copy of the same record.
+
+**What it means in practice until the app changes:** a parent who reads "covers
+one child" and adds two children to one account gets both covered. The page
+promises less than the app gives, which is the safer direction of the two, but
+it is still a difference between what is sold and what is delivered, and it
+needs closing before launch.
+
 ## 2f. The sandbox, configured and verified (done, 29 October)
 
 With her authorisation, and in the sandbox only. The sandbox is a separate

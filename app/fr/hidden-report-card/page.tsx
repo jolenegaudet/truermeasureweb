@@ -29,7 +29,7 @@ export const metadata: Metadata = {
  * NAMING, her four terms of 2 October 2026. The document is "Le rapport caché"
  * in French, with no trademark symbol: she wrote the mark on the English name
  * and not on the French one. The product itself is Une Juste Mesure, and the
- * other two offers are Parents leaders and Cercle privé, all in
+ * other two offers are Parents Élites and Cercle privé, all in
  * content/i18n.ts.
  *
  * The route keeps the /hidden-report-card path on both sides, which is also the

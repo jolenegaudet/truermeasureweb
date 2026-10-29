@@ -90,7 +90,13 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
  *
  *   Start Here      Commencez ici
  *   The Hidden Report Card(TM)   Le rapport caché
- *   Elite Parents   Parents leaders
+ *   Elite Parents   Parents Élites
+ *
+ * The French name was "Parents leaders" until 29 October 2026, when she
+ * corrected it to "Parents Élites" ("Use exactly “Parents Élites”, replacing
+ * “Parents Leaders” and other outdated variants wherever they name this
+ * offer"). The English name, the French brand name and the Inner Circle offer
+ * are unchanged.
  *   Inner Circle    Cercle privé
  *
  * She wrote the trademark on the English and not on the French, so the French
@@ -113,8 +119,8 @@ export const tiers = {
   fr: {
     one: ["Une Juste", "Mesure"],
     oneFlat: "Une Juste Mesure",
-    two: ["Parents", "leaders"],
-    twoFlat: "Parents leaders",
+    two: ["Parents", "Élites"],
+    twoFlat: "Parents Élites",
     three: ["Cercle", "privé"],
     threeFlat: "Cercle privé",
   },
@@ -159,7 +165,7 @@ export const shell = {
     nav: {
       start: "Commencez ici",
       hiddenReportCard: "Le rapport caché",
-      learn: "Parents leaders",
+      learn: "Parents Élites",
       innerCircle: "Cercle privé",
     },
     toggle: { label: "EN", aria: "View this page in English" },
