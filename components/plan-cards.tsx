@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FirstToKnowButton } from "@/components/first-to-know";
 import {
+  CURRENCY_CODES,
   CurrencyToggle,
   SegmentedToggle,
   type CurrencyCode,
@@ -61,31 +62,31 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
   const t = appPlansFor(locale);
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
   const [interval, setInterval] = useState<BillingInterval>(DEFAULT_INTERVAL);
-  /* A parent who has touched the selector is never overridden by the guess. */
-  const [chosen, setChosen] = useState(false);
+  const yearly = interval === "year";
 
-  /* The country default, after the first paint rather than during it: the page
-     is a static export, so the HTML ships with CAD and the browser corrects it
-     on arrival. See content/currency-for-country.ts for why it is a guess and
-     why the selector therefore stays. */
+  /* Which currency is showing was decided before the page painted, by the
+     inline script in app/layout.tsx, and CSS is what shows it. This only
+     catches the state up so the selector's aria-pressed marks the right
+     button, and covers the case where the script did not run. */
   useEffect(() => {
-    if (chosen) return;
+    const set = document.documentElement.getAttribute("data-tm-currency");
+    if (set && (CURRENCY_CODES as readonly string[]).includes(set)) {
+      setCurrency(set as CurrencyCode);
+      return;
+    }
     const detected = detectCurrency();
-    if (detected) setCurrency(detected);
-  }, [chosen]);
+    if (detected) {
+      document.documentElement.setAttribute("data-tm-currency", detected);
+      setCurrency(detected);
+    }
+  }, []);
 
+  /* A parent's own choice wins, and it is the attribute that does the showing,
+     so this sets both. */
   const pick = (code: CurrencyCode) => {
-    setChosen(true);
+    document.documentElement.setAttribute("data-tm-currency", code);
     setCurrency(code);
   };
-
-  const price = APP_PRICES.find((p) => p.code === currency) ?? APP_PRICES[0];
-  const yearly = interval === "year";
-  const paidAmount =
-    price.amount === null
-      ? null
-      : money(price.symbol, yearly ? yearlyAmount(price.amount) : price.amount);
-  const taxLine = price.tax === "inclusive" ? t.taxInclusive : t.taxExclusive;
 
   return (
     <>
@@ -201,35 +202,61 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
           </div>
           <div className="mt-3">
             {PRICE_PREVIEW ? (
-              paidAmount ? (
-                <div
-                  className="font-heading text-parchment"
-                  style={{ fontSize: 38, lineHeight: 1.05 }}
-                >
-                  {paidAmount}
-                  <span className="ml-2 font-sans text-[13.5px] text-muted">
-                    {yearly ? t.perYear : t.perMonth}
-                  </span>
-                  {/* Whether tax is on top or already inside, per currency, and
-                      for a yearly price what it comes to each month. Both sit
-                      with the amount because both are part of it. */}
-                  <div
-                    className="mt-[10px] font-sans text-muted"
-                    style={{ fontSize: 11.5, lineHeight: 1.5 }}
-                  >
-                    {yearly && price.amount !== null
-                      ? t.yearlyNote(
-                          money(price.symbol, monthlyEquivalent(price.amount)),
-                          money(price.symbol, yearlySaving(price.amount)),
-                        ) + " " + taxLine
-                      : taxLine}
+              /* All three currencies are in the HTML and CSS shows exactly one,
+                 chosen by the attribute the inline script in app/layout.tsx
+                 sets before the page paints.
+                 Measured on the production export, 29 October 2026: with the
+                 currency picked after mount instead, a visitor in France,
+                 Germany or the United States saw CA$47 for about 650ms before
+                 it corrected. That is a false price on screen, not a flash, and
+                 the figure a parent reads has to be the figure they are
+                 charged. Rendering every variant also means the markup is the
+                 same for everyone, so there is nothing for hydration to
+                 disagree with. */
+              APP_PRICES.map((p) => {
+                const amount =
+                  p.amount === null
+                    ? null
+                    : money(p.symbol, yearly ? yearlyAmount(p.amount) : p.amount);
+                const tax =
+                  p.tax === "inclusive" ? t.taxInclusive : t.taxExclusive;
+                return (
+                  <div key={p.code} data-tm-price={p.code}>
+                    {amount ? (
+                      <div
+                        className="font-heading text-parchment"
+                        style={{ fontSize: 38, lineHeight: 1.05 }}
+                      >
+                        {amount}
+                        <span className="ml-2 font-sans text-[13.5px] text-muted">
+                          {yearly ? t.perYear : t.perMonth}
+                        </span>
+                        {/* Whether tax is on top or already inside, per
+                            currency, and for a yearly price what it comes to
+                            each month. Both sit with the amount because both
+                            are part of it. */}
+                        <div
+                          className="mt-[10px] font-sans text-muted"
+                          style={{ fontSize: 11.5, lineHeight: 1.5 }}
+                        >
+                          {yearly && p.amount !== null
+                            ? t.yearlyNote(
+                                money(p.symbol, monthlyEquivalent(p.amount)),
+                                money(p.symbol, yearlySaving(p.amount)),
+                              ) +
+                              " " +
+                              tax
+                            : tax}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="inline-block rounded-[2px] border border-dashed border-rose-dark px-3 py-[7px] text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-dark">
+                        {t.priceToBeConfirmed}
+                      </div>
+                    )}
                   </div>
-                </div>
-              ) : (
-                <div className="inline-block rounded-[2px] border border-dashed border-rose-dark px-3 py-[7px] text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-dark">
-                  {t.priceToBeConfirmed}
-                </div>
-              )
+                );
+              })
             ) : (
               /* No approved price to show, so the card states the shape of the
                  billing instead of leaving a hole where a price belongs. */

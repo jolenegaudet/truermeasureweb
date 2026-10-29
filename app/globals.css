@@ -21,3 +21,25 @@
   --color-subdued:   #9c8a84;
   --color-warm:      #d8b8b2;
 }
+
+/* The price a visitor sees first.
+ *
+ * The plan card renders all three currencies and these rules show exactly one,
+ * keyed off the attribute the inline script in app/layout.tsx sets before the
+ * page paints. Measured on the production export, 29 October 2026: choosing the
+ * currency after mount instead left a visitor in France, Germany or the United
+ * States looking at CA$47 for about 650ms. A price is the one thing on the page
+ * that may never be briefly wrong.
+ *
+ * With no attribute, which is JavaScript switched off, CAD shows. The selector
+ * sets the same attribute, so a parent's own choice goes through the same path.
+ */
+[data-tm-price] {
+  display: none;
+}
+html[data-tm-currency="CAD"] [data-tm-price="CAD"],
+html[data-tm-currency="USD"] [data-tm-price="USD"],
+html[data-tm-currency="EUR"] [data-tm-price="EUR"],
+html:not([data-tm-currency]) [data-tm-price="CAD"] {
+  display: block;
+}
