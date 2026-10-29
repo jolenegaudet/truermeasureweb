@@ -1,9 +1,10 @@
 # Pricing brief: what School & Life costs to run
 
 *28 October 2026, updated the same evening for her second brief (CA$29, the
-currency selector, the reading allowance, and free-plan costs at signup). No
-new paid AI calls were made to write this: every figure comes from logs that
-already existed.*
+currency selector, the reading allowance, and free-plan costs at signup), and
+again on 29 October for the prices she set: CA$47, US$47 and €47, monthly or
+yearly with 10% off the year. No new paid AI calls were made to write this:
+every figure comes from logs that already existed.*
 
 ---
 
@@ -11,9 +12,9 @@ already existed.*
 
 | | |
 |---|---|
-| Proposed price | **CA$29 a month**, her figure |
-| Proposed US price, for her review | **US$21 a month** |
-| Proposed EUR price, for her review | **€19 a month, VAT included** |
+| The price, set 29 October | **CA$47, US$47, €47 a month**, her figures |
+| Yearly, 10% off | **507.60 in each currency**, 42.30 a month |
+| Tax | CAD and USD **plus** tax; €47 **includes** VAT |
 | What one subscription covers today | **the whole account, every child in it** |
 | A frequent paying family, AI only | **US$8 to US$9 a month** |
 | A regular paying family, AI only | **US$3 to US$4 a month** |
@@ -23,12 +24,13 @@ already existed.*
 | A free School account | **about US$0.75 to US$1.10 a year, plus US$0.21 to create** |
 | The ceilings already in the code | **US$10 per paying family per month, US$2 per free family** |
 
-**At CA$29 the business works on regular families and is thin on frequent
-ones.** CA$29 is about US$20 at her own CAD-to-USD ratio. A regular family
-costs US$3.43 in AI, which is 17% of that. A frequent family costs US$8.58,
-which is 43% of it before Stripe takes roughly 4% more. The US$10 cap is what
-stops that becoming 60%, which is the real reason the cap matters and the
-reason §4's wording now appears on the page.
+**At CA$47 the AI cost stops being the thing to worry about.** CA$47 is about
+US$33 at her own CAD-to-USD ratio, and a Canadian parent is the cheapest of the
+three, so that is the worst case. A regular family costs US$3.43 in AI, which is
+10% of it; a frequent family US$8.58, which is 26%, before Stripe takes roughly
+4% more. At CA$29 those same two families were 17% and 43%. The US$10 ceiling
+still matters, because it is what keeps the tail from eating the margin, and it
+is the reason §4's wording now appears on the page.
 
 **Revised 29 October, twice.** A report card was the one unmeasured cost on
 28 October and the estimate was US$0.45. The first revision measured US$0.16
@@ -46,44 +48,64 @@ console output beside them.
 
 ---
 
-## 1. The two prices I am proposing
+## 1. The prices she set, and what tax does to each one
 
-Her brief: *"Configure USD and EUR as separate prices. Propose those amounts
-for my review; until approved, show 'Price to be confirmed' in the local
-preview."* Neither number below is in the code. `APP_PRICES` carries CA$29 and
-two nulls, and a null is what renders the placeholder.
+**Her figures, 29 October 2026, in her own words:** *"CAD $47 plus taxes, USD
+$47 plus taxes and Euros 47 Euros VAT included. Option to pay yearly or
+monthly. 10% off for yearly."*
 
-**They come from her own ratios, not from an exchange rate.** The retired
-Founding Families offer priced three currencies by hand
-(`content/founding-families.ts`):
+So the proposals this section used to argue for (US$21 and €19 against CA$29)
+are gone, and what follows describes her decision instead.
 
-| | CAD | USD | ratio | EUR | ratio |
-|---|---|---|---|---|---|
-| intro | 39 | 27 | 0.692 | 23 | 0.590 |
-| standard | 59 | 42 | 0.712 | 35 | 0.593 |
+| | CAD | USD | EUR |
+|---|---|---|---|
+| Monthly | 47 | 47 | 47 |
+| Yearly, 10% off | 507.60 | 507.60 | 507.60 |
+| Yearly works out to | 42.30 a month | 42.30 | 42.30 |
+| Tax | added on top | added on top | already inside |
 
-Applied to CA$29: USD 20.4, EUR 17.1.
+Both figures are in Stripe as **two** prices, not six: one monthly and one
+yearly, each carrying `currency_options` for all three currencies with the euro
+option marked tax-inclusive. Test mode only, product `prod_VWzNTXW9zLkKSH`.
 
-**US$21.** Rounds her own ratio up to a whole number. US$20 is the alternative
-if a round twenty reads better than a precise twenty-one.
+### How tax works on these three prices, corrected
 
-**€19, VAT included.** This one is a judgement, and she should see why. In her
-Stripe setup the euro price is tax-inclusive while CAD and USD are quoted
-before tax, so the three are not comparable at the same ratio:
+An earlier note in this file reasoned about the euro price as if the VAT inside
+it had to be offset by a higher sticker, and a note of mine in chat said Stripe
+Tax has to be on "or the inclusive euro amount is never carved out", which
+reads as though the total might not hold. **It holds either way.** The accurate
+version:
 
-- **€17** is the strict ratio match, and what her old pricing implies. After
-  20% VAT it nets about €14.2, well under the CA$29 net.
-- **€22** is what holds the net roughly level with CAD after VAT.
-- **€19** sits between them: a visible price close to the ratio, with the net
-  shortfall roughly halved.
+- **CAD and USD are tax-exclusive.** The parent is charged 47 *plus* whatever
+  tax applies, so the amount leaving their account is larger than the amount on
+  the page. In New Brunswick, 15% HST makes CA$47 into CA$54.05. The page says
+  "Plus applicable taxes." for exactly this reason.
+- **EUR is tax-inclusive.** The parent is charged €47 and nothing more. The VAT
+  is taken out of that total, so at a 20% rate the business keeps about €39.
+  EU rates run from 17% to 27%, so what is kept differs by country while the
+  parent's total does not. The page says "VAT included."
+- **Stripe Tax decides whether tax is calculated, not what the parent pays.**
+  With it off, a euro parent is still charged exactly €47; the difference is
+  that no VAT is computed or recorded against it, and a CAD or USD parent is
+  charged 47 with no tax added. That is a bookkeeping exposure rather than a
+  pricing one, and it is why the setting has to be on in test mode before the
+  six checkout checks mean anything.
 
-She already accepted the lower euro net once, in the old offer, so €17 is
-defensible and consistent. €19 is what I would pick.
+The two consequences of a single figure across three currencies stay as they
+were, and both are hers to confirm rather than mine to adjust:
 
-**Nothing here converts anything at run time.** Her brief asked for fixed
-prices per currency and that is what the code does; no rate is fetched, and
-switching currency shows a different fixed amount rather than a conversion
-that could be stale by the time anyone reaches Stripe.
+- **CA$47 and US$47 are the same figure, not the same value.** At her own
+  CAD-to-USD ratio a Canadian parent pays about US$33, roughly a quarter less
+  than an American one for the same thing. Her retired Founding Families offer
+  priced currencies by hand at ratios of about 0.71 (USD) and 0.59 (EUR)
+  (`content/founding-families.ts`), which a flat 47/47/47 sets aside.
+- **The euro keeps the least.** About €39 of €47 at 20%, against the full 47 in
+  the other two.
+
+**Nothing converts anything at run time.** Her brief asked for fixed prices per
+currency and that is what the code does; no rate is fetched, and switching
+currency shows a different fixed amount rather than a conversion that could be
+stale by the time anyone reaches Stripe.
 
 ---
 
@@ -220,8 +242,9 @@ numbers.
 | Report cards, per-card processing (@ US$0.20) | 0 | 0.20 | 0.40 |
 | **AI total** | **~US$0.78** | **~US$3.43** | **~US$8.58** |
 
-Against CA$29 (about US$20): **17% of revenue for a regular family, 43% for a
-frequent one**, before Stripe's roughly 2.9% + 30c and before any share of the
+Against CA$47 (about US$33, the cheapest of the three): **10% of revenue for a
+regular family, 26% for a frequent one**, and at CA$29 those were 17% and 43%,
+before Stripe's roughly 2.9% + 30c and before any share of the
 server, database and file storage, which are fixed monthly costs rather than
 per-family ones and are not in this table.
 
@@ -385,9 +408,11 @@ regular and frequent. No parent has used this app yet, and her brief says it:
 development usage is not evidence of parent behaviour. The first ten real
 families will replace the whole middle column.
 
-**9. The currency ratios are hers, not today's exchange rates.** US$21 and €19
-follow the pattern of her old pricing. If the underlying rates have moved since
-September, the ratios have not been rechecked here.
+**9. The currencies are set at one figure, not at a ratio or a rate.** CA$47,
+US$47 and €47 are her decision of 29 October, and nothing in this file or in
+the code converts between them. Where a comparison is made (CA$47 ≈ US$33), it
+uses the ratio implied by her own retired pricing, not a rate looked up today,
+and that ratio has not been rechecked against the market.
 
 **10. Development spending is in none of this**, and it is the larger number so
 far: US$13.97 across 246 calls on 19 and 20 October alone, most of it
@@ -409,9 +434,17 @@ evaluation runs and retries that no parent causes.
 3. **Decide the child question.** One child, or the account? It changes the
    ceiling, the cost per family and what the page may say.
 4. **Check the configured rates against a real Anthropic invoice.**
-5. **Then confirm CA$29, US$21 and €19.** At CA$29 a regular family spends 17%
-   of revenue on AI and a frequent one 43%. That is workable if most families
-   are regular, and the ceiling is what keeps the tail from eating the margin.
+5. ~~**Then confirm CA$29, US$21 and €19.**~~ Set on 29 October: CA$47, US$47
+   and €47, monthly or yearly with 10% off the year. At CA$47 a regular family
+   spends 10% of revenue on AI and a frequent one 26%, so the AI cost is no
+   longer the binding constraint; the ceiling still keeps the tail off the
+   margin. Two questions the single figure leaves open are in §1: the CAD/USD
+   parity, and what the euro keeps after VAT.
+6. **Six checkout checks, in test mode**, once the key is replaced and the
+   currency reaches the app: monthly and yearly in each currency, each on its
+   own account, showing the displayed amount, the checkout amount, the tax
+   lines and the total. The plan is in
+   `docs/currency-handoff-2026-10-29.md`.
 
 Two measurements remain cheap and would firm up the floor: a **multi-page**
 card, and the reading across a **ten-card** record rather than a one-card one.

@@ -10,7 +10,7 @@ import {
 } from "@/components/currency-toggle";
 import {
   APP_CURRENCY_ORDER,
-  APP_PRICES,
+  CARRIES_CHOICE,
   DEFAULT_CURRENCY,
   DEFAULT_INTERVAL,
   GOES_TO_DEMO,
@@ -24,6 +24,7 @@ import {
   type BillingInterval,
 } from "@/content/app-plans";
 import { detectCurrency } from "@/content/currency-for-country";
+import type { AppPrice } from "@/content/app-prices";
 import type { Locale } from "@/content/i18n";
 
 /**
@@ -58,7 +59,19 @@ import type { Locale } from "@/content/i18n";
  * both buttons on the same baseline whatever the lists do.
  */
 
-export function PlanCards({ locale = "en" }: { locale?: Locale }) {
+/**
+ * `prices` is a prop rather than an import because the amounts may not reach a
+ * client chunk while they are unapproved: content/app-prices.ts explains the
+ * measurement behind that. The page passes them, and passes an empty list in
+ * any build without the preview flag.
+ */
+export function PlanCards({
+  locale = "en",
+  prices = [],
+}: {
+  locale?: Locale;
+  prices?: AppPrice[];
+}) {
   const t = appPlansFor(locale);
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
   const [interval, setInterval] = useState<BillingInterval>(DEFAULT_INTERVAL);
@@ -87,6 +100,26 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
     document.documentElement.setAttribute("data-tm-currency", code);
     setCurrency(code);
   };
+
+  /* The billing period is React's alone, unlike the currency, so it is mirrored
+     onto the same element for the click-time stamp in app/layout.tsx to read.
+     Both parameters then come from one place in the DOM. */
+  useEffect(() => {
+    document.documentElement.setAttribute("data-tm-interval", interval);
+  }, [interval]);
+
+  /* What the plan links hand to the app: the currency the parent is looking at
+     and the period selected with it. Server-rendered with the defaults, which
+     is what the first client render uses too, so there is nothing for hydration
+     to disagree about; the effect above corrects it once the real choice is
+     known, and a click before that is covered by the stamp in the layout. */
+  const carry = { currency, interval };
+  const handoff = CARRIES_CHOICE ? { "data-tm-handoff": "1" } : {};
+
+  /* Both conditions, not just the flag: a preview build that was handed no
+     amounts shows the billing shape rather than an empty space where a price
+     belongs. */
+  const showPrices = PRICE_PREVIEW && prices.length > 0;
 
   return (
     <>
@@ -124,7 +157,7 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
       {/* The currency selector, directly above the plans, as her brief asks.
           Preview only: with NEXT_PUBLIC_TM_PRICE_PREVIEW unset this and every
           amount are absent from the HTML, not hidden with CSS. */}
-      {PRICE_PREVIEW && (
+      {showPrices && (
         <div className="mb-8 flex flex-col items-center justify-center gap-5 sm:flex-row sm:items-start sm:gap-10">
           <CurrencyToggle
             value={currency}
@@ -173,7 +206,8 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
           </p>
           <div className="flex-1" />
           <a
-            href={planHref("school")}
+            href={planHref("school", carry)}
+            {...handoff}
             {...(GOES_TO_DEMO ? { target: "_blank", rel: "noopener" } : {})}
             className="mt-7 block w-full rounded-[2px] border border-rose bg-transparent px-5 py-[15px] text-[12.5px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
           >
@@ -201,7 +235,7 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
             {t.paid.eyebrow}
           </div>
           <div className="mt-3">
-            {PRICE_PREVIEW ? (
+            {showPrices ? (
               /* All three currencies are in the HTML and CSS shows exactly one,
                  chosen by the attribute the inline script in app/layout.tsx
                  sets before the page paints.
@@ -213,7 +247,7 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
                  charged. Rendering every variant also means the markup is the
                  same for everyone, so there is nothing for hydration to
                  disagree with. */
-              APP_PRICES.map((p) => {
+              prices.map((p) => {
                 const amount =
                   p.amount === null
                     ? null
@@ -289,7 +323,8 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
           </p>
           <div className="flex-1" />
           <a
-            href={planHref("full")}
+            href={planHref("full", carry)}
+            {...handoff}
             {...(GOES_TO_DEMO ? { target: "_blank", rel: "noopener" } : {})}
             /* Transparent border to match the free card’s outlined button, so the
                two buttons have identical boxes and their tops line up, not just

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { WaitlistButton } from "@/components/waitlist-button";
 import { PlanCards } from "@/components/plan-cards";
+import { APP_PRICES } from "@/content/app-prices";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 const DESCRIPTION =
@@ -158,7 +159,7 @@ export default function FrenchHomePage() {
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <PlanCards locale="fr" />
+          <PlanCards locale="fr" prices={APP_PRICES} />
         </div>
       </section>
 

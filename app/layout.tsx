@@ -4,7 +4,13 @@ import Script from "next/script";
 import "./globals.css";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import { PRICE_PREVIEW } from "@/content/app-plans";
+import {
+  CARRIES_CHOICE,
+  DEFAULT_CURRENCY,
+  DEFAULT_INTERVAL,
+  HANDOFF,
+  PRICE_PREVIEW,
+} from "@/content/app-plans";
 import { EUROZONE } from "@/content/currency-for-country";
 
 /**
@@ -26,13 +32,35 @@ import { EUROZONE } from "@/content/currency-for-country";
  * CAD, which is also what a visitor with JavaScript off sees. It is absent from
  * the build entirely unless the price preview is on, like every other part of
  * the unapproved pricing.
+ *
+ * ── AND IT STAMPS THE CHOICE ONTO THE LINK ────────────────────────────────
+ *
+ * The same attribute is what the app has to be told, so the second half of
+ * this script copies it onto any plan link at the moment of the click
+ * (`?currency=` and `?billing=`, named once in content/app-plans.ts). It is
+ * done in a capture-phase listener installed before paint, rather than only in
+ * the rendered href, because between paint and hydration the href is still the
+ * default while the price on screen is already the visitor's own: a parent who
+ * clicks in that gap would be sent to a checkout in a currency they were never
+ * shown. The rendered href carries the choice as well, for a middle-click or
+ * "open in new tab", which fires no click event.
  */
+const STAMP_ON_CLICK = `document.addEventListener("click",function(e){try{
+var a=e.target&&e.target.closest?e.target.closest("a[data-tm-handoff]"):null;if(!a)return;
+var u=new URL(a.getAttribute("href"),location.href);
+u.searchParams.set(${JSON.stringify(HANDOFF.currency)},d.getAttribute("data-tm-currency")||${JSON.stringify(DEFAULT_CURRENCY)});
+u.searchParams.set(${JSON.stringify(HANDOFF.interval)},d.getAttribute("data-tm-interval")||${JSON.stringify(DEFAULT_INTERVAL)});
+a.href=u.toString();
+}catch(err){}},true);`;
+
 const CURRENCY_BEFORE_PAINT = `(function(){try{
+var d=document.documentElement;
 var EZ=${JSON.stringify([...EUROZONE])};
 var t=[].concat(navigator.languages||[],[navigator.language||""]),r=null;
 for(var i=0;i<t.length;i++){var m=/^[A-Za-z]{2,3}[-_]([A-Za-z]{2})\\b/.exec(t[i]||"");if(m){r=m[1].toUpperCase();break}}
-if(!r)return;
-document.documentElement.setAttribute("data-tm-currency",r==="CA"?"CAD":EZ.indexOf(r)>=0?"EUR":"USD");
+if(r)d.setAttribute("data-tm-currency",r==="CA"?"CAD":EZ.indexOf(r)>=0?"EUR":"USD");
+if(!d.getAttribute("data-tm-interval"))d.setAttribute("data-tm-interval",${JSON.stringify(DEFAULT_INTERVAL)});
+${CARRIES_CHOICE ? STAMP_ON_CLICK : ""}
 }catch(e){}})();`;
 
 const cormorantGaramond = Cormorant_Garamond({

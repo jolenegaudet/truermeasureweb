@@ -51,72 +51,42 @@ import type { Locale } from "@/content/i18n";
 import type { CurrencyCode } from "@/components/currency-toggle";
 
 /**
- * THE PROPOSED APP PRICE.
+ * THE AMOUNTS ARE NOT IN THIS FILE.
  *
- * Her brief, 28 October 2026: "The proposed CA$29/month applies only to School
- * & Life", and for the other two currencies "Propose those amounts for my
- * review; until approved, show 'Price to be confirmed' in the local preview."
+ * They are in content/app-prices.ts, which no client component imports, for
+ * the reason set out there: this module is imported by the card, the card is a
+ * client component, and anything declared here ships in a JavaScript chunk
+ * whatever a build-time flag says. Her prices are unapproved, so they may not
+ * ship. The flag below still gates everything else.
  *
- * So exactly one amount lives here, and it is the one she named. The USD and
- * EUR amounts I am proposing are in docs/pricing-brief-2026-10-28.md, NOT in
- * this file, because a number in the code is a number that can be rendered,
- * and she has not approved them. `amount: null` is what produces "Price to be
- * confirmed".
- *
- * ── NO CONVERSION ─────────────────────────────────────────────────────────
- *
- * Her brief: "Use fixed prices for each currency, without live exchange-rate
- * conversion." Each entry is a price charged in that currency, the same rule
- * content/founding-families.ts already follows. Nothing here multiplies
- * anything by a rate, and nothing fetches one.
- *
- * ── WHY EVEN CA$29 IS BEHIND THE PREVIEW FLAG ────────────────────────────
- *
- * "This authorizes the working local preview only" and "Keep pricing
- * unapproved, all changes unpublished". CA$29 is a proposal she is reviewing,
- * not a price she has set, so it is gated by PRICE_PREVIEW along with the
- * selector and the placeholder. With the flag unset, which is every ordinary
- * build and anything Netlify would ever produce, the paid card shows the
- * billing shape and no amount, no currency selector and no placeholder: they
- * are absent from the HTML, not hidden with CSS.
- *
- * The app agrees: `plan.prices` is still `{ monthly: '', schoolYear: '' }`, so
- * no checkout can open for a price nobody has approved. Nothing here touches
- * Stripe.
+ * The app agrees that no price is set: `plan.prices` in the customer app is
+ * still `{ monthly: '', schoolYear: '' }`, so no checkout can open for a price
+ * nobody has approved. Nothing in this file touches Stripe.
  */
-export type AppPrice = {
-  code: CurrencyCode;
-  symbol: string;
-  /** null until she approves an amount for this currency. */
-  amount: number | null;
-  /**
-   * Whether the amount already carries tax. The same two words her Founding
-   * Families prices use (content/founding-families.ts), and for the reason
-   * stated there: "A page must say which, because 'plus applicable taxes'
-   * under a euro price would be false." In Stripe her euro price is already
-   * tax-inclusive and the other two are not.
-   */
-  tax: "exclusive" | "inclusive";
-};
 
 /**
- * Her figures, 29 October 2026, given in chat: "CAD $47 plus taxes, USD $47
- * plus taxes and Euros 47 Euros VAT included."
+ * The unapproved price placeholder, confined to the local preview.
  *
- * Two things follow from those numbers that are hers to confirm, not mine to
- * adjust, and both are in docs/pricing-brief-2026-10-28.md:
+ * Her brief: "the dollar amount remains unapproved" and "Keep any unapproved
+ * price placeholder confined to the local preview."
  *
- *  - CA$47 and US$47 are the same figure, not the same value. At the ratio her
- *    own earlier pricing used, CA$47 is about US$34, so a Canadian parent pays
- *    roughly a quarter less than an American one for the same thing.
- *  - €47 including VAT nets about €39 at a 20% rate, and EU rates run from
- *    about 17% to 27%, so the amount kept differs by country.
+ * `process.env.NEXT_PUBLIC_*` is inlined at build time, so with the variable
+ * unset (Netlify, and every ordinary `npm run build`) this is false and no
+ * placeholder exists in the exported HTML at all. It is not hidden with CSS,
+ * it is absent. To see it locally:
+ *
+ *   NEXT_PUBLIC_TM_PRICE_PREVIEW=1 npm run dev
+ *
+ * The placeholder is deliberately not a number. A number would be a price the
+ * moment anyone screenshots it, and her rule about Stripe's sandbox amounts
+ * ("Never use the Stripe sandbox amounts as our pricing") exists because that
+ * is exactly how a test figure escapes.
+ *
+ * It is declared here, above the prices, because the prices themselves are
+ * gated on it: see APP_PRICES.
  */
-export const APP_PRICES: AppPrice[] = [
-  { code: "CAD", symbol: "CA$", amount: 47, tax: "exclusive" },
-  { code: "USD", symbol: "US$", amount: 47, tax: "exclusive" },
-  { code: "EUR", symbol: "€", amount: 47, tax: "inclusive" },
-];
+export const PRICE_PREVIEW = process.env.NEXT_PUBLIC_TM_PRICE_PREVIEW === "1";
+export const PRICE_PLACEHOLDER = "Price to be set";
 
 /**
  * Monthly or yearly, with 10% off the yearly (her brief, 29 October 2026).
@@ -239,45 +209,97 @@ export const DEMO_URL = "https://demo.truermeasure.com/";
  * out. So `planParam` is false and no plan is appended; when the app learns
  * `?plan=`, set it to true and the links carry `school` or `full`.
  */
+/**
+ * THE CURRENCY HANDOFF, and the only place its parameter names are written.
+ *
+ * Her brief, 29 October 2026: "the currency selected on the website reaches the
+ * app and checkout, including a visitor's manual override."
+ *
+ * The site and the app are separate origins, so nothing in the browser is
+ * shared between them: not localStorage, not sessionStorage, not a cookie. The
+ * one thing that crosses is the link the parent clicks, so the choice travels
+ * on it, as two parameters:
+ *
+ *   ?currency=CAD|USD|EUR    which of the three prices the parent was shown
+ *   ?billing=month|year      which billing period was selected with it
+ *
+ * Both are stamped on from the same attribute that decides which price is on
+ * screen (`data-tm-currency`, read by app/globals.css), so what travels is what
+ * the parent read, a manual override included. These names are interpolated
+ * into the inline script in app/layout.tsx rather than repeated there, so the
+ * script and this file cannot drift apart.
+ *
+ * Absent parameters mean the app chooses for itself, and its own default has to
+ * be CAD, because CAD is what a visitor with JavaScript off is shown here.
+ *
+ * What the app must do with them is docs/currency-handoff-2026-10-29.md. The
+ * website's side is finished; the app's side is not, and until it lands a
+ * parent who picks USD can still be charged in CAD by Stripe's own
+ * localisation (server/billing.js opens a Checkout Session with no currency).
+ */
+export const HANDOFF = {
+  currency: "currency",
+  interval: "billing",
+} as const;
+
+/**
+ * A local destination for the preview, so the handoff can be tested end to end
+ * without inventing a production URL.
+ *
+ * The production app still does not exist, so `url` below is still null for
+ * everyone. This reads a second variable that only exists on this computer:
+ *
+ *   NEXT_PUBLIC_TM_PRICE_PREVIEW=1 NEXT_PUBLIC_TM_APP_URL=http://localhost:8765
+ *
+ * With the price preview off, which is Netlify and every ordinary build, it is
+ * the empty string whatever else is set, so no build that could be published
+ * can point a button anywhere but the demo.
+ */
+const PREVIEW_APP_URL =
+  process.env.NEXT_PUBLIC_TM_PRICE_PREVIEW === "1"
+    ? (process.env.NEXT_PUBLIC_TM_APP_URL || "").trim()
+    : "";
+
 export const REGISTRATION: {
   url: string | null;
   planParam: boolean;
+  /** Whether the destination understands ?currency= and ?billing=. */
+  currencyParam: boolean;
 } = {
-  url: null,
+  url: PREVIEW_APP_URL || null,
   planParam: false,
+  currencyParam: true,
 };
 
 /** Where a plan's button actually points today. */
-export function planHref(plan: "school" | "full"): string {
+export function planHref(
+  plan: "school" | "full",
+  carry?: { currency?: CurrencyCode; interval?: BillingInterval },
+): string {
   if (!REGISTRATION.url) return DEMO_URL;
-  if (!REGISTRATION.planParam) return REGISTRATION.url;
-  const sep = REGISTRATION.url.includes("?") ? "&" : "?";
-  return `${REGISTRATION.url}${sep}plan=${plan}`;
+  let url: URL;
+  try {
+    url = new URL(REGISTRATION.url);
+  } catch {
+    return REGISTRATION.url;
+  }
+  if (REGISTRATION.planParam) url.searchParams.set("plan", plan);
+  if (REGISTRATION.currencyParam) {
+    if (carry?.currency) url.searchParams.set(HANDOFF.currency, carry.currency);
+    if (carry?.interval) url.searchParams.set(HANDOFF.interval, carry.interval);
+  }
+  return url.toString();
 }
 
 /** True while the buttons still lead to the demo rather than registration. */
 export const GOES_TO_DEMO = REGISTRATION.url === null;
 
 /**
- * The unapproved price placeholder, confined to the local preview.
- *
- * Her brief: "the dollar amount remains unapproved" and "Keep any unapproved
- * price placeholder confined to the local preview."
- *
- * `process.env.NEXT_PUBLIC_*` is inlined at build time, so with the variable
- * unset (Netlify, and every ordinary `npm run build`) this is false and no
- * placeholder exists in the exported HTML at all. It is not hidden with CSS,
- * it is absent. To see it locally:
- *
- *   NEXT_PUBLIC_TM_PRICE_PREVIEW=1 npm run dev
- *
- * The placeholder is deliberately not a number. A number would be a price the
- * moment anyone screenshots it, and her rule about Stripe's sandbox amounts
- * ("Never use the Stripe sandbox amounts as our pricing") exists because that
- * is exactly how a test figure escapes.
+ * Whether a link should carry the choice: only when it actually leads to the
+ * app. The demo ignores both parameters, and a parent who opens it should not
+ * be handed a URL with billing in it.
  */
-export const PRICE_PREVIEW = process.env.NEXT_PUBLIC_TM_PRICE_PREVIEW === "1";
-export const PRICE_PLACEHOLDER = "Price to be set";
+export const CARRIES_CHOICE = !GOES_TO_DEMO && REGISTRATION.currencyParam;
 
 export type PlanPart = {
   /** The heading a parent scans. */

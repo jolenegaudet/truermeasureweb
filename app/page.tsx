@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { WaitlistButton } from "@/components/waitlist-button";
 import { PlanCards } from "@/components/plan-cards";
+import { APP_PRICES } from "@/content/app-prices";
 import { alternatesFor } from "@/content/i18n";
 
 export const metadata: Metadata = {
@@ -150,7 +151,7 @@ export default function HomePage() {
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <PlanCards locale="en" />
+          <PlanCards locale="en" prices={APP_PRICES} />
         </div>
       </section>
 
