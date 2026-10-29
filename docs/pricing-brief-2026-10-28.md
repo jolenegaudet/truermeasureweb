@@ -84,6 +84,13 @@ version:
   is taken out of that total, so at a 20% rate the business keeps about €39.
   EU rates run from 17% to 27%, so what is kept differs by country while the
   parent's total does not. The page says "VAT included."
+**Confirmed in the sandbox on 29 October**, by Stripe's own tax calculation
+rather than by argument: CA$47 becomes CA$54.05 with 15% HST added, CA$507.60
+becomes CA$583.74, and €47 stays **€47** with €7.83 of VAT taken out of it
+(€507.60 stays €507.60 with €84.60 inside). The business keeps €39.17 of a euro
+month. A New York address computes 0%, because the sandbox is registered for
+Canada and France only. Details in `docs/currency-handoff-2026-10-29.md` §2f.
+
 - **Stripe Tax decides whether tax is calculated, not what the parent pays.**
   With it off, a euro parent is still charged exactly €47; the difference is
   that no VAT is computed or recorded against it, and a CAD or USD parent is

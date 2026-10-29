@@ -223,6 +223,56 @@ bookkeeping problem rather than a pricing one.
 
 ---
 
+## 2f. The sandbox, configured and verified (done, 29 October)
+
+With her authorisation, and in the sandbox only. The sandbox is a separate
+Stripe account from live (`acct_1T6YMxA9dbCTZCRQ` against the live
+`acct_1T6YMjAJm8m0sW6o`), so no live setting or live registration was reachable
+by any call made here.
+
+- **The exposed test key is dead.** The value printed into the session on
+  28 October now returns 401 from Stripe, so it was rolled rather than
+  supplemented. The replacement authenticates, is a test key, sees the same
+  sandbox and reads both prices back correctly.
+- **Stripe Tax: `status: active`.** Head office country CA, province NB. No
+  postal code was required: Stripe accepted the province-only form, and
+  Canadian HST is set at province level, so her address did not have to be
+  entered anywhere. The verified postal code she offered was not needed.
+- **Registrations, both active.** `taxreg_1UVzFoA9dbCTZCRQVRaYZJEN` for Canada
+  (`ca.type: standard`, GST/HST, which is the New Brunswick case) and
+  `taxreg_1UVzFoA9dbCTZCRQtdTAlt1j` for France (`fr.type: standard`, French
+  VAT). Nothing was deleted and no other country was added, so a United States
+  row correctly computes 0%.
+- **A tax code had to be chosen, because none existed.** `defaults.tax_code`
+  was null and the product `prod_VWzNTXW9zLkKSH` has none, so every calculation
+  failed with *"Your line item is missing a tax code"* — which is what the six
+  checkout runs would have hit even with Stripe Tax on. The sandbox default is
+  now `txcd_10103000`, Software as a service (personal use): the defensible
+  code for a consumer subscription, and indistinguishable from the other
+  digital-service codes for both NB HST and French VAT. **Her call to confirm
+  before live, where the product still carries no tax code.**
+
+### What the sandbox now computes
+
+From Stripe's own tax calculation API, which creates no subscription, checkout
+or charge:
+
+| Case | Amount shown | Tax | Total charged |
+|---|---|---|---|
+| CA$47 monthly, New Brunswick | 47.00 | 7.05 HST at 15%, added | **CA$54.05** |
+| CA$507.60 yearly, New Brunswick | 507.60 | 76.14 HST at 15%, added | **CA$583.74** |
+| US$47 monthly, New York | 47.00 | 0.00 at 0% | **US$47.00** |
+| US$507.60 yearly, New York | 507.60 | 0.00 at 0% | **US$507.60** |
+| €47 monthly, Paris | 47.00 | 7.83 VAT at 20%, inside | **€47.00** |
+| €507.60 yearly, Paris | 507.60 | 84.60 VAT at 20%, inside | **€507.60** |
+
+The two euro rows are the point: **the total equals the amount on the page**,
+with the VAT taken out of it rather than added to it. That is the correction
+made to §1 of the pricing brief, now confirmed by Stripe rather than argued.
+The business keeps €39.17 of a €47 month.
+
+---
+
 ## 3. What I will run once both are confirmed
 
 Her gate: the exposed test key replaced, and the handoff above landed in the
