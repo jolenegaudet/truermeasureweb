@@ -18,25 +18,31 @@ already existed.*
 | A frequent paying family, AI only | **US$8 to US$9 a month** |
 | A regular paying family, AI only | **US$3 to US$4 a month** |
 | A light paying family, AI only | **under US$1 a month** |
-| One report card, read and explained | **US$0.16, measured 29 October** |
-| A free School account | **about US$0.40 a year, plus US$0.21 to create** |
+| One report card, processed | **US$0.16 to US$0.20, measured 29 October** |
+| A reading across the record, free School | **US$0.173, once per sitting** |
+| A free School account | **about US$0.75 to US$1.10 a year, plus US$0.21 to create** |
 | The ceilings already in the code | **US$10 per paying family per month, US$2 per free family** |
 
 **At CA$29 the business works on regular families and is thin on frequent
 ones.** CA$29 is about US$20 at her own CAD-to-USD ratio. A regular family
-costs US$3.39 in AI, which is 17% of that. A frequent family costs US$8.50,
-which is 42% of it before Stripe takes roughly 4% more. The US$10 cap is what
+costs US$3.43 in AI, which is 17% of that. A frequent family costs US$8.58,
+which is 43% of it before Stripe takes roughly 4% more. The US$10 cap is what
 stops that becoming 60%, which is the real reason the cap matters and the
 reason §4's wording now appears on the page.
 
-**Revised 29 October.** A report card was the one unmeasured cost in the
-28 October version of this brief, and the estimate was US$0.45. Measured, it is
-US$0.16. That moved every free-plan figure and retired the signup breakage this
-brief led with yesterday: a parent uploading ten cards now finishes their first
-day at US$1.80 against a US$2 ceiling rather than being cut off at the fourth
-card. The run is kept at
-`launch-local\data\report-card-costs-2026-10-29.jsonl`, outside every
-repository, with its console output beside it.
+**Revised 29 October, twice.** A report card was the one unmeasured cost on
+28 October and the estimate was US$0.45. The first revision measured US$0.16
+and concluded the signup problem had gone away. **That revision was wrong**,
+because the run behind it never got its cards into the record and so never paid
+for the reading across them. Corrected, a report card is three separate costs,
+not one: **US$0.16 to US$0.20 to process the card, US$0.209 to onboard the
+account once, and US$0.173 for a reading across the record, once per sitting.**
+A ten-card signup therefore costs at least US$2.38 against a US$2 ceiling, and
+the parent is cut off around the eighth card rather than the fourth. The
+breakage is real; only the number moved. Both runs are kept in
+`launch-local\data` as `report-card-costs-2026-10-29.jsonl` and
+`photo-card-costs-2026-10-29.jsonl`, outside every repository, with their
+console output beside them.
 
 ---
 
@@ -115,33 +121,67 @@ From `launch-local\data\ai-calls.jsonl`, the app's own ledger, 23 to 28 October
 in `server/engine.js` (US$5 per million input tokens, US$25 per million
 output).
 
-The last three rows come from a run made for this brief on 29 October 2026,
-with her authorization: three fictional report cards through a free School
-account whose onboarding was already finished, so none of it is onboarding
-cost. Ten calls, US$0.478 in total, logged to their own ledger.
+Two further runs were made for this brief on 29 October 2026, with her
+authorization, both on a free School account whose onboarding was already
+finished, so neither carries onboarding cost:
 
-| Action | Calls | Input tok | Output tok | Median cost |
-|---|---|---|---|---|
-| What the record shows (one reading) | 3 | 6,282 | 7,057 | **US$0.261** |
-| Check a reading against the record | 6 | 5,338 | 1,351 | US$0.065 |
-| Evidence classification (one moment) | 6 | 4,647 | 188 | US$0.024 |
-| First look (end of onboarding) | 1 | 4,667 | 390 | US$0.033 |
-| Something to try together (Reflect) | 1 | 4,084 | 202 | US$0.026 |
-| Reading the document (one card) | 3 | 5,009 | 666 | **US$0.042** |
-| Explaining that card | 3 | 3,785 | 2,702 | **US$0.087** |
-| Checking that explanation | 4 | 3,024 | 334 | US$0.024 |
+- **Run A, three fictional cards as clean PDFs.** Ten calls, US$0.478.
+  `report-card-costs-2026-10-29.jsonl`. **Its record was empty**: the evidence
+  rows were rejected for malformed ids, so no reading across the cards ran. §6
+  explains how that was found and fixed.
+- **Run B, one fictional card as a photograph** (PNG, 1180 x 1528 px, the size
+  a phone photo is reduced to), with the record intact. Eight calls, US$0.375,
+  including the reading across the record. `photo-card-costs-2026-10-29.jsonl`.
 
-**One report card is three calls, and costs US$0.16.** It is read, it is
-explained, and the explanation is checked against the record: US$0.042 +
-US$0.087 + US$0.031 of checking. Taking each card with the checks that followed
-it, they cost US$0.158, US$0.151 and US$0.170, so the figure is steady across a
-Grade 4, a Grade 5 and a Grade 6 card. These were clean one-page PDFs; a phone
-photo of several pages would send more image tokens and cost more.
+| Action | Run | Calls | Input tok | Output tok | Cost each |
+|---|---|---|---|---|---|
+| What the record shows (School & Life) | Oct 23-28 | 3 | 6,282 | 7,057 | **US$0.261** |
+| Check a reading against the record | Oct 23-28 | 6 | 5,338 | 1,351 | US$0.065 |
+| Evidence classification (one moment) | Oct 23-28 | 6 | 4,647 | 188 | US$0.024 |
+| First look (end of onboarding) | Oct 23-28 | 1 | 4,667 | 390 | US$0.033 |
+| Something to try together (Reflect) | Oct 23-28 | 1 | 4,084 | 202 | US$0.026 |
+| Reading a card, clean PDF | A | 3 | 5,009 | 666 | **US$0.042** |
+| Reading a card, photograph | B | 1 | 5,365 | 584 | **US$0.041** |
+| Explaining a card, empty record | A | 3 | 3,785 | 2,702 | US$0.087 |
+| Explaining a card, record intact | B | 1 | 3,954 | 2,158 | **US$0.074** |
+| Checking, empty record | A | 4 | 3,024 | 334 | US$0.024 |
+| Checking, record intact | B | 5 | 3,891 | 418 | **US$0.030** |
+| The school reading (free School) | B | 1 | 5,136 | 3,389 | **US$0.110** |
 
-**The explanation is the expensive part, not reading the document.** Extraction
-returns a few hundred tokens of fields. The explanation writes 2,702 output
-tokens, which is US$0.068 of its US$0.087. Same shape as a record reading:
-output is the bill.
+**A photograph costs what a PDF costs.** US$0.041 against US$0.042: 7% more
+input tokens, slightly fewer output. The worry that parents photographing
+rather than scanning would multiply the cost is not borne out at this size.
+A multi-page photograph has still not been measured.
+
+**Output is the bill, in every task.** The explanation writes 2,158 tokens and
+the school reading 3,389, which is US$0.085 of that reading's US$0.110.
+Extraction returns a few hundred tokens of fields and is the cheap part.
+
+### Three different things, which this brief previously ran together
+
+| What | Measured example | When it runs |
+|---|---|---|
+| **1. Per-card processing** | **US$0.16 to US$0.20** | once per card |
+| **2. Onboarding** | **US$0.209** | once per account |
+| **3. A reading across the record** | **US$0.173** | once per sitting |
+
+**1. Per-card processing** is reading the document, explaining that card, and
+checking the explanation. Against an intact record it measured US$0.0414 +
+US$0.0737 + US$0.0866 of checking = **US$0.20**. Against an empty record it was
+**US$0.16**, because there was less to check against: three checks on the card
+with a record, against one or two without. The record is what makes a card
+dearer, which matters because the record only grows.
+
+**2. Onboarding** is US$0.209 over 8 calls, from her own walkthrough of
+20 October: a child, four notes and the first look. No report card in that run.
+Unchanged by these measurements.
+
+**3. A reading across the record** is the school picture itself, and it is a
+separate cost that neither of the first two includes: US$0.110 for the reading
+plus US$0.063 for its two checks = **US$0.173**. It runs **once per sitting,
+not once per card**, because the server waits 45 seconds and refreshes once
+(`server/jobs.js`). It read a one-card record here. Its input and output both
+scale with the record, so this figure is a floor, not an average.
 
 **Output is the cost, not input.** A reading's 7,057 output tokens cost
 US$0.176 of its US$0.26; its input costs US$0.031. Everything else produces a
@@ -177,17 +217,17 @@ numbers.
 | Classifying moments (@ US$0.028) | 0.06 | 0.22 | 0.56 |
 | Ask (@ ~US$0.08, estimated) | 0 | 0.08 | 0.32 |
 | Reflect (@ US$0.026 + follow-up) | 0 | 0.05 | 0.10 |
-| Report cards (@ US$0.16, **measured**) | 0 | 0.16 | 0.32 |
-| **AI total** | **~US$0.78** | **~US$3.39** | **~US$8.50** |
+| Report cards, per-card processing (@ US$0.20) | 0 | 0.20 | 0.40 |
+| **AI total** | **~US$0.78** | **~US$3.43** | **~US$8.58** |
 
-Against CA$29 (about US$20): **17% of revenue for a regular family, 42% for a
+Against CA$29 (about US$20): **17% of revenue for a regular family, 43% for a
 frequent one**, before Stripe's roughly 2.9% + 30c and before any share of the
 server, database and file storage, which are fixed monthly costs rather than
 per-family ones and are not in this table.
 
 **This is why the allowance wording exists.** The ceiling is already in the
 code (`TM_AI_CAP_FULL_USD`, default US$10) and a frequent family lands at
-US$8.50, so a parent can meet it in a normal month. The page now says what
+US$8.58, so a parent can meet it in a normal month. The page now says what
 happens, in plain words and with no figure: new readings pause, nothing is
 lost, everything already written stays open, and readings begin again at the
 start of the next month. That is exactly what the app does today
@@ -202,73 +242,81 @@ word "unlimited" is nowhere on the page.
 Her brief: *"Keep free-plan costs labelled as estimates, and account for
 parents uploading several years of report cards at signup."*
 
-**The free plan's one cost is now measured, not estimated.** A report card is
-US$0.16, and report cards are the whole cost of the free plan. This section was
-rewritten on 29 October when that number arrived; the estimate it replaced was
-US$0.45, nearly three times too high, and the conclusion it supported was
-wrong.
+**The free plan's costs are measured now, as examples rather than as averages.**
+Three numbers, not one: per-card processing, onboarding, and the reading across
+the record. §3 separates them. The figure this brief carried on 28 October,
+US$0.45 a card, was an estimate and it was wrong in both directions: a card
+costs less than that, and a card is not the only thing a card costs.
 
-### In a steady month: close to zero
+**The free School picture does work from report cards alone**, which is the
+requirement. Confirmed twice on 29 October: once free with the stand-in model
+and once in run B, where one photographed card produced a school summary and
+two insights that reached the parent through `/api/state`. There is no defect
+here. §6 records the two errors in my own measurement setup that made it look
+otherwise.
+
+### In a steady month: small, not nothing
 
 A free account has no moments and no Ask. It has report cards, and report cards
 arrive two or three times a year, not monthly. Nothing runs when nobody adds
 anything: the daily pass only retries failed jobs and sends an ops email.
 
 - Onboarding, once: **US$0.209 measured**
-- A month with one report card: **US$0.16 measured**
+- A month with one report card: **US$0.37 measured** (US$0.20 for the card,
+  US$0.17 for the reading it triggers)
 - A month without one: **effectively zero**
 
-**So a settled free account costs about US$0.35 to US$0.50 a year, plus US$0.21
-to create.** A thousand free accounts is on the order of US$600 in the first
-year and US$400 a year after that, not a month.
+**So a settled free account costs roughly US$0.75 to US$1.10 a year, plus
+US$0.21 to create**, assuming two or three cards a year and one child. A
+thousand free accounts is on the order of US$1,100 in the first year and
+US$900 a year after that, not a month. The 28 October estimate of US$1 to US$2
+a year was closer than yesterday's revision of US$0.40, which omitted the
+reading because the run that produced it never made one.
 
-### At signup: it holds, with almost no room
+### At signup: over the ceiling, around the eighth card
 
 A parent who signs up with five years of school behind them does not upload one
-report card. They upload the drawer. Two cards a year for five years is ten,
-and each one is read, explained and checked on its own.
+report card. They upload the drawer. Two cards a year for five years is ten.
 
-| At signup | Measured |
+| At signup, ten cards in one sitting | Measured example |
 |---|---|
 | Onboarding | US$0.21 |
-| 10 report cards @ US$0.16 each | US$1.60 |
-| **First-day total** | **US$1.80** |
+| 10 cards of per-card processing @ US$0.20 | US$2.00 |
+| One reading across the record | US$0.17 |
+| **First-day floor** | **US$2.38** |
 
-**The free ceiling is US$2 a month, so this parent gets through, and stops
-around the eleventh card.** Ten cards leaves US$0.20 of the month unspent,
-which is one card's worth. The most committed parent on the free plan finishes
-their first day with nothing left for the rest of the month, and a parent with
-six years of school behind them (twelve cards) is still cut off before the end
-of the pile.
+**The free ceiling is US$2 a month, so this parent is cut off around the eighth
+card**, and is told *"This month's readings are complete. New additions are
+kept and will be read next month."* Taking the lower per-card figure of
+US$0.16, it is around the tenth card. Either way the drawer does not fit.
 
-**One thing in that table is missing on purpose.** In the measured run no
-record-level reading fired at all. Ten calls, all of them per card: nothing
-read across the cards to say what the record shows. The earlier version of this
-table added US$0.36 for one such reading, which would make the first day
-US$2.16 and cut the parent off around the ninth card instead of the eleventh. I
-did not establish why it did not run, and I did not spend more to find out. It
-may need moments beyond report cards, which a free account does not have. **If
-it does run for some records, the free plan is over its ceiling on day one
-again**, and that is worth one more cheap measurement before the cap is
-settled.
+**That total is a floor, not an estimate.** Both the per-card checks and the
+reading grow with the record: the reading measured here read one card, with
+3,389 output tokens, and a ten-card record gives it ten cards to read. So the
+real first day is higher than US$2.38, and the cut-off is earlier than the
+eighth card.
 
-**So the signup problem is smaller than this brief said yesterday, and it has
-not gone away.** It is now a question of margin rather than of breakage.
+**So the signup problem is real after all.** Yesterday's revision said it had
+gone away. That was wrong, and the cause was mine: the run behind it never put
+the cards into the record, so it never paid for a reading. Corrected, the
+breakage is back, at the eighth card rather than the fourth.
 
-**Two ways to give it room, if you want it:**
+**Two ways out, in the order I would try them:**
 
-1. **Give the first month a larger allowance**, sized to a back catalogue
-   rather than to a steady month. The cap is already a configuration value
-   (`TM_AI_CAP_SCHOOL_USD`), so this is a setting, not a rebuild. At US$0.16 a
-   card, US$4 carries about twenty-four. Note that the app has one monthly cap,
-   not a separate first-month one, so raising it raises it every month. That
-   costs nothing in practice, because a settled free account only spends twice
-   a year, but it does remove the ceiling as a brake if anything ever goes
-   wrong in a loop.
-2. **Separate keeping from reading.** Extract and keep every card at signup,
-   and explain them over the following weeks. The parent's record is complete
-   immediately, which is what they came for, and the cost spreads. Extraction
-   alone is US$0.042, so the whole drawer can be kept for US$0.42.
+1. **Separate keeping from reading.** Extract and keep every card at signup,
+   and explain them over the following weeks. Extraction alone is US$0.041, so
+   a ten-card drawer can be kept complete for **US$0.41**, which is a fifth of
+   the ceiling. The parent's record is whole immediately, which is what they
+   came for, and the explanations and the reading spread out behind it. This is
+   the only option that scales with a back catalogue of any size.
+2. **Raise the allowance.** The cap is a configuration value
+   (`TM_AI_CAP_SCHOOL_USD`), so this is a setting, not a rebuild. US$4 carries
+   about eighteen cards and a reading. But the app has one monthly cap, not a
+   separate first-month one, so raising it raises it every month and weakens
+   the ceiling as a brake for the other eleven months.
+
+Option 1 is a change to the customer app, which is outside this brief. Option 2
+is a configuration value you set.
 
 I have not changed the cap or anything else in the app. This is a finding for
 her, not a decision I made.
@@ -279,56 +327,69 @@ her, not a decision I made.
 
 Ranked by how much they could move the answer.
 
-**1. A report card is measured now, but only as a clean one-page PDF.** US$0.16
-across three cards on 29 October. Report cards are the only task that sends
-*images* (her consent gate: "a document's pages are read as they are"), and
-image tokens scale with page count and resolution, so a phone photo of four
-pages could cost several times what these did. Most parents will photograph,
-not scan. That is the remaining unknown in the free-plan number and it points
-upward. The fixtures include a deliberately unreadable photo, so the cost of a
-refusal could be measured at the same time.
+**1. Two errors in my own measurement setup, both now corrected, and worth
+recording because the first one produced a wrong conclusion in this brief.**
 
-**Also unresolved from that run: no record-level reading fired.** A record of
-three report cards and nothing else produced ten calls, all per card, and no
-reading across them. Either a cards-only record does not get one, which would
-mean a free parent never sees what the record shows until they add something
-beyond school, or it needs a condition this run did not meet. The first would
-be a product question, not a cost one, and a bigger finding than anything about
-price.
+Run A synced its evidence rows with ids `ec1`, `ec2`, `ec3`. The server
+requires `/^e\d{1,7}$/` (`server/state.js`), so it rejected all three with
+`code: bad_id` and kept only the reports. The record was therefore empty, the
+gate at `if (!scope.items.length) continue` closed, and no reading across the
+cards ran. I read that absence as a possible product defect. **It was not. The
+app is correct and the free School picture works from report cards alone**,
+confirmed with the stand-in model at no cost and then in run B. Run B's first
+attempt then failed the same way on `code: bad_date`, because what is read off
+a card is whatever the card printed ("June 2026") and an evidence date must be
+ISO; the app derives it with `A.reportDate(schoolYear, term)`. That attempt
+spent US$0.044 before stopping.
 
-**2. The per-action table rests on 17 calls.** Three readings, six checks, six
+**2. One card is measured as one page.** A clean one-page PDF and a one-page
+photograph cost the same, US$0.042 against US$0.041, which settles the worry
+that photographing rather than scanning would multiply the cost. **A multi-page
+document has not been measured**, and image tokens scale with pages, so a
+four-page card is still an open number. The fixtures include a deliberately
+unreadable photograph, so the cost of a refusal could be measured beside it.
+
+**3. Every figure here is one example, not an average.** One card at each of
+three grades, one photograph, one reading of a one-card record, one onboarding.
+Three assumptions are carried, not measured: **document size** (one page),
+**how often a parent uploads** (two or three cards a year in a steady month,
+ten at signup), and **how many children** are on the account (one). Each of
+the three multiplies the whole free-plan figure, and the child count multiplies
+the paid one too, which is §2.
+
+**4. The per-action table rests on 17 calls.** Three readings, six checks, six
 classifications, one first look, one Reflect, across two accounts in six days.
 The ledger was only added on 23 October, so this is all there is. The
 classification and check figures are tight; three readings is not enough to be
 confident about the most expensive action in the product.
 
-**3. A reading gets more expensive as the record grows.** The 7,057-token
+**5. A reading gets more expensive as the record grows.** The 7,057-token
 output came from records that are months old. The reading describes what the
 record holds, so a five-year record produces a longer reading from a longer
 input. These are early-life costs, and cost per family probably rises every
 year a family stays. Nothing in the data says by how much.
 
-**4. The rates are configured, not billed.** US$5 and US$25 per million tokens
+**6. The rates are configured, not billed.** US$5 and US$25 per million tokens
 are the defaults in `server/engine.js`. Her own ops page says so: *"These are
 estimates from token counts at the rates set in configuration; the Anthropic
 console has the bill."* Check them against a real invoice before pricing on
 them.
 
-**5. The model is the most expensive one.** `claude-opus-5-5`. The readings are
+**7. The model is the most expensive one.** `claude-opus-5-5`. The readings are
 the product, so that is defensible, but the cheaper tasks (classification,
 checks, extraction) are a fifth of spend and almost certainly do not need it.
 Moving only those would cut perhaps 15% with nothing a parent would notice.
 
-**6. The session counts are made up.** 2, 8 and 20 are my labels for light,
+**8. The session counts are made up.** 2, 8 and 20 are my labels for light,
 regular and frequent. No parent has used this app yet, and her brief says it:
 development usage is not evidence of parent behaviour. The first ten real
 families will replace the whole middle column.
 
-**7. The currency ratios are hers, not today's exchange rates.** US$21 and €19
+**9. The currency ratios are hers, not today's exchange rates.** US$21 and €19
 follow the pattern of her old pricing. If the underlying rates have moved since
 September, the ratios have not been rechecked here.
 
-**8. Development spending is in none of this**, and it is the larger number so
+**10. Development spending is in none of this**, and it is the larger number so
 far: US$13.97 across 246 calls on 19 and 20 October alone, most of it
 evaluation runs and retries that no parent causes.
 
@@ -336,16 +397,22 @@ evaluation runs and retries that no parent causes.
 
 ## 7. What I would do before setting a price
 
-1. ~~**Cost one report card.**~~ Done, 29 October: **US$0.16**. The free plan
-   survives a ten-card signup with US$0.20 to spare, so the breakage this brief
-   reported on 28 October was an artefact of a bad estimate.
-2. **Settle the free ceiling anyway.** US$0.20 of headroom is not a margin, and
-   twelve cards still exceeds it. Two cheap measurements would close it: a
-   photographed card rather than a PDF, and whether a record-level reading ever
-   fires for a cards-only record (§6.1).
+1. ~~**Cost one report card.**~~ Done, 29 October, in three parts:
+   **US$0.16 to US$0.20** per card, **US$0.209** to onboard, **US$0.173** per
+   reading across the record. A photograph costs what a PDF costs.
+2. **Fix the free signup.** A ten-card drawer costs at least US$2.38 against a
+   US$2 ceiling, so it does not fit, and that floor rises with the record. My
+   recommendation is to keep every card at signup for US$0.041 each and explain
+   them over the following weeks, which is a customer-app change rather than a
+   setting. Raising `TM_AI_CAP_SCHOOL_USD` is the one-line alternative, and it
+   raises the ceiling for every month, not just the first.
 3. **Decide the child question.** One child, or the account? It changes the
    ceiling, the cost per family and what the page may say.
 4. **Check the configured rates against a real Anthropic invoice.**
 5. **Then confirm CA$29, US$21 and €19.** At CA$29 a regular family spends 17%
-   of revenue on AI and a frequent one 42%. That is workable if most families
+   of revenue on AI and a frequent one 43%. That is workable if most families
    are regular, and the ceiling is what keeps the tail from eating the margin.
+
+Two measurements remain cheap and would firm up the floor: a **multi-page**
+card, and the reading across a **ten-card** record rather than a one-card one.
+Neither is needed to decide item 2.
