@@ -466,11 +466,16 @@ export const appPlans: Record<Locale, AppPlans> = {
       eyebrow: "School & Life",
       heading: "See what everyday moments show.",
       plus: "Everything in School, plus:",
+      /* Four bullets, each carrying more than one thing, because her
+          correction of 29 October asked for the profile, the timeline and
+          Reflect together to stay represented without the section growing
+          back: "Replace or combine existing bullets rather than adding
+          another long section." */
       includes: [
-        "Save moments from home, sport and travel.",
-        "Keep photos, schoolwork and notes from coaches.",
-        "See what shows up at school and at home.",
-        "Ask questions about your child’s record.",
+        "Keep a profile and a timeline that grow with your child.",
+        "Save moments, photos and schoolwork from home, sport and travel.",
+        "Reflect together, and keep your child’s own words.",
+        "See what shows up at school and at home, and ask about the record.",
       ],
       tagline: "Get the Truer Measure.",
       cta: "Choose School & Life",
@@ -507,9 +512,9 @@ export const appPlans: Record<Locale, AppPlans> = {
         title: "School & Life",
         items: [
           "Everything in School.",
+          "A profile and a timeline that grow with your child.",
           "Moments, photos and schoolwork from beyond school.",
-          "What keeps showing up, at school and at home.",
-          "Ask about the record, and get ready for a teacher meeting.",
+          "Reflect together, ask about the record, and get ready for a teacher meeting.",
         ],
       },
     },
@@ -565,8 +570,8 @@ export const appPlans: Record<Locale, AppPlans> = {
       price: "Gratuit",
       heading: "Comprenez les bulletins de votre enfant.",
       includes: [
-        "Ajoutez un bulletin. Un PDF ou une photo, ça marche.",
-        "Lisez-le expliqué en mots simples.",
+        "Ajoutez un bulletin, en PDF ou en photo.",
+        "Recevez une explication en mots simples.",
         "Recevez des questions à poser à l’enseignante.",
         "Recevez des idées simples à essayer à la maison.",
       ],
@@ -579,10 +584,10 @@ export const appPlans: Record<Locale, AppPlans> = {
       heading: "Voyez ce que les moments du quotidien montrent.",
       plus: "Tout ce qu’il y a dans École, plus :",
       includes: [
-        "Gardez des moments de la maison, du sport et des voyages.",
-        "Gardez des photos, des travaux scolaires et le mot d’un entraîneur.",
-        "Voyez ce qui revient à l’école et à la maison.",
-        "Posez des questions sur le dossier de votre enfant.",
+        "Gardez un portrait et une chronologie qui grandissent avec votre enfant.",
+        "Gardez des moments, des photos et des travaux de la maison, du sport et des voyages.",
+        "Réfléchissez ensemble et gardez les mots de votre enfant.",
+        "Voyez ce qui revient à l’école et à la maison, et posez vos questions.",
       ],
       tagline: "Obtenez une juste mesure.",
       cta: "Choisir École et vie",
@@ -611,16 +616,16 @@ export const appPlans: Record<Locale, AppPlans> = {
           "Les bulletins, expliqués en mots simples.",
           "Des questions à poser à l’enseignante.",
           "Des idées à essayer à la maison.",
-          "Les téléversements sont des bulletins seulement.",
+          "Seuls les bulletins peuvent être téléversés.",
         ],
       },
       paid: {
         title: "École et vie",
         items: [
           "Tout ce qu’il y a dans École.",
-          "Des moments, des photos et des travaux d’ailleurs que l’école.",
-          "Ce qui revient, à l’école et à la maison.",
-          "Posez des questions et préparez la rencontre avec l’enseignante.",
+          "Un portrait et une chronologie qui grandissent avec votre enfant.",
+          "Des moments, des photos et des travaux de la vie hors de l’école.",
+          "Réfléchissez ensemble, posez vos questions et préparez la rencontre avec l’enseignante.",
         ],
       },
     },

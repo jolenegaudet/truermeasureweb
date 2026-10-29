@@ -21,7 +21,6 @@ import {
   yearlySaving,
   type BillingInterval,
 } from "@/content/app-plans";
-import { detectCurrency } from "@/content/currency-for-country";
 import type { AppPrice } from "@/content/app-prices";
 import type { Locale } from "@/content/i18n";
 
@@ -71,21 +70,31 @@ export function PlanCards({
   const [interval, setInterval] = useState<BillingInterval>(DEFAULT_INTERVAL);
   const yearly = interval === "year";
 
-  /* Which currency is showing was decided before the page painted, by the
-     inline script in app/layout.tsx, and CSS is what shows it. This only
-     catches the state up, so the links hand the app the currency the parent is
-     actually looking at, and it covers the case where the script did not run.
-     There is no selector to keep in step any more. */
+  /* Which currency is showing was decided before the browser had the page, by
+     Netlify's edge function (netlify/edge-functions/currency.ts), and CSS is
+     what shows it. This only catches React's state up, so the links hand the
+     app the currency the parent is actually looking at.
+
+     It reads the attribute and nothing else. It used to fall back to guessing
+     from the browser's languages, which is exactly what her correction of
+     29 October ruled out: no attribute now means CAD, her rule for a country
+     that cannot be determined. */
   useEffect(() => {
-    const set = document.documentElement.getAttribute("data-tm-currency");
-    if (set && (CURRENCY_CODES as readonly string[]).includes(set)) {
-      setCurrency(set as CurrencyCode);
-      return;
-    }
-    const detected = detectCurrency();
-    if (detected) {
-      document.documentElement.setAttribute("data-tm-currency", detected);
-      setCurrency(detected);
+    const root = document.documentElement;
+    /* The attribute, or what the inline script in app/layout.tsx saved before
+       React touched the page. The second is the one that matters if hydration
+       ever fails: React then re-renders from scratch and drops an attribute it
+       never rendered, which would turn a euro price into a Canadian one
+       without anybody noticing. Seen while testing, and cheap to defend. */
+    const known =
+      root.getAttribute("data-tm-currency") ||
+      (window as { __TM_CURRENCY?: string | null }).__TM_CURRENCY ||
+      null;
+    if (known && (CURRENCY_CODES as readonly string[]).includes(known)) {
+      if (root.getAttribute("data-tm-currency") !== known) {
+        root.setAttribute("data-tm-currency", known);
+      }
+      setCurrency(known as CurrencyCode);
     }
   }, []);
 

@@ -11,39 +11,40 @@ import {
   HANDOFF,
   PRICE_PREVIEW,
 } from "@/content/app-plans";
-import { EUROZONE } from "@/content/currency-for-country";
+import { currencyForCountry } from "@/content/currency-for-country";
 
 /**
- * Which currency the plan card shows, decided before the page paints.
+ * Which currency the plan card shows, and who decides it.
  *
- * The site is a static export, so the HTML is the same for everyone and carries
- * all three currencies; this sets the attribute that CSS uses to show one (see
- * app/globals.css). It runs here, inline and synchronously, rather than in the
- * card's own effect, because measured on the production export a visitor in
- * France, Germany or the United States otherwise read CA$47 for about 650ms
- * before it corrected. An amount a parent will be charged is the one thing that
- * may not be briefly wrong.
+ * **Netlify decides it, not this script.** netlify/edge-functions/currency.ts
+ * reads the country Netlify resolved for the request and writes
+ * `data-tm-currency` onto the <html> tag before the browser receives it, so
+ * the first paint is already the right price and there is nothing here to
+ * race. Her correction of 29 October 2026 is why: the browser's language
+ * settings are not the visitor's country, and this file used to treat them as
+ * if they were.
  *
- * The euro-area list comes from content/currency-for-country.ts, so the script
- * and the module cannot drift. The logic is deliberately the same: a region
- * subtag only, never a bare language, because French is spoken in Canada.
+ * What is left in this script is everything the edge cannot do:
  *
- * It is wrapped in try/catch and does nothing on failure: no attribute means
- * CAD, which is also what a visitor with JavaScript off sees. It is absent from
- * the build entirely unless the price preview is on, like every other part of
- * the unapproved pricing.
+ *  1. The billing period's default, so a click before hydration still carries
+ *     one.
+ *  2. Stamping the currency and period onto a plan link at the moment of the
+ *     click (`?currency=` and `?billing=`, named once in content/app-plans.ts).
+ *     A capture-phase listener installed before paint, rather than only the
+ *     rendered href, because between paint and hydration the href still holds
+ *     the defaults while the page already shows the visitor's own price: a
+ *     parent clicking in that gap would reach a checkout in a currency they
+ *     were never shown. The rendered href carries it too, for a middle-click
+ *     or "open in new tab", neither of which fires a click event.
+ *  3. In a LOCAL PREVIEW ONLY, a `?tm-country=FR` override, so the page can be
+ *     checked as another country would see it without deploying anything.
+ *     It is gated on the price preview, so it cannot exist in a build that
+ *     could be published, and it never runs where the edge has already set the
+ *     attribute.
  *
- * ── AND IT STAMPS THE CHOICE ONTO THE LINK ────────────────────────────────
- *
- * The same attribute is what the app has to be told, so the second half of
- * this script copies it onto any plan link at the moment of the click
- * (`?currency=` and `?billing=`, named once in content/app-plans.ts). It is
- * done in a capture-phase listener installed before paint, rather than only in
- * the rendered href, because between paint and hydration the href is still the
- * default while the price on screen is already the visitor's own: a parent who
- * clicks in that gap would be sent to a checkout in a currency they were never
- * shown. The rendered href carries the choice as well, for a middle-click or
- * "open in new tab", which fires no click event.
+ * Everything is wrapped in try/catch and does nothing on failure: no attribute
+ * means CAD, which is her rule for an unknown country and also what a visitor
+ * with JavaScript off sees.
  */
 const STAMP_ON_CLICK = `document.addEventListener("click",function(e){try{
 var a=e.target&&e.target.closest?e.target.closest("a[data-tm-handoff]"):null;if(!a)return;
@@ -53,13 +54,29 @@ u.searchParams.set(${JSON.stringify(HANDOFF.interval)},d.getAttribute("data-tm-i
 a.href=u.toString();
 }catch(err){}},true);`;
 
+/* Preview only: see (3) above. The mapping comes from the same module the
+   edge function uses, so a local check cannot disagree with production. */
+const PREVIEW_COUNTRY_OVERRIDE = `
+if(!d.getAttribute("data-tm-currency")){
+var q=/[?&]tm-country=([A-Za-z]{2})(?:&|$)/.exec(location.search);
+if(q){var MAP=${JSON.stringify(
+  Object.fromEntries(
+    ["CA", "US", "FR", "DE", "GB", "JP", "MX", "AU", "IE", "NL", "BE", "ES", "IT", "PT", "AT", "FI", "GR", "SK", "SI", "LT", "LV", "EE", "LU", "CY", "MT", "HR", "BG"].map(
+      (c) => [c, currencyForCountry(c)],
+    ),
+  ),
+)};var v=MAP[q[1].toUpperCase()];if(v)d.setAttribute("data-tm-currency",v);}
+}`;
+
 const CURRENCY_BEFORE_PAINT = `(function(){try{
 var d=document.documentElement;
-var EZ=${JSON.stringify([...EUROZONE])};
-var t=[].concat(navigator.languages||[],[navigator.language||""]),r=null;
-for(var i=0;i<t.length;i++){var m=/^[A-Za-z]{2,3}[-_]([A-Za-z]{2})\\b/.exec(t[i]||"");if(m){r=m[1].toUpperCase();break}}
-if(r)d.setAttribute("data-tm-currency",r==="CA"?"CAD":EZ.indexOf(r)>=0?"EUR":"USD");
 if(!d.getAttribute("data-tm-interval"))d.setAttribute("data-tm-interval",${JSON.stringify(DEFAULT_INTERVAL)});
+/* Keep what the edge decided, where React cannot lose it. If hydration ever
+   fails, React re-renders the page from scratch and the attribute it never
+   rendered is dropped, which would silently turn a euro price into a Canadian
+   one. The card puts it back from here. */
+window.__TM_CURRENCY=d.getAttribute("data-tm-currency")||null;
+${PRICE_PREVIEW ? PREVIEW_COUNTRY_OVERRIDE : ""}
 ${CARRIES_CHOICE ? STAMP_ON_CLICK : ""}
 }catch(e){}})();`;
 

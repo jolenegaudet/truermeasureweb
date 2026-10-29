@@ -223,6 +223,76 @@ bookkeeping problem rather than a pricing one.
 
 ---
 
+## 2i. The country comes from Netlify, not from the browser (30 October)
+
+**Her correction:** *"Reading the region in the browser's language settings
+does not establish the visitor's current country. Use the existing hosting
+platform's country-detection capability as the primary source."*
+
+She is right, and the previous approach was a guess presented as a fact: a
+parent in France with a laptop set to en-CA was shown Canadian dollars, and a
+Canadian who prefers en-US was shown American ones.
+
+**What the hosting actually is.** `netlify.toml` publishes the static export
+from `out`, with serverless functions already in use for the two forms. Netlify
+resolves the country for every request and hands it to an **edge function** as
+`context.geo.country.code`. That is the platform capability, it costs nothing
+extra, no third-party geolocation service is involved, and the visitor is never
+asked for a location.
+
+**What was added.** `netlify/edge-functions/currency.ts`, registered for `/*`
+in `netlify.toml`, fetches the page the CDN would have served and writes
+`data-tm-currency` onto its `<html>` tag before the browser receives it. The
+rules and the rewrite live in `content/currency-map.ts`, which has no imports
+precisely so that both the Deno edge runtime and the Next build can read the
+same file. The browser-language guess (`countryFromBrowser`, `detectCurrency`)
+is deleted rather than kept as a fallback, because a fallback would quietly
+reintroduce the thing she ruled out.
+
+Her five rules, confirmed: Canada CAD, United States USD, euro area EUR,
+anywhere else USD, country unknown CAD. The last one is not a branch: an
+unknown country sets no attribute, and the stylesheet's default is CAD, so a
+request the edge never saw, a country Netlify cannot resolve, and a visitor
+with JavaScript off all land on the same answer by the same path.
+
+### Checked locally, and what still needs the deployed host
+
+**Simulated here, and passing.** `scratchpad/edge-sim.mjs` serves the built
+site and calls the *same compiled module* the edge function imports, with the
+country arriving in a header the test sets. 13 cases, country and browser
+language varied independently, including her three:
+
+| Country | Browser set to | Shows |
+|---|---|---|
+| Canada | en-US | **CA$47** |
+| United States | fr-CA | **US$47** |
+| France | en-CA | **€47** |
+| Germany | en-GB | €47 |
+| Britain, Japan, Mexico | any | US$47 |
+| Bulgaria | en-US | €47 |
+| not resolved | fr-FR | CA$47 |
+
+The French page follows the country too: opened from Canada it shows CA$47,
+from the United States US$47, from France €47. No currency control appears in
+any case, and exactly one price is visible. The registration link carries what
+the edge decided: 5 more cases, including a parent in France on an en-CA
+browser handing the app `currency=EUR&billing=year`.
+
+**Still unverified, and only verifiable on the deployed host:** that Netlify
+populates `context.geo.country.code` for this site, that the edge function is
+invoked for every page path, and that its response is not cached across
+countries (the function sets `Vary: x-nf-country`; Netlify's own country cache
+key is the thing to confirm). Nothing here was published to test it, as she
+asked. The first deploy is where that gets checked, and it should be checked
+from at least two countries before the page is treated as live.
+
+**One fragility found while testing, and fixed.** When a page failed to
+hydrate, React re-rendered it from scratch and dropped the attribute it had
+never rendered, turning a euro price into a Canadian one with nothing on screen
+to show it had happened. The inline script now saves what the edge decided in
+`window.__TM_CURRENCY` before React touches the page, and the card puts it back
+if it goes missing.
+
 ## 2g. Her brief of 29 October, evening: no currency control anywhere
 
 **"Parents must not see buttons, a dropdown or any other control for switching
@@ -386,3 +456,36 @@ currency survives the journey and that the totals are right. The launch
 checklist stays open: counsel, the Privacy Policy in `app/_pending`, the
 production app that has never been created, `launch.env`, the free-plan cap
 decision, the CA$47 = US$47 parity question and what the euro keeps after VAT.
+
+---
+
+## 4. What must still be true before this page is published
+
+Her instruction of 30 October: keep the remaining launch requirements explicit.
+This list is the website's, and it is deliberately short: finished items are
+not repeated here.
+
+1. **One subscription covers one child.** The page says it in both languages.
+   The app still gives School & Life to the whole account. **This stays open
+   until the app session confirms that billing and access both match the
+   one-child rule.** Recorded in §2h; not changed, and no scheme for extra
+   children has been designed.
+2. **The registration buttons must point at the verified customer-app host.**
+   Today they open the demo, with "Opens the demo in a new tab" under each one
+   and, above them, "The app is not open to families yet." **Demo links are
+   temporary and are not working registration.** They may not be presented as
+   registration, and the page may not be published as a sales page while they
+   are what the buttons do. The route is recorded (`path: "/"`, parameters
+   `currency` and `billing`); only the host is missing, and setting
+   `REGISTRATION.url` switches every button over.
+3. **The country detection needs one check on the deployed host**, from two
+   countries, because `context.geo` cannot be exercised locally (§2i).
+4. **Preserved, and to stay preserved:** Parents Élites as the French community
+   name, all three offers on the page (Clarity, Community, Proximity), and the
+   existing waitlist and application forms untouched.
+5. **Her approval of the page itself.** It is a working version under review,
+   not an approved one.
+
+Already done and not repeated: the six sandbox checkouts, the US$3 School
+allowance, the sandbox tax settings and registrations, and the replaced Stripe
+test key.

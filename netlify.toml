@@ -31,6 +31,14 @@
 [functions]
   node_bundler = "esbuild"
 
+# The visitor's country, resolved by Netlify and turned into one attribute on
+# the page (netlify/edge-functions/currency.ts). The function also declares
+# this path itself; both are here so the routing is visible in the config a
+# person reads first. Inline config wins if they ever disagree.
+[[edge_functions]]
+  function = "currency"
+  path     = "/*"
+
 [[redirects]]
   from   = "/build"
   to     = "/inner-circle"
