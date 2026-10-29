@@ -89,7 +89,11 @@ param(
     [ValidateRange(0, 100000)]
     [double]$YearlyAmount = 0,
     [string]$ProductName = 'Truer Measure - School & Life',
-    [switch]$WriteEnv
+    [switch]$WriteEnv,
+    # Skips the typed YES, for when the person asking has already said to go
+    # ahead. It does NOT skip the typed LIVE that -Live asks for: creating
+    # prices customers can be charged at stays a deliberate act at the keyboard.
+    [switch]$Yes
 )
 
 $ErrorActionPreference = 'Stop'
@@ -280,7 +284,9 @@ if ($DryRun) {
 }
 
 Write-Host ''
-if ((Read-Host "Create these in $mode mode? Type YES to proceed") -cne 'YES') {
+if ($Yes) {
+    Write-Host "Creating these in $mode mode (-Yes given)." -ForegroundColor Cyan
+} elseif ((Read-Host "Create these in $mode mode? Type YES to proceed") -cne 'YES') {
     Write-Host 'Stopped. Nothing was created.' -ForegroundColor Yellow
     return
 }
@@ -351,15 +357,26 @@ if (-not $found.ContainsKey($LOOKUP_YEARLY)) {
 Write-Host ''
 Write-Host 'Reading the prices back from Stripe' -ForegroundColor Cyan
 foreach ($pair in $created.GetEnumerator()) {
-    $p = Invoke-Stripe Get "prices/$($pair.Value)"
+    # expand[]=currency_options, or Stripe leaves it out of the response and the
+    # other two currencies look missing when they are there.
+    $p = Invoke-Stripe Get "prices/$($pair.Value)?expand[]=currency_options"
     $line = "  $($p.id)  $($p.recurring.interval)ly  base $($p.currency.ToUpper()) " +
             "$($p.unit_amount / 100) $($p.tax_behavior)"
+    $missing = @()
     foreach ($cur in @('usd', 'eur')) {
-        $opt = $p.currency_options.$cur
-        $line += if ($opt) { "  |  $($cur.ToUpper()) $($opt.unit_amount / 100) $($opt.tax_behavior)" }
-                 else      { "  |  $($cur.ToUpper()) MISSING" }
+        $opt = if ($p.currency_options) { $p.currency_options.$cur } else { $null }
+        if ($opt) {
+            $line += "  |  $($cur.ToUpper()) $(Fmt ($opt.unit_amount / 100)) $($opt.tax_behavior)"
+        } else {
+            $line += "  |  $($cur.ToUpper()) MISSING"
+            $missing += $cur.ToUpper()
+        }
     }
-    Write-Host $line
+    Write-Host $line -ForegroundColor $(if ($missing.Count) { 'Red' } else { 'Gray' })
+    if ($missing.Count) {
+        Write-Host ("      $($missing -join ' and ') did not take. The price cannot be edited: " +
+            'archive it in the Dashboard and run this again.') -ForegroundColor Red
+    }
 }
 
 $subsAfter = @((Invoke-Stripe Get 'subscriptions?status=active&limit=100').data).Count
@@ -373,7 +390,7 @@ if ($subsAfter -eq $subsBefore) {
 # --- where the ids go -------------------------------------------------------
 
 Write-Host ''
-Write-Host 'The app reads these two from launch.env in the secrets folder:' -ForegroundColor Cyan
+Write-Host "The app reads these two from $(if ($mode -eq 'TEST') { 'stripe-test.env' } else { 'launch.env' }) in the secrets folder:" -ForegroundColor Cyan
 Write-Host ''
 foreach ($pair in $created.GetEnumerator()) { Write-Host "  $($pair.Key)=$($pair.Value)" }
 
@@ -385,13 +402,24 @@ if ($WriteEnv) {
         Join-Path (Split-Path $repoRoot -Parent) '.secrets'
     }
     if (-not (Test-Path $secretsHome)) { throw "Secrets folder not found: $secretsHome" }
-    $envFile = Join-Path $secretsHome 'launch.env'
+    # Test ids never go into launch.env. That is the file the production deploy
+    # script reads, and a test price id sitting in it would be picked up by a
+    # live deployment later, where it cannot work. Test mode writes to the test
+    # file instead.
+    $envName = if ($mode -eq 'TEST') { 'stripe-test.env' } else { 'launch.env' }
+    $envFile = Join-Path $secretsHome $envName
     if (-not (Test-Path $envFile)) { New-Item -ItemType File -Path $envFile | Out-Null }
-    $lines = @(Get-Content $envFile)
+    # Every assignment stays wrapped in @(): a one-line file filtered by
+    # Where-Object comes back as a bare string, and += on a string concatenates
+    # instead of appending, which once joined a key and two price ids onto one
+    # line and broke the file.
+    $lines = @(Get-Content $envFile -ErrorAction SilentlyContinue)
     foreach ($pair in $created.GetEnumerator()) {
-        $lines = $lines | Where-Object { $_ -notmatch "^\s*$($pair.Key)\s*=" }
-        $lines += "$($pair.Key)=$($pair.Value)"
+        $pattern = '^\s*' + [regex]::Escape($pair.Key) + '\s*='
+        $lines = @($lines | Where-Object { $_ -notmatch $pattern })
+        $lines = @($lines) + ($pair.Key + '=' + $pair.Value)
     }
+    $lines = @($lines | Where-Object { $null -ne $_ -and $_ -ne '' })
     Set-Content -Path $envFile -Value $lines -Encoding UTF8
     Write-Host ''
     Write-Host "Written to $envFile (outside every repository)." -ForegroundColor Green
