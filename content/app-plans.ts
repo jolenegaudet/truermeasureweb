@@ -89,15 +89,76 @@ export type AppPrice = {
   symbol: string;
   /** null until she approves an amount for this currency. */
   amount: number | null;
+  /**
+   * Whether the amount already carries tax. The same two words her Founding
+   * Families prices use (content/founding-families.ts), and for the reason
+   * stated there: "A page must say which, because 'plus applicable taxes'
+   * under a euro price would be false." In Stripe her euro price is already
+   * tax-inclusive and the other two are not.
+   */
+  tax: "exclusive" | "inclusive";
 };
 
+/**
+ * Her figures, 29 October 2026, given in chat: "CAD $47 plus taxes, USD $47
+ * plus taxes and Euros 47 Euros VAT included."
+ *
+ * Two things follow from those numbers that are hers to confirm, not mine to
+ * adjust, and both are in docs/pricing-brief-2026-10-28.md:
+ *
+ *  - CA$47 and US$47 are the same figure, not the same value. At the ratio her
+ *    own earlier pricing used, CA$47 is about US$34, so a Canadian parent pays
+ *    roughly a quarter less than an American one for the same thing.
+ *  - €47 including VAT nets about €39 at a 20% rate, and EU rates run from
+ *    about 17% to 27%, so the amount kept differs by country.
+ */
 export const APP_PRICES: AppPrice[] = [
-  // Her figure, 28 October 2026.
-  { code: "CAD", symbol: "CA$", amount: 29 },
-  // Proposed in the pricing brief, awaiting her review.
-  { code: "USD", symbol: "US$", amount: null },
-  { code: "EUR", symbol: "€", amount: null },
+  { code: "CAD", symbol: "CA$", amount: 47, tax: "exclusive" },
+  { code: "USD", symbol: "US$", amount: 47, tax: "exclusive" },
+  { code: "EUR", symbol: "€", amount: 47, tax: "inclusive" },
 ];
+
+/**
+ * Monthly or yearly, with 10% off the yearly (her brief, 29 October 2026).
+ *
+ * The app already does this: `server/billing.js` keeps
+ * `{ month: TM_STRIPE_PRICE_MONTHLY, year: TM_STRIPE_PRICE_YEARLY }`, offers
+ * whichever exist, and takes `{ interval }` at checkout. Its own note sets the
+ * rule this page has to honour: "a checkout is never opened for a price the
+ * parent has not been shown." So the yearly figure below must be the yearly
+ * figure in Stripe, to the cent.
+ *
+ * 10% off is a second Stripe price, not a coupon. `TM_STRIPE_INTRO_COUPON`
+ * exists but applies once to a first subscription, which is a different thing
+ * from a standing yearly rate.
+ *
+ * Note for the app: the deferred feature named 'annual' in `js/account.js` is
+ * the yearly *report*, not yearly *billing*. Checked on 29 October 2026, so
+ * offering a yearly subscription claims nothing that is hidden from accounts.
+ */
+export type BillingInterval = "month" | "year";
+export const YEARLY_DISCOUNT = 0.1;
+export const DEFAULT_INTERVAL: BillingInterval = "month";
+
+/** The yearly amount: twelve months, less 10%. 47 a month gives 507.60 a year. */
+export function yearlyAmount(monthly: number): number {
+  return Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT) * 100) / 100;
+}
+
+/** What a yearly subscription works out to each month. 507.60 gives 42.30. */
+export function monthlyEquivalent(monthly: number): number {
+  return Math.round((yearlyAmount(monthly) / 12) * 100) / 100;
+}
+
+/** What a year of monthly billing costs, less the yearly price. */
+export function yearlySaving(monthly: number): number {
+  return Math.round((monthly * 12 - yearlyAmount(monthly)) * 100) / 100;
+}
+
+/** Two decimals only when there are cents: 47, and 507.60. */
+export function money(symbol: string, amount: number): string {
+  return symbol + (Number.isInteger(amount) ? String(amount) : amount.toFixed(2));
+}
 
 /** CAD leads, as her brief asks, and is the default. */
 export const DEFAULT_CURRENCY: CurrencyCode = "CAD";
@@ -252,6 +313,20 @@ type AppPlans = {
   /** Shown for a currency whose amount she has not approved. */
   priceToBeConfirmed: string;
   perMonth: string;
+  perYear: string;
+  /** The billing-period selector's visible label. */
+  intervalLabel: string;
+  monthlyWord: string;
+  yearlyWord: string;
+  /** Under a yearly amount: what it comes to monthly, and what it saves. */
+  yearlyNote: (monthly: string, saved: string) => string;
+  /**
+   * Beside the amount, per currency. Her own rule, from
+   * content/founding-families.ts: "plus applicable taxes" under a euro price
+   * would be false, so each currency says which it is.
+   */
+  taxExclusive: string;
+  taxInclusive: string;
   /** The free plan's amount, in any currency. */
   freePrice: string;
   /** What one subscription covers. */
@@ -355,6 +430,14 @@ export const appPlans: Record<Locale, AppPlans> = {
     currencyLabel: "Show prices in",
     priceToBeConfirmed: "Price to be confirmed",
     perMonth: "/ month",
+    perYear: "/ year",
+    intervalLabel: "Pay",
+    monthlyWord: "Monthly",
+    yearlyWord: "Yearly",
+    yearlyNote: (monthly, saved) =>
+      `${monthly} a month, billed once a year. ${saved} less than paying monthly.`,
+    taxExclusive: "Plus applicable taxes.",
+    taxInclusive: "VAT included.",
     freePrice: "Free",
     covers: "One subscription covers the children in your account.",
 
@@ -397,7 +480,7 @@ export const appPlans: Record<Locale, AppPlans> = {
       tagline: "Get the Truer Measure.",
       cta: "Choose School & Life",
       firstToKnow: "Or be told when it opens:",
-      billing: "A monthly subscription.",
+      billing: "A monthly or yearly subscription.",
       cancel:
         "Cancel any time: School & Life stays until the end of the paid period, and everything you added stays with you.",
     },
@@ -558,6 +641,14 @@ export const appPlans: Record<Locale, AppPlans> = {
     currencyLabel: "Afficher les prix en",
     priceToBeConfirmed: "Prix à confirmer",
     perMonth: "/ mois",
+    perYear: "/ an",
+    intervalLabel: "Payer",
+    monthlyWord: "Par mois",
+    yearlyWord: "Par année",
+    yearlyNote: (monthly, saved) =>
+      `${monthly} par mois, facturé une fois par année. ${saved} de moins qu’au mois.`,
+    taxExclusive: "Plus les taxes applicables.",
+    taxInclusive: "TVA incluse.",
     freePrice: "Gratuit",
     covers: "Un seul abonnement couvre les enfants de votre compte.",
 
@@ -589,7 +680,7 @@ export const appPlans: Record<Locale, AppPlans> = {
       tagline: "Obtenez une juste mesure.",
       cta: "Choisir École et vie",
       firstToKnow: "Ou recevez un avis dès l’ouverture :",
-      billing: "Un abonnement mensuel.",
+      billing: "Un abonnement mensuel ou annuel.",
       cancel:
         "Annulez quand vous voulez : École et vie reste jusqu’à la fin de la période payée, et tout ce que vous avez ajouté reste avec vous.",
     },

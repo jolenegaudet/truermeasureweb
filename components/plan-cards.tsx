@@ -1,20 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FirstToKnowButton } from "@/components/first-to-know";
 import {
   CurrencyToggle,
+  SegmentedToggle,
   type CurrencyCode,
 } from "@/components/currency-toggle";
 import {
   APP_CURRENCY_ORDER,
   APP_PRICES,
   DEFAULT_CURRENCY,
+  DEFAULT_INTERVAL,
   GOES_TO_DEMO,
   PRICE_PREVIEW,
   appPlansFor,
+  money,
+  monthlyEquivalent,
   planHref,
+  yearlyAmount,
+  yearlySaving,
+  type BillingInterval,
 } from "@/content/app-plans";
+import { detectCurrency } from "@/content/currency-for-country";
 import type { Locale } from "@/content/i18n";
 
 /**
@@ -52,9 +60,32 @@ import type { Locale } from "@/content/i18n";
 export function PlanCards({ locale = "en" }: { locale?: Locale }) {
   const t = appPlansFor(locale);
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
+  const [interval, setInterval] = useState<BillingInterval>(DEFAULT_INTERVAL);
+  /* A parent who has touched the selector is never overridden by the guess. */
+  const [chosen, setChosen] = useState(false);
+
+  /* The country default, after the first paint rather than during it: the page
+     is a static export, so the HTML ships with CAD and the browser corrects it
+     on arrival. See content/currency-for-country.ts for why it is a guess and
+     why the selector therefore stays. */
+  useEffect(() => {
+    if (chosen) return;
+    const detected = detectCurrency();
+    if (detected) setCurrency(detected);
+  }, [chosen]);
+
+  const pick = (code: CurrencyCode) => {
+    setChosen(true);
+    setCurrency(code);
+  };
+
   const price = APP_PRICES.find((p) => p.code === currency) ?? APP_PRICES[0];
+  const yearly = interval === "year";
   const paidAmount =
-    price.amount === null ? null : `${price.symbol}${price.amount}`;
+    price.amount === null
+      ? null
+      : money(price.symbol, yearly ? yearlyAmount(price.amount) : price.amount);
+  const taxLine = price.tax === "inclusive" ? t.taxInclusive : t.taxExclusive;
 
   return (
     <>
@@ -93,14 +124,25 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
           Preview only: with NEXT_PUBLIC_TM_PRICE_PREVIEW unset this and every
           amount are absent from the HTML, not hidden with CSS. */}
       {PRICE_PREVIEW && (
-        <div className="mb-8 flex justify-center">
+        <div className="mb-8 flex flex-col items-center justify-center gap-5 sm:flex-row sm:items-start sm:gap-10">
           <CurrencyToggle
             value={currency}
-            onChange={setCurrency}
+            onChange={pick}
             tone="light"
             locale={locale}
             codes={APP_CURRENCY_ORDER}
             label={t.currencyLabel}
+          />
+          <SegmentedToggle<BillingInterval>
+            value={interval}
+            onChange={setInterval}
+            options={[
+              { value: "month", text: t.monthlyWord },
+              { value: "year", text: t.yearlyWord },
+            ]}
+            tone="light"
+            groupLabel={t.intervalLabel}
+            label={t.intervalLabel}
           />
         </div>
       )}
@@ -166,8 +208,22 @@ export function PlanCards({ locale = "en" }: { locale?: Locale }) {
                 >
                   {paidAmount}
                   <span className="ml-2 font-sans text-[13.5px] text-muted">
-                    {t.perMonth}
+                    {yearly ? t.perYear : t.perMonth}
                   </span>
+                  {/* Whether tax is on top or already inside, per currency, and
+                      for a yearly price what it comes to each month. Both sit
+                      with the amount because both are part of it. */}
+                  <div
+                    className="mt-[10px] font-sans text-muted"
+                    style={{ fontSize: 11.5, lineHeight: 1.5 }}
+                  >
+                    {yearly && price.amount !== null
+                      ? t.yearlyNote(
+                          money(price.symbol, monthlyEquivalent(price.amount)),
+                          money(price.symbol, yearlySaving(price.amount)),
+                        ) + " " + taxLine
+                      : taxLine}
+                  </div>
                 </div>
               ) : (
                 <div className="inline-block rounded-[2px] border border-dashed border-rose-dark px-3 py-[7px] text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-dark">

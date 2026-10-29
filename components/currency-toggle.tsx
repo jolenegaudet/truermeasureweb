@@ -28,20 +28,30 @@ const aria: Record<Locale, (c: string) => string> = {
   fr: (c) => `Afficher les prix en ${c}`,
 };
 
-export function CurrencyToggle({
+/**
+ * The control itself, with nothing about currency in it.
+ *
+ * Added 29 October 2026, when the cards gained a second selector of the same
+ * shape for monthly or yearly billing. Rather than write a second set of
+ * buttons that would drift from these, the buttons moved down here and
+ * CurrencyToggle became one caller of two. Same reasoning, and the same
+ * styling, as when this control was lifted out of offer-price.tsx.
+ */
+export function SegmentedToggle<T extends string>({
   value,
   onChange,
+  options,
   tone = "dark",
-  locale = "en",
-  codes = CURRENCY_CODES,
+  groupLabel,
   label,
 }: {
-  value: CurrencyCode;
-  onChange: (code: CurrencyCode) => void;
+  value: T;
+  onChange: (value: T) => void;
+  /** Order matters: the caller decides which option leads. */
+  options: readonly { value: T; text: string; aria?: string }[];
   tone?: "dark" | "light";
-  locale?: Locale;
-  /** Order matters: the caller decides which currency leads. */
-  codes?: readonly CurrencyCode[];
+  /** What a screen reader hears for the group as a whole. */
+  groupLabel: string;
   /** Optional visible label, for a selector that is not directly under a price. */
   label?: string;
 }) {
@@ -74,22 +84,51 @@ export function CurrencyToggle({
           three loose buttons, and aria-pressed says which one is on. */}
       <div
         role="group"
-        aria-label={label || aria[locale]("CAD, USD, EUR")}
+        aria-label={label || groupLabel}
         className="flex items-center justify-center gap-2"
       >
-        {codes.map((c) => (
+        {options.map((o) => (
           <button
-            key={c}
+            key={o.value}
             type="button"
-            onClick={() => onChange(c)}
-            aria-pressed={c === value}
-            aria-label={aria[locale](c)}
-            className={button(c === value)}
+            onClick={() => onChange(o.value)}
+            aria-pressed={o.value === value}
+            aria-label={o.aria || o.text}
+            className={button(o.value === value)}
           >
-            {c}
+            {o.text}
           </button>
         ))}
       </div>
     </div>
+  );
+}
+
+/** The three currency buttons, as every caller already knows them. */
+export function CurrencyToggle({
+  value,
+  onChange,
+  tone = "dark",
+  locale = "en",
+  codes = CURRENCY_CODES,
+  label,
+}: {
+  value: CurrencyCode;
+  onChange: (code: CurrencyCode) => void;
+  tone?: "dark" | "light";
+  locale?: Locale;
+  /** Order matters: the caller decides which currency leads. */
+  codes?: readonly CurrencyCode[];
+  label?: string;
+}) {
+  return (
+    <SegmentedToggle<CurrencyCode>
+      value={value}
+      onChange={onChange}
+      options={codes.map((c) => ({ value: c, text: c, aria: aria[locale](c) }))}
+      tone={tone}
+      groupLabel={aria[locale]("CAD, USD, EUR")}
+      label={label}
+    />
   );
 }
