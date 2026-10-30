@@ -146,28 +146,30 @@ thing.
 
 **A correction to what this section said yesterday.** I wrote that one
 subscription per child made revenue and the ceiling scale together, "one of
-each per child". That is wrong, and the code says so plainly. Read on
-30 October, `server/engine.js`:
+each per child". That is wrong. Read on 30 October, `server/engine.js`: the
+month's spend is summed **per account** (`sum(cost_usd) filter (where
+account_id = $1)`), and the ceiling it is compared with is one per-account
+figure. Subscriptions are per child now; the pot they draw from is not.
 
-```
-select coalesce(sum(cost_usd) filter (where account_id = $1), 0) as mine ...
-if (r.mine >= (plan === 'full' ? caps.fullUsd : caps.schoolUsd)) ...
-```
-
-The monthly spend is summed **per account**, and the ceiling it is compared
-against is a single per-account figure. Subscriptions are now per child; the
-ceiling is not. So:
+Which ceiling applies is decided by the account, not the child: `budget(
+ctx.accountId, ctx.accountPlan)`, where `accountPlan` is 'full' if **any**
+child has School & Life. The app's own comment says it: *"The child's own
+version decides what is read for them; the account's (any child on School &
+Life) decides its monthly AI ceiling."* So:
 
 - **Two paid children pay twice and share one US$10 ceiling.** They reach it at
-  about half the activity of a one-child family, for twice the money. The
-  problem this section used to describe is not gone; her decision moved it from
-  "they pay once for two children" to "they pay twice and are still throttled
-  as one".
-- **A free child beside a paid one is throttled almost at once.** The free
-  child's readings are checked against US$3 *of the family's whole spend*,
-  which includes everything the paid child used. A paid child alone can pass
-  US$3 in a normal month (§4: a regular family is US$3.43), so the free child's
-  readings stop while the parent is paying for the other one.
+  about half the activity of a one-child family, for twice the money. Her
+  decision moved this problem rather than removing it: it used to be "they pay
+  once for two children", and it is now "they pay twice and are throttled as
+  one".
+- **A free child beside a paid one is not cut off early.** I said yesterday
+  that such a child would be measured against US$3 and stopped almost at once.
+  That is wrong: the whole family is measured against US$10 the moment any
+  child is paid for. The free sibling shares the paid child's ceiling, which
+  dilutes it rather than closing it.
+- **An all-free family shares US$3 between its children.** That one does bite
+  at signup: a ten-card first day is US$2.38 for **one** child (§5), so two
+  children arriving with report cards in the same month do not fit.
 
 **This is hers to decide and it is now the open question in this brief.** The
 cap is configuration (`TM_AI_CAP_FULL_USD`, `TM_AI_CAP_SCHOOL_USD`), but making

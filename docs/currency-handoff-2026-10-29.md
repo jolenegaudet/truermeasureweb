@@ -483,9 +483,10 @@ not repeated here.
 1. ~~**One subscription covers one child.**~~ Closed on 30 October: the app
    session confirmed billing and access both match, with the evidence in §2h.
    What replaced it on the list: **the monthly AI ceiling is per account while
-   subscriptions are per child**, so two paid children share one ceiling and a
-   free child beside a paid one is throttled almost at once. Hers to decide,
-   and set out in the pricing brief §2.
+   subscriptions are per child**, so two paid children pay twice and share one
+   US$10 ceiling, and two free children share one US$3 ceiling that a single
+   ten-card signup nearly fills. Hers to decide, and set out in the pricing
+   brief §2.
 2. **The registration buttons must point at the verified customer-app host.**
    Today they open the demo, with "Opens the demo in a new tab" under each one
    and, above them, "The app is not open to families yet." **Demo links are
