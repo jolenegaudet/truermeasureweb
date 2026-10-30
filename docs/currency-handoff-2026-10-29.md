@@ -335,11 +335,26 @@ invented scheme for how more children would be bought or billed. The app session
 has logged it in the launch checklist and at the top of its legal CHANGES.md;
 this is the website's copy of the same record.
 
-**What it means in practice until the app changes:** a parent who reads "covers
-one child" and adds two children to one account gets both covered. The page
-promises less than the app gives, which is the safer direction of the two, but
-it is still a difference between what is sold and what is delivered, and it
-needs closing before launch.
+**CLOSED on 30 October 2026.** The app session built it and verified it
+(`80dc7e5`, `bae5c33`, unpublished, live payments off): School & Life is bought
+for one named child at a time at the same price, School stays free for each
+child, adding a child never charges, a second subscription for the same child
+is refused, and cancelling one child's subscription leaves the others running
+to the end of their paid period with records kept. 739 checks, a browser
+journey covering five cases, and two children bought on Stripe's real page in
+the sandbox, each subscription carrying `metadata.child_id`, one cancelled
+alone. Her four test subscriptions from 28 October were left untouched.
+
+The website's wording needs no change: "One subscription covers one child." and
+"Un abonnement couvre un enfant." are now true of the product as well as the
+page. The link format is unchanged too, because the child is chosen inside the
+app, so `?currency=` and `?billing=` still carry everything the website knows.
+
+**Two things the closure does not cover**, both recorded rather than assumed:
+subscriptions created before 30 October carry no child and still cover a whole
+account, which is test data only; and the monthly AI ceiling is still per
+account while subscriptions are now per child, which is a decision for her and
+is set out in the pricing brief §2.
 
 ## 2f. The sandbox, configured and verified (done, 29 October)
 
@@ -465,11 +480,12 @@ Her instruction of 30 October: keep the remaining launch requirements explicit.
 This list is the website's, and it is deliberately short: finished items are
 not repeated here.
 
-1. **One subscription covers one child.** The page says it in both languages.
-   The app still gives School & Life to the whole account. **This stays open
-   until the app session confirms that billing and access both match the
-   one-child rule.** Recorded in §2h; not changed, and no scheme for extra
-   children has been designed.
+1. ~~**One subscription covers one child.**~~ Closed on 30 October: the app
+   session confirmed billing and access both match, with the evidence in §2h.
+   What replaced it on the list: **the monthly AI ceiling is per account while
+   subscriptions are per child**, so two paid children share one ceiling and a
+   free child beside a paid one is throttled almost at once. Hers to decide,
+   and set out in the pricing brief §2.
 2. **The registration buttons must point at the verified customer-app host.**
    Today they open the demo, with "Opens the demo in a new tab" under each one
    and, above them, "The app is not open to families yet." **Demo links are

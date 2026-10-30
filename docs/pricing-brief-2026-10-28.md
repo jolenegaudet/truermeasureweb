@@ -137,19 +137,42 @@ checklist; the website's copy of the record is in
 children would be bought has been designed, because her brief says not to
 invent it.
 
-**What her decision does to the cost picture, which is the part this brief
-exists for.** The old worry was that cost scales per child while the ceiling
-does not: readings are written per child, so a three-child family cost roughly
-three times the AI against one US$10 account ceiling, and the best customer got
-throttled first. One subscription per child removes that: the revenue and the
-ceiling now scale together, one of each per child. The arithmetic in §4 is
-already per child, so it stands unchanged.
+**The app matches it as of 30 October.** School & Life is bought for one named
+child at a time, a second subscription for the same child is refused, adding a
+child never charges, and cancelling one child's subscription leaves the others
+running (`80dc7e5`, `bae5c33`, verified in Stripe's sandbox with two children
+bought on the real Checkout page). The page and the product now say the same
+thing.
 
-**What is left open** is only the gap between the two, until the app changes: a
-parent who reads "covers one child" and adds a second child to one account gets
-both covered today. The page promises less than the app delivers, which is the
-safer direction, but it is still a difference between what is sold and what is
-given.
+**A correction to what this section said yesterday.** I wrote that one
+subscription per child made revenue and the ceiling scale together, "one of
+each per child". That is wrong, and the code says so plainly. Read on
+30 October, `server/engine.js`:
+
+```
+select coalesce(sum(cost_usd) filter (where account_id = $1), 0) as mine ...
+if (r.mine >= (plan === 'full' ? caps.fullUsd : caps.schoolUsd)) ...
+```
+
+The monthly spend is summed **per account**, and the ceiling it is compared
+against is a single per-account figure. Subscriptions are now per child; the
+ceiling is not. So:
+
+- **Two paid children pay twice and share one US$10 ceiling.** They reach it at
+  about half the activity of a one-child family, for twice the money. The
+  problem this section used to describe is not gone; her decision moved it from
+  "they pay once for two children" to "they pay twice and are still throttled
+  as one".
+- **A free child beside a paid one is throttled almost at once.** The free
+  child's readings are checked against US$3 *of the family's whole spend*,
+  which includes everything the paid child used. A paid child alone can pass
+  US$3 in a normal month (§4: a regular family is US$3.43), so the free child's
+  readings stop while the parent is paying for the other one.
+
+**This is hers to decide and it is now the open question in this brief.** The
+cap is configuration (`TM_AI_CAP_FULL_USD`, `TM_AI_CAP_SCHOOL_USD`), but making
+it per child rather than per account is an app change, not a setting. The app
+session has it recorded as open.
 
 ---
 
