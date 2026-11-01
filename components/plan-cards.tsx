@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FirstToKnowButton } from "@/components/first-to-know";
 import {
   CURRENCY_CODES,
   SegmentedToggle,
@@ -114,31 +113,16 @@ export function PlanCards({
   return (
     <>
       {/* ---------- Heading ---------- */}
-      <div className="mx-auto mb-7 max-w-[540px] text-center">
+      <div className="mx-auto mb-8 max-w-[560px] text-center">
         <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
           {t.sectionEyebrow}
         </div>
         <h2
-          className="font-heading mb-[14px] font-medium text-bark"
+          className="font-heading font-medium text-bark"
           style={{ fontSize: "clamp(27px,4.6vw,46px)", lineHeight: 1.08 }}
         >
           {t.sectionHeading}
         </h2>
-        <p className="text-smoke" style={{ fontSize: 16.5, lineHeight: 1.65 }}>
-          {t.sectionIntro}
-        </p>
-      </div>
-
-      {/* Availability, and the one action a parent can complete today. */}
-      <div className="mx-auto mb-7 flex max-w-[640px] flex-col items-center gap-3 rounded-[2px] border border-border bg-linen px-5 py-4 text-center">
-        <p className="text-dusk" style={{ fontSize: 14, lineHeight: 1.55 }}>
-          {t.availability}
-        </p>
-        <FirstToKnowButton
-          locale={locale}
-          place="home-card"
-          className="inline-block cursor-pointer rounded-[2px] border border-rose bg-transparent px-5 py-[9px] text-[11px] font-bold uppercase tracking-[0.13em] text-bark"
-        />
       </div>
 
       {/* ---------- The two cards ---------- */}

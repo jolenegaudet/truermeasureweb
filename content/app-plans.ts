@@ -138,9 +138,22 @@ export const APP_CURRENCY_ORDER: CurrencyCode[] = ["CAD", "USD", "EUR"];
  * The published demo. Verified HTTP 200 on 28 October 2026.
  *
  * Every button in this section points here, because the customer app is not
- * published: her brief, "use working demo destinations for the current
- * buttons. Make availability clear." The availability line is not optional
- * decoration, it is what makes the destination honest.
+ * published: her brief of 28 October, "use working demo destinations for the
+ * current buttons. Make availability clear."
+ *
+ * How that is made clear changed on 1 November 2026. The boxed paragraph that
+ * said the app was not open to families, and the "Be the first to know" button
+ * inside it, came off at her instruction, which also said: "conserve une
+ * indication discrète près des boutons précisant qu'ils ouvrent encore le
+ * démo." So what remains is `demoNote` under each button, plus `demoOnly`
+ * under the cards. Those two lines are now the only thing standing between a
+ * parent and the belief that these buttons register them, which is why they
+ * stay until the buttons point at the real app. Her brief for that day is
+ * explicit that they may then go: "L'indication concernant le démo pourra
+ * alors disparaître."
+ *
+ * The Kit signup itself is untouched and still runs on /hidden-report-card in
+ * both languages; only its copy inside this section was removed.
  */
 export const DEMO_URL = "https://demo.truermeasure.com/";
 
@@ -340,8 +353,6 @@ export type PlanGroup = {
 type AppPlans = {
   sectionEyebrow: string;
   sectionHeading: string;
-  sectionIntro: string;
-  availability: string;
   /** Under each button, because a button label is the wrong place for it. */
   demoNote: string;
   /** Named beside the demo links: in the demo, not in the app at launch. */
@@ -370,7 +381,6 @@ type AppPlans = {
     includes: string[];
     tagline: string;
     cta: string;
-    firstToKnow: string;
     billing: string;
     cancel: string;
   };
@@ -432,11 +442,7 @@ export const appPlans: Record<Locale, AppPlans> = {
     /* Her triad of 30 September 2026 splits where the page splits: this is its
        first clause, and the other two head the row underneath. */
     sectionEyebrow: "Start with Clarity",
-    sectionHeading: "One app. Two plans.",
-    sectionIntro:
-      "Your child’s record stays in your account. Start with School. Add School & Life when you want. Everything you add stays.",
-    availability:
-      "The app is not open to families yet. Both buttons open the demo. It runs on a made-up child, so you can see the real screens first.",
+    sectionHeading: "See what grades don’t show.",
 
     demoNote: "Opens the demo in a new tab.",
     /* Her brief of 28 October: "Beside the demo links, clearly identify those
@@ -479,7 +485,6 @@ export const appPlans: Record<Locale, AppPlans> = {
       ],
       tagline: "Get the Truer Measure.",
       cta: "Choose School & Life",
-      firstToKnow: "Or be told when it opens:",
       billing: "Pay monthly or yearly.",
       /* Her cancel sentence, 20 October 2026, in her words. */
       cancel:
@@ -553,11 +558,7 @@ export const appPlans: Record<Locale, AppPlans> = {
 
   fr: {
     sectionEyebrow: "Commencez par la clarté",
-    sectionHeading: "Une application. Deux forfaits.",
-    sectionIntro:
-      "Le dossier de votre enfant reste dans votre compte. Commencez par École. Ajoutez École et vie quand vous voulez. Tout ce que vous ajoutez reste.",
-    availability:
-      "L’application n’est pas encore ouverte aux familles. Les deux boutons ouvrent la démo. Elle fonctionne avec un enfant inventé, pour que vous voyiez les vrais écrans avant de décider.",
+    sectionHeading: "Voyez ce que les notes ne montrent pas.",
 
     demoNote: "Ouvre la démo dans un nouvel onglet.",
     demoOnly:
@@ -591,7 +592,6 @@ export const appPlans: Record<Locale, AppPlans> = {
       ],
       tagline: "Obtenez une juste mesure.",
       cta: "Choisir École et vie",
-      firstToKnow: "Ou recevez un avis dès l’ouverture :",
       billing: "Payez au mois ou à l’année.",
       cancel:
         "Annulez quand vous voulez. École et vie reste jusqu’à la fin de la période payée, et tout ce que vous avez ajouté reste avec vous.",
