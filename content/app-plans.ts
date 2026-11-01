@@ -472,16 +472,19 @@ export const appPlans: Record<Locale, AppPlans> = {
       eyebrow: "School & Life",
       heading: "See what everyday moments show.",
       plus: "Everything in School, plus:",
-      /* Four bullets, each carrying more than one thing, because her
-          correction of 29 October asked for the profile, the timeline and
-          Reflect together to stay represented without the section growing
-          back: "Replace or combine existing bullets rather than adding
-          another long section." */
+      /* Her four lines, dictated on 1 November and used word for word. They
+          say what a parent gets rather than what the app holds, which is why
+          they are shorter than what they replaced.
+          The profile, the timeline and Reflect together are still represented,
+          as her correction of 29 October requires, but now in the expanded
+          comparison below rather than on the card: "Keep the fuller
+          explanations and concrete examples in the short expanded
+          comparison." See `compare.paid`. */
       includes: [
-        "Keep a profile and a timeline that grow with your child.",
-        "Save moments, photos and schoolwork from home, sport and travel.",
-        "Reflect together, and keep your child’s own words.",
-        "See what shows up at school and at home, and ask about the record.",
+        "Recognize what grades miss.",
+        "Keep the moments that show it.",
+        "Make five minutes together a habit.",
+        "See the bigger picture.",
       ],
       tagline: "Get the Truer Measure.",
       cta: "Choose School & Life",
@@ -585,10 +588,10 @@ export const appPlans: Record<Locale, AppPlans> = {
       heading: "Voyez ce que les moments du quotidien montrent.",
       plus: "Tout ce qu’il y a dans École, plus :",
       includes: [
-        "Gardez un portrait et une chronologie qui grandissent avec votre enfant.",
-        "Gardez des moments, des photos et des travaux de la maison, du sport et des voyages.",
-        "Réfléchissez ensemble et gardez les mots de votre enfant.",
-        "Voyez ce qui revient à l’école et à la maison, et posez vos questions.",
+        "Remarquez ce que les notes ne montrent pas.",
+        "Gardez les moments qui le révèlent.",
+        "Faites de cinq minutes ensemble une habitude.",
+        "Voyez le portrait d’ensemble.",
       ],
       tagline: "Obtenez une juste mesure.",
       cta: "Choisir École et vie",
