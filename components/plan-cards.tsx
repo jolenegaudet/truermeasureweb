@@ -126,11 +126,14 @@ export function PlanCards({
       </div>
 
       {/* ---------- The two cards ---------- */}
-      {/* items-start, not items-stretch: the free card has less to say, and
-          her brief asks for no "large empty areas". Stretching it to the paid
-          card's height put about 150px of nothing inside a bordered box. Each
-          card is now its own height, and on a phone they stack. */}
-      <div className="mx-auto grid max-w-[860px] grid-cols-1 items-start gap-5 md:grid-cols-2">
+      {/* Equal heights, her instruction of 1 November. They were each their
+          own height from 29 October, to avoid the empty area that stretching
+          the shorter card creates; with the box above the cards gone, she
+          wants them level again. The free card's explanation takes the extra
+          height with flex-1 below, so the space falls under the list rather
+          than between the button and it. On a phone they stack and none of
+          this applies. */}
+      <div className="mx-auto grid max-w-[860px] grid-cols-1 items-stretch gap-5 md:grid-cols-2">
         {/* School · Free */}
         <div className="flex flex-col rounded-[2px] border border-border bg-ghost px-6 pb-7 pt-7 text-center md:px-7">
           <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-rose">
@@ -166,7 +169,7 @@ export function PlanCards({
           )}
 
           {/* What it is, under the action rather than above it. */}
-          <div className="mt-6 border-t border-border pt-5 text-left">
+          <div className="mt-6 flex-1 border-t border-border pt-5 text-left">
             <h3
               className="font-heading font-medium text-bark"
               style={{ fontSize: 20, lineHeight: 1.2 }}
