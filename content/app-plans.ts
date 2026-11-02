@@ -344,12 +344,6 @@ export const GOES_TO_DEMO = REGISTRATION.url === null;
  */
 export const CARRIES_CHOICE = !GOES_TO_DEMO && REGISTRATION.currencyParam;
 
-/** One group of the short comparison under the cards. */
-export type PlanGroup = {
-  title: string;
-  items: string[];
-};
-
 type AppPlans = {
   sectionEyebrow: string;
   sectionHeading: string;
@@ -397,20 +391,14 @@ type AppPlans = {
   taxInclusive: string;
   /** Shown for a currency whose amount is not set. */
   priceToBeConfirmed: string;
-  /** The expandable section under the cards: a comparison, not a manual. */
-  whatsIncluded: string;
-  compare: { free: PlanGroup; paid: PlanGroup };
-  allowance: { title: string; body: string };
+  /**
+   * The two closing lines, shown once under both cards. Everything else that
+   * used to sit under them came off on 2 November 2026; the note above
+   * `choice` in the English block below says what, and where the disclosures
+   * it carried live now.
+   */
   choice: string;
   close: string;
-  example: {
-    label: string;
-    eyebrow: string;
-    title: string;
-    text: string;
-    rests: string;
-    note: string;
-  };
 };
 
 /**
@@ -422,12 +410,12 @@ type AppPlans = {
  * What that changed, beyond shortening sentences:
  *
  *  - The seven-part "What School & Life gives you" section is gone. It was
- *    around 1,400 words of feature description. In its place is `compare`:
- *    four short bullets for each plan, which is what her brief asked for.
+ *    around 1,400 words of feature description. In its place came a short
+ *    two-column comparison, which her brief of 2 November then removed as
+ *    well: the whole panel under the cards is gone, and what is left of it is
+ *    `choice` and `close`.
  *  - Each card's list is four bullets of one idea each, down from five and
  *    two supporting lines.
- *  - The three facts that have to stay reachable (what a subscription covers,
- *    monthly or yearly, cancelling) are now one short line each.
  *
  * What did not change: her own approved lines are still here word for word,
  * marked below, and nothing describes a feature the customer app does not give
@@ -475,11 +463,11 @@ export const appPlans: Record<Locale, AppPlans> = {
       /* Her four lines, dictated on 1 November and used word for word. They
           say what a parent gets rather than what the app holds, which is why
           they are shorter than what they replaced.
-          The profile, the timeline and Reflect together are still represented,
-          as her correction of 29 October requires, but now in the expanded
-          comparison below rather than on the card: "Keep the fuller
-          explanations and concrete examples in the short expanded
-          comparison." See `compare.paid`. */
+          The profile, the timeline and Reflect together moved into the
+          expanded comparison on 1 November, which her brief of 2 November
+          then removed. So the website no longer names them anywhere, and
+          these four lines are the whole of what the paid plan says it does.
+          Her brief is explicit that nothing replaces what came off. */
       includes: [
         "Recognize what grades miss.",
         "Keep the moments that show it.",
@@ -505,58 +493,37 @@ export const appPlans: Record<Locale, AppPlans> = {
     taxInclusive: "VAT included.",
     priceToBeConfirmed: "Price to be confirmed",
 
-    whatsIncluded: "Compare the two plans",
-    compare: {
-      free: {
-        title: "School · Free",
-        items: [
-          "Report cards, explained in plain words.",
-          "Questions to ask the teacher.",
-          "Ideas to try at home.",
-          "Uploads are report cards only.",
-        ],
-      },
-      paid: {
-        title: "School & Life",
-        items: [
-          "Everything in School.",
-          "A profile and a timeline that grow with your child.",
-          "Moments, photos and schoolwork from beyond school.",
-          "Reflect together, ask about the record, and get ready for a teacher meeting.",
-        ],
-      },
-    },
-
-    /* The cap is real and already in the app (server/engine.js). No figure
-       appears, because the ceiling is an internal US dollar amount and a
-       dollar figure would read as a second price. The word "unlimited" is
-       nowhere on the page. */
-    allowance: {
-      title: "A monthly reading allowance",
-      body:
-        "Each account gets a set number of readings each month. If one month goes past it, new readings wait until the next month. Nothing is lost, and everything already written stays open.",
-    },
-
-    choice: "You choose what goes in. Nothing is added without you.",
-    /* Her closing line, and already the app's own (choose.full.close). */
-    close:
-      "You capture the moments. Truer Measure helps you understand the picture they build.",
-
     /**
-     * One compact example, from the Demo Child who is already in the demo.
-     * Verbatim source: the launch worktree, js/seed.js, insight `i16`, which is
-     * written demo content and not AI output. Its five records are e16, e25,
-     * e38 (report cards) and e14, e32 (the notebook comic and the zine story).
+     * THE CLOSING LINES, and what used to be under them.
+     *
+     * Her brief of 2 November 2026 took the whole "Compare the two plans"
+     * panel off both languages: the control that opened it, the two-column
+     * comparison, the repeated subscription and cancellation lines, the
+     * monthly reading allowance and the fictional example. These two lines
+     * were inside it. They now stand on their own under the cards, with no box
+     * around them and nothing written to replace what came off, which that
+     * brief rules out: "Do not add replacement explanations."
+     *
+     * WHERE THE DISCLOSURES ARE NOW, so nobody puts them back here by
+     * accident. Her brief: "Subscription conditions and reading limits remain
+     * unchanged; preserve their existing disclosures elsewhere in the purchase
+     * journey and legal documents." On the website, what a subscription covers
+     * is still on the paid card (`covers`), and `demoNote` and `demoOnly` are
+     * untouched. The cancellation sentence (`paid.cancel`) and the reading
+     * allowance are no longer displayed anywhere on the website: both are the
+     * customer app's, in her own words, in the app's js/config.js
+     * (plan.terms.cancel) and enforced by server/engine.js. `paid.cancel` is
+     * kept in this file because the app's registration and checkout are what
+     * must show it, and whoever connects those buttons will need her sentence.
+     *
+     * Both lines are hers. The first is unchanged from 29 October. The second
+     * is her own closing line with a new ending, dictated on 2 November:
+     * "see the bigger picture" in place of "understand the picture they
+     * build".
      */
-    example: {
-      label: "A fictional example",
-      eyebrow: "What agrees, at school and beyond",
-      title: "Writing, at school and beyond",
-      text:
-        "Her teachers put her writing at the top level from June of Grade 4. They describe stories full of detail. At home she writes stories nobody asked for: a comic in her notebook and a story for a zine.",
-      rests: "Rests on 5 records: 3 from school, 2 from beyond school.",
-      note: "The Demo Child is fictional, and so is every record behind this.",
-    },
+    choice: "You choose what goes in. Nothing is added without you.",
+    close:
+      "You capture the moments. Truer Measure helps you see the bigger picture.",
   },
 
   fr: {
@@ -611,48 +578,14 @@ export const appPlans: Record<Locale, AppPlans> = {
     taxInclusive: "TVA incluse.",
     priceToBeConfirmed: "Prix à confirmer",
 
-    whatsIncluded: "Comparez les deux forfaits",
-    compare: {
-      free: {
-        title: "École · Gratuit",
-        items: [
-          "Les bulletins, expliqués en mots simples.",
-          "Des questions à poser à l’enseignante.",
-          "Des idées à essayer à la maison.",
-          "Seuls les bulletins peuvent être téléversés.",
-        ],
-      },
-      paid: {
-        title: "École et vie",
-        items: [
-          "Tout ce qu’il y a dans École.",
-          "Un portrait et une chronologie qui grandissent avec votre enfant.",
-          "Des moments, des photos et des travaux de la vie hors de l’école.",
-          "Réfléchissez ensemble, posez vos questions et préparez la rencontre avec l’enseignante.",
-        ],
-      },
-    },
-
-    allowance: {
-      title: "Une réserve mensuelle de lectures",
-      body:
-        "Chaque compte a un nombre de lectures par mois. Si un mois dépasse ce nombre, les nouvelles lectures attendent au mois suivant. Rien n’est perdu, et tout ce qui est déjà écrit reste accessible.",
-    },
-
-    choice: "C’est vous qui choisissez ce qui entre. Rien n’est ajouté sans vous.",
+    /* Her two lines of 2 November, word for word, with one styling decision:
+       she typed the French mark as "Juste mesure", and her brief asks to
+       "preserve the approved French brand styling", so it is capitalised the
+       way /fr carries it (content/i18n.ts, and FRENCH_MARK at the foot of this
+       file). Nothing else about the sentence changed. */
+    choice: "Vous choisissez ce que vous ajoutez. Rien n’est ajouté sans vous.",
     close:
-      "Vous saisissez les moments. Truer Measure vous aide à comprendre le portrait qu’ils bâtissent.",
-
-    example: {
-      label: "Exemple fictif",
-      eyebrow: "Ce qui concorde, à l’école et ailleurs",
-      title: "L’écriture, à l’école et ailleurs",
-      text:
-        "Ses enseignantes situent son écriture au plus haut niveau depuis juin de la 4e année. Elles décrivent des textes riches en détails. À la maison, elle écrit des histoires que personne ne lui a demandées : une bande dessinée dans son cahier et une histoire pour un fanzine.",
-      rests: "Appuyé sur 5 dossiers : 3 de l’école, 2 d’ailleurs.",
-      note:
-        "L’enfant de la démo est fictive, et chaque dossier derrière ce texte l’est aussi.",
-    },
+      "Vous gardez les moments. Juste Mesure vous aide à voir le portrait d’ensemble.",
   },
 };
 

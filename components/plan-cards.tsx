@@ -49,6 +49,17 @@ import type { Locale } from "@/content/i18n";
  * All copy, both languages, is in content/app-plans.ts with its sources named
  * there. This file is layout.
  *
+ * ── HER BRIEF OF 2 NOVEMBER 2026 ──────────────────────────────────────────
+ *
+ * The expandable "Compare the two plans" panel that used to sit under the
+ * cards is gone: the summary that opened it, the two-column comparison, the
+ * repeated subscription and cancellation lines, the reading-allowance box and
+ * the fictional example. Two of its lines survive, as a shared block under
+ * both cards with no box and no second expandable section. Nothing was written
+ * to replace the rest, which the brief rules out, and the disclosures it
+ * carried are the app's and checkout's: see the note above `choice` in
+ * content/app-plans.ts.
+ *
  * ── WHY THIS IS STILL A CLIENT COMPONENT ──────────────────────────────────
  *
  * Two reasons left: the billing-period choice is state, and the links have to
@@ -331,127 +342,30 @@ export function PlanCards({
         </p>
       )}
 
-      {/* ---------- The comparison ---------- */}
-      <WhatsIncluded t={t} />
-    </>
-  );
-}
-
-/**
- * The short comparison, folded away.
- *
- * Her brief, 29 October 2026: "The expanded section is too long. Make it a
- * short comparison: one brief group for School, one brief group for School &
- * Life, no more than four short bullets per group. Avoid repeating the cards
- * word for word."
- *
- * What was here until today was seven parts with their own sub-lists, about
- * 1,400 words. This is two groups of four lines, then the three facts her
- * earlier brief asked to keep reachable (what a subscription covers, monthly
- * or yearly, cancelling), the reading allowance in two sentences, and one
- * fictional example. Nothing names a feature the customer app withholds from a
- * customer; scripts/check-app-claims.mjs enforces that.
- *
- * Still a native <details>, so it works with JavaScript off, is reachable by
- * keyboard without any code of ours, and announces its own open state.
- */
-function WhatsIncluded({ t }: { t: ReturnType<typeof appPlansFor> }) {
-  return (
-    <details className="group mx-auto mt-8 max-w-[860px] rounded-[2px] border border-border bg-ghost [&_summary::-webkit-details-marker]:hidden">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left md:px-7">
-        <span
-          className="font-heading font-medium text-bark"
-          style={{ fontSize: 18, lineHeight: 1.25 }}
-        >
-          {t.whatsIncluded}
-        </span>
-        <span
-          aria-hidden="true"
-          className="shrink-0 text-[21px] leading-none text-rose transition-transform group-open:rotate-45"
-        >
-          +
-        </span>
-      </summary>
-
-      <div className="border-t border-border px-6 pb-7 pt-6 md:px-7">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-9">
-          {[t.compare.free, t.compare.paid].map((group) => (
-            <section key={group.title}>
-              <h4
-                className="font-heading mb-3 font-medium text-bark"
-                style={{ fontSize: 17, lineHeight: 1.25 }}
-              >
-                {group.title}
-              </h4>
-              <Bullets items={group.items} tone="light" compact />
-            </section>
-          ))}
-        </div>
-
-        {/* The three facts that have to stay reachable, one line each. */}
-        <div className="mt-2 flex flex-col gap-[6px] border-l border-warm pl-4 text-dusk">
-          <p style={{ fontSize: 13.5, lineHeight: 1.55 }}>{t.covers}</p>
-          <p style={{ fontSize: 13.5, lineHeight: 1.55 }}>{t.paid.billing}</p>
-          <p style={{ fontSize: 13.5, lineHeight: 1.55 }}>{t.paid.cancel}</p>
-        </div>
-
-        {/* The reading allowance, in two sentences rather than four. */}
-        <section className="mt-6 rounded-[2px] border border-border bg-linen px-5 py-4">
-          <h4
-            className="font-heading mb-2 font-medium text-bark"
-            style={{ fontSize: 16.5, lineHeight: 1.25 }}
-          >
-            {t.allowance.title}
-          </h4>
-          <p className="text-dusk" style={{ fontSize: 13.5, lineHeight: 1.6 }}>
-            {t.allowance.body}
-          </p>
-        </section>
-
-        {/* One example, labelled fictional before it is read, not after. */}
-        <figure className="mt-6 rounded-[2px] border border-warm bg-blush px-5 py-4">
-          <figcaption className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-rose">
-              {t.example.eyebrow}
-            </span>
-            <span className="rounded-[2px] bg-bark/85 px-[8px] py-[3px] text-[9.5px] font-bold uppercase tracking-[0.14em] text-parchment">
-              {t.example.label}
-            </span>
-          </figcaption>
-          <p
-            className="font-heading mb-2 font-medium text-bark"
-            style={{ fontSize: 16.5, lineHeight: 1.3 }}
-          >
-            {t.example.title}
-          </p>
-          <p className="mb-2 text-dusk" style={{ fontSize: 14, lineHeight: 1.65 }}>
-            {t.example.text}
-          </p>
-          <p
-            className="mb-2 border-t border-warm pt-2 text-smoke"
-            style={{ fontSize: 12.5, lineHeight: 1.5 }}
-          >
-            {t.example.rests}
-          </p>
-          <p className="text-smoke" style={{ fontSize: 11.5, lineHeight: 1.5 }}>
-            {t.example.note}
-          </p>
-        </figure>
-
+      {/* ---------- Her two closing lines ---------- */}
+      {/* Her brief of 2 November: these two lines, "displayed once as a shared
+          block directly beneath the School and School & Life cards… clean
+          spacing and readable text, without a surrounding box or another
+          expandable section." So: no border, no background, no <details>, and
+          one block for both cards rather than one under each. They keep the
+          sizes they had inside the panel that came off, which is the only part
+          of it that survives. */}
+      <div className="mx-auto mt-10 max-w-[680px] text-center">
         <p
-          className="mt-6 text-center text-dusk"
-          style={{ fontSize: 13.5, lineHeight: 1.6 }}
+          className="text-balance text-dusk"
+          style={{ fontSize: 14.5, lineHeight: 1.65 }}
         >
           {t.choice}
         </p>
+        {/* Balanced wrapping, so neither language ends on a one-word line. */}
         <p
-          className="font-heading mx-auto mt-3 max-w-[560px] text-center text-bark"
+          className="font-heading mt-4 text-balance text-bark"
           style={{ fontSize: "clamp(17px,2.1vw,21px)", lineHeight: 1.35 }}
         >
           {t.close}
         </p>
       </div>
-    </details>
+    </>
   );
 }
 

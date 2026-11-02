@@ -324,8 +324,10 @@ verified for every parent in every country.
 
 **Her decision, 29 October 2026**, replacing the per-account wording of
 28 October. The website now says "One subscription covers one child." and "Un
-abonnement couvre un enfant.", on the paid card beside the price and in the
-comparison.
+abonnement couvre un enfant.", on the paid card beside the price. It was also
+in the comparison panel under the cards until 2 November 2026, when her brief
+removed that panel; the line on the card is untouched, and it is now the only
+place the website says it.
 
 **The app does the other thing.** `subscriptions.account_id` gives School & Life
 to the whole account, with no limit on the children in it, and

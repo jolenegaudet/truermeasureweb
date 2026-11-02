@@ -292,10 +292,15 @@ per-family ones and are not in this table.
 
 **This is why the allowance wording exists.** The ceiling is already in the
 code (`TM_AI_CAP_FULL_USD`, default US$10) and a frequent family lands at
-US$8.58, so a parent can meet it in a normal month. The page now says what
-happens, in plain words and with no figure: new readings pause, nothing is
-lost, everything already written stays open, and readings begin again at the
-start of the next month. That is exactly what the app does today
+US$8.58, so a parent can meet it in a normal month. The website said what
+happens, in plain words and with no figure, from 28 October until 2 November
+2026, when her brief removed the panel that held it and ruled out writing a
+replacement: *"Subscription conditions and reading limits remain unchanged;
+preserve their existing disclosures elsewhere in the purchase journey and
+legal documents."* So the parent now meets it in the app rather than on the
+page: new readings pause, nothing is lost, everything already written stays
+open, and readings begin again at the start of the next month. That is exactly
+what the app does today
 (`budget_family`: *"This month's readings are complete. New additions are kept
 and will be read next month."*). Nothing was changed about the cap, and the
 word "unlimited" is nowhere on the page.
