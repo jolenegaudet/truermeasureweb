@@ -183,6 +183,35 @@ against a local host: both buttons came out as
 at the moment of the click, and the word "demo" appeared nowhere on either
 page.
 
+**The destination, as the app session reports it on 3 November.** It says Jolene
+authorised creating production today, at
+`https://truermeasure-app.azurewebsites.net` (Canada Central), locked to an IP
+allow-list and a sign-in allow-list until her release decision, with
+`app.truermeasure.com` not yet in DNS. **That address is recorded here as
+inspected, not adopted.** Her brief says to use the production address only when
+the app session confirms it exists and is ready, and an app behind an allow-list
+with no DNS name is not ready. `NEXT_PUBLIC_TM_APP_URL` stays unset, the
+committed buttons still open the demo, and the switch waits for her word.
+
+Built locally against that host on 3 November and verified with
+`check-launch-build.mjs --expect launch`: both buttons, in both languages, come
+out as `https://truermeasure-app.azurewebsites.net/?currency=CAD&billing=month`,
+byte-identical in English and French, and neither "demo" nor "démo" appears
+anywhere on either page. The build was kept in the scratchpad, `out/` was
+restored to the review build and re-verified as `--expect review`, and the
+committed source is unchanged.
+
+**The host is baked in, which decides the order of two steps.** A static export
+writes the address into the HTML, so moving later from the Azure name to
+`app.truermeasure.com` is a rebuild and a redeploy, not a redirect the website
+absorbs. The name should be settled before the connected build is published, not
+after.
+
+**One question put to the app on 3 November, not to her.** The free button and
+the paid button send the same URL. `REGISTRATION.planParam` is false, so there
+is no `plan` parameter and the app cannot tell School from School & Life by the
+link alone. If it needs to, that is one parameter name and one line here.
+
 ---
 
 ## 4. Legal and account-management links
@@ -202,6 +231,17 @@ prices behind it. **Nothing about it should be changed while a single
 subscription exists**, and online cancellation is a legal requirement for
 anyone who signed up online (California Bus. & Prof. Code 17602(d)). Reviewed,
 not touched.
+
+**A live payment link still sits in the code, and reaches no page.** Found on
+3 November while answering the app session. `content/founding-families.ts:126`
+holds `CHECKOUT_URL`, the live Founding Families v2 payment link
+(`buy.stripe.com/28EeVc1Eh8Vf8YH6o8e7m0a`), on both `main` and the branch. It is
+dead code: `SALES_PAUSED` is true at line 55, no component imports `CHECKOUT_URL`
+or `checkoutReady`, and the string `buy.stripe.com` appears in none of the
+14 exported pages and in none of the six live pages checked on truermeasure.com.
+So **the website cannot take a payment today**, which is the fact that matters.
+Whether the link is still live inside Stripe is an account question, not a
+website one, and nothing here was changed.
 
 **A 404 the app points at, now fixed on the branch.** The customer app's
 agreement screen links `https://truermeasure.com/terms` and
