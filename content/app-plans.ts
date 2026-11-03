@@ -558,12 +558,32 @@ export const appPlans: Record<Locale, AppPlans> = {
      * unchanged; preserve their existing disclosures elsewhere in the purchase
      * journey and legal documents." On the website, what a subscription covers
      * is still on the paid card (`covers`), and `demoNote` and `demoOnly` are
-     * untouched. The cancellation sentence (`paid.cancel`) and the reading
-     * allowance are no longer displayed anywhere on the website: both are the
-     * customer app's, in her own words, in the app's js/config.js
-     * (plan.terms.cancel) and enforced by server/engine.js. `paid.cancel` is
-     * kept in this file because the app's registration and checkout are what
-     * must show it, and whoever connects those buttons will need her sentence.
+     * untouched.
+     *
+     * The two that left the website are not in the same position, and the note
+     * here said they were until the app session corrected it on 3 November
+     * 2026, which was checked in the app rather than taken on trust:
+     *
+     *  - THE CANCELLATION SENTENCE is read before paying. It is her own words
+     *    in the app's js/config.js (plan.terms.cancel), on the purchase
+     *    confirmation sheet beside the child's name and the price, and again
+     *    on Stripe's own page. `paid.cancel` is kept in this file because
+     *    whoever connects these buttons will need her sentence.
+     *
+     *  - THE READING ALLOWANCE is read nowhere, by anyone, in advance. No
+     *    figure appears on the confirmation sheet, anywhere else in the app,
+     *    or on this website; the ceiling is enforced in server/engine.js from
+     *    TM_AI_CAP_FULL_USD and TM_AI_CAP_SCHOOL_USD, and the only thing a
+     *    parent ever sees is the message when it is already reached: "This
+     *    month's readings are complete. New additions are kept and will be
+     *    read next month." The draft Terms say only "a monthly limit on AI
+     *    use", with no number, and that is counsel's question 3f.
+     *
+     * So her instruction to preserve that disclosure elsewhere is not met
+     * today by anything. It is recorded for her in
+     * docs/launch-readiness-2026-11-02.md rather than solved here, because
+     * writing a limit onto this page is what her brief of 2 November ruled
+     * out, and inventing a retention or usage policy is a standing no.
      *
      * Both lines are hers. The first is unchanged from 29 October. The second
      * is her own closing line with a new ending, dictated on 2 November:

@@ -128,9 +128,29 @@ Confirmed with the app session on 2 November, read-only against launch branch
   with more than one child "It covers {name} only." Nothing is charged until
   the parent presses "Continue to payment".
 - **Where her cancellation sentence is read now.** The website stopped showing
-  it on 2 November. It appears on that confirmation sheet and again on Stripe's
-  checkout page. The reading allowance is on neither; it lives in the app and
-  is enforced by `server/engine.js`.
+  it on 2 November. It appears on that confirmation sheet, beside the child's
+  name and the price, and again on Stripe's checkout page.
+
+- **The reading allowance is disclosed nowhere, and that is hers to settle.**
+  Corrected 3 November 2026 after the app session flagged my earlier wording,
+  and checked in the app rather than taken on trust. No figure appears on the
+  confirmation sheet, anywhere else in the app, or on this website. The ceiling
+  is enforced in `server/engine.js` from `TM_AI_CAP_FULL_USD` (US$10) and
+  `TM_AI_CAP_SCHOOL_USD` (US$3), and the only thing a parent ever reads is the
+  message once it is already reached: *"This month's readings are complete. New
+  additions are kept and will be read next month."* The draft Terms say only
+  "a monthly limit on AI use", with no number, which is counsel's question 3f.
+
+  Her brief of 2 November said "preserve their existing disclosures elsewhere
+  in the purchase journey and legal documents". For the cancellation sentence
+  that holds. For the reading allowance there is no existing disclosure
+  anywhere to preserve, so nothing is preserving it. The pricing brief §4 shows
+  why it matters: a frequent family reaches about US$8.58 of a US$10 ceiling in
+  a normal month, so a parent can meet this without having been told it exists.
+  Three ways out, none of them mine to choose: counsel puts a figure or a plain
+  description in the Terms, the app says it before the purchase rather than
+  after, or she gives wording for the website. The same decision carries the
+  per-child versus per-account question, which is still open.
 - ~~**Flagged by the app session, for her:** the renewal sentence and the
   monthly/yearly choice sheet still say "a school year".~~ **Closed
   3 November 2026** on her authorisation, app commit `19903d2`, checked here:
@@ -301,8 +321,15 @@ deploy, so the site stays up.
 2. Approval of the three amounts, which turns the review build into the launch
    build.
 3. Authorisation to create the production app, which is what makes a real
-   destination possible and starts a monthly bill.
-4. The per-child versus per-account AI ceiling (pricing brief §2).
+   destination possible and starts a monthly bill. **This one is not waiting on
+   counsel** (app session, 3 November): production can be created and checked
+   privately with the draft documents in place. What counsel gates is opening
+   it to families, because the app's release check must pass before any real
+   sign-up and it refuses a legal link that 404s or a consent version still
+   marked draft.
+4. The per-child versus per-account AI ceiling (pricing brief §2), and with it
+   **whether a parent is told the reading limit exists before paying rather
+   than when they reach it.** Today nobody is: see §3.
 5. The refund policy, which blocks the Terms.
 6. ~~Whether "a school year" stays in the app's renewal wording.~~ Decided
    3 November: it is gone, and the app says "yearly" and "12 months".
