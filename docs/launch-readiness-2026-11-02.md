@@ -257,8 +257,12 @@ app session found it while correcting its row: a parent who reaches the app
 without pressing a website button, by typing the address, a bookmark, or a
 shared link on another device, gets a currency guessed from
 `navigator.languages`. So a family in Canada with a browser set to en-US is
-shown US$47. Nothing on the website causes that and nothing here can fix it; it
-is recorded so the two halves are not confused. The app session recommends
+shown US$47. The guess is visible rather than hidden: the app's confirmation
+sheet prints the sign in front of the figure, CA$, US$ or the euro sign, and
+Stripe's own page prints it too, so a parent can see it and is simply likely to
+miss it, since only the sign differs and the figure is 47 either way. Nothing on
+the website causes that and nothing here can fix it; it is recorded so the two
+halves are not confused. The app session recommends
 falling back to CA$ whenever the website did not choose, which is the same
 answer as the line above, and has changed nothing pending her decision.
 
