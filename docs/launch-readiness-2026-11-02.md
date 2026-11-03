@@ -201,6 +201,16 @@ anywhere on either page. The build was kept in the scratchpad, `out/` was
 restored to the review build and re-verified as `--expect review`, and the
 committed source is unchanged.
 
+**The click-time stamp is now proved, not asserted.** 3 November, in Chrome
+against the connected preview, pressing the real monthly/yearly control rather
+than setting the attribute by hand. English page, country set to France and
+**Yearly** pressed: both buttons send
+`https://app.truermeasure.com/?currency=EUR&billing=year`. French page, country
+set to the United States and **Par annee** pressed: both send
+`?currency=USD&billing=year`. Two parameters in each case, nothing else on the
+URL, and the path is `/`. So the yearly case, which until now I had only
+reasoned about, behaves the way the monthly case does.
+
 **The host is baked in, which decides the order of two steps.** A static export
 writes the address into the HTML, so moving later from the Azure name to
 `app.truermeasure.com` is a rebuild and a redeploy, not a redirect the website
@@ -219,12 +229,16 @@ Against its launch commit `19903d2`:
   School & Life in its own onboarding, and currency and billing only pre-set
   what a parent sees if they later choose School & Life. `planParam` stays
   false.
-- **The public address is planned, not live.** `app.truermeasure.com` is the
-  intended name, on the app's own launch-prep page since 1 November, with no DNS
-  record yet; the two Cloudflare records are her step. Until then production
-  lives at the Azure name, locked. The app session will say when
-  `app.truermeasure.com` answers, and **neither address is adopted here until
-  she names one**.
+- **The public address now exists.** `app.truermeasure.com` answered from this
+  machine on 3 November at 20:46 UTC, and I checked it here rather than relaying
+  it: DNS resolves through her Cloudflare CNAME to
+  `waws-prod-yt1-117-7c06.canadacentral.cloudapp.azure.com` (20.116.40.17), the
+  certificate is `CN=app.truermeasure.com` issued by GeoTrust TLS RSA CA G1,
+  valid 3 November 2026 to 3 May 2027, `http` redirects to `https` in one hop,
+  and `/` and `/?currency=EUR&billing=year` both answer 200. **Still not adopted
+  here.** This machine is inside the allow-list, which is exactly why the 200
+  proves the address and not the gate, and which address the buttons take is her
+  word to give.
 
 **And one gate they agreed to record.** The public address must answer 200 from
 outside the IP and sign-in allow-lists before any connected build is published.
@@ -429,13 +443,14 @@ deploy, so the site stays up.
 1. Approval of this page. It has never been approved.
 2. Approval of the three amounts, which turns the review build into the launch
    build.
-3. Authorisation to create the production app, which is what makes a real
-   destination possible and starts a monthly bill. **This one is not waiting on
-   counsel** (app session, 3 November): production can be created and checked
-   privately with the draft documents in place. What counsel gates is opening
-   it to families, because the app's release check must pass before any real
-   sign-up and it refuses a legal link that 404s or a consent version still
-   marked draft.
+3. ~~Authorisation to create the production app.~~ **Done 3 November**, on her
+   authorisation reported by the app session: production exists, locked to her
+   address plus Stripe's webhook servers, purchases closed behind the app's own
+   live-payments switch, at `https://app.truermeasure.com`. What is left of this
+   item is **which address the buttons take**, which is hers to name here. What
+   counsel gates is opening it to families, because the app's release check must
+   pass before any real sign-up and it refuses a legal link that 404s or a
+   consent version still marked draft.
 4. The per-child versus per-account AI ceiling (pricing brief §2). It is per
    account today, so two paying children share one US$10 allowance while
    paying twice. With it comes **whether a parent is told the reading limit
@@ -446,11 +461,34 @@ deploy, so the site stays up.
 6. ~~Whether "a school year" stays in the app's renewal wording.~~ Decided
    3 November: it is gone, and the app says "yearly" and "12 months".
 7. Live Stripe: the tax code on `prod_VWzNTXW9zLkKSH`, and the registrations.
+   The live School & Life prices now exist (`price_1UXkrCAJm8m0sW6oJ4LJ7DLO`
+   monthly, `price_1UXkrDAJm8m0sW6ohl0gxVaB` yearly, product
+   `prod_VYsc687ywnpdQT`), so the open part is the tax treatment, not the
+   amounts.
+8. **The French pages declare themselves English.** Found 3 November and **not
+   caused by this branch**: it is the same on `main` and on the live site, so it
+   is a standing defect rather than a release item. `app/layout.tsx:131` sets
+   `<html lang="en">` for every exported page, and each French page marks its
+   own content with one `<div lang="fr">`. Checked in the browser on
+   `/fr/hidden-report-card`: the `h1` is correctly French, but the header
+   ("Bienvenue a la juste mesure de votre enfant !"), the whole footer
+   (Suivez-nous, Conditions d'utilisation, Gerez ou annulez votre adhesion,
+   Retractez-vous) and the `<title>` ("Le rapport cache | Truer Measure") are
+   all declared English. Worse, `/conditions-d-utilisation` carries **no**
+   `lang="fr"` anywhere, so the entire French Terms are declared English. It
+   costs her nothing today and it costs a French screen-reader user the right
+   pronunciation, and it is a signal search engines read. The fix is not a
+   one-liner: a static export under one root layout has one `<html>` tag, so a
+   per-language `lang` means either a locale route segment or two route groups
+   with their own root layouts. That is a structural change to a page she is
+   reviewing, so **nothing was touched** and it waits for her word.
 
 **Counsel's:** Terms 1.3, Privacy 1.2, and the engagement that has not started.
 
-**The app session's:** the production host, and the consent version that points
-at whatever counsel approves.
+**The app session's:** the consent version that points at whatever counsel
+approves, and the word that the public address answers from outside its
+allow-lists, which can only be true once the locks come off at her release
+decision. The host itself is settled.
 
 **Mine, once any of those lands:** set two variables, build, check, screenshot,
 and ask before anything goes live.
