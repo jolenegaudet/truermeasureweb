@@ -113,12 +113,15 @@ Confirmed with the app session on 2 November, read-only against launch branch
   session**, from the same path as the paid card. A checkout opens only from
   "Start School & Life for {name}".
 - **The handoff names are unchanged**: `currency` (CAD|USD|EUR, case
-  insensitive) and `billing` (month|year), read in account mode, kept in
-  `localStorage` across the emailed sign-in link, then stripped from the
-  address bar. Unknown values ignored. Two caveats the app session raised, both
-  hers to know rather than ours to fix: the choice is lost if the parent opens
-  the sign-in link on a different device, and Stripe locks an account to the
-  currency of its first subscription.
+  insensitive) and `billing` (month|year), read in account mode, kept across
+  the emailed sign-in link, then stripped from the address bar. Unknown values
+  ignored.
+  **Updated 3 November 2026**, app commit `19903d2`, read here: the sign-in
+  link itself now carries both values, so a link opened on another device still
+  opens with what the parent was shown on this website. The caveat recorded
+  here on 2 November is closed and the names did not change. The other one
+  stands and is not ours to fix: Stripe locks an account to the currency of its
+  first subscription.
 - **A purchase identifies the child and requires an explicit action.** The
   confirmation sheet shows "School & Life for {name}", the price and period,
   the taxes, the renewal, her cancellation sentence and the refund line, and
@@ -128,9 +131,13 @@ Confirmed with the app session on 2 November, read-only against launch branch
   it on 2 November. It appears on that confirmation sheet and again on Stripe's
   checkout page. The reading allowance is on neither; it lives in the app and
   is enforced by `server/engine.js`.
-- **Flagged by the app session, for her:** the renewal sentence and the
-  monthly/yearly choice sheet still say "a school year". She has not decided
-  whether to change that wording.
+- ~~**Flagged by the app session, for her:** the renewal sentence and the
+  monthly/yearly choice sheet still say "a school year".~~ **Closed
+  3 November 2026** on her authorisation, app commit `19903d2`, checked here:
+  the price line reads "CA$507.60 for 12 months", the sheet asks "Monthly, or
+  yearly?", and the renewal sentence ends "yearly means 12 months from the day
+  you start." The website never carried the phrase, so nothing changed on this
+  side; the two now agree.
 
 **Removing the demo labels is one value, not an edit.** Setting
 `NEXT_PUBLIC_TM_APP_URL` switches both buttons to the app, makes them carry
@@ -170,6 +177,16 @@ translated and routed but held in `app/_pending` while counsel reviews it, and
 a redirect to a page that does not exist is a second 404 with a longer path. It
 goes in with the policy, in the same change.
 
+**Updated 3 November 2026.** App commit `19903d2`, checked here: both links and
+the consent version are now release settings (`TM_TERMS_URL`,
+`TM_PRIVACY_URL`, `TM_CONSENT_VERSION`), their defaults are still the two
+addresses that 404, a new open `GET /api/legal` returns all three, and
+`deploy/release-check.js` refuses a release where either link does not answer
+200 or the version still says "draft". So at release the app points straight at
+`/terms-of-service` and at the published Privacy Policy, and this redirect
+becomes a convenience for anyone who types `/terms` rather than something the
+app depends on. It stays: the 404 is real either way.
+
 **The Privacy Policy stays held.** `PRIVACY_POLICY_PUBLISHED` is false, the
 consent line ends at "You can unsubscribe anytime." with no link, and
 `check-launch-build.mjs` fails if any page links to it. The four-step
@@ -187,7 +204,9 @@ me except her word and counsel's.
 **Dependent on the app session:**
 - The production host, and with it the demo labels and the real destination.
 - The new consent version pointing at the published documents, once they exist.
-- Whether "a school year" stays in the renewal wording.
+  Since 3 November this is a release setting rather than a code change.
+- ~~Whether "a school year" stays in the renewal wording.~~ Closed 3 November:
+  it is "yearly", and "12 months from the day you start".
 
 ---
 
@@ -285,7 +304,8 @@ deploy, so the site stays up.
    destination possible and starts a monthly bill.
 4. The per-child versus per-account AI ceiling (pricing brief §2).
 5. The refund policy, which blocks the Terms.
-6. Whether "a school year" stays in the app's renewal wording.
+6. ~~Whether "a school year" stays in the app's renewal wording.~~ Decided
+   3 November: it is gone, and the app says "yearly" and "12 months".
 7. Live Stripe: the tax code on `prod_VWzNTXW9zLkKSH`, and the registrations.
 
 **Counsel's:** Terms 1.3, Privacy 1.2, and the engagement that has not started.

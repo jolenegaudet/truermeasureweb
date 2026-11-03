@@ -53,9 +53,12 @@
 # page that does not exist is a second 404 with a longer path. It goes in with
 # the policy, in the same change, not before it.
 #
-# This does not fix the app's side. The app records consent against
-# terms-1.2+privacy-draft-2026-10-13 and will need a new consent version
-# pointing at the published documents, which is counsel's gate, not a redirect.
+# This is no longer what the app depends on, and it stays anyway. From app
+# commit 19903d2 (3 November 2026) the app's Terms and Privacy links and its
+# consent version are release settings, and its release check refuses a release
+# where either link does not answer 200. At release it points straight at
+# /terms-of-service. This redirect is then for anyone who types /terms, where
+# the 404 is just as real.
 [[redirects]]
   from   = "/terms"
   to     = "/terms-of-service"
