@@ -175,9 +175,12 @@ if ($Mode -ne 'maintenance') {
 # ─────────────────────────────────────────────────────────────────────────────
 
 if ($Serve) {
-    $out = Join-Path $repo 'out'
-    Say "Serving $out on http://127.0.0.1:$Port  (Ctrl+C to stop)"
-    Say "English  http://127.0.0.1:$Port/index.html"
-    Say "French   http://127.0.0.1:$Port/fr.html"
-    & python -m http.server $Port --bind 127.0.0.1 --directory $out
+    # scripts/preview-server.py, not `python -m http.server`: the export writes
+    # /fr as fr.html, and reading the preview at that address puts an English
+    # footer on the French pages and makes link clicks unservable. That file
+    # explains it.
+    Say "Serving out/ on http://127.0.0.1:$Port  (Ctrl+C to stop)"
+    Say "English  http://127.0.0.1:$Port/"
+    Say "French   http://127.0.0.1:$Port/fr"
+    & python (Join-Path $PSScriptRoot 'preview-server.py') $Port (Join-Path $repo 'out')
 }

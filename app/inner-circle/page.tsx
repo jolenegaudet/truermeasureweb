@@ -30,6 +30,21 @@ export default function BuildPage() {
           >
             Be Part of the Inner Circle
           </p>
+
+          {/* Her brief of 2 November 2026: on this destination the application
+              is the action, so it comes before the explanation. The same
+              button, tag and form as the one at the foot of the page, which
+              stays where it is. */}
+          <div className="mt-10 flex justify-center">
+            <WaitlistButton
+              tag="applied-inner-circle"
+              label="Apply"
+              modalEyebrow="Help Shape What's Next"
+              modalTitle="Apply to Inner Circle."
+              submitLabel="Submit application"
+              variant="bark"
+            />
+          </div>
         </div>
       </section>
 

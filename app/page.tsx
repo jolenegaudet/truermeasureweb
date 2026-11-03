@@ -26,11 +26,16 @@ const circleAccess = [
 ];
 
 /**
- * Section order, Jolène 30 September 2026.
+ * Section order, Jolène 30 September 2026, revised by her on 2 November 2026.
  *
  *   1 Hero      the headline
- *   2 Founder   who is behind it
- *   3 Tiers     Start with Clarity. Continue with Community. Grow with Proximity.
+ *   2 Clarity   the app: School and School & Life
+ *   3 Community Elite Parents and Inner Circle
+ *   4 Founder   who is behind it, last, immediately before the footer
+ *
+ * The founder's note was section 2 until 2 November 2026, when she asked for
+ * it to close the page instead: "after the offers and their supporting
+ * explanations… Preserve its wording." Its words are unchanged.
  *
  * Social was section 4 until 1 October 2026, when Jolène asked for the links on
  * every page. They moved into the footer, which the root layout puts on all of
@@ -95,55 +100,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Founder */}
-      <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
-          <div className="flex justify-center">
-            <Image
-              src="/founder.png"
-              alt="Jolene, founder of Truer Measure"
-              width={400}
-              height={400}
-              className="block rounded-full object-cover object-top"
-              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
-            />
-          </div>
-          <div>
-            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
-              A note from the founder
-            </div>
-            <p
-              className="font-heading mb-7 text-bark"
-              style={{
-                fontSize: "clamp(24px,3vw,34px)",
-                lineHeight: 1.4,
-              }}
-            >
-              For nearly <em>25 years</em> I helped create the report cards
-              families bring home, first as a teacher writing them, later as a
-              principal signing them.
-            </p>
-            <p
-              className="mb-[22px] text-smoke"
-              style={{ fontSize: 17, lineHeight: 1.75 }}
-            >
-              I sat through hundreds of parent–teacher meetings watching families
-              try to find their child inside a paragraph of carefully worded
-              comments. And I kept seeing the same thing: the qualities and
-              skills that mattered most, the quiet belief that a child is capable
-              of more than the box they&rsquo;ve just been placed in, were
-              nowhere on the pages.
-            </p>
-            <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              That&rsquo;s why I created A Truer Measure: a living account of
-              your child&rsquo;s education, school and{" "}
-              <em className="italic text-bark">beyond</em>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Clarity: the app, as one product with two plans.
+      {/* 2. Clarity: the app, as one product with two plans.
           Keeps id="tiers" because the hero's GET STARTED points at it and that
           anchor is in social posts and emails that are already out. */}
       <section
@@ -155,7 +112,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Community and Proximity.
+      {/* 3. Community and Proximity.
           Elite Parents and Inner Circle, exactly as they were: the same cards,
           the same GoHighLevel waitlist and application forms, the same tags,
           the same wording. Only the row width changed, from three columns to
@@ -247,6 +204,60 @@ export default function HomePage() {
                 variant="outline-rose"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. The founder's note, last.
+          Her brief of 2 November 2026: "Move the founder's note to the last
+          content section, immediately before the footer, after the offers and
+          their supporting explanations… Preserve its wording." It was section
+          2, between the headline and the offers, from 30 September. Not one
+          word of it changed; only where it sits. The same move is made on the
+          French home page. */}
+      <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="flex justify-center">
+            <Image
+              src="/founder.png"
+              alt="Jolene, founder of Truer Measure"
+              width={400}
+              height={400}
+              className="block rounded-full object-cover object-top"
+              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
+            />
+          </div>
+          <div>
+            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
+              A note from the founder
+            </div>
+            <p
+              className="font-heading mb-7 text-bark"
+              style={{
+                fontSize: "clamp(24px,3vw,34px)",
+                lineHeight: 1.4,
+              }}
+            >
+              For nearly <em>25 years</em> I helped create the report cards
+              families bring home, first as a teacher writing them, later as a
+              principal signing them.
+            </p>
+            <p
+              className="mb-[22px] text-smoke"
+              style={{ fontSize: 17, lineHeight: 1.75 }}
+            >
+              I sat through hundreds of parent–teacher meetings watching families
+              try to find their child inside a paragraph of carefully worded
+              comments. And I kept seeing the same thing: the qualities and
+              skills that mattered most, the quiet belief that a child is capable
+              of more than the box they&rsquo;ve just been placed in, were
+              nowhere on the pages.
+            </p>
+            <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
+              That&rsquo;s why I created A Truer Measure: a living account of
+              your child&rsquo;s education, school and{" "}
+              <em className="italic text-bark">beyond</em>.
+            </p>
           </div>
         </div>
       </section>

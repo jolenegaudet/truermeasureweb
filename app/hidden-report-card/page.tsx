@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { alternatesFor } from "@/content/i18n";
-import { Fragment } from "react";
 import { salesPause } from "@/content/founding-families";
 import { FirstToKnowButton } from "@/components/first-to-know";
+import { FrameworkList } from "@/components/framework-list";
+import { PlanCards } from "@/components/plan-cards";
+import { APP_PRICES } from "@/content/app-prices";
 
 export const metadata: Metadata = {
   // The layout template appends " | Truer Measure", and the home page is
@@ -47,17 +49,10 @@ const contrasts = [
   },
 ];
 
-// Her rows of four, kept as rows: the grouping is part of the reading.
-const qualityRows = [
-  ["Curiosity", "Imagination", "Creativity", "Critical Thinking"],
-  ["Confidence", "Courage", "Self-Knowledge", "Independence"],
-  ["Persistence", "Resilience", "Conscientiousness", "Initiative"],
-  ["Kindness", "Empathy", "Honesty", "Integrity"],
-  ["Collaboration", "Communication", "Leadership", "Emotional Intelligence"],
-  ["Adaptability", "Judgment", "Problem-Solving", "Practical Life Skills"],
-  ["Self-Regulation", "Responsibility", "Follow-Through", "Agency"],
-  ["Cultural Awareness", "Civic-Mindedness", "Purpose"],
-];
+/* The thirty-one words that used to sit here left the page on 2 November 2026,
+   replaced by the demo's framework: content/framework.ts, rendered by
+   components/framework-list.tsx. The mapping, line by line, is in
+   docs/framework-2026-11-02.md. */
 
 const moments = [
   "Before a parent–teacher meeting",
@@ -106,19 +101,28 @@ const pause = salesPause.en;
 export default function HiddenReportCardPage() {
   return (
     <>
-      {/* 1. Hero, 2. Contrast, 3. Qualities, 4. What you actually get,
-          5. Moments: moved here from the home page, in Jolene's wording of
-          30 September 2026. They replace this page's earlier hero and its
-          "How to start" section, which said the same things. "What it does for you"
-          was removed the same day: its cards repeated "What you actually get". */}
+      {/* HER BRIEF OF 2 NOVEMBER 2026: the action comes first.
+          "The Hidden Report Card / Clarity: the School and School & Life
+          choices, with prices, monthly/yearly choice and registration buttons
+          at the top of the relevant cards… A short heading may introduce the
+          offer. Put long explanations, characteristics and other supporting
+          content after the action."
 
-      {/* 1. Hero */}
-      <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
-        <div className="mb-[30px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
+          So the hero is now the short heading and nothing else, the plan cards
+          follow immediately, and every section that explains the product comes
+          after them in the order it was already in. The one sentence that used
+          to close the hero ("A report card measures your child against a
+          limited set of standards…") moved into the contrast section below,
+          unchanged: it is an explanation, and explanations now sit after the
+          action. */}
+
+      {/* 1. The short heading */}
+      <section className="mx-auto max-w-[920px] px-6 pb-9 pt-12 text-center md:px-10 md:pb-10 md:pt-16">
+        <div className="mb-[22px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
           Because a report card was never designed to tell the whole story
         </div>
         <h1
-          className="font-heading mb-8 text-bark"
+          className="font-heading text-bark"
           style={{
             fontSize: "clamp(38px,5.6vw,64px)",
             fontWeight: 500,
@@ -128,20 +132,22 @@ export default function HiddenReportCardPage() {
         >
           here&rsquo;s a Truer Measure.
         </h1>
-        <p
-          className="font-heading mx-auto mb-10 italic text-dusk"
-          style={{
-            fontSize: "clamp(18px,2.2vw,23px)",
-            lineHeight: 1.5,
-            maxWidth: 620,
-          }}
-        >
-          A report card measures your child against a limited set of standards.
-          It was never designed to measure your whole child.
-        </p>
       </section>
 
-      {/* 2. Contrast */}
+      {/* 2. The action: the same two cards as the home page, same component,
+          same prices, same billing choice, same buttons and the same discreet
+          demo labels. Nothing is duplicated in content; this is one component
+          rendered in two places. */}
+      <section
+        id="plans"
+        className="scroll-mt-6 bg-parchment px-6 pb-16 pt-2 md:px-10 md:pb-[100px]"
+      >
+        <div className="mx-auto max-w-[1180px]">
+          <PlanCards locale="en" prices={APP_PRICES} />
+        </div>
+      </section>
+
+      {/* 3. Contrast */}
       <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
         <div className="mx-auto max-w-[1000px]">
           <div className="mb-12 text-center md:mb-[60px]">
@@ -153,6 +159,17 @@ export default function HiddenReportCardPage() {
               <br />
               They just don&rsquo;t tell the whole story.
             </h2>
+            <p
+              className="font-heading mx-auto mt-7 italic text-dusk"
+              style={{
+                fontSize: "clamp(18px,2.2vw,23px)",
+                lineHeight: 1.5,
+                maxWidth: 620,
+              }}
+            >
+              A report card measures your child against a limited set of
+              standards. It was never designed to measure your whole child.
+            </p>
           </div>
 
           <div className="flex flex-col gap-px border border-grid bg-grid">
@@ -186,60 +203,33 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 3. Qualities */}
+      {/* 4. The framework: the demo's six foundations and twenty-one
+          characteristics, her brief of 2 November 2026. Names, meaning, order
+          and groupings are the demo's; see content/framework.ts. */}
       <section className="bg-ghost px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1080px]">
-          <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-16">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+          <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
+            <div className="text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               The Hidden Report Card&trade;
               <br />
               A Truer Measure of your child
             </div>
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
-            >
-              None of these receive a grade. Yet they shape so much of who your
-              child is capable of becoming.
-            </h2>
           </div>
 
-          <div className="flex flex-col border-y border-grid">
-            {qualityRows.map((row) => (
-              <p
-                key={row[0]}
-                className="font-heading border-b-0 border-grid py-0 text-center font-medium text-bark last:border-b-0 md:border-b md:py-6"
-                style={{ fontSize: "clamp(20px,2.8vw,32px)", lineHeight: 1.3 }}
-              >
-                {row.map((word, i) => (
-                  <Fragment key={word}>
-                    {/* One word per line on a phone. Four-word rows wrapped
-                        wherever they ran out of room, which stranded separators
-                        at the ends of lines and started others with one, and
-                        the rules between rows then marked boundaries that do
-                        not exist: these are not categories. Below md the words
-                        stack, the separators go, and the rules go with them.
-                        The frame around the whole list stays. From md up every
-                        row fits on one line and the original reading holds. */}
-                    <span className="block whitespace-nowrap py-[7px] md:inline md:py-0">
-                      {word}
-                    </span>
-                    {i < row.length - 1 ? (
-                      <>
-                        {" "}
-                        <span
-                          className="hidden px-2 text-warm md:inline md:px-3"
-                          aria-hidden="true"
-                        >
-                          &middot;
-                        </span>{" "}
-                      </>
-                    ) : null}
-                  </Fragment>
-                ))}
-              </p>
-            ))}
-          </div>
+          <FrameworkList
+            locale="en"
+            characteristicsHeading={
+              <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
+                <h2
+                  className="font-heading font-medium text-bark"
+                  style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
+                >
+                  None of these receive a grade. Yet they shape so much of who
+                  your child is capable of becoming.
+                </h2>
+              </div>
+            }
+          />
 
           <div
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"
@@ -265,7 +255,7 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 4. What you actually get */}
+      {/* 5. What you actually get */}
       <section className="bg-blush px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[680px] text-center">
           <h2
@@ -318,7 +308,7 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 5. Moments */}
+      {/* 6. Moments */}
       <section className="bg-ghost px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[1000px]">
           <div className="mx-auto mb-[60px] max-w-[620px] text-center">
@@ -357,7 +347,7 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 6. The product experience */}
+      {/* 7. The product experience */}
       <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[900px]">
           <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">

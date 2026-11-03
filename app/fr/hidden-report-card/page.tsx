@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
 import { salesPause } from "@/content/founding-families";
 import { FirstToKnowButton } from "@/components/first-to-know";
+import { FrameworkList } from "@/components/framework-list";
+import { PlanCards } from "@/components/plan-cards";
+import { APP_PRICES } from "@/content/app-prices";
 import { alternatesFor } from "@/content/i18n";
 
 const DESCRIPTION =
@@ -52,17 +54,10 @@ const contrasts = [
   },
 ];
 
-// Her rows of four, kept as rows: the grouping is part of the reading.
-const qualityRows = [
-  ["Curiosité", "Imagination", "Créativité", "Esprit critique"],
-  ["Confiance", "Courage", "Connaissance de soi", "Autonomie"],
-  ["Persévérance", "Résilience", "Rigueur", "Initiative"],
-  ["Bienveillance", "Empathie", "Honnêteté", "Intégrité"],
-  ["Collaboration", "Communication", "Leadership", "Intelligence émotionnelle"],
-  ["Adaptabilité", "Jugement", "Résolution de problèmes", "Débrouillardise"],
-  ["Autorégulation", "Responsabilité", "Suivi jusqu’au bout", "Pouvoir d’agir"],
-  ["Ouverture aux cultures", "Sens civique", "Sens du but"],
-];
+/* The thirty-one words that used to sit here left the page on 2 November 2026,
+   replaced by the demo's framework: content/framework.ts, rendered by
+   components/framework-list.tsx. The mapping, line by line and in both
+   languages, is in docs/framework-2026-11-02.md. */
 
 const moments = [
   "Avant une rencontre avec l’enseignante",
@@ -113,14 +108,20 @@ const pause = salesPause.fr;
 export default function FrenchHiddenReportCardPage() {
   return (
     <div lang="fr">
-      {/* 1. Hero */}
-      <section className="mx-auto max-w-[920px] px-6 pb-[60px] pt-16 text-center md:px-10 md:pb-[72px] md:pt-24">
-        <div className="mb-[30px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
+      {/* HER BRIEF OF 2 NOVEMBER 2026: the action comes first. The English
+          page carries the full note; this page follows it exactly, so the
+          language toggle never changes which page you are on. The sentence
+          that used to close the hero moved into the contrast section below,
+          unchanged. */}
+
+      {/* 1. The short heading */}
+      <section className="mx-auto max-w-[920px] px-6 pb-9 pt-12 text-center md:px-10 md:pb-10 md:pt-16">
+        <div className="mb-[22px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
           Parce qu&rsquo;un bulletin n&rsquo;a jamais été conçu pour raconter
           toute l&rsquo;histoire,
         </div>
         <h1
-          className="font-heading mb-8 text-bark"
+          className="font-heading text-bark"
           style={{
             fontSize: "clamp(38px,5.6vw,64px)",
             fontWeight: 500,
@@ -130,21 +131,19 @@ export default function FrenchHiddenReportCardPage() {
         >
           voici une plus juste mesure.
         </h1>
-        <p
-          className="font-heading mx-auto mb-10 italic text-dusk"
-          style={{
-            fontSize: "clamp(18px,2.2vw,23px)",
-            lineHeight: 1.5,
-            maxWidth: 620,
-          }}
-        >
-          Un bulletin mesure votre enfant par rapport à un ensemble limité de
-          critères. Il n&rsquo;a jamais été conçu pour mesurer votre enfant au
-          complet.
-        </p>
       </section>
 
-      {/* 2. Contrast */}
+      {/* 2. The action */}
+      <section
+        id="plans"
+        className="scroll-mt-6 bg-parchment px-6 pb-16 pt-2 md:px-10 md:pb-[100px]"
+      >
+        <div className="mx-auto max-w-[1180px]">
+          <PlanCards locale="fr" prices={APP_PRICES} />
+        </div>
+      </section>
+
+      {/* 3. Contrast */}
       <section className="bg-blush px-6 py-16 md:px-10 md:py-[100px]">
         <div className="mx-auto max-w-[1000px]">
           <div className="mb-12 text-center md:mb-[60px]">
@@ -156,6 +155,18 @@ export default function FrenchHiddenReportCardPage() {
               <br />
               Elles ne racontent tout simplement pas toute l&rsquo;histoire.
             </h2>
+            <p
+              className="font-heading mx-auto mt-7 italic text-dusk"
+              style={{
+                fontSize: "clamp(18px,2.2vw,23px)",
+                lineHeight: 1.5,
+                maxWidth: 620,
+              }}
+            >
+              Un bulletin mesure votre enfant par rapport à un ensemble limité
+              de critères. Il n&rsquo;a jamais été conçu pour mesurer votre
+              enfant au complet.
+            </p>
           </div>
 
           <div className="flex flex-col gap-px border border-grid bg-grid">
@@ -189,60 +200,32 @@ export default function FrenchHiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 3. Qualities */}
+      {/* 4. The framework */}
       <section className="bg-ghost px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1080px]">
-          <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-16">
-            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+          <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
+            <div className="text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               Le rapport caché
               <br />
               Une juste mesure de votre enfant
             </div>
-            <h2
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
-            >
-              Aucune de ces caractéristiques ne reçoit de note. Pourtant, elles façonnent
-              une grande part de ce que votre enfant est capable de devenir.
-            </h2>
           </div>
 
-          <div className="flex flex-col border-y border-grid">
-            {qualityRows.map((row) => (
-              <p
-                key={row[0]}
-                className="font-heading border-b-0 border-grid py-0 text-center font-medium text-bark last:border-b-0 md:border-b md:py-6"
-                style={{ fontSize: "clamp(20px,2.8vw,32px)", lineHeight: 1.3 }}
-              >
-                {row.map((word, i) => (
-                  <Fragment key={word}>
-                    {/* One word per line on a phone. Four-word rows wrapped
-                        wherever they ran out of room, which stranded separators
-                        at the ends of lines and started others with one, and
-                        the rules between rows then marked boundaries that do
-                        not exist: these are not categories. Below md the words
-                        stack, the separators go, and the rules go with them.
-                        The frame around the whole list stays. From md up every
-                        row fits on one line and the original reading holds. */}
-                    <span className="block whitespace-nowrap py-[7px] md:inline md:py-0">
-                      {word}
-                    </span>
-                    {i < row.length - 1 ? (
-                      <>
-                        {" "}
-                        <span
-                          className="hidden px-2 text-warm md:inline md:px-3"
-                          aria-hidden="true"
-                        >
-                          &middot;
-                        </span>{" "}
-                      </>
-                    ) : null}
-                  </Fragment>
-                ))}
-              </p>
-            ))}
-          </div>
+          <FrameworkList
+            locale="fr"
+            characteristicsHeading={
+              <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
+                <h2
+                  className="font-heading font-medium text-bark"
+                  style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
+                >
+                  Aucune de ces caractéristiques ne reçoit de note. Pourtant,
+                  elles façonnent une grande part de ce que votre enfant est
+                  capable de devenir.
+                </h2>
+              </div>
+            }
+          />
 
           <div
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"
@@ -270,7 +253,7 @@ export default function FrenchHiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 4. What you actually get */}
+      {/* 5. What you actually get */}
       <section className="bg-blush px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[680px] text-center">
           <h2
@@ -326,7 +309,7 @@ export default function FrenchHiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 5. Moments */}
+      {/* 6. Moments */}
       <section className="bg-ghost px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[1000px]">
           <div className="mx-auto mb-[60px] max-w-[620px] text-center">
@@ -365,7 +348,7 @@ export default function FrenchHiddenReportCardPage() {
         </div>
       </section>
 
-      {/* 6. The product experience */}
+      {/* 7. The product experience */}
       <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[900px]">
           <div className="mx-auto mb-12 max-w-[620px] text-center md:mb-16">

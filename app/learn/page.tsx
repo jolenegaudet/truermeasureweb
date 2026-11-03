@@ -29,6 +29,22 @@ export default function LearnPage() {
         >
           Elite Parents as Learning Leaders
         </p>
+
+        {/* Her brief of 2 November 2026: on this destination the waitlist is
+            the action, so it comes before the explanation rather than after
+            it. The same button, the same tag and the same form as the one at
+            the foot of the page, which stays where it is: a parent who reads
+            the whole page still ends on it. */}
+        <div className="mt-10 flex justify-center">
+          <WaitlistButton
+            tag="waitlist-elite-learning-leaders"
+            label="Join the Waitlist"
+            modalEyebrow="Elite Parents"
+            modalTitle="Join the Elite Parents waitlist."
+            submitLabel="Join the waitlist"
+            variant="bark"
+          />
+        </div>
       </section>
 
       {/* Separator */}

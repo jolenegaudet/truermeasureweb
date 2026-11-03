@@ -36,6 +36,20 @@ export default function FrenchInnerCirclePage() {
           >
             Faites partie du Cercle privé
           </p>
+
+          {/* Her brief of 2 November 2026: the action before the explanation.
+              Same button, tag and form as the one at the foot of the page. */}
+          <div className="mt-10 flex justify-center">
+            <WaitlistButton
+              locale="fr"
+              tag="applied-inner-circle"
+              label={"Faites une demande"}
+              modalEyebrow="Aidez-nous à façonner la suite"
+              modalTitle={`Faites votre demande pour le ${tiers.fr.threeFlat}.`}
+              submitLabel={"Envoyez la demande"}
+              variant="bark"
+            />
+          </div>
         </div>
       </section>
 

@@ -35,6 +35,20 @@ export default function FrenchLearnPage() {
         >
           Des parents d&rsquo;exception, leaders de l&rsquo;apprentissage
         </p>
+
+        {/* Her brief of 2 November 2026: the action before the explanation.
+            Same button, tag and form as the one at the foot of the page. */}
+        <div className="mt-10 flex justify-center">
+          <WaitlistButton
+            locale="fr"
+            tag="waitlist-elite-learning-leaders"
+            label={"Rejoignez la liste d’attente"}
+            modalEyebrow={tiers.fr.twoFlat}
+            modalTitle="Inscrivez-vous à la liste d’attente."
+            submitLabel={"Inscrivez-vous"}
+            variant="bark"
+          />
+        </div>
       </section>
 
       {/* Separator */}

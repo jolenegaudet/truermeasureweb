@@ -103,57 +103,7 @@ export default function FrenchHomePage() {
         </div>
       </section>
 
-      {/* 2. Founder */}
-      <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
-          <div className="flex justify-center">
-            <Image
-              src="/founder.png"
-              alt="Jolene, fondatrice de Truer Measure"
-              width={400}
-              height={400}
-              className="block rounded-full object-cover object-top"
-              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
-            />
-          </div>
-          <div>
-            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
-              Un mot de la fondatrice
-            </div>
-            <p
-              className="font-heading mb-7 text-bark"
-              style={{
-                fontSize: "clamp(24px,3vw,34px)",
-                lineHeight: 1.4,
-              }}
-            >
-              Pendant près de <em>25 ans</em>, j&rsquo;ai participé à la
-              rédaction des bulletins que les familles rapportent à la maison :
-              d&rsquo;abord comme enseignante, qui les écrivait, puis comme
-              directrice, qui les signait.
-            </p>
-            <p
-              className="mb-[22px] text-smoke"
-              style={{ fontSize: 17, lineHeight: 1.75 }}
-            >
-              J&rsquo;ai assisté à des centaines de rencontres
-              parents-enseignants, à regarder des familles chercher leur enfant
-              dans un paragraphe de commentaires soigneusement choisis. Et
-              chaque fois, je voyais la même chose : les qualités et les
-              habiletés qui comptaient le plus, la conviction discrète
-              qu&rsquo;un enfant est capable de plus que la case où on vient de
-              le placer, ne se trouvaient nulle part dans ces pages.
-            </p>
-            <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat}&nbsp;: un portrait
-              vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
-              <em className="italic text-bark">au-delà</em>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Tiers */}
+      {/* 2. Tiers */}
       <section
         id="tiers"
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
@@ -163,7 +113,7 @@ export default function FrenchHomePage() {
         </div>
       </section>
 
-      {/* 4. Communauté et Proximité.
+      {/* 3. Communauté et Proximité.
           Parents Élites and Cercle privé, exactly as they were: the same
           cards, the same GoHighLevel forms, the same tags, the same French.
           Only the row width changed, from three columns to two, because the
@@ -257,6 +207,61 @@ export default function FrenchHomePage() {
           </div>
         </div>
       </section>
+
+      {/* 4. La note de la fondatrice, en dernier.
+          Her brief of 2 November 2026: the founder's note becomes the last
+          content section, immediately before the footer, after the offers
+          and their supporting explanations. Not one word of it changed;
+          only where it sits. The English home page makes the same move. */}
+      <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="flex justify-center">
+            <Image
+              src="/founder.png"
+              alt="Jolene, fondatrice de Truer Measure"
+              width={400}
+              height={400}
+              className="block rounded-full object-cover object-top"
+              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
+            />
+          </div>
+          <div>
+            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
+              Un mot de la fondatrice
+            </div>
+            <p
+              className="font-heading mb-7 text-bark"
+              style={{
+                fontSize: "clamp(24px,3vw,34px)",
+                lineHeight: 1.4,
+              }}
+            >
+              Pendant près de <em>25 ans</em>, j&rsquo;ai participé à la
+              rédaction des bulletins que les familles rapportent à la maison :
+              d&rsquo;abord comme enseignante, qui les écrivait, puis comme
+              directrice, qui les signait.
+            </p>
+            <p
+              className="mb-[22px] text-smoke"
+              style={{ fontSize: 17, lineHeight: 1.75 }}
+            >
+              J&rsquo;ai assisté à des centaines de rencontres
+              parents-enseignants, à regarder des familles chercher leur enfant
+              dans un paragraphe de commentaires soigneusement choisis. Et
+              chaque fois, je voyais la même chose : les qualités et les
+              habiletés qui comptaient le plus, la conviction discrète
+              qu&rsquo;un enfant est capable de plus que la case où on vient de
+              le placer, ne se trouvaient nulle part dans ces pages.
+            </p>
+            <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
+              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat}&nbsp;: un portrait
+              vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
+              <em className="italic text-bark">au-delà</em>.
+            </p>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

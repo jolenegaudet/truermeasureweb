@@ -260,6 +260,86 @@ if (kind === "launch") {
   }
 }
 
+/* ── The framework, and that the page really carries all of it ───────────── */
+
+/* Her brief of 2 November 2026: the demo's six foundations and twenty-one
+   characteristics, "preserving their names, meaning, order and groupings. Do
+   not add, remove, merge or substitute them." The names are read out of
+   content/framework.ts rather than repeated here, so this cannot drift from
+   what the page renders; what it checks is that every one of them survives the
+   build, in the right language, and that nothing from the list it replaced is
+   still on the page. */
+const frameworkSource = readFileSync("content/framework.ts", "utf8");
+const items = [...frameworkSource.matchAll(
+  /\{\s*id:\s*"([a-z]+)",\s*\n?\s*en:\s*"([^"]+)",\s*\n?\s*fr:\s*"([^"]+)",?\s*\n?\s*\}/g,
+)].map((m) => ({ id: m[1], en: m[2], fr: m[3] }));
+
+const esc = (s) => s.replace(/&/g, "&amp;");
+
+if (items.length !== 27) {
+  fail(`content/framework.ts parsed as ${items.length} items, expected 27`);
+} else {
+  const hrcEn = readFileSync(join(OUT, "hidden-report-card.html"), "utf8");
+  const hrcFr = readFileSync(join(OUT, "fr", "hidden-report-card.html"), "utf8");
+  for (const item of items) {
+    if (!hrcEn.includes(esc(item.en))) fail(`"${item.en}" is not on the English page`);
+    if (!hrcFr.includes(esc(item.fr))) fail(`"${item.fr}" is not on the French page`);
+  }
+  /* The four the old list carried and the framework does not have. If one of
+     these is back, something was merged or substituted. */
+  for (const gone of ["Imagination", "Resilience", "Emotional Intelligence", "Civic-Mindedness"]) {
+    if (hrcEn.includes(gone)) fail(`"${gone}" is back on the English page`);
+  }
+  for (const gone of ["Imagination", "Résilience", "Intelligence émotionnelle", "Sens civique"]) {
+    if (hrcFr.includes(gone)) fail(`"${gone}" is back on the French page`);
+  }
+  notes.push(`${items.length} framework entries present in both languages.`);
+}
+
+/* ── The action first, on each offer destination ──────────────────────────── */
+
+/* Her brief of 2 November: "When someone clicks the navigation options shown
+   in my screenshot, the relevant action must appear first." Checked as source
+   order, which is what a screen reader and a keyboard follow as well as the
+   eye. */
+/* The first heading the MDX body renders; the written explanation starts
+   there. Named explicitly so the check cannot pass by finding nothing. */
+const MDX_BODY = '<h2 class="font-heading mt-12';
+const actionFirst = [
+  ["hidden-report-card.html", 'id="plans"', "Grades tell a story", "the plan cards"],
+  ["fr/hidden-report-card.html", 'id="plans"', "Les notes racontent", "the plan cards"],
+  ["learn.html", "Join the Waitlist", MDX_BODY, "the waitlist"],
+  ["fr/learn.html", "Rejoignez la liste", MDX_BODY, "the waitlist"],
+  ["inner-circle.html", ">Apply<", MDX_BODY, "the application"],
+  ["fr/inner-circle.html", "Faites une demande", MDX_BODY, "the application"],
+];
+for (const [page, action, explanation, what] of actionFirst) {
+  const html = readFileSync(join(OUT, ...page.split("/")), "utf8");
+  const a = html.indexOf(action);
+  const e = html.indexOf(explanation);
+  if (a === -1) fail(`${page}: ${what} is missing`);
+  else if (e === -1) fail(`${page}: cannot find the explanation to compare against`);
+  else if (a > e) fail(`${page}: ${what} comes after the explanation`);
+}
+
+/* The founder's note closes the home page, after both offer sections.
+   Compared inside the rendered body only: the React payload at the foot of the
+   file repeats every string in source order, so searching the whole file would
+   compare the page against its own serialisation. */
+for (const [page, note, lastOffer] of [
+  ["index.html", "A note from the founder", "Help shape what"],
+  ["fr.html", "Un mot de la fondatrice", "açonner la suite"],
+]) {
+  const html = readFileSync(join(OUT, page), "utf8");
+  const footer = html.indexOf("<footer");
+  const body = footer === -1 ? html : html.slice(0, footer);
+  const n = body.indexOf(note);
+  const o = body.lastIndexOf(lastOffer);
+  if (n === -1) fail(`${page}: the founder's note is not in the rendered page`);
+  else if (o === -1) fail(`${page}: the offers are not in the rendered page`);
+  else if (n < o) fail(`${page}: the founder's note is still above the offers`);
+}
+
 /* ── The forms, untouched ─────────────────────────────────────────────────── */
 
 for (const [html, lang] of [[en, "EN"], [fr, "FR"]]) {
