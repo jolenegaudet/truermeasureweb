@@ -307,14 +307,17 @@ word "unlimited" is nowhere on the page.
 
 **Checked again on 3 November 2026, and it is worse than "the parent meets it
 in the app".** The parent meets it *only* in the app, *only* once it is already
-reached, and *never* as a number. There is no figure on the purchase
-confirmation sheet, nowhere else in the app, and nothing on the website; the
-draft Terms say "a monthly limit on AI use" and no more, which is counsel's
-question 3f. So of the disclosure her brief asked to be preserved elsewhere,
-nothing is preserving it, and a frequent family reaching US$8.58 of a US$10
-ceiling can meet a limit nobody mentioned. Recorded in
-docs/launch-readiness-2026-11-02.md §3 as hers to settle, together with the
-per-child versus per-account question in §2 above.
+reached, and *never* as a number: no figure on the purchase confirmation sheet,
+nowhere else in the app, nothing on the website.
+
+In writing it exists once, in **draft Terms 1.3 §1** ("Monthly limit on new
+readings"), in plain words and with no figure, tagged counsel question 3f. But
+1.3 is unapproved, and the live Terms 1.2 of 3 October say nothing about a
+limit at all. So until counsel moves, a frequent family reaching US$8.58 of a
+US$10 ceiling can meet a limit that nothing they have read mentions. Recorded
+in docs/launch-readiness-2026-11-02.md §3 as hers to settle, together with the
+per-child versus per-account question in §2 above — the ceiling is per account
+today, so two paying children share one US$10 allowance.
 
 ---
 
