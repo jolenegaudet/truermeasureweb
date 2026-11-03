@@ -207,10 +207,38 @@ writes the address into the HTML, so moving later from the Azure name to
 absorbs. The name should be settled before the connected build is published, not
 after.
 
-**One question put to the app on 3 November, not to her.** The free button and
-the paid button send the same URL. `REGISTRATION.planParam` is false, so there
-is no `plan` parameter and the app cannot tell School from School & Life by the
-link alone. If it needs to, that is one parameter name and one line here.
+**What the app confirmed on 3 November, which closes three dependencies.**
+Against its launch commit `19903d2`:
+
+- **The route and the parameters.** A new parent lands on `/`, and the app reads
+  exactly `?currency=CAD|USD|EUR` and `?billing=month|year` there, carrying them
+  through sign-in, including a link opened on another device. So
+  `REGISTRATION.path` and the two names in `HANDOFF` are right as written.
+- **No plan parameter is needed.** The free button and the paid button send the
+  same URL, and that is correct rather than a gap: the app asks School or
+  School & Life in its own onboarding, and currency and billing only pre-set
+  what a parent sees if they later choose School & Life. `planParam` stays
+  false.
+- **The public address is planned, not live.** `app.truermeasure.com` is the
+  intended name, on the app's own launch-prep page since 1 November, with no DNS
+  record yet; the two Cloudflare records are her step. Until then production
+  lives at the Azure name, locked. The app session will say when
+  `app.truermeasure.com` answers, and **neither address is adopted here until
+  she names one**.
+
+**And one gate they agreed to record.** The public address must answer 200 from
+outside the IP and sign-in allow-lists before any connected build is published.
+That can only be checked at her release decision, because that is when the locks
+come off. So it belongs in section 6's deployed plan, not in anything verifiable
+today.
+
+**One question still open with the app, and it affects what a parent is
+charged.** The app confirmed the parameters arrive. It has not said whether the
+Checkout Session it opens now sets the currency it received. On 29 October
+`server/billing.js` opened a Session with no currency, which lets Stripe
+localise, so a parent who read US$47 could be charged in CAD. Asked on
+3 November. Until it answers, the charged amount is verified for CAD only, and
+that is recorded in `content/app-plans.ts` beside the parameter names.
 
 ---
 
@@ -240,8 +268,10 @@ dead code: `SALES_PAUSED` is true at line 55, no component imports `CHECKOUT_URL
 or `checkoutReady`, and the string `buy.stripe.com` appears in none of the
 14 exported pages and in none of the six live pages checked on truermeasure.com.
 So **the website cannot take a payment today**, which is the fact that matters.
-Whether the link is still live inside Stripe is an account question, not a
-website one, and nothing here was changed.
+The app session then looked in Stripe, read-only, and reported that the account
+holds 11 payment links and **none active**, so the link cannot take a payment
+from either side. It is a tidy-up for after her approval, not a launch item, and
+nothing here was changed.
 
 **A 404 the app points at, now fixed on the branch.** The customer app's
 agreement screen links `https://truermeasure.com/terms` and

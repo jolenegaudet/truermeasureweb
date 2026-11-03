@@ -307,10 +307,21 @@ export const DEMO_URL = "https://demo.truermeasure.com/";
  * Absent parameters mean the app chooses for itself, and its own default has to
  * be CAD, because CAD is what a visitor with JavaScript off is shown here.
  *
- * What the app must do with them is docs/currency-handoff-2026-10-29.md. The
- * website's side is finished; the app's side is not, and until it lands a
- * parent who picks USD can still be charged in CAD by Stripe's own
- * localisation (server/billing.js opens a Checkout Session with no currency).
+ * What the app must do with them is docs/currency-handoff-2026-10-29.md.
+ *
+ * Confirmed by the app session on 3 November 2026, against its launch commit
+ * 19903d2: the app reads exactly these two names, with exactly these values, at
+ * exactly the route REGISTRATION.path names, and carries them through sign-in,
+ * including a link opened on another device. So the handoff itself is settled on
+ * both sides.
+ *
+ * ONE PART IS NOT SETTLED, and it is not this file's to fix: whether the
+ * Checkout Session the app opens sets the currency it received. On 29 October
+ * server/billing.js opened one with no currency, which lets Stripe localise and
+ * can charge a parent who read US$47 in CAD. The app session confirmed the
+ * parameters arrive; it has not told me the Session now carries them, and it was
+ * asked on 3 November. Until it answers, treat the amount a parent is charged as
+ * verified only for CAD.
  */
 export const HANDOFF = {
   currency: "currency",
@@ -353,6 +364,13 @@ export const REGISTRATION: {
   url: string | null;
   /** The route a new parent lands on, verified with the app session. */
   path: string;
+  /**
+   * Whether the link names the plan. False, and settled: the app session
+   * confirmed on 3 November 2026 that it needs no plan parameter, because the
+   * app asks School or School & Life in its own onboarding. Currency and
+   * billing only pre-set what a parent sees if they later choose School & Life,
+   * so sending both on the free button is correct, not a leak.
+   */
   planParam: boolean;
   /** Whether the destination understands ?currency= and ?billing=. */
   currencyParam: boolean;
