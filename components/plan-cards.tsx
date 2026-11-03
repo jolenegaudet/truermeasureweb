@@ -71,9 +71,13 @@ import type { Locale } from "@/content/i18n";
 export function PlanCards({
   locale = "en",
   prices = [],
+  showHeading = true,
 }: {
   locale?: Locale;
   prices?: AppPrice[];
+  /** False where the page's own title already introduces the offer, so a
+      phone does not spend a screen on two headings before the choice. */
+  showHeading?: boolean;
 }) {
   const t = appPlansFor(locale);
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
@@ -124,78 +128,72 @@ export function PlanCards({
   return (
     <>
       {/* ---------- Heading ---------- */}
-      <div className="mx-auto mb-8 max-w-[560px] text-center">
-        <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-          {t.sectionEyebrow}
+      {showHeading && (
+        <div className="mx-auto mb-8 max-w-[560px] text-center">
+          <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            {t.sectionEyebrow}
+          </div>
+          <h2
+            className="font-heading font-medium text-bark"
+            style={{ fontSize: "clamp(27px,4.6vw,46px)", lineHeight: 1.08 }}
+          >
+            {t.sectionHeading}
+          </h2>
         </div>
-        <h2
-          className="font-heading font-medium text-bark"
-          style={{ fontSize: "clamp(27px,4.6vw,46px)", lineHeight: 1.08 }}
-        >
-          {t.sectionHeading}
-        </h2>
-      </div>
+      )}
 
       {/* ---------- The two cards ---------- */}
       {/* Equal heights, her instruction of 1 November. They were each their
           own height from 29 October, to avoid the empty area that stretching
           the shorter card creates; with the box above the cards gone, she
-          wants them level again. The free card's explanation takes the extra
-          height with flex-1 below, so the space falls under the list rather
-          than between the button and it. On a phone they stack and none of
-          this applies. */}
-      <div className="mx-auto grid max-w-[860px] grid-cols-1 items-stretch gap-5 md:grid-cols-2">
-        {/* School · Free */}
-        <div className="flex flex-col rounded-[2px] border border-border bg-ghost px-6 pb-7 pt-7 text-center md:px-7">
-          <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-rose">
-            {t.free.eyebrow}
-          </div>
-          <div
-            className="font-heading mt-2 text-bark"
-            style={{ fontSize: 36, lineHeight: 1.05 }}
-          >
-            {t.free.price}
-          </div>
-          <p
-            className="mt-[10px] text-smoke"
-            style={{ fontSize: 12.5, lineHeight: 1.5 }}
-          >
-            {t.free.only}
-          </p>
-          <a
-            href={planHref("school", carry)}
-            {...handoff}
-            {...(GOES_TO_DEMO ? { target: "_blank", rel: "noopener" } : {})}
-            className="mt-5 block w-full rounded-[2px] border border-rose bg-transparent px-5 py-[13px] text-[12px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
-          >
-            {t.free.cta}
-          </a>
-          {GOES_TO_DEMO && (
-            <p
-              className="mt-[8px] text-smoke"
-              style={{ fontSize: 11, lineHeight: 1.45 }}
-            >
-              {t.demoNote}
-            </p>
-          )}
+          wants them level again.
 
-          {/* What it is, under the action rather than above it. */}
-          <div className="mt-6 flex-1 border-t border-border pt-5 text-left">
-            <h3
-              className="font-heading font-medium text-bark"
-              style={{ fontSize: 20, lineHeight: 1.2 }}
-            >
-              {t.free.heading}
-            </h3>
-            <Bullets items={t.free.includes} tone="light" />
-          </div>
-        </div>
+          ── FOUR PIECES, NOT TWO CARDS (her brief, 2 November 2026) ────────
+          "Show whether the paid price, billing choice and paid registration
+          button are visible without scrolling on a typical phone viewport.
+          Having them below the entire free card does not satisfy my request…
+          adjust the layout so the plan choices, pricing and actions come
+          before the longer benefit lists."
 
-        {/* School & Life · Paid */}
+          THE PAID CARD IS TWO ELEMENTS: the choice (name, price, billing
+          period, what it covers, the button and the demo note) and the
+          benefits. The free card is still one. In the markup they run paid
+          choice, free card, paid benefits, so on a phone, in one column, both
+          choices come before the longer list that explains the paid plan.
+
+          AND THE PAID CHOICE LEADS ON A PHONE, which is what actually meets
+          her condition. Measured at 390px on 2 November: with the free choice
+          first, the paid button's bottom edge sat at 829px in English and
+          870px in French, so it cleared an 844px viewport in one language only
+          and neither with a browser's own chrome over it. Leading with it puts
+          the price, the billing choice and the button inside the first screen
+          of a 667px phone in both languages, without shortening a single line.
+          It is the markup order, not a CSS `order`, so what a screen reader
+          reads is what the eye sees.
+
+          On a desktop nothing moves. The free card spans both rows in column
+          one; the paid card's two pieces take column two, with zero row gap
+          and no border or rounding on the edges where they meet, so the column
+          reads as the single card she approved. The paid card's shadow is on
+          both pieces: the lower one paints after the upper one and covers the
+          seam. Because the paid list is no longer inside its card on a phone,
+          it repeats the plan's name above it, hidden from md up where the card
+          already says it.
+
+          From md up, each piece is placed in its own cell — the choices on
+          row 1 and the benefits on row 2, each column keeping its own card —
+          so the desktop presentation she has already seen does not change.
+          The row gap is zero and the inner edges lose their border and their
+          rounding, so a column reads as one card; the grid's own rows are
+          what keep the two cards level, which the flex-1 spacer used to do.
+          The paid card's shadow is on both of its pieces: the lower one
+          paints after the upper one and covers the seam. */}
+      <div className="mx-auto grid max-w-[860px] grid-cols-1 items-stretch gap-x-5 gap-y-0 md:grid-cols-2">
+        {/* 1. School & Life · Paid — the choice */}
         <div
           /* A transparent border so this card has the same box as the free one,
              which has a visible 1px border. */
-          className="flex flex-col rounded-[2px] border border-transparent bg-bark px-6 pb-7 pt-7 text-center md:px-7"
+          className="mb-5 flex flex-col rounded-[2px] border border-transparent bg-bark px-6 pb-7 pt-7 text-center md:col-start-2 md:row-start-1 md:mb-0 md:rounded-b-none md:px-7 md:pb-0"
           style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
         >
           <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark">
@@ -306,8 +304,68 @@ export function PlanCards({
               {t.demoNote}
             </p>
           )}
+        </div>
 
-          <div className="mt-6 border-t border-charcoal pt-5 text-left">
+        {/* 2. School · Free — one card, whole, as it has always been.
+            Only the paid card is split. The free card spans both rows, so its
+            own flex-1 below still decides where its spare height goes: under
+            the list, which is her instruction of 1 November, and not between
+            the button and the rule. Splitting this one too put the gap in
+            exactly the place she had moved it away from. */}
+        <div className="mb-8 flex flex-col rounded-[2px] border border-border bg-ghost px-6 pb-7 pt-7 text-center md:col-start-1 md:row-span-2 md:row-start-1 md:mb-0 md:px-7">
+          <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-rose">
+            {t.free.eyebrow}
+          </div>
+          <div
+            className="font-heading mt-2 text-bark"
+            style={{ fontSize: 36, lineHeight: 1.05 }}
+          >
+            {t.free.price}
+          </div>
+          <p
+            className="mt-[10px] text-smoke"
+            style={{ fontSize: 12.5, lineHeight: 1.5 }}
+          >
+            {t.free.only}
+          </p>
+          <a
+            href={planHref("school", carry)}
+            {...handoff}
+            {...(GOES_TO_DEMO ? { target: "_blank", rel: "noopener" } : {})}
+            className="mt-5 block w-full rounded-[2px] border border-rose bg-transparent px-5 py-[13px] text-[12px] font-bold uppercase tracking-[0.13em] text-bark no-underline"
+          >
+            {t.free.cta}
+          </a>
+          {GOES_TO_DEMO && (
+            <p
+              className="mt-[8px] text-smoke"
+              style={{ fontSize: 11, lineHeight: 1.45 }}
+            >
+              {t.demoNote}
+            </p>
+          )}
+
+          {/* What it is, under the action rather than above it. */}
+          <div className="mt-6 flex-1 border-t border-border pt-5 text-left">
+            <h3
+              className="font-heading font-medium text-bark"
+              style={{ fontSize: 20, lineHeight: 1.2 }}
+            >
+              {t.free.heading}
+            </h3>
+            <Bullets items={t.free.includes} tone="light" />
+          </div>
+        </div>
+
+        {/* 3. School & Life — what it is. */}
+        <div
+          className="flex flex-col rounded-[2px] border border-transparent bg-bark px-6 pb-7 pt-7 text-left md:col-start-2 md:row-start-2 md:rounded-t-none md:px-7 md:pt-0"
+          style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
+        >
+          <div className="md:mt-6 md:border-t md:border-charcoal md:pt-5">
+            <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.22em] text-rose-dark md:hidden">
+              {t.paid.eyebrow}
+            </div>
             <h3
               className="font-heading font-medium text-parchment"
               style={{ fontSize: 20, lineHeight: 1.2 }}

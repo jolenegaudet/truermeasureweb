@@ -115,7 +115,7 @@ export default function FrenchHiddenReportCardPage() {
           unchanged. */}
 
       {/* 1. The short heading */}
-      <section className="mx-auto max-w-[920px] px-6 pb-9 pt-12 text-center md:px-10 md:pb-10 md:pt-16">
+      <section className="mx-auto max-w-[920px] px-6 pb-6 pt-8 text-center md:px-10 md:pb-10 md:pt-16">
         <div className="mb-[22px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
           Parce qu&rsquo;un bulletin n&rsquo;a jamais été conçu pour raconter
           toute l&rsquo;histoire,
@@ -139,7 +139,7 @@ export default function FrenchHiddenReportCardPage() {
         className="scroll-mt-6 bg-parchment px-6 pb-16 pt-2 md:px-10 md:pb-[100px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <PlanCards locale="fr" prices={APP_PRICES} />
+          <PlanCards locale="fr" prices={APP_PRICES} showHeading={false} />
         </div>
       </section>
 
@@ -203,29 +203,23 @@ export default function FrenchHiddenReportCardPage() {
       {/* 4. The framework */}
       <section className="bg-ghost px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1080px]">
+          {/* Her wording of 2 November 2026. See the English page. */}
           <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
-            <div className="text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               Le rapport caché
               <br />
               Une juste mesure de votre enfant
             </div>
+            <h2
+              className="font-heading font-medium text-bark"
+              style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
+            >
+              Les notes de votre enfant ne montrent pas tout ce dont il est
+              capable.
+            </h2>
           </div>
 
-          <FrameworkList
-            locale="fr"
-            characteristicsHeading={
-              <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
-                <h2
-                  className="font-heading font-medium text-bark"
-                  style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
-                >
-                  Aucune de ces caractéristiques ne reçoit de note. Pourtant,
-                  elles façonnent une grande part de ce que votre enfant est
-                  capable de devenir.
-                </h2>
-              </div>
-            }
-          />
+          <FrameworkList locale="fr" />
 
           <div
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"

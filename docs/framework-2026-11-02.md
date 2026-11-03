@@ -172,15 +172,22 @@ two groups and four family headings.
 
 ---
 
-## 5. One thing her eye should settle
+## 5. The section heading, settled
 
-Her line **"None of these receive a grade. Yet they shape so much of who your
-child is capable of becoming."** is true of the twenty-one and false of the
-six: school grades reading, writing and mathematics for years, and the demo
-says so itself. So on the page that line now introduces the characteristics
-block rather than the whole section, and the foundations block carries the
-demo's own two sentences instead. Nothing was written for the website to fill
-the gap.
+The page used to open this section with **"None of these receive a grade. Yet
+they shape so much of who your child is capable of becoming."** That line is
+true of the twenty-one and false of the six, since school grades reading,
+writing and mathematics for years, so it was moved down to introduce the
+characteristics alone.
 
-If she would rather the line stayed at the top of the whole section, it needs a
-different ending, and that is her wording to give, not mine.
+She replaced it the same day, judging it "too absolute, even when restricted to
+the 21 characteristics", and gave the wording herself:
+
+> **Your child's grades don't show everything they're capable of.**
+>
+> « Les notes de votre enfant ne montrent pas tout ce dont il est capable. »
+
+That is true of both groups, so the reason for moving it is gone and the
+heading is back above the whole section, where it was. The foundations keep the
+demo's own two sentences under their own heading. Nothing was written for the
+website.

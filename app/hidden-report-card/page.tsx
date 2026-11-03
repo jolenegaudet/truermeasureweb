@@ -117,7 +117,7 @@ export default function HiddenReportCardPage() {
           action. */}
 
       {/* 1. The short heading */}
-      <section className="mx-auto max-w-[920px] px-6 pb-9 pt-12 text-center md:px-10 md:pb-10 md:pt-16">
+      <section className="mx-auto max-w-[920px] px-6 pb-6 pt-8 text-center md:px-10 md:pb-10 md:pt-16">
         <div className="mb-[22px] text-[15px] font-semibold uppercase tracking-[0.24em] text-rose">
           Because a report card was never designed to tell the whole story
         </div>
@@ -143,7 +143,7 @@ export default function HiddenReportCardPage() {
         className="scroll-mt-6 bg-parchment px-6 pb-16 pt-2 md:px-10 md:pb-[100px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <PlanCards locale="en" prices={APP_PRICES} />
+          <PlanCards locale="en" prices={APP_PRICES} showHeading={false} />
         </div>
       </section>
 
@@ -208,28 +208,28 @@ export default function HiddenReportCardPage() {
           and groupings are the demo's; see content/framework.ts. */}
       <section className="bg-ghost px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1080px]">
+          {/* Her wording of 2 November 2026, dictated to replace "None of
+              these receive a grade. Yet they shape so much of who your child
+              is capable of becoming.", which she judged "too absolute, even
+              when restricted to the 21 characteristics". Her replacement is
+              true of the foundations as well, so the heading introduces the
+              whole section again rather than the second block alone. */}
           <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
-            <div className="text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+            <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
               The Hidden Report Card&trade;
               <br />
               A Truer Measure of your child
             </div>
+            <h2
+              className="font-heading font-medium text-bark"
+              style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
+            >
+              Your child&rsquo;s grades don&rsquo;t show everything they&rsquo;re
+              capable of.
+            </h2>
           </div>
 
-          <FrameworkList
-            locale="en"
-            characteristicsHeading={
-              <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
-                <h2
-                  className="font-heading font-medium text-bark"
-                  style={{ fontSize: "clamp(28px,5vw,54px)", lineHeight: 1.08, margin: 0 }}
-                >
-                  None of these receive a grade. Yet they shape so much of who
-                  your child is capable of becoming.
-                </h2>
-              </div>
-            }
-          />
+          <FrameworkList locale="en" />
 
           <div
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"

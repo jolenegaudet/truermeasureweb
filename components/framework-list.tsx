@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { FRAMEWORK } from "@/content/framework";
 import type { Locale } from "@/content/i18n";
 
@@ -10,15 +9,17 @@ import type { Locale } from "@/content/i18n";
  * ── TWO BLOCKS, NOT ONE LIST ──────────────────────────────────────────────
  *
  * Her brief of 2 November: "Keep foundations distinct from capabilities." So
- * the two groups never run together, and `characteristicsHeading` is rendered
- * between them rather than above both. That is not only grouping: her line
- * "None of these receive a grade. Yet they shape so much of who your child is
- * capable of becoming." is true of the twenty-one and false of the six, since
- * school grades reading, writing and mathematics for years. Printing it above
- * the foundations would put a false sentence on the page. It therefore
- * introduces the second block, where it has always pointed: the thirty-one
- * words it used to sit over were all characteristics, with no foundation
- * among them.
+ * the two groups never run together.
+ *
+ * The section heading sits above both of them again, on the page rather than
+ * in here. It had been pushed down to introduce the characteristics alone,
+ * because the line it carried then ("None of these receive a grade") is true
+ * of the twenty-one and false of the six: school grades reading, writing and
+ * mathematics for years. She replaced that line the same day, judging it "too
+ * absolute, even when restricted to the 21 characteristics", with "Your
+ * child's grades don't show everything they're capable of." That sentence is
+ * true of both groups, so the reason for moving it is gone and it is back
+ * where it was.
  *
  * ── WHY A GRID AND NOT ROWS OF WORDS ──────────────────────────────────────
  *
@@ -30,19 +31,11 @@ import type { Locale } from "@/content/i18n";
  * keeps each name whole on every width, and the family headings carry the
  * grouping that the rows used to imply.
  */
-export function FrameworkList({
-  locale = "en",
-  characteristicsHeading,
-}: {
-  locale?: Locale;
-  characteristicsHeading?: ReactNode;
-}) {
+export function FrameworkList({ locale = "en" }: { locale?: Locale }) {
   return (
     <>
       {FRAMEWORK.map((group, groupIndex) => (
         <div key={group.id} className={groupIndex === 0 ? "" : "mt-14 md:mt-20"}>
-          {groupIndex === 1 && characteristicsHeading}
-
           <div className="mx-auto mb-8 max-w-[720px] text-center md:mb-10">
             <h3
               className="font-heading font-medium text-bark"

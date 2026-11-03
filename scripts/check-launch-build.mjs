@@ -120,10 +120,13 @@ for (const [html, needle, what] of mustHold) {
   if (!html.includes(needle)) fail(`${what} is missing`);
 }
 
-/* The comparison panel that came off on 2 November, in both languages. */
+/* The comparison panel that came off on 2 November, in both languages, and the
+   heading she replaced the same day for being too absolute. */
 const mustNotHold = [
   [en, "Compare the two plans", "the English comparison panel"],
   [fr, "Comparez les deux forfaits", "the French comparison panel"],
+  [en, "None of these receive a grade", "the heading she replaced"],
+  [fr, "ne reçoit de note", "the French heading she replaced"],
   [en, "Price to be set", "the old price placeholder"],
   [en, "Price to be confirmed", "an unset currency (EN)"],
   [fr, "Prix", "an unset currency (FR)"],
@@ -293,7 +296,35 @@ if (items.length !== 27) {
   for (const gone of ["Imagination", "Résilience", "Intelligence émotionnelle", "Sens civique"]) {
     if (hrcFr.includes(gone)) fail(`"${gone}" is back on the French page`);
   }
+  /* Her wording of 2 November, which replaced "None of these receive a
+     grade…". It introduces the whole section, so it must be above the
+     foundations rather than between the two blocks. */
+  if (!hrcEn.includes("grades don’t show everything")) {
+    fail("her replacement heading is not on the English page");
+  } else if (hrcEn.indexOf("grades don’t show everything") >
+             hrcEn.indexOf("foundations that outlast school")) {
+    fail("the English heading is below the foundations");
+  }
+  if (!hrcFr.includes("ne montrent pas tout ce dont il est capable")) {
+    fail("her replacement heading is not on the French page");
+  } else if (hrcFr.indexOf("ne montrent pas tout ce dont il est capable") >
+             hrcFr.indexOf("fondements qui durent")) {
+    fail("the French heading is below the foundations");
+  }
   notes.push(`${items.length} framework entries present in both languages.`);
+}
+
+/* The paid choice leads on a phone, so the price, the billing period and the
+   paid button are in the first screen. It is markup order, not CSS, which is
+   what makes this checkable here and what keeps the reading order honest. */
+for (const [html, lang, freeCta] of [[en, "EN", "Start free"], [fr, "FR", "Commencer gratuitement"]]) {
+  const paidPrice = html.indexOf('data-tm-price="CAD"');
+  const free = html.indexOf(freeCta);
+  if (paidPrice === -1 || free === -1) {
+    fail(`cannot find both plan choices on the ${lang} home page`);
+  } else if (paidPrice > free) {
+    fail(`the paid choice is below the free choice in the ${lang} markup`);
+  }
 }
 
 /* ── The action first, on each offer destination ──────────────────────────── */
