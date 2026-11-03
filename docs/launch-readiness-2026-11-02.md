@@ -232,13 +232,37 @@ That can only be checked at her release decision, because that is when the locks
 come off. So it belongs in section 6's deployed plan, not in anything verifiable
 today.
 
-**One question still open with the app, and it affects what a parent is
-charged.** The app confirmed the parameters arrive. It has not said whether the
-Checkout Session it opens now sets the currency it received. On 29 October
-`server/billing.js` opened a Session with no currency, which lets Stripe
-localise, so a parent who read US$47 could be charged in CAD. Asked on
-3 November. Until it answers, the charged amount is verified for CAD only, and
-that is recorded in `content/app-plans.ts` beside the parameter names.
+**And the charge matches what was read. Answered 3 November, and it was the
+last thing on the handoff I could not see from here.** The 29 October gap, where
+`server/billing.js` opened a Checkout Session with no currency and let Stripe
+localise, closed in the app at `69d3f4a`. Every Session now carries the parent's
+currency; anything outside cad/usd/eur is refused rather than guessed; adaptive
+pricing is off so Stripe's own page cannot offer another currency; and a
+customer who already paid in one currency gets a 409 instead of a second one.
+One price per period carries all three amounts as currency options, so what a
+parent pays is read from Stripe and never from the link.
+
+Verified in the sandbox across all three currencies and both periods, six
+checkouts on 29 October: CA$54.05 and CA$583.74 with tax added, US$47 with none
+added, 47 EUR with VAT inside. **Live charging is untested and stays that way
+until her release decision**, since no live purchase has been made.
+
+**One thing for her eye, and it is her sentence, not a defect.** The page says
+"Plus applicable taxes." under CA$47 and under US$47, which are her own words of
+29 October. In the sandbox the US checkout collected no tax, so a parent in the
+United States pays exactly US$47 while the page prepares her for more. The
+sentence is not false, since no tax is applicable, and it stays correct if that
+changes. Nothing was edited: it is priced copy, which is hers.
+
+**The live prices now exist, which touches the price gate rather than the
+handoff.** The app session reports creating them today on her authorisation and
+re-reading them after: monthly `price_1UXkrCAJm8m0sW6oJ4LJ7DLO`, yearly
+`price_1UXkrDAJm8m0sW6ohl0gxVaB`, product `prod_VYsc687ywnpdQT`, CA$47 and
+US$47 tax-exclusive, 47 EUR tax-inclusive, 507.60 in each for the year, same tax
+behaviour. **That is the app's record of her authorisation, not a word she has
+given this side**, so `SHOW_PRICES` stays false and the website still shows no
+price until she says so here. If the live amounts are her approval of the
+amounts, it is one word and the review build becomes the launch build.
 
 ---
 

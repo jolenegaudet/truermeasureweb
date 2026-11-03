@@ -22,6 +22,17 @@ therefore sent to a checkout that says CA$47. That is the gap. It breaks the
 app's own rule, written above that function: *"a checkout is never opened for a
 price the parent has not been shown."*
 
+**CLOSED 3 November 2026.** The paragraph above describes 29 October and is kept
+as the record of the problem. The app session reports it fixed at app commit
+`69d3f4a`: `handleCheckout` sends the carried currency on every Checkout
+Session, refuses any currency outside cad/usd/eur and any the price has no
+amount for, sets `adaptive_pricing.enabled=false` so Stripe's page cannot offer
+another, and returns 409 when the customer already paid in a different one. One
+price per period carries all three amounts as currency options, so the charge is
+read from Stripe rather than from the link. Verified in the sandbox across all
+three currencies and both periods. Live charging is untested until her release
+decision. Section 4 below and `content/app-plans.ts` carry the same note.
+
 ---
 
 ## 1. What the website now does (done, verified)

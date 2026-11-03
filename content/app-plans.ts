@@ -315,13 +315,25 @@ export const DEMO_URL = "https://demo.truermeasure.com/";
  * including a link opened on another device. So the handoff itself is settled on
  * both sides.
  *
- * ONE PART IS NOT SETTLED, and it is not this file's to fix: whether the
- * Checkout Session the app opens sets the currency it received. On 29 October
- * server/billing.js opened one with no currency, which lets Stripe localise and
- * can charge a parent who read US$47 in CAD. The app session confirmed the
- * parameters arrive; it has not told me the Session now carries them, and it was
- * asked on 3 November. Until it answers, treat the amount a parent is charged as
- * verified only for CAD.
+ * AND THE CHARGE MATCHES WHAT WAS READ. Answered 3 November 2026. The 29 October
+ * gap, where server/billing.js opened a Session with no currency and let Stripe
+ * localise, closed in the app at 69d3f4a: handleCheckout now sends the carried
+ * currency on every Session, refuses anything outside cad/usd/eur, refuses a
+ * currency the price has no amount for, turns Stripe's adaptive pricing off so
+ * its page cannot offer another, and returns 409 when the customer already paid
+ * in a different one. One price per period carries all three as currency
+ * options, so the amount comes from Stripe, never from this query string.
+ *
+ * Which is the right shape, because `?currency=` is advisory. A parent can edit
+ * it in the address bar. What decides what she SEES here is the Netlify edge
+ * function's country; what decides what she PAYS is the price id's currency
+ * option. Editing the parameter changes which of the three amounts she is shown
+ * on the app's confirmation sheet, and she then pays exactly that. All three are
+ * 47 or 507.60, so no amount on this page can be contradicted by a charge.
+ *
+ * Verified in the sandbox across all three currencies and both periods, six
+ * checkouts, 29 October (app commit f432dbc). LIVE CHARGING IS UNTESTED: no live
+ * purchase has been made, and it cannot be until her release decision.
  */
 export const HANDOFF = {
   currency: "currency",
