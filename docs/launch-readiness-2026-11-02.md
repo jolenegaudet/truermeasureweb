@@ -211,6 +211,42 @@ set to the United States and **Par annee** pressed: both send
 URL, and the path is `/`. So the yearly case, which until now I had only
 reasoned about, behaves the way the monthly case does.
 
+**What an edited parameter can and cannot do, since it is now her decision.**
+Confirmed with the app session on 3 November: the app takes `?currency=` as
+given and passes it to Stripe with adaptive pricing off, which is her rule of
+29 October, written while the website still had a currency selector: "the
+currency selected on the website reaches the app and checkout, including a
+visitor's manual override." The selector is gone, so the only thing left that
+can change the currency is editing the parameter on the app's own URL after the
+click. The app session recommends keeping that behaviour and changed nothing.
+
+Two corrections worth having in the record, because the website's half is mine
+to be exact about:
+
+- **The browser's language and region change nothing here.** Checked in source:
+  `netlify/edge-functions/currency.ts` reads `context.geo.country.code` and
+  nothing else, and no file on the site reads `navigator.language` or
+  `accept-language` for anything. So a parent cannot change the price she is
+  shown by switching her browser's language. What the edge function resolves is
+  what she reads.
+- **`?tm-country=` is not a way in either.** It is gated behind its own
+  variable, `NEXT_PUBLIC_TM_COUNTRY_OVERRIDE`, which is never set outside a
+  local preview, and the build check fails if the string reaches an exported
+  page at all (section 1).
+
+So the exposure is exactly one: a parent who edits the app's URL sees that
+currency's amount on the app's confirmation sheet and pays it. Every figure is
+47 or 507.60, tax follows the billing address, and a family that has already
+paid in one currency is refused a second, so no amount on this page can be
+contradicted by a charge. **If she decides to close it, the app session comes to
+this side first**, because any check depends on how the website resolved the
+country in the first place.
+
+**The language defect is the website's alone.** The app session checked on
+3 November: the app is English only, every page declares `lang="en"`, and no page
+carries French text, so item 8 of section 7 does not exist there. French in the
+app sits behind counsel's question on Quebec and French.
+
 **The host is baked in, which decides the order of two steps.** A static export
 writes the address into the HTML, so moving later from the Azure name to
 `app.truermeasure.com` is a rebuild and a redeploy, not a redirect the website
