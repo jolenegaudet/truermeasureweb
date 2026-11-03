@@ -234,6 +234,34 @@ to be exact about:
   local preview, and the build check fails if the string reaches an exported
   page at all (section 1).
 
+**And the unknown country, proved on all three paths.** Asked by the app
+session on 3 November and checked rather than answered from the comment.
+`netlify/edge-functions/currency.ts` writes no attribute when Netlify cannot
+resolve the country (`if (!chosen) return response`), and from there:
+
+- The page shows **CA$47**, by `html:not([data-tm-currency]) [data-tm-price="CAD"]`
+  in `app/globals.css:43`.
+- The button sends **`currency=CAD`**, by
+  `d.getAttribute("data-tm-currency") || "CAD"` in the click script, with
+  `DEFAULT_CURRENCY` at `content/app-plans.ts:170`.
+- The href baked into the exported HTML already reads `currency=CAD`, so a
+  middle-click or a click before hydration carries it too.
+
+Verified in the browser as well as in source: with the attribute removed, the
+only visible price is CA$47 and both buttons send `?currency=CAD&billing=month`.
+So the website's unknown case is CAD everywhere, which is her rule, and an app
+fallback of CA$ would match it exactly.
+
+**A second path, on the app's side, which is not reachable from this page.** The
+app session found it while correcting its row: a parent who reaches the app
+without pressing a website button, by typing the address, a bookmark, or a
+shared link on another device, gets a currency guessed from
+`navigator.languages`. So a family in Canada with a browser set to en-US is
+shown US$47. Nothing on the website causes that and nothing here can fix it; it
+is recorded so the two halves are not confused. The app session recommends
+falling back to CA$ whenever the website did not choose, which is the same
+answer as the line above, and has changed nothing pending her decision.
+
 So the exposure is exactly one: a parent who edits the app's URL sees that
 currency's amount on the app's confirmation sheet and pays it. Every figure is
 47 or 507.60, tax follows the billing address, and a family that has already
