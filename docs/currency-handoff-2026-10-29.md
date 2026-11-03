@@ -491,12 +491,16 @@ not repeated here.
    brief §2.
 2. **The registration buttons must point at the verified customer-app host.**
    Today they open the demo, with "Opens the demo in a new tab" under each one
-   and, above them, "The app is not open to families yet." **Demo links are
-   temporary and are not working registration.** They may not be presented as
-   registration, and the page may not be published as a sales page while they
-   are what the buttons do. The route is recorded (`path: "/"`, parameters
-   `currency` and `billing`); only the host is missing, and setting
-   `REGISTRATION.url` switches every button over.
+   and the demo-only sentence under the cards. (The box that said "The app is
+   not open to families yet." came off at her instruction on 1 November; those
+   two lines are what replaced it.) **Demo links are temporary and are not
+   working registration.** They may not be presented as registration, and the
+   page may not be published as a sales page while they are what the buttons
+   do. The route is recorded (`path: "/"`, parameters `currency` and
+   `billing`); only the host is missing, and setting `REGISTRATION.url`
+   switches every button over and takes both demo lines off with it.
+   Re-confirmed with the app session on 2 November: the production app has
+   still never been created. See docs/launch-readiness-2026-11-02.md.
 3. **The country detection needs one check on the deployed host**, from two
    countries, because `context.geo` cannot be exercised locally (§2i).
 4. **Preserved, and to stay preserved:** Parents Élites as the French community

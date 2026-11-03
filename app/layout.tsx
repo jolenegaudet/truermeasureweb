@@ -6,10 +6,11 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import {
   CARRIES_CHOICE,
+  COUNTRY_OVERRIDE,
   DEFAULT_CURRENCY,
   DEFAULT_INTERVAL,
   HANDOFF,
-  PRICE_PREVIEW,
+  SHOW_PRICES,
 } from "@/content/app-plans";
 import { currencyForCountry } from "@/content/currency-for-country";
 
@@ -37,10 +38,17 @@ import { currencyForCountry } from "@/content/currency-for-country";
  *     were never shown. The rendered href carries it too, for a middle-click
  *     or "open in new tab", neither of which fires a click event.
  *  3. In a LOCAL PREVIEW ONLY, a `?tm-country=FR` override, so the page can be
- *     checked as another country would see it without deploying anything.
- *     It is gated on the price preview, so it cannot exist in a build that
- *     could be published, and it never runs where the edge has already set the
- *     attribute.
+ *     checked as another country would see it without deploying anything. It
+ *     never runs where the edge has already set the attribute.
+ *
+ *     It used to be gated on the price preview, on the reasoning that the price
+ *     preview cannot exist in a publishable build. Preparing the launch build,
+ *     2 November 2026, is what broke that reasoning: the launch build sets the
+ *     price flag, and this would have gone with it, handing anyone a way to be
+ *     shown another country's price by typing in the address bar. It now has
+ *     its own variable, NEXT_PUBLIC_TM_COUNTRY_OVERRIDE, which belongs on this
+ *     computer and never in Netlify, and scripts/check-launch-build.mjs fails
+ *     if `tm-country` reaches the exported HTML.
  *
  * Everything is wrapped in try/catch and does nothing on failure: no attribute
  * means CAD, which is her rule for an unknown country and also what a visitor
@@ -76,7 +84,7 @@ if(!d.getAttribute("data-tm-interval"))d.setAttribute("data-tm-interval",${JSON.
    rendered is dropped, which would silently turn a euro price into a Canadian
    one. The card puts it back from here. */
 window.__TM_CURRENCY=d.getAttribute("data-tm-currency")||null;
-${PRICE_PREVIEW ? PREVIEW_COUNTRY_OVERRIDE : ""}
+${COUNTRY_OVERRIDE ? PREVIEW_COUNTRY_OVERRIDE : ""}
 ${CARRIES_CHOICE ? STAMP_ON_CLICK : ""}
 }catch(e){}})();`;
 
@@ -125,7 +133,7 @@ export default function RootLayout({
     >
       <body className="bg-parchment font-sans text-bark antialiased overflow-x-hidden">
         {/* First, and synchronous: it has to win the race against the paint. */}
-        {PRICE_PREVIEW && (
+        {SHOW_PRICES && (
           <script dangerouslySetInnerHTML={{ __html: CURRENCY_BEFORE_PAINT }} />
         )}
         <Script

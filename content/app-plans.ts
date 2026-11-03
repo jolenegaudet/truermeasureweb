@@ -43,8 +43,8 @@
  * schoolYear: '' }`, with her note "Prices are open (13 October 2026): shown
  * only when set. Never a live price without her go-ahead." The billing shape
  * (monthly, cancel any time) is on the page because her brief asked for it;
- * the amount is not, and `PRICE_PREVIEW` below keeps even the placeholder off
- * anything built without the local preview flag.
+ * the amount is not, and `SHOW_PRICES` below keeps every amount off anything
+ * built without the flag that says she has approved them.
  */
 
 import type { Locale } from "@/content/i18n";
@@ -65,28 +65,64 @@ import type { CurrencyCode } from "@/components/currency-toggle";
  */
 
 /**
- * The unapproved price placeholder, confined to the local preview.
+ * Whether the amounts may be shown at all.
  *
  * Her brief: "the dollar amount remains unapproved" and "Keep any unapproved
  * price placeholder confined to the local preview."
  *
- * `process.env.NEXT_PUBLIC_*` is inlined at build time, so with the variable
- * unset (Netlify, and every ordinary `npm run build`) this is false and no
- * placeholder exists in the exported HTML at all. It is not hidden with CSS,
- * it is absent. To see it locally:
+ * `process.env.NEXT_PUBLIC_*` is inlined at build time, so with neither
+ * variable set (Netlify today, and every ordinary `npm run build`) this is
+ * false and no amount exists in the exported HTML at all. It is not hidden
+ * with CSS, it is absent. To see them locally:
  *
  *   NEXT_PUBLIC_TM_PRICE_PREVIEW=1 npm run dev
  *
- * The placeholder is deliberately not a number. A number would be a price the
- * moment anyone screenshots it, and her rule about Stripe's sandbox amounts
- * ("Never use the Stripe sandbox amounts as our pricing") exists because that
- * is exactly how a test figure escapes.
+ * ── TWO VARIABLE NAMES, ONE GATE (2 November 2026) ────────────────────────
  *
- * It is declared here, above the prices, because the prices themselves are
- * gated on it: see APP_PRICES.
+ * `NEXT_PUBLIC_TM_PRICE_PREVIEW` is the local switch this file has carried
+ * since 28 October, and every preview build and screenshot she has approved
+ * was made with it. `NEXT_PUBLIC_TM_PRICES_APPROVED` is the same switch under
+ * the name it takes in Netlify at launch, and it exists because a production
+ * environment variable called PREVIEW is the kind of thing somebody deletes as
+ * leftover configuration. Deleting this one would take the prices off the live
+ * page, drop the before-paint script, and send every button back to the demo,
+ * silently and with a passing build. Either name set to "1" shows the prices.
+ *
+ * Nothing else differs between the preview and the launch build. That is
+ * deliberate: what she approves locally is what ships.
+ *
+ * ── WHAT THIS DOES NOT TURN ON ────────────────────────────────────────────
+ *
+ * The `?tm-country=` override, which used to ride along on the same flag. It
+ * now has COUNTRY_OVERRIDE below, because the launch build sets this one and
+ * would otherwise have carried a public way to be shown another country's
+ * price.
  */
-export const PRICE_PREVIEW = process.env.NEXT_PUBLIC_TM_PRICE_PREVIEW === "1";
-export const PRICE_PLACEHOLDER = "Price to be set";
+export const SHOW_PRICES =
+  process.env.NEXT_PUBLIC_TM_PRICES_APPROVED === "1" ||
+  process.env.NEXT_PUBLIC_TM_PRICE_PREVIEW === "1";
+
+/**
+ * The local country override, which must never be set in Netlify.
+ *
+ * It is the `?tm-country=FR` facility in app/layout.tsx: a way to read the page
+ * as another country would see it without deploying. Until 2 November it was
+ * gated on the price preview, on the reasoning that the price preview "cannot
+ * exist in a build that could be published". Preparing the launch build is
+ * exactly what breaks that reasoning, because the launch build sets the price
+ * flag. So it has its own variable, it is off unless asked for, and
+ * scripts/check-launch-build.mjs fails the build if `tm-country` appears in the
+ * exported HTML.
+ *
+ *   NEXT_PUBLIC_TM_PRICE_PREVIEW=1 NEXT_PUBLIC_TM_COUNTRY_OVERRIDE=1 npm run dev
+ *
+ * On a deployed host the override does nothing anyway: it only acts when
+ * `data-tm-currency` is absent, and the edge function has already set it. The
+ * reason to keep it out is that it is a preview facility, not that it would
+ * win.
+ */
+export const COUNTRY_OVERRIDE =
+  process.env.NEXT_PUBLIC_TM_COUNTRY_OVERRIDE === "1";
 
 /**
  * Monthly or yearly, with 10% off the yearly (her brief, 29 October 2026).
@@ -282,22 +318,35 @@ export const HANDOFF = {
 } as const;
 
 /**
- * A local destination for the preview, so the handoff can be tested end to end
- * without inventing a production URL.
+ * The customer app's host, when there is one: the single value that connects
+ * this page to registration.
  *
- * The production app still does not exist, so `url` below is still null for
- * everyone. This reads a second variable that only exists on this computer:
+ * Set it and every button switches from the demo to the app, both demo labels
+ * disappear (`demoNote` under each button, `demoOnly` under the cards), and the
+ * links start carrying `?currency=` and `?billing=`. Nothing else has to be
+ * edited, and no copy changes: that is the prepared removal her brief of
+ * 1 November asked for. Leave it unset and the page stays exactly as she is
+ * reviewing it.
  *
- *   NEXT_PUBLIC_TM_PRICE_PREVIEW=1 NEXT_PUBLIC_TM_APP_URL=http://localhost:8765
+ *   NEXT_PUBLIC_TM_APP_URL=https://app.example.com
  *
- * With the price preview off, which is Netlify and every ordinary build, it is
- * the empty string whatever else is set, so no build that could be published
- * can point a button anywhere but the demo.
+ * Confirmed with the app session on 2 November 2026, against the launch branch
+ * at e44b1f0: the production app still does not exist. `az group exists -n
+ * truermeasure-prod-rg` is false, deploy/azure-accounts.sh has never been run,
+ * and creating it needs her separate approval, which she has not given. The
+ * host will be TM_PUBLIC_URL if set, otherwise the Azure default; the planned
+ * app.truermeasure.com is not configured anywhere yet. So this stays unset, and
+ * the buttons keep opening the demo and saying so.
+ *
+ * STILL GATED ON THE PRICES. With SHOW_PRICES false, which is Netlify today and
+ * every ordinary build, this is the empty string whatever else is set, so no
+ * build that could be published can point a button at registration while the
+ * amounts beside that button are unapproved. The two go live together or not at
+ * all.
  */
-const PREVIEW_APP_URL =
-  process.env.NEXT_PUBLIC_TM_PRICE_PREVIEW === "1"
-    ? (process.env.NEXT_PUBLIC_TM_APP_URL || "").trim()
-    : "";
+const APP_HOST = SHOW_PRICES
+  ? (process.env.NEXT_PUBLIC_TM_APP_URL || "").trim()
+  : "";
 
 export const REGISTRATION: {
   /** The customer app's host. Null until the production app is created. */
@@ -308,7 +357,7 @@ export const REGISTRATION: {
   /** Whether the destination understands ?currency= and ?billing=. */
   currencyParam: boolean;
 } = {
-  url: PREVIEW_APP_URL || null,
+  url: APP_HOST || null,
   path: "/",
   planParam: false,
   currencyParam: true,

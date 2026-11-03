@@ -1,0 +1,297 @@
+# The release candidate, and what stands between it and publication
+
+2 November 2026. Branch `app-plans-2026-10-28` at the commit this document
+lands in. `main` is untouched at `042fce6`, which is also what is live. Nothing
+here has been published, no price has been approved, and no payment is live.
+
+Her brief of 2 November: preserve the approved page, prepare the actual launch
+build, prepare the connection to the customer app, prepare the legal and
+account-management links, coordinate the GoHighLevel work, verify the release
+candidate, and say what remains.
+
+---
+
+## 1. There are three builds, and they differ only in environment variables
+
+The website is a static export, so a flag is not a setting someone can change
+afterwards: it is baked into the HTML at build time. Three builds come out of
+the same branch.
+
+| | amounts | billing choice | buttons | demo labels |
+|---|---|---|---|---|
+| **maintenance** | none | none | demo | shown |
+| **review** | CA$47 / US$47 / €47 | monthly, yearly | demo | shown |
+| **launch** | CA$47 / US$47 / €47 | monthly, yearly | customer app | gone |
+
+```
+maintenance   (no variables)
+review        NEXT_PUBLIC_TM_PRICE_PREVIEW=1
+launch        NEXT_PUBLIC_TM_PRICES_APPROVED=1
+              NEXT_PUBLIC_TM_APP_URL=<the customer app's origin>
+```
+
+`scripts/launch-build.ps1 -Mode maintenance|review|launch` builds one and then
+proves which one came out, by reading the exported HTML rather than trusting
+the variables (`scripts/check-launch-build.mjs`). All three were built and
+checked on 2 November: 14 pages each, nothing wrong.
+
+**The maintenance build is separate by construction, not by discipline.** `main`
+contains none of this: no `content/app-prices.ts`, no plan cards, no edge
+function, and no `NEXT_PUBLIC_*` anywhere. So the two launch variables could be
+set in Netlify today and a redeploy of `main` would be byte-for-byte what it is
+now. The separation her brief asks for is already structural.
+
+### What was preview-only and would have hidden prices or blocked registration
+
+1. **`NEXT_PUBLIC_TM_PRICE_PREVIEW`** gated the three amounts, the
+   monthly/yearly selector and the before-paint currency script. Unset, the
+   paid card shows "Pay monthly or yearly." and no figure. This is the flag
+   that has to be on for a launch.
+2. **`REGISTRATION.url`**, fed by `NEXT_PUBLIC_TM_APP_URL`, is what sends the
+   buttons to the demo. It is still gated on the price flag on purpose: no
+   build that could be published can point a button at registration while the
+   amount beside that button is unapproved. The two go live together.
+3. **The `?tm-country=` override** — fixed on 2 November, and the reason this
+   section exists. It let a local preview be read as another country would see
+   it, and it was gated on the price preview "because the price preview cannot
+   exist in a build that could be published". Preparing the launch build is
+   exactly what breaks that: the launch build sets the price flag. It would
+   have shipped a way for anyone to be shown another country's price by typing
+   in the address bar. It now has its own variable,
+   `NEXT_PUBLIC_TM_COUNTRY_OVERRIDE`, which belongs on this computer only, and
+   `check-launch-build.mjs` fails if `tm-country` reaches the exported HTML.
+
+### Why the launch variable has a different name from the preview one
+
+`NEXT_PUBLIC_TM_PRICES_APPROVED` and `NEXT_PUBLIC_TM_PRICE_PREVIEW` are one
+gate with two names. Either shows the prices; the launch one exists because a
+production environment variable called PREVIEW is the kind of thing somebody
+deletes as leftover configuration, and deleting this one would take the prices
+off the live page, drop the currency script and send every button back to the
+demo — silently, with a passing build. Nothing else differs between the
+preview and the launch build, which is deliberate: what she approves locally is
+what ships.
+
+---
+
+## 2. The page itself: everything her brief said to preserve is still there
+
+Checked in the built HTML and in a browser, both languages, 2 November.
+
+- All three offers: Clarity (the two plan cards), Community (Elite Parents /
+  **Parents Élites**), Proximity (Inner Circle / **Cercle privé**).
+- School free, "Report cards only."; School & Life paid; **one subscription
+  covers one child**, in the paid card's top group.
+- CA$47, US$47, €47 a month. Yearly 507.60 in each currency, with
+  "42.30 a month, paid once a year. You save 56.40."
+- "Plus applicable taxes." on CAD and USD, "VAT included." on EUR, and the
+  French equivalents.
+- Automatic currency, no currency selector anywhere; the monthly/yearly choice
+  stays.
+- The founder's note, the headline, the four short bullets per card, the
+  waitlist and application forms with their GoHighLevel tags unchanged
+  (`waitlist-elite-learning-leaders`, `applied-inner-circle`).
+- The two closing lines, once, beneath both cards, with no box.
+- The comparison panel, the long explanations and the application waitlist box
+  are gone and stay gone; the checker fails if either language gets them back.
+
+---
+
+## 3. The connection to the customer app
+
+Confirmed with the app session on 2 November, read-only against launch branch
+`e44b1f0`.
+
+- **The production app does not exist.** `az group exists -n
+  truermeasure-prod-rg` is false and `deploy/azure-accounts.sh` has never been
+  run. Creating it needs her separate approval and starts a monthly bill. The
+  host will be `TM_PUBLIC_URL` if set, otherwise the Azure default;
+  `app.truermeasure.com` is planned and configured nowhere. **So no URL is
+  invented here, `REGISTRATION.url` stays null, and the buttons keep opening
+  the demo and saying so underneath.**
+- **School starts the free journey with no purchase step and no Stripe
+  session**, from the same path as the paid card. A checkout opens only from
+  "Start School & Life for {name}".
+- **The handoff names are unchanged**: `currency` (CAD|USD|EUR, case
+  insensitive) and `billing` (month|year), read in account mode, kept in
+  `localStorage` across the emailed sign-in link, then stripped from the
+  address bar. Unknown values ignored. Two caveats the app session raised, both
+  hers to know rather than ours to fix: the choice is lost if the parent opens
+  the sign-in link on a different device, and Stripe locks an account to the
+  currency of its first subscription.
+- **A purchase identifies the child and requires an explicit action.** The
+  confirmation sheet shows "School & Life for {name}", the price and period,
+  the taxes, the renewal, her cancellation sentence and the refund line, and
+  with more than one child "It covers {name} only." Nothing is charged until
+  the parent presses "Continue to payment".
+- **Where her cancellation sentence is read now.** The website stopped showing
+  it on 2 November. It appears on that confirmation sheet and again on Stripe's
+  checkout page. The reading allowance is on neither; it lives in the app and
+  is enforced by `server/engine.js`.
+- **Flagged by the app session, for her:** the renewal sentence and the
+  monthly/yearly choice sheet still say "a school year". She has not decided
+  whether to change that wording.
+
+**Removing the demo labels is one value, not an edit.** Setting
+`NEXT_PUBLIC_TM_APP_URL` switches both buttons to the app, makes them carry
+`?currency=` and `?billing=`, and removes `demoNote` under each button and
+`demoOnly` under the cards. Verified on 2 November by building the launch mode
+against a local host: both buttons came out as
+`…/?currency=CAD&billing=month`, with the real currency and period stamped on
+at the moment of the click, and the word "demo" appeared nowhere on either
+page.
+
+---
+
+## 4. Legal and account-management links
+
+**Live today and unchanged:** Terms at `/terms-of-service` and
+`/conditions-d-utilisation`, linked in the footer of every page in the right
+language; the Stripe customer portal as "Manage or cancel your membership";
+`/withdraw` and `/fr/withdraw`. Verified on all 14 exported pages.
+
+**The Stripe portal link.** `https://billing.stripe.com/p/login/eVq00igzb9Zj6Qz5k4e7m00`
+is Stripe's own hosted sign-in for the portal configuration created on
+30 September: a customer signs in with the email they paid with and a one-time
+code, and can cancel at the end of the period, update the card and email, and
+see invoices. It is not a per-customer link and it does not expire, so it keeps
+working for every existing customer no matter what happens to the products or
+prices behind it. **Nothing about it should be changed while a single
+subscription exists**, and online cancellation is a legal requirement for
+anyone who signed up online (California Bus. & Prof. Code 17602(d)). Reviewed,
+not touched.
+
+**A 404 the app points at, now fixed on the branch.** The customer app's
+agreement screen links `https://truermeasure.com/terms` and
+`https://truermeasure.com/privacy`. Both 404 on the live site today. The Terms
+exist at `/terms-of-service`, so `netlify.toml` now redirects `/terms` there,
+301. `/privacy` is deliberately not redirected: the Privacy Policy is written,
+translated and routed but held in `app/_pending` while counsel reviews it, and
+a redirect to a page that does not exist is a second 404 with a longer path. It
+goes in with the policy, in the same change.
+
+**The Privacy Policy stays held.** `PRIVACY_POLICY_PUBLISHED` is false, the
+consent line ends at "You can unsubscribe anytime." with no link, and
+`check-launch-build.mjs` fails if any page links to it. The four-step
+publication procedure is in `content/first-to-know.ts` and needs nothing from
+me except her word and counsel's.
+
+**Dependent on counsel:**
+- The Privacy Policy, both languages, and with it the `/privacy` redirect and
+  the consent links on the forms.
+- The Terms the app records consent against. The app stores
+  `terms-1.2+privacy-draft-2026-10-13`; the counsel package (draft Terms 1.3,
+  Privacy 1.2) is prepared for her to send and nothing in it is approved.
+- The refund policy, which the Terms will state and which I am not to invent.
+
+**Dependent on the app session:**
+- The production host, and with it the demo labels and the real destination.
+- The new consent version pointing at the published documents, once they exist.
+- Whether "a school year" stays in the renewal wording.
+
+---
+
+## 5. What was verified locally, and what only a deployed host can show
+
+**Verified locally, 2 November, in a real browser at 1280px and 390px, both
+languages:**
+
+- All three amounts are in the HTML and CSS shows exactly one. Simulating each
+  country's outcome by setting `data-tm-currency` gave CA$47, US$47 and €47
+  with the right tax line each time, and the other two stayed hidden.
+- With no attribute at all — a visitor with JavaScript off, or a country
+  Netlify cannot resolve — the page shows CA$47. Her rule.
+- Monthly and yearly, both languages: 507.60 a year, 42.30 a month, 56.40
+  saved, in all three currencies.
+- Both buttons point at the demo, open in a new tab with `rel="noopener"`, and
+  carry no currency parameter, which the demo would ignore anyway.
+- The footer's three legal destinations, on every page, in the right language.
+- No horizontal overflow at 390px or 1280px; nothing wider than the viewport.
+- The two closing lines read as one block under both cards, in both languages.
+
+**Two things that look like defects locally and are not:**
+
+1. **The French footer turns English after the page loads.** Only in this
+   preview, because the files are served as `/fr.html` and the footer reads the
+   locale from the path: `/fr.html` is not `/fr`. On Netlify the URL is `/fr`
+   and the footer is French — confirmed against the live site, which serves
+   `/conditions-d-utilisation` and `/fr/withdraw` there today.
+2. **The monthly/yearly toggle does nothing for the first second.** It is React
+   state, so a click before hydration is ignored. The links are not affected:
+   the click-time stamp in `app/layout.tsx` is installed before paint precisely
+   so a parent clicking in that gap still carries the right currency.
+
+**Needs the deployed host, and cannot be faked:**
+
+- **The country detection.** `context.geo` exists only on Netlify's edge. The
+  mapping is unit-tested and shared between the edge function and the page, but
+  that a French visitor is served €47 is unproven until it runs there.
+- **Caching with the edge rewrite.** The function deletes `content-length` and
+  sets `vary: x-nf-country`. That two visitors in different countries do not
+  share one cached copy has never been observed in production.
+- **The redirects**, `/terms` included.
+- **The forms end to end**, which is section 6.
+
+---
+
+## 6. The deployed verification plan, and the rollback
+
+Nothing here is authorised. Each step needs her word, by name, and step 0 is
+not optional.
+
+**0. Before anything is deployed**, check that `git ls-remote origin main`
+still equals the live deploy's `commit_ref`. The build hook builds `main` HEAD,
+not a commit anybody names, so a maintenance redeploy is only a maintenance
+redeploy while `main` has not moved. If they differ, stop.
+
+**1. Publication of the new page** means merging the branch to `main` and
+firing the hook, with the two launch variables set in Netlify first (Builds
+scope, since a static export reads them at build time). Both must be set before
+the build, not after: a deploy built without them has no prices in it.
+
+**2. Immediately after, on the live site:**
+
+| check | how | pass |
+|---|---|---|
+| the right commit | MCP `get-project` → `get-deploy-for-site` | `commit_ref` is the merge commit, state ready |
+| prices are there | load `/` and `/fr` | one amount, the right tax line |
+| the country | load from Canada and from one euro country | CA$47 and €47, no flash of the other |
+| caching | reload each from both | no shared copy |
+| no override | `curl https://truermeasure.com/?tm-country=FR` | still the real currency |
+| buttons | click both, both languages | the demo, or the app with `currency` and `billing` |
+| legal | `/terms`, `/terms-of-service`, `/conditions-d-utilisation`, `/withdraw`, `/fr/withdraw` | 200, right language |
+| forms | one labelled test contact per form | contact created with the right tag |
+
+**3. Rollback.** Netlify keeps every deploy, so the fastest rollback is
+publishing the previous one from the dashboard: it is immediate and needs no
+build. The slower one, which is the only option if a variable is what went
+wrong, is to unset the launch variables and redeploy — that returns the live
+site to a maintenance build with no prices and the buttons back on the demo.
+Reverting the merge on `main` and firing the hook is the third, and the one to
+use if the HTML itself is wrong.
+
+A failed build is not a rollback problem: Netlify keeps serving the last good
+deploy, so the site stays up.
+
+---
+
+## 7. What is actually left
+
+**Hers to decide:**
+1. Approval of this page. It has never been approved.
+2. Approval of the three amounts, which turns the review build into the launch
+   build.
+3. Authorisation to create the production app, which is what makes a real
+   destination possible and starts a monthly bill.
+4. The per-child versus per-account AI ceiling (pricing brief §2).
+5. The refund policy, which blocks the Terms.
+6. Whether "a school year" stays in the app's renewal wording.
+7. Live Stripe: the tax code on `prod_VWzNTXW9zLkKSH`, and the registrations.
+
+**Counsel's:** Terms 1.3, Privacy 1.2, and the engagement that has not started.
+
+**The app session's:** the production host, and the consent version that points
+at whatever counsel approves.
+
+**Mine, once any of those lands:** set two variables, build, check, screenshot,
+and ask before anything goes live.

@@ -39,6 +39,28 @@
   function = "currency"
   path     = "/*"
 
+# /terms, because the customer app's agreement screen links to it.
+#
+# Confirmed with the app session on 2 November 2026: the app's agreement screen
+# (js/account.js:370) links https://truermeasure.com/terms and
+# https://truermeasure.com/privacy, and both return 404 on the live site today.
+# The Terms exist, at /terms-of-service, so this is a one-line fix and it costs
+# nothing: anyone who types /terms today also gets the 404 page.
+#
+# /privacy is deliberately NOT here. The Privacy Policy is written, translated
+# and routed but held in app/_pending while counsel reviews it
+# (PRIVACY_POLICY_PUBLISHED in content/first-to-know.ts), and a redirect to a
+# page that does not exist is a second 404 with a longer path. It goes in with
+# the policy, in the same change, not before it.
+#
+# This does not fix the app's side. The app records consent against
+# terms-1.2+privacy-draft-2026-10-13 and will need a new consent version
+# pointing at the published documents, which is counsel's gate, not a redirect.
+[[redirects]]
+  from   = "/terms"
+  to     = "/terms-of-service"
+  status = 301
+
 [[redirects]]
   from   = "/build"
   to     = "/inner-circle"

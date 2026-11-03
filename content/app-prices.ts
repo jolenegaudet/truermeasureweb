@@ -13,7 +13,7 @@
  * a published JavaScript chunk, because the module that declared them is
  * imported by components/plan-cards.tsx, which is a client component, and
  * Next 16 does not inline `process.env.NEXT_PUBLIC_*` in a client chunk. It
- * compiles to a runtime read, so `PRICE_PREVIEW ? [...] : []` keeps both
+ * compiles to a runtime read, so `SHOW_PRICES ? [...] : []` keeps both
  * branches and the amounts ship either way. A price in a file anyone can fetch
  * is a published price, whether or not a page renders it.
  *
@@ -51,7 +51,7 @@
  *    parent's total stays €47.
  */
 import type { CurrencyCode } from "@/components/currency-toggle";
-import { PRICE_PREVIEW } from "@/content/app-plans";
+import { SHOW_PRICES } from "@/content/app-plans";
 
 export type AppPrice = {
   code: CurrencyCode;
@@ -69,7 +69,7 @@ export type AppPrice = {
   tax: "exclusive" | "inclusive";
 };
 
-export const APP_PRICES: AppPrice[] = PRICE_PREVIEW
+export const APP_PRICES: AppPrice[] = SHOW_PRICES
   ? [
       { code: "CAD", symbol: "CA$", amount: 47, tax: "exclusive" },
       { code: "USD", symbol: "US$", amount: 47, tax: "exclusive" },

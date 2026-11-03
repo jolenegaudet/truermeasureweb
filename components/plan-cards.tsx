@@ -11,7 +11,7 @@ import {
   DEFAULT_CURRENCY,
   DEFAULT_INTERVAL,
   GOES_TO_DEMO,
-  PRICE_PREVIEW,
+  SHOW_PRICES,
   appPlansFor,
   money,
   monthlyEquivalent,
@@ -119,7 +119,7 @@ export function PlanCards({
      and the period selected with it. */
   const carry = { currency, interval };
   const handoff = CARRIES_CHOICE ? { "data-tm-handoff": "1" } : {};
-  const showPrices = PRICE_PREVIEW && prices.length > 0;
+  const showPrices = SHOW_PRICES && prices.length > 0;
 
   return (
     <>
