@@ -386,7 +386,8 @@ subscription exists**, and online cancellation is a legal requirement for
 anyone who signed up online (California Bus. & Prof. Code 17602(d)). Reviewed,
 not touched.
 
-**A live payment link still sits in the code, and reaches no page.** Found on
+**A live-mode payment link still sits in the code, switched off at both ends.**
+Found on
 3 November while answering the app session. `content/founding-families.ts:126`
 holds `CHECKOUT_URL`, the live Founding Families v2 payment link
 (`buy.stripe.com/28EeVc1Eh8Vf8YH6o8e7m0a`), on both `main` and the branch. It is
@@ -395,9 +396,10 @@ or `checkoutReady`, and the string `buy.stripe.com` appears in none of the
 14 exported pages and in none of the six live pages checked on truermeasure.com.
 So **the website cannot take a payment today**, which is the fact that matters.
 The app session then looked in Stripe, read-only, and reported that the account
-holds 11 payment links and **none active**, so the link cannot take a payment
-from either side. It is a tidy-up for after her approval, not a launch item, and
-nothing here was changed.
+holds 11 payment links and **none active**; on 4 November it read this one by id,
+`plink_1ULSNk…`, and reported it **inactive**. So the constant points at a dead
+link, not at a point of sale, and neither side can take a payment. It is a
+tidy-up for after her approval, not a launch item, and nothing here was changed.
 
 **A 404 the app points at, now fixed on the branch.** The customer app's
 agreement screen links `https://truermeasure.com/terms` and
@@ -552,7 +554,19 @@ deploy, so the site stays up.
    The live School & Life prices now exist (`price_1UXkrCAJm8m0sW6oJ4LJ7DLO`
    monthly, `price_1UXkrDAJm8m0sW6ohl0gxVaB` yearly, product
    `prod_VYsc687ywnpdQT`), so the open part is the tax treatment, not the
-   amounts.
+   amounts. **And three 100%-off codes exist in that account**, which is worth
+   one look before anything opens. Read by the app session on 4 November:
+   `EARLY100` is active, 0 of 2 redeemed, no expiry, and its coupon is 100% off
+   **forever**, so a redemption is a permanent free membership and not a free
+   first period; a second code named "Early Adopter Discount" is inactive at
+   100% once; and my own record of 7 September has `TEST100` active with one
+   redemption left, not re-checked since. What makes them harmless today is not
+   the caps: it is that **no entry point exists.** All 11 payment links are
+   inactive and the app's Checkout sets no `allow_promotion_codes`, so Stripe
+   shows no code field. That guard is a design decision rather than a setting on
+   the codes, so the day anyone enables promotion codes for a launch promotion,
+   all three wake up together. The app session recommends she deactivate
+   `EARLY100` unless she means it for two people, and has touched nothing.
 8. **The French pages declare themselves English.** Found 3 November and **not
    caused by this branch**: it is the same on `main` and on the live site, so it
    is a standing defect rather than a release item. `app/layout.tsx:131` sets
