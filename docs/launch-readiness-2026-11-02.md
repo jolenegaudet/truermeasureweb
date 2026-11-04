@@ -249,22 +249,42 @@ resolve the country (`if (!chosen) return response`), and from there:
 
 Verified in the browser as well as in source: with the attribute removed, the
 only visible price is CA$47 and both buttons send `?currency=CAD&billing=month`.
-So the website's unknown case is CAD everywhere, which is her rule, and an app
-fallback of CA$ would match it exactly.
+So the website's unknown case is CAD everywhere, which is her rule, and it is
+still CAD today.
 
-**A second path, on the app's side, which is not reachable from this page.** The
-app session found it while correcting its row: a parent who reaches the app
-without pressing a website button, by typing the address, a bookmark, or a
-shared link on another device, gets a currency guessed from
-`navigator.languages`. So a family in Canada with a browser set to en-US is
-shown US$47. The guess is visible rather than hidden: the app's confirmation
-sheet prints the sign in front of the figure, CA$, US$ or the euro sign, and
-Stripe's own page prints it too, so a parent can see it and is simply likely to
-miss it, since only the sign differs and the figure is 47 either way. Nothing on
-the website causes that and nothing here can fix it; it is recorded so the two
-halves are not confused. The app session recommends
-falling back to CA$ whenever the website did not choose, which is the same
-answer as the line above, and has changed nothing pending her decision.
+**Her decision on the other half, and it is US$.** Reported by the app session
+on 4 November, in her words: "When the website did not choose, choose US$47."
+That went against the app session's own recommendation, which had been CA$, and
+it is hers, so it stands. The app session says it is live as its release
+`eb6d27d`, on production at 17:14 UTC, with 54 of 54 production checks and 766
+of 766 unit tests passing. That is its report of her decision and its own
+verification, not a word given on this side and not something checkable from
+here.
+
+What it changes, as the app session describes it:
+
+- The app no longer guesses a currency from the browser's language. The
+  `navigator.languages` path recorded here on 3 November is gone.
+- With no choice from the website, the app shows US$ and its server uses `usd`
+  when it is sent no currency.
+- The app still honours any currency the website sends, including the `CAD` the
+  buttons send for a visitor Netlify cannot place.
+- Editing `?currency=` after the click is unchanged, so the one exposure below
+  still reads as it did.
+
+**So the two halves now answer the same question differently.** The website's own
+unplaceable visitor stays CA$47, because the website did choose, and the app
+honours that choice. US$ applies only to a parent who reaches the app without
+pressing a website button, by typing the address, a bookmark, or a shared link on
+another device. Nothing on the website decides that case and nothing here can
+change it. Whether the split is intended or an accident of where the question was
+asked is hers to say, and it is item 9 of section 7.
+
+A wrong default is visible rather than hidden: the app's confirmation sheet
+prints the sign in front of the figure, CA$, US$ or the euro sign, and Stripe's
+own page prints it too, so a parent can see it and is simply likely to miss it,
+since only the sign differs and the figure is 47 either way. That was true of the
+browser guess and it is true of the US$ default.
 
 So the exposure is exactly one: a parent who edits the app's URL sees that
 currency's amount on the app's confirmation sheet and pays it. Every figure is
@@ -550,6 +570,22 @@ deploy, so the site stays up.
    per-language `lang` means either a locale route segment or two route groups
    with their own root layouts. That is a structural change to a page she is
    reviewing, so **nothing was touched** and it waits for her word.
+
+9. **Whether the website's unplaceable visitor should also be US$47.** Her
+   decision of 4 November, as the app session reports it, was "when the website
+   did not choose, choose US$47", and it is live in the app. It can be read two
+   ways on this side. Strictly, the website always chooses: when Netlify cannot
+   resolve a country the page falls back to CA$47 and the button sends
+   `currency=CAD`, so her rule never applies here and nothing changes. Read by
+   intent, the case she was deciding is a parent nobody can place, and that
+   parent meets the website first. Today the two halves answer it differently,
+   CA$ here and US$ there, which is a defensible split and may also be an
+   accident of where the question was asked. If she wants the website to match,
+   it is two lines, `DEFAULT_CURRENCY` at `content/app-plans.ts:170` and the
+   `html:not([data-tm-currency])` rule at `app/globals.css:43`, and it would
+   change what an unplaceable parent reads before paying. **Nothing was
+   touched.** CAD leads because her brief said CAD leads, and only she can say
+   whether today's decision reaches this far.
 
 **Counsel's:** Terms 1.3, Privacy 1.2, and the engagement that has not started.
 
