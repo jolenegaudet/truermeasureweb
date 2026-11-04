@@ -564,10 +564,15 @@ deploy, so the site stays up.
      coupon as `KM1KNBak`, 100% off **forever**, so a redemption is a permanent
      free membership and not a free first period. It recommends she deactivate
      it unless she means it for two people.
-   - **`FOUNDINGFAMILY`**, cap 50, 0 redeemed, never expires. This one the app
-     session did not report and this run found. Its coupon is the 30 September
-     founding discount, CA$20 / US$15 / €12 off for three months, which against
-     a 47 price is not a disaster and is still not what any page says.
+   - **`FOUNDINGFAMILY`**, cap 50, 0 redeemed, never expires, and no
+     first-time-buyer restriction. This one the app session did not report and
+     this run found; it had been looking codes up by name. Its coupon is
+     `WAJkw9F9`, "Founding Families: first 3 months", CA$20 / US$15 / €12 off
+     repeating for three months, never used. **It applies to any product,
+     School & Life included**, which is the part that matters: it is not stranded
+     on the retired founding product, it would discount the price she is about to
+     sell. Against a 47 price that is not a disaster, and it is still fifty
+     places at an amount no page states.
 
    `TEST100` is fully inactive, which supersedes my 7 September note of one
    redemption left: three codes carry it, with **3 redemptions between them**,
