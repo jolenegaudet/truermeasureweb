@@ -554,11 +554,14 @@ deploy, so the site stays up.
    The live School & Life prices now exist (`price_1UXkrCAJm8m0sW6oJ4LJ7DLO`
    monthly, `price_1UXkrDAJm8m0sW6ohl0gxVaB` yearly, product
    `prod_VYsc687ywnpdQT`), so the open part is the tax treatment, not the
-   amounts. **Two promotion codes in that account are still active**, which is
-   worth one look before anything opens. Read here on 4 November by running her
-   own `scripts/check-discount-codes.ps1`, which only GETs, with the pricing key
+   amounts. **The discount codes are closed. On 4 November every promotion code
+   in that account is inactive**, and the look that found the two live ones is
+   below, because the reasoning is worth keeping even though the answer changed
+   the same day. Read here by running her own
+   `scripts/check-discount-codes.ps1`, which only GETs, with the pricing key
    already in the sibling secrets folder. Nothing was widened and nothing was
-   changed. Eleven codes exist; nine are inactive. The two live ones:
+   changed by the reading. Eleven codes exist; nine were already inactive. These
+   two were not:
 
    - **`EARLY100`**, cap 2, 0 redeemed, never expires. The app session read its
      coupon as `KM1KNBak`, 100% off **forever**, so a redemption is a permanent
@@ -581,22 +584,29 @@ deploy, so the site stays up.
    evidence that `sub_1Tw71d` is one of her own tests. It is not proof, because
    linking a subscription to a coupon needs invoice access neither session has.
 
-   **What makes the live codes harmless today is not their caps: no entry point
-   exists.** All 11 payment links are inactive and the app's Checkout sets no
-   `allow_promotion_codes`, so Stripe shows no code field at all. That guard is a
-   design decision in the app rather than a setting on the codes, so the day
-   anyone enables promotion codes for a launch promotion, both live codes wake up
-   together. Check the codes before enabling that, not after. The app session has
+   **The lesson to keep, now that the answer is academic:** what made those codes
+   harmless on the morning of 4 November was not their caps, it was that no entry
+   point existed. All 11 payment links are inactive and the app's Checkout sets
+   no `allow_promotion_codes`, so Stripe shows no code field at all. That guard
+   is a design decision in the app rather than a setting on the codes, which is
+   why it was worth closing the codes themselves rather than relying on it. Check
+   the codes before enabling promotion codes, not after. The app session has
    undertaken to check every code and tell this side before shipping such a
    change.
 
-   **Status, stated plainly because it would be easy to drift:** the app session
-   recommends deactivating both codes unless she means either for someone, and it
-   has a reply drafted for her reading "Codes off". That phrase is **its** wording
-   and not hers; asked directly on 4 November, it confirmed she has said nothing
-   about either code. So there is **no decision here**, only a recommendation on
-   both sides, and neither session has touched a code. If she answers, her words
-   come to this side as she gives them.
+   **Her decision, and it closed the same day.** Her words, as the app session
+   pasted them on 4 November: *"I also authorize deactivating both old promotion
+   codes: EARLY100 and FOUNDINGFAMILY. Keep existing subscriptions unchanged, and
+   confirm when both codes are inactive."* The app session deactivated both
+   through the API, left the coupons and every subscription alone, and read them
+   back. **Confirmed independently from this side**, by running her listing script
+   again after the change: all eleven codes now report active `no`, `EARLY100`
+   twice and `FOUNDINGFAMILY` once among them, each at **0 redemptions**, so
+   nobody lost a discount they had. Her "keep existing subscriptions unchanged"
+   holds too: `sub_1Tw71d` is still active and the other three still cancelled.
+   Before this, the phrase "Codes off" was going round; it was the app session's
+   own drafted reply and never her wording, and the sentence above is the
+   authorisation.
 
    One note on how this was read, since it is her own rule: her pricing key reads
    promotion codes but is 403 on coupons, and the app's key reads coupons. So
