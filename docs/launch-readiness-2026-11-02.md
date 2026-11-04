@@ -554,19 +554,41 @@ deploy, so the site stays up.
    The live School & Life prices now exist (`price_1UXkrCAJm8m0sW6oJ4LJ7DLO`
    monthly, `price_1UXkrDAJm8m0sW6ohl0gxVaB` yearly, product
    `prod_VYsc687ywnpdQT`), so the open part is the tax treatment, not the
-   amounts. **And three 100%-off codes exist in that account**, which is worth
-   one look before anything opens. Read by the app session on 4 November:
-   `EARLY100` is active, 0 of 2 redeemed, no expiry, and its coupon is 100% off
-   **forever**, so a redemption is a permanent free membership and not a free
-   first period; a second code named "Early Adopter Discount" is inactive at
-   100% once; and my own record of 7 September has `TEST100` active with one
-   redemption left, not re-checked since. What makes them harmless today is not
-   the caps: it is that **no entry point exists.** All 11 payment links are
-   inactive and the app's Checkout sets no `allow_promotion_codes`, so Stripe
-   shows no code field. That guard is a design decision rather than a setting on
-   the codes, so the day anyone enables promotion codes for a launch promotion,
-   all three wake up together. The app session recommends she deactivate
-   `EARLY100` unless she means it for two people, and has touched nothing.
+   amounts. **Two promotion codes in that account are still active**, which is
+   worth one look before anything opens. Read here on 4 November by running her
+   own `scripts/check-discount-codes.ps1`, which only GETs, with the pricing key
+   already in the sibling secrets folder. Nothing was widened and nothing was
+   changed. Eleven codes exist; nine are inactive. The two live ones:
+
+   - **`EARLY100`**, cap 2, 0 redeemed, never expires. The app session read its
+     coupon as `KM1KNBak`, 100% off **forever**, so a redemption is a permanent
+     free membership and not a free first period. It recommends she deactivate
+     it unless she means it for two people.
+   - **`FOUNDINGFAMILY`**, cap 50, 0 redeemed, never expires. This one the app
+     session did not report and this run found. Its coupon is the 30 September
+     founding discount, CA$20 / US$15 / €12 off for three months, which against
+     a 47 price is not a disaster and is still not what any page says.
+
+   `TEST100` is fully inactive, which supersedes my 7 September note of one
+   redemption left: three codes carry it, with **3 redemptions between them**,
+   exactly matching the three US$0.00 July checkouts. With `EARLY100`,
+   `FOUNDING40` and all four `FOUNDING47` codes at 0, that is good circumstantial
+   evidence that `sub_1Tw71d` is one of her own tests. It is not proof, because
+   linking a subscription to a coupon needs invoice access neither session has.
+
+   **What makes the live codes harmless today is not their caps: no entry point
+   exists.** All 11 payment links are inactive and the app's Checkout sets no
+   `allow_promotion_codes`, so Stripe shows no code field at all. That guard is a
+   design decision in the app rather than a setting on the codes, so the day
+   anyone enables promotion codes for a launch promotion, both live codes wake up
+   together. Check the codes before enabling that, not after. The app session has
+   undertaken to check every code and tell this side before shipping such a
+   change.
+
+   One note on how this was read, since it is her own rule: her pricing key reads
+   promotion codes but is 403 on coupons, and the app's key reads coupons. So
+   between the two sessions the picture is complete and **neither key was
+   widened**, which is the arrangement to keep.
 8. **The French pages declare themselves English.** Found 3 November and **not
    caused by this branch**: it is the same on `main` and on the live site, so it
    is a standing defect rather than a release item. `app/layout.tsx:131` sets
