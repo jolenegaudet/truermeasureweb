@@ -590,6 +590,14 @@ deploy, so the site stays up.
    undertaken to check every code and tell this side before shipping such a
    change.
 
+   **Status, stated plainly because it would be easy to drift:** the app session
+   recommends deactivating both codes unless she means either for someone, and it
+   has a reply drafted for her reading "Codes off". That phrase is **its** wording
+   and not hers; asked directly on 4 November, it confirmed she has said nothing
+   about either code. So there is **no decision here**, only a recommendation on
+   both sides, and neither session has touched a code. If she answers, her words
+   come to this side as she gives them.
+
    One note on how this was read, since it is her own rule: her pricing key reads
    promotion codes but is 403 on coupons, and the app's key reads coupons. So
    between the two sessions the picture is complete and **neither key was
