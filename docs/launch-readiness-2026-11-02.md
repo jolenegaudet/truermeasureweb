@@ -11,6 +11,56 @@ candidate, and say what remains.
 
 ---
 
+## 0. 4 November: she approved the amounts and named the address
+
+Her words, in full, because the rest of this document now reads against them:
+
+> "Oui, prépare la version de lancement avec les boutons vers
+> https://app.truermeasure.com et les prix déjà approuvés : CAD : CA$47/mois ou
+> CA$507.60 payés en une seule fois pour douze mois, plus taxes applicables.
+> USD : US$47/mois ou US$507.60 payés en une seule fois pour douze mois, plus
+> taxes applicables. EUR : 47 €/mois ou 507,60 € payés en une seule fois pour
+> douze mois, TVA incluse. Conserve la devise automatique sans sélecteur, le
+> choix mensuel ou annuel et un abonnement par enfant. L'inscription École reste
+> gratuite."
+
+So two of the three things this document was waiting on are answered: the
+amounts are approved, and `https://app.truermeasure.com` is the address the
+buttons take. **The third is not.** She asked to see the connected preview and
+validate the presentation, so the page is still awaiting her eye, and nothing
+is published.
+
+**Built and verified on 4 November**, with
+`scripts/launch-build.ps1 -Mode launch -AppHost https://app.truermeasure.com`,
+then `check-launch-build.mjs --expect launch --app-host …`: *out/ is a LAUNCH
+build, 14 pages checked, nothing wrong, 27 framework entries present in both
+languages.* Served for her at `http://127.0.0.1:3201`, unpublished.
+
+Read in a real browser, both languages, all three currencies, both periods:
+
+| | monthly | yearly | tax line |
+|---|---|---|---|
+| CAD | CA$47 | CA$507.60, CA$42.30 a month, saves CA$56.40 | Plus applicable taxes. / Plus les taxes applicables. |
+| USD | US$47 | US$507.60, US$42.30 a month, saves US$56.40 | same |
+| EUR | €47 | €507.60, €42.30 a month, saves €56.40 | VAT included. / TVA incluse. |
+
+Every figure matches her sentence. **One thing does not, and it is hers to
+settle:** she wrote the euro the French way, `47 €` and `507,60 €`, and the page
+writes `€47` and `€507.60` in both languages, sign first and a decimal point.
+That is the house style the dollar amounts use too (`CA$47` on the French page,
+which she approved in the same sentence), so it is consistent rather than wrong.
+Nothing was changed.
+
+**The handoff, proved rather than assumed.** Twelve cases, two languages × three
+currencies × two periods, each in a fresh browser: every click produces exactly
+`https://app.truermeasure.com/?currency=<CUR>&billing=<PERIOD>`, two parameters,
+path `/`, on both buttons. One case failed first time and five re-runs of it
+passed; the failure was the test harness clicking before the toggle had
+rendered, which the attribute on `<html>` showed directly. The unknown-country
+case still reads CA$47 and sends `currency=CAD`.
+
+---
+
 ## 1. There are three builds, and they differ only in environment variables
 
 The website is a static export, so a flag is not a setting someone can change
@@ -187,11 +237,14 @@ page.
 authorised creating production today, at
 `https://truermeasure-app.azurewebsites.net` (Canada Central), locked to an IP
 allow-list and a sign-in allow-list until her release decision, with
-`app.truermeasure.com` not yet in DNS. **That address is recorded here as
-inspected, not adopted.** Her brief says to use the production address only when
-the app session confirms it exists and is ready, and an app behind an allow-list
-with no DNS name is not ready. `NEXT_PUBLIC_TM_APP_URL` stays unset, the
-committed buttons still open the demo, and the switch waits for her word.
+`app.truermeasure.com` not yet in DNS. **That address was recorded here as
+inspected, not adopted, until she named it on 4 November** (section 0). Her brief
+said to use the production address only when the app session confirms it exists
+and is ready, and an app behind an allow-list with no DNS name was not ready.
+What changed is her word, not the allow-list: the Azure name below is still only
+inspected, `app.truermeasure.com` is the address she chose, and the committed
+source still carries no host, because `NEXT_PUBLIC_TM_APP_URL` is a build
+variable rather than a file.
 
 Built locally against that host on 3 November and verified with
 `check-launch-build.mjs --expect launch`: both buttons, in both languages, come
@@ -323,10 +376,10 @@ Against its launch commit `19903d2`:
   `waws-prod-yt1-117-7c06.canadacentral.cloudapp.azure.com` (20.116.40.17), the
   certificate is `CN=app.truermeasure.com` issued by GeoTrust TLS RSA CA G1,
   valid 3 November 2026 to 3 May 2027, `http` redirects to `https` in one hop,
-  and `/` and `/?currency=EUR&billing=year` both answer 200. **Still not adopted
-  here.** This machine is inside the allow-list, which is exactly why the 200
-  proves the address and not the gate, and which address the buttons take is her
-  word to give.
+  and `/` and `/?currency=EUR&billing=year` both answer 200. **Adopted on
+  4 November**, in her words, and built against (section 0). The caveat on that
+  200 stands and is now the one open item: this machine is inside the allow-list,
+  so it proves the address and not the gate.
 
 **And one gate they agreed to record.** The public address must answer 200 from
 outside the IP and sign-in allow-lists before any connected build is published.
@@ -530,10 +583,20 @@ deploy, so the site stays up.
 ## 7. What is actually left
 
 **Hers to decide:**
-1. Approval of this page. It has never been approved.
-2. Approval of the three amounts, which turns the review build into the launch
-   build.
-3. ~~Authorisation to create the production app.~~ **Done 3 November**, on her
+1. Approval of this page. **Still open**, and now the first thing: she asked on
+   4 November to see the connected preview and validate the presentation, which
+   is `http://127.0.0.1:3201`, unpublished.
+2. ~~Approval of the three amounts, which turns the review build into the launch
+   build.~~ **Done 4 November**, in her own sentence, quoted in section 0. The
+   one detail left inside it is the euro's typography, `€47` as the page writes
+   it against `47 €` as she wrote it, which is a style question and not an
+   amount.
+3. ~~Authorisation to create the production app, and which address the buttons
+   take.~~ **The address is settled: `https://app.truermeasure.com`,** named by
+   her on 4 November and built against. What survives of this item is **not
+   hers**: the app is still locked to her network, so a visitor following a
+   button from the published site would be refused. That is the release gate
+   below and it belongs to the app session. Original note: **Done 3 November**, on her
    authorisation reported by the app session: production exists, locked to her
    address plus Stripe's webhook servers, purchases closed behind the app's own
    live-payments switch, at `https://app.truermeasure.com`. What is left of this
