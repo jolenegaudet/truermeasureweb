@@ -985,3 +985,74 @@ decision. The host itself is settled.
 
 **Mine, once any of those lands:** set two variables, build, check, screenshot,
 and ask before anything goes live.
+
+---
+
+## 8. 5 November: the legal pages are readable and still unpublishable
+
+Her instruction, in her own words: *"Prepare la Politique de confidentialite a
+`https://truermeasure.com/privacy` et confirme avec APP l'adresse des nouvelles
+Conditions. Montre-moi les versions exactes en apercu. Apres mon accord sur les
+textes et leur publication, publie ces pages separement de la mise a jour
+commerciale."*
+
+Three things in that sentence shaped what was built: a named address, the exact
+texts rather than a description of them, and publication **separate** from the
+commercial update.
+
+**The address.** `/privacy` in English, `/politique-de-confidentialite` in
+French, which follows the French Terms at `/conditions-d-utilisation`: a legal
+document is found by its own name. `/privacy` is also what the app's agreement
+screen links to, so the two sides now agree without a redirect between them.
+The route folder was `privacy-policy` while it was unreachable; nothing ever
+published that address, so renaming it costs nothing and
+`scripts/check-launch-build.mjs` now fails if any page links to the old one.
+
+**The exact texts.** They could not be read from `app/_pending`, because a
+folder starting with `_` is not a route, so both pages are routed. What she is
+reading is therefore the real page at the real address, draft banner and
+unfilled effective date included, which is the point: approving a text means
+seeing what it still says.
+
+**And they cannot be published.** The guard did not come down, it moved
+outward, and there are two:
+
+| | what it reads | what relaxes it |
+|---|---|---|
+| `check-legal-placeholders.mjs` | the **source** a route imports, prebuild | `TM_LEGAL_PREVIEW=1` |
+| `check-launch-build.mjs` | the **built html**, before any deploy | `--legal-preview` |
+
+The second is stronger than the first ever was, because it reads what would
+actually be served rather than the source it came from, so it holds whatever
+route, import or flag put the draft text there. **The publish procedure passes
+neither flag**, which is what makes the texts readable and unpublishable at the
+same time. Both refusals were proved by running them rather than reasoned
+about: without the flags, exit 1 and the reason printed.
+
+**Two things inside the documents are hers and are untouched:**
+
+1. The effective date, `[EFFECTIVE_DATE]` in both files.
+2. The draft banner at the top of both. Deleting it is the act that declares
+   the text final, which is her word and counsel's, not a formatting step.
+
+A third thing worth her eye: the English banner says "the three remaining
+placeholders are filled" and only one placeholder is left. The count in the
+banner is stale. **Nothing was edited**, because it is inside a legal document
+under review.
+
+**The footer now carries the policy** in each language, which it was always
+meant to do once the page answered; `components/footer.tsx` said so in a
+comment. Until today the only link to it was inside the signup dialog, so a
+routed policy would have been a page nobody could find. It is one line to take
+out again if she would rather approve the footer as it was.
+
+**`scripts/preview-edge.mjs`** replaces the scratchpad simulator. It runs the
+real edge function over the preview, so the price is the one her country gets
+rather than the USD fallback; it reads the signing key from outside the
+repository through `TRUERMEASURE_SECRETS_DIR`; and `--lan` binds every
+interface so the pages can be read on a phone. `scripts/launch-build.ps1` gained
+`-LegalPreview`, `-Lan` and `-Country` and prints both addresses.
+
+**What is still waiting**, and it has not moved: her approval of the two texts,
+and then publication of the legal pages **on their own**, before the commercial
+update, in that order because she asked for it in that order.
