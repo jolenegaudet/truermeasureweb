@@ -1056,3 +1056,55 @@ interface so the pages can be read on a phone. `scripts/launch-build.ps1` gained
 **What is still waiting**, and it has not moved: her approval of the two texts,
 and then publication of the legal pages **on their own**, before the commercial
 update, in that order because she asked for it in that order.
+
+### Two things the launch order got wrong, found by checking rather than agreeing
+
+The app session proposed a five-step order on 5 November. Two steps could not be
+executed as written, and both are the kind of error that only shows up if
+somebody opens the files.
+
+**There are no new Terms.** The order said "publish the new Terms at
+`/terms-of-service`". Searched: no Version 1.3 draft exists in this repository,
+in either language, routed or unrouted. `content/terms-of-service.mdx` and
+`content/conditions-d-utilisation.mdx` hold **Version 1.2**, which is already
+live and byte-identical on the branch and on `main`. Her own words are "les
+pages juridiques approuvees", and 1.2 is the only approved Terms there is. So
+either she designates it, and the Terms need no deploy at all because they are
+already published, or new Terms have to be written and go through counsel, which
+is not a same-day item. Counsel's open question on Terms 1.3 is a revision
+nobody has drafted, not a document waiting to be published.
+
+**The two Privacy Policies are not the same document**, and conflating them
+would publish something untrue. The app session offered to send approved text
+for "section 5.4" and "section 9", covering founder-only access to child records
+and real retention practice.
+
+| | sections | what it covers | routed |
+|---|---|---|---|
+| `privacy-policy.website.mdx` | 8, section 5 is cookies and analytics | the forms, the Kit list, Plausible | **yes, at `/privacy`** |
+| `privacy-policy.mdx` | 12, section 9 is retention | child records, uploads, AI processing | no, and stays no |
+
+There is no 5.4 and no section 9 in the routed document. The website policy says
+in its own second paragraph that it does not cover the product, and that a
+separate and much longer policy comes before a parent gives anything about their
+child. Her decision, 4 October. Pasting product language onto `/privacy` would
+publish claims about a product that is not open, which is exactly what
+`app/privacy/page.tsx` warns about in its own comment. The text was still asked
+for, because the two documents must not contradict each other, but it belongs in
+`privacy-policy.mdx`.
+
+**And one sequencing fault.** The order flipped `TM_ALLOW_LIVE_PAYMENTS` before
+the step where the currency journey is verified, so the first real parent could
+be charged in the wrong currency and we would learn it from a check run
+afterwards. If the Netlify key disagrees with the app's by one character every
+signature fails silently and every visitor is read as USD, a Canadian reading
+CA$47 included.
+
+It is a trilemma rather than a mistake: do not quote a price before purchase
+works, so the site goes last; do not take money before the currency is proved,
+so payments go last; the currency can only be proved on a deployed site, so the
+site goes before the proof. **The draft deploy is the only thing that breaks
+it** - the real edge function and the real variable on a `netlify.app` URL that
+is not truermeasure.com, with no price shown to the public and no money at risk.
+It needs her word, and if she withholds it one of the three has to give, which
+is her choice and not something to arrange around.
