@@ -738,6 +738,24 @@ languages:**
 - **The country detection.** `context.geo` exists only on Netlify's edge. The
   mapping is unit-tested and shared between the edge function and the page, but
   that a French visitor is served €47 is unproven until it runs there.
+
+  **And a deploy alone does not prove it.** Netlify reads the country from the
+  requesting IP, and that cannot be spoofed in production, so no deploy made
+  from this machine can show the euro case. **Proving €47 needs a real request
+  from the euro area:** a VPN on her machine, or a person in France or Belgium
+  loading the page. CAD can be proved from here. EUR cannot, from any deploy.
+  This is a thing somebody has to do, not a check that falls out of publishing.
+
+  *Ruled out on 5 November, so it is not proposed again.* `check-host.net`
+  requests a URL you name from nodes in many countries, free and without an
+  account, and the app session has been using it against the app's allow-list.
+  It cannot do this job. Its HTTP check returns the status code, the reason and
+  the timing, and never the body or the headers, so it can tell 200 from 403
+  but cannot see `data-tm-currency="EUR"`. Making the currency visible in a
+  status code would mean bending the site to suit the instrument. Two further
+  reasons, both the app session's: a URL handed to it goes to a third party and
+  may appear in its public results, which would destroy the only privacy an
+  unlisted draft deploy has, and a rented vantage point is not a parent.
 - **Caching with the edge rewrite.** The function deletes `content-length` and
   sets `vary: x-nf-country`. That two visitors in different countries do not
   share one cached copy has never been observed in production.
