@@ -488,6 +488,8 @@ to be exact about:
 
 **And the unknown country, proved on all three paths.** Asked by the app
 session on 3 November and checked rather than answered from the comment.
+**Read this block as the 3 November state. She changed it on 4 November and the
+answer is now USD; the correction is at the end of the block and in section 0.**
 `netlify/edge-functions/currency.ts` writes no attribute when Netlify cannot
 resolve the country (`if (!chosen) return response`), and from there:
 
@@ -524,13 +526,17 @@ What it changes, as the app session describes it:
 - Editing `?currency=` after the click is unchanged, so the one exposure below
   still reads as it did.
 
-**So the two halves now answer the same question differently.** The website's own
-unplaceable visitor stays CA$47, because the website did choose, and the app
-honours that choice. US$ applies only to a parent who reaches the app without
-pressing a website button, by typing the address, a bookmark, or a shared link on
-another device. Nothing on the website decides that case and nothing here can
-change it. Whether the split is intended or an accident of where the question was
-asked is hers to say, and it is item 9 of section 7.
+**That split lasted one day, and she closed it.** Everything above describes the
+3 November code. Later on 4 November she gave the rule as a whole: *"Canada
+détecté → CAD ; zone euro détectée → EUR ; autre pays ou localisation inconnue →
+USD"*, with *"coordonne avec WEB pour appliquer USD comme solution de repli, en
+anglais et en français, si le site utilise encore CAD."* That is a direct
+instruction to this side, so the three places above were changed together in
+commit `ce99b5c`: `CURRENCY_WHEN_UNKNOWN`, `app/globals.css:43` and
+`DEFAULT_CURRENCY` all read USD. **An unplaceable visitor now sees US$47 and the
+button sends `currency=USD`**, which is what the app already answers, so the two
+halves agree. The CA$ readings in the bullets above are history, kept because the
+proof method is worth keeping, not the value. Section 0 has the verification.
 
 A wrong default is visible rather than hidden: the app's confirmation sheet
 prints the sign in front of the figure, CA$, US$ or the euro sign, and Stripe's
@@ -704,7 +710,9 @@ languages:**
   country's outcome by setting `data-tm-currency` gave CA$47, US$47 and €47
   with the right tax line each time, and the other two stayed hidden.
 - With no attribute at all — a visitor with JavaScript off, or a country
-  Netlify cannot resolve — the page shows CA$47. Her rule.
+  Netlify cannot resolve — the page shows CA$47. Her rule **as it stood on
+  2 November**. She changed that case to USD on 4 November, and the same check
+  was re-run in a browser after the change: US$47, both languages.
 - Monthly and yearly, both languages: 507.60 a year, 42.30 a month, 56.40
   saved, in all three currencies.
 - Both buttons point at the demo, open in a new tab with `rel="noopener"`, and
@@ -784,7 +792,12 @@ deploy, so the site stays up.
 **Hers to decide:**
 1. Approval of this page. **Still open**, and now the first thing: she asked on
    4 November to see the connected preview and validate the presentation, which
-   is `http://127.0.0.1:3201`, unpublished.
+   was served for her locally and unpublished, first on `http://127.0.0.1:3201`
+   and then, with the signing simulator, on `http://127.0.0.1:3202`. **Neither
+   is running now.** Claude Code stopped both background servers when the
+   machine ran critically low on memory, which is not a fault in the site: the
+   files in `out/` still pass `scripts/check-launch-build.mjs`. A preview can be
+   restarted on her word, and the screenshots she has are from that build.
 2. ~~Approval of the three amounts, which turns the review build into the launch
    build.~~ **Done 4 November**, in her own sentence, quoted in section 0. The
    one detail left inside it is the euro's typography, `€47` as the page writes
@@ -892,21 +905,12 @@ deploy, so the site stays up.
    with their own root layouts. That is a structural change to a page she is
    reviewing, so **nothing was touched** and it waits for her word.
 
-9. **Whether the website's unplaceable visitor should also be US$47.** Her
-   decision of 4 November, as the app session reports it, was "when the website
-   did not choose, choose US$47", and it is live in the app. It can be read two
-   ways on this side. Strictly, the website always chooses: when Netlify cannot
-   resolve a country the page falls back to CA$47 and the button sends
-   `currency=CAD`, so her rule never applies here and nothing changes. Read by
-   intent, the case she was deciding is a parent nobody can place, and that
-   parent meets the website first. Today the two halves answer it differently,
-   CA$ here and US$ there, which is a defensible split and may also be an
-   accident of where the question was asked. If she wants the website to match,
-   it is two lines, `DEFAULT_CURRENCY` at `content/app-plans.ts:170` and the
-   `html:not([data-tm-currency])` rule at `app/globals.css:43`, and it would
-   change what an unplaceable parent reads before paying. **Nothing was
-   touched.** CAD leads because her brief said CAD leads, and only she can say
-   whether today's decision reaches this far.
+9. ~~Whether the website's unplaceable visitor should also be US$47.~~
+   **Decided 4 November and done.** She gave the whole rule herself, not through
+   a reading of the app's half: *"autre pays ou localisation inconnue → USD"*,
+   and *"applique USD comme solution de repli, en anglais et en français, si le
+   site utilise encore CAD."* The site did still use CAD, and the three places
+   that encoded it now read USD (`ce99b5c`). Nothing is left to decide here.
 
 **Counsel's:** Terms 1.3, Privacy 1.2, and the engagement that has not started.
 
