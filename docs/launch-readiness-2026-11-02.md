@@ -1139,13 +1139,22 @@ Two further facts about 1.2, from the same reading. It never names **School &
 Life**, so the thing being sold does not appear in it. And it contains no yearly
 option, so the **507.60 twelve-month payment has no contractual basis in it**.
 
-**What follows is the honest headline.** New Terms are required before any paid
-sign-up. The new Terms are Terms 1.3, which lives outside this repository in
-`offer/counsel-package-2026-11-02/terms-of-service.md`, is with counsel, and is
-unapproved. There is no designation shortcut and no configuration that works
-around it, so **payments cannot open today**, and that conclusion does not
-depend on the currency checks, the draft deploy or the key fingerprint. It
-depends on counsel.
+**What follows is the honest headline.** New Terms must be in force before any
+paid sign-up. The new Terms are Terms 1.3, which lives outside this repository
+in `offer/counsel-package-2026-11-02/terms-of-service.md` and is unapproved.
+There is no designation shortcut and no configuration that works around it.
+
+*Corrected the same day, on the app session's objection, because the first
+version of this paragraph said payments "cannot open today" and that it "depends
+on counsel". Both overstate.* **Terms 1.3 is her document and she can approve it
+herself today**, knowingly and at her own risk, without counsel having answered.
+What is true is narrower: no paid sign-up can open while the only Terms in force
+state CA$59. Whether that is closed by her signature or by counsel's review is
+her choice, and nothing on either session's side decides it. The app session's
+recommendation, which this side shares, is to have counsel's answers on at least
+the refund policy and the EU withdrawal before taking euro payments, since the
+refund policy is still undecided and already blocks the Terms as item 5 of
+section 7.
 
 What is still possible: the website Privacy Policy publishing alone on her text
 approval, which is what she asked for. Whether free School sign-up can open
