@@ -17,10 +17,14 @@ import PrivacyContent from "@/content/privacy-policy.website.mdx";
  * scripts/check-legal-placeholders.mjs fails the build if either routed legal
  * document still carries a placeholder, so this page cannot go live with an
  * unset effective date.
+ *
+ * THE ADDRESS IS /privacy, her instruction of 5 November 2026, and not
+ * /privacy-policy, which this route used while it was unreachable. The app's
+ * agreement screen already links to /privacy, so nothing has to redirect.
  */
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  alternates: alternatesFor("/privacy-policy"),
+  alternates: alternatesFor("/privacy"),
 };
 
 export default function PrivacyPolicyPage() {

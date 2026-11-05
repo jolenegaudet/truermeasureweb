@@ -53,24 +53,44 @@ export const CONSENT_PURPOSE = "launch news and occasional product updates";
 /**
  * Whether the Privacy Policy is published.
  *
- * false while counsel reviews it. Her instruction, 4 October 2026: hold until
- * counsel is done. The policy is written, translated and routed, and none of it
- * is reachable.
+ * TRUE SINCE 5 NOVEMBER 2026, AND THE POLICY IS STILL NOT PUBLISHED. Read
+ * that carefully, because the flag changed meaning that day.
  *
- * TO PUBLISH, four steps, in this order:
- *   1. Set the effective date in BOTH content/privacy-policy.website.mdx and
- *      content/politique-de-confidentialite.mdx, replacing [EFFECTIVE_DATE].
- *   2. Delete the draft banner from the top of both, the blockquote beginning
- *      "DRAFT for counsel" and "EBAUCHE destinee au conseiller juridique".
- *   3. git mv app/_pending/privacy-policy app/privacy-policy
- *      git mv app/_pending/politique-de-confidentialite app/politique-de-confidentialite
- *   4. Set this to true.
+ * Her instruction, 5 November 2026: "Prepare la Politique de confidentialite a
+ * https://truermeasure.com/privacy ... Montre-moi les versions exactes en
+ * apercu. Apres mon accord sur les textes et leur publication, publie ces
+ * pages separement de la mise a jour commerciale." So she asked to read the
+ * exact texts at their real addresses before approving them. That cannot be
+ * done from app/_pending, where the pages were unreachable, so the routes now
+ * exist: app/privacy and app/politique-de-confidentialite. This flag only
+ * decides whether the footer and the signup consent line LINK to them, and
+ * with the routes live a half-state where the page exists but nothing points
+ * at it would show her something the published site would never look like.
  *
- * Miss step 1 or 2 and scripts/check-legal-placeholders.mjs stops the build, so
- * an unfinished policy cannot reach the site. That guard ignores app/_pending
- * because a folder starting with "_" is not a route.
+ * WHAT STOPS PUBLICATION IS NO LONGER THIS FLAG. It is two walls, and both
+ * read the documents rather than trusting a boolean:
+ *
+ *   - scripts/check-legal-placeholders.mjs stops any build whose routed legal
+ *     text still carries [EFFECTIVE_DATE] or a draft banner. It is prebuild,
+ *     so it runs here and on Netlify alike. TM_LEGAL_PREVIEW=1 turns it into a
+ *     loud warning, for exactly one purpose: the local preview she asked for.
+ *   - scripts/check-launch-build.mjs then refuses a BUILT site that carries a
+ *     draft marker or an unfilled placeholder in its HTML, which is the check
+ *     that runs before anything is deployed. --legal-preview relaxes it, and
+ *     the publish procedure never passes that flag.
+ *
+ * TWO THINGS INSIDE THE DOCUMENTS ARE STILL HERS, and neither is mine to do:
+ *   1. The effective date, [EFFECTIVE_DATE] in both files.
+ *   2. The draft banner at the top of both, the blockquote beginning "DRAFT
+ *      for counsel" and "EBAUCHE destinee au conseiller juridique". Deleting
+ *      it is the act that declares the text final, which is her word and
+ *      counsel's, not a formatting step.
+ *
+ * Her standing rule, 4 October 2026, still holds: hold until counsel is done.
+ * Nothing here shortens that. It makes the text readable at its own address
+ * while keeping publication impossible.
  */
-export const PRIVACY_POLICY_PUBLISHED = false;
+export const PRIVACY_POLICY_PUBLISHED = true;
 
 /**
  * The Privacy Policy link in the consent line, one path per language.
@@ -84,7 +104,7 @@ export const PRIVACY_POLICY_PUBLISHED = false;
  * route, for when the product opens.
  */
 export const PRIVACY_PATH: Record<Locale, string | null> = PRIVACY_POLICY_PUBLISHED
-  ? { en: "/privacy-policy", fr: "/politique-de-confidentialite" }
+  ? { en: "/privacy", fr: "/politique-de-confidentialite" }
   : { en: null, fr: null };
 
 /**

@@ -30,6 +30,15 @@
  * finding. That is what scripts/launch-build.ps1 passes, so a build that comes
  * out as something other than what was asked for cannot be screenshotted,
  * approved or published by mistake.
+ *
+ *   node scripts/check-launch-build.mjs --expect launch --app-host https://… \n *        --legal-preview
+ *
+ * --legal-preview turns one failure into a note: a legal document that is
+ * still marked a draft, or still carries [EFFECTIVE_DATE], having reached the
+ * build. It is for the local read-through she asked for on 5 November 2026 and
+ * for nothing else. THE PUBLISH PROCEDURE NEVER PASSES IT, which is what makes
+ * the draft texts unpublishable while they are readable. See section 6 of
+ * docs/launch-readiness-2026-11-02.md.
  */
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -138,6 +147,42 @@ for (const file of everyBuiltFile(OUT)) {
   }
 }
 
+/* The legal wall. A build whose Privacy Policy or Terms still say they are a
+   draft, or still carry an unfilled placeholder, must not be deployed.
+
+   scripts/check-legal-placeholders.mjs refuses to BUILD such a site, and
+   TM_LEGAL_PREVIEW=1 relaxes that so she can read the exact texts at their
+   real addresses, which is what she asked for on 5 November 2026. This is
+   the other half of that arrangement: the relaxed build still cannot pass
+   the check that runs before a deploy. --legal-preview relaxes this one too,
+   and the publish procedure never passes it (readiness record, section 6).
+
+   Read from the built html rather than the source, so it holds whatever
+   route, import or flag put the text there. */
+const legalPreview = args.includes("--legal-preview");
+const DRAFT_MARKERS = [
+  "DRAFT for counsel",
+  "not yet in force",
+  "ÉBAUCHE destinée",
+  "pas encore en vigueur",
+  "[EFFECTIVE_DATE]",
+];
+const draftPages = [];
+for (const page of pages) {
+  const html = readFileSync(page, "utf8");
+  const hit = DRAFT_MARKERS.filter((m) => html.includes(m));
+  if (hit.length) draftPages.push(`${page}: ${hit.join(", ")}`);
+}
+if (draftPages.length) {
+  if (legalPreview) {
+    for (const d of draftPages) notes.push(`LEGAL PREVIEW, do not deploy: ${d}`);
+  } else {
+    for (const d of draftPages) {
+      fail(`${d} - a legal document that is still a draft reached the build`);
+    }
+  }
+}
+
 /* Her page, in both languages. Named one by one rather than counted, because
    the point of the list is that nothing came off while something else was
    being prepared. */
@@ -192,7 +237,8 @@ for (const page of pages) {
   const french =
     route.endsWith("/fr.html") ||
     route.includes("/fr/") ||
-    route.includes("conditions-d-utilisation");
+    route.includes("conditions-d-utilisation") ||
+    route.includes("politique-de-confidentialite");
   const terms = french ? "/conditions-d-utilisation" : "/terms-of-service";
   if (!html.includes(terms)) fail(`${page} has no Terms link (${terms})`);
   if (!html.includes("billing.stripe.com/p/login/")) {
@@ -201,10 +247,16 @@ for (const page of pages) {
   if (!html.includes(french ? "/fr/withdraw" : "/withdraw")) {
     fail(`${page} has no withdrawal link`);
   }
-  /* The Privacy Policy is held in app/_pending while counsel reviews it, so a
-     link to it anywhere means it escaped. */
-  if (html.includes("/privacy-policy") || html.includes("/politique-de-confidentialite")) {
-    fail(`${page} links to the held Privacy Policy`);
+  /* The Privacy Policy used to be held in app/_pending, and a link to it
+     anywhere meant it had escaped. It is routed since 5 November 2026, so she
+     can read the exact texts before approving them, and the thing that keeps a
+     draft off the live site is the draft-marker wall above rather than the
+     absence of a link. What is still a fault is the OLD address: /privacy-policy
+     was never public, her instruction names /privacy, and the app's agreement
+     screen links to /privacy too. A page pointing at the old one would be a
+     link to nothing. */
+  if (html.includes("/privacy-policy")) {
+    fail(`${page} links to /privacy-policy, which is not the address; use /privacy`);
   }
 }
 

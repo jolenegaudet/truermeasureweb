@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SocialLinks } from "@/components/social-links";
 import { MANAGE_URL } from "@/content/founding-families";
+import { PRIVACY_PATH } from "@/content/first-to-know";
 import { localeFromPath, shell } from "@/content/i18n";
 
 /**
@@ -20,15 +21,23 @@ import { localeFromPath, shell } from "@/content/i18n";
  *   Manage or cancel   online cancellation, through the Stripe customer portal.
  *   Withdraw           the EU withdrawal function, which must be reachable from
  *                      every page for the whole 14 days.
- * Each one points at its own language. The Privacy Policy is written and
- * translated but held back while counsel reviews it, so it is deliberately
- * absent here. Its strings and this link go back when
- * PRIVACY_POLICY_PUBLISHED in content/first-to-know.ts turns true; that
- * constant carries the full procedure.
+ *   Privacy            added 5 November 2026, when the policy was routed so she
+ *                      could read it at its own address. It is the fourth
+ *                      obligation and the one a reader looks for first.
+ * Each one points at its own language.
+ *
+ * The Privacy row appears only while PRIVACY_PATH is set, which
+ * content/first-to-know.ts governs and which carries the full procedure. Until
+ * 5 November the policy was unrouted and this link was deliberately absent,
+ * because a footer link to a 404 on every page is worse than no link. The
+ * reason it is here now is that the page answers; the reason it is still not
+ * publishable is the draft marker inside the text, which
+ * scripts/check-launch-build.mjs refuses.
  */
 export default function Footer() {
   const locale = localeFromPath(usePathname() || "/");
   const t = shell[locale].footer;
+  const privacyPath = PRIVACY_PATH[locale];
 
   const link = "text-subdued no-underline hover:text-parchment";
 
@@ -55,6 +64,11 @@ export default function Footer() {
         <Link href={t.termsPath} className={link}>
           {t.terms}
         </Link>
+        {privacyPath && (
+          <Link href={privacyPath} className={link}>
+            {t.privacy}
+          </Link>
+        )}
         <a href={MANAGE_URL} className={link}>
           {t.manage}
         </a>

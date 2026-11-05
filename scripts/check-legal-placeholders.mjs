@@ -14,6 +14,19 @@
  * them. Publish it and the same wall applies automatically.
  *
  * Runs as "prebuild", so npm run build triggers it here and on Netlify alike.
+ *
+ * TM_LEGAL_PREVIEW=1 turns the wall into a loud warning, and it exists for
+ * one reason. Her instruction of 5 November 2026 was to show her the exact
+ * texts at their real addresses before she approves them: "Montre-moi les
+ * versions exactes en apercu." A document can only be read at its address if
+ * the route builds, and the route cannot build while this check refuses the
+ * draft. So the preview gets the escape and the deploy does not.
+ *
+ * The wall did not come down, it moved outward. scripts/check-launch-build.mjs
+ * reads the BUILT html and refuses a draft marker or an unfilled placeholder
+ * there, which is the check that runs before a deploy. That one is stronger
+ * than this one, because it reads what would actually be served rather than
+ * the source it came from.
  */
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -67,15 +80,35 @@ for (const [doc, route] of routed) {
   }
 }
 
+const previewing = process.env.TM_LEGAL_PREVIEW === "1";
+
 if (problems.length) {
-  console.error("\n  BUILD STOPPED: a published legal document is not finished.\n");
+  const say = previewing ? console.warn : console.error;
+  say(
+    previewing
+      ? "\n  LEGAL PREVIEW: a routed legal document is still a draft.\n"
+      : "\n  BUILD STOPPED: a published legal document is not finished.\n",
+  );
   for (const { doc, route, found } of problems) {
-    console.error(`    ${doc}`);
-    console.error(`      served by  ${route}`);
-    console.error(`      unresolved ${found.join(", ")}\n`);
+    say(`    ${doc}`);
+    say(`      served by  ${route}`);
+    say(`      unresolved ${found.join(", ")}\n`);
   }
-  console.error("  Fill these in, or remove the route, before building.\n");
-  process.exit(1);
+  if (previewing) {
+    say("  Building anyway, because TM_LEGAL_PREVIEW=1 was set.");
+    say("  THIS BUILD MUST NOT BE DEPLOYED. scripts/check-launch-build.mjs");
+    say("  refuses it unless --legal-preview is passed, and the publish");
+    say("  procedure never passes that flag.\n");
+  } else {
+    say("  Fill these in, or remove the route, before building.");
+    say("  To read them locally instead, set TM_LEGAL_PREVIEW=1.\n");
+    process.exit(1);
+  }
 }
 
-console.log(`  Legal documents checked: ${routed.size}, all complete.`);
+if (problems.length) {
+  const drafts = new Set(problems.map((p) => p.doc)).size;
+  console.log(`  Legal documents checked: ${routed.size}, ${drafts} still a draft.`);
+} else {
+  console.log(`  Legal documents checked: ${routed.size}, all complete.`);
+}
