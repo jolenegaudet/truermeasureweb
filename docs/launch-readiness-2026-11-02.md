@@ -182,6 +182,21 @@ done:**
    check it is worse than waiting for the deploy to show it. So the variable
    exists on her word, and whether it holds the right value and reaches the edge
    is exactly this check.
+
+   **Half of it can be closed before the deploy, and a script now does it.**
+   The app session verified its own side by fingerprint rather than by value:
+   the App Service setting and the `currency-link.env` line both print
+   `86eb075b`, which is the first eight characters of the SHA-256. Confirmed
+   independently here from the same file, which is what makes the number
+   meaningful rather than relayed. `scripts/check-currency-key.ps1`, with
+   `Check currency key.cmd` beside it, compares the clipboard against that file
+   and prints MATCH or DIFFERS and two fingerprints, never a value. So after
+   copying the value out of Netlify she can know in one step whether her paste
+   was right, instead of finding out at the deploy. Tested both ways: a wrong
+   value prints DIFFERS, the right one prints MATCH.
+
+   What stays deferred is the half no local check can reach: that Netlify hands
+   the variable to the edge function at runtime.
 2. **Netlify places the visitor.** `context.geo.country.code` resolves for real
    requests, so a Canadian sees CA$47 and a French visitor €47. Nothing local
    can test this: the simulator supplies the country itself.
