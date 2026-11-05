@@ -247,18 +247,42 @@ for (const page of pages) {
   if (!html.includes(french ? "/fr/withdraw" : "/withdraw")) {
     fail(`${page} has no withdrawal link`);
   }
-  /* TWO PRIVACY ADDRESSES, and the only fault is a link to one that does not
-     answer. Her decision of 5 November 2026 put the product policy at /privacy
-     and the website policy at /privacy/website. /privacy is reserved until the
-     product policy's text is approved, so a page linking there today would be
-     a link to a 404 on every page of the site, which is worse than no link.
-     /privacy-policy was this route's address while it was unreachable and was
-     never published. */
+  /* THE RESERVED LEGAL ADDRESSES. Three documents are linked from the app's
+     agreement screen and its release check needs all three to answer 200: the
+     Terms, the Privacy Policy and the Licence. The Terms answer today. The
+     other two do not, and their addresses are reserved rather than filled:
+
+       /privacy, /politique-de-confidentialite     the app's privacy policy
+       /licence, /contrat-de-licence               the Licence Agreement
+
+     Each answers 404 until she approves that document's text, and the 404 is
+     the gate: a legal link that does not resolve is what keeps public sign-up
+     shut until the document a parent agrees to exists. A placeholder would
+     answer 200 and satisfy that check while the document did not exist, which
+     is why there is none.
+
+     So the fault this catches is a LINK to one of them from a build that does
+     not contain it. The footer is on every page, which is exactly where this
+     would have gone wrong and how badly. */
+  for (const [address, file] of [
+    ["/privacy", "privacy.html"],
+    ["/politique-de-confidentialite", "politique-de-confidentialite.html"],
+    ["/licence", "licence.html"],
+    ["/contrat-de-licence", "contrat-de-licence.html"],
+  ]) {
+    const href = 'href="' + address + '"';
+    if (html.includes(href) && !existsSync(join(OUT, file))) {
+      fail(`${page} links to ${address}, which this build does not contain`);
+    }
+  }
+  /* /privacy-policy was this route's address while it was unreachable, and
+     /license is the American spelling that netlify.toml redirects. Neither is
+     an address a page should carry. */
   if (html.includes('href="/privacy-policy"')) {
     fail(`${page} links to /privacy-policy, which was never an address`);
   }
-  if (/href="\/privacy"/.test(html) && !existsSync(join(OUT, "privacy.html"))) {
-    fail(`${page} links to /privacy, which this build does not contain`);
+  if (html.includes('href="/license"')) {
+    fail(`${page} links to /license; the address is /licence`);
   }
 }
 

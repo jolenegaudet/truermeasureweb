@@ -12,7 +12,7 @@ import { alternatesFor } from "@/content/i18n";
  * FRENCH_PATHS so the language toggle and the footer still resolve.
  */
 export const metadata: Metadata = {
-  title: "Politique de confidentialité",
+  title: "Politique de confidentialité du site web",
   alternates: alternatesFor("/privacy/website", "fr"),
 };
 
@@ -27,7 +27,7 @@ export default function PolitiqueDeConfidentialitePage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(36px,5vw,64px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
         >
-          Politique de confidentialité
+          Politique de confidentialité du site web
         </h1>
       </section>
 

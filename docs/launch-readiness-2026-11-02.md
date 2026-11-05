@@ -1219,3 +1219,92 @@ while the build contains no `privacy.html`. A footer link to a 404 on every page
 of the site would be worse than no link, and the footer is exactly where this
 would have gone wrong. Tested by injecting the link into one built page: *"links
 to /privacy, which this build does not contain"*, then removed, then clean.
+
+### The Licence makes three legal gates, and it is the furthest behind
+
+The app session added the End-User Licence Agreement to its agreement screen on
+5 November, on her instruction: *"Si le Contrat de licence reste separe, ajoute
+son lien a l'accord et enregistre sa version avec celles des Conditions et de la
+Politique."* Its release check now needs **three** legal links to answer 200,
+where this morning it needed one.
+
+**She validated the addresses the same day:** *"Je valide `/licence`,
+`/contrat-de-licence` et la redirection de `/license` vers `/licence`."*
+
+`/licence` and not `/license` because this repository uses the Canadian spelling
+and nothing else, thirteen times against zero, and the Terms call the document
+the End-User Licence Agreement in English and the Contrat de licence in French.
+`/contrat-de-licence` is the short name the French Terms already use five times,
+so the address carries the name the contract gives itself. The redirect exists
+because `/license` is what a large share of readers will type and a 404 on a
+document somebody has agreed to is the worst 404 on the site. It is in
+`netlify.toml` now, pointing at a 404, so it cannot be forgotten in the change
+that publishes the document.
+
+**The finding, and it moves the critical path.** The Licence does not exist in
+this repository in either language. No `content/*licence*.mdx`, no route. The
+only draft anywhere is outside the repo, in
+`offer/counsel-package-2026-11-02/end-user-licence-agreement.md`, marked "Draft
+1.2 for counsel, 2 November 2026. Not approved, not published." **And that
+package is English only**: three documents, no French.
+
+| document | English | French | published |
+|---|---|---|---|
+| Terms | in repo, v1.2 | in repo | yes, and 1.2 is unusable (CA$59) |
+| website Privacy | in repo | in repo | no, awaiting her text |
+| app Privacy | in repo, draft | in repo, draft | no, awaiting her text |
+| **Licence** | **counsel package only** | **does not exist** | no |
+
+So publishing `/licence` needs three things rather than one: her approval of the
+English text, that text brought in as a routed page, and **a French translation
+that has not been written**. Legal text is not mine to write or translate, so
+the French Licence is a person's job, and it is the only one of the six legal
+pages with nothing to translate from.
+
+**A counsel question, raised and not answered here:** whether a French-speaking
+parent in New Brunswick or Quebec can be asked to agree to an English-only
+Licence while the Terms and the Privacy Policy shown beside it are both French.
+If the answer is no, the French Licence is on the critical path for public
+sign-up rather than a job for afterwards.
+
+### Her titles, and a duplicate heading she will see
+
+Her instruction, 5 November: *"Pour les politiques du site, utilise les titres
+Website Privacy Policy et Politique de confidentialite du site web."* Done, in
+the `<title>` and the `h1` of both pages. Two documents will carry a privacy
+name, and the qualifier is what keeps them apart in a browser tab and in a
+search result.
+
+**It exposed a defect rather than causing one.** The page now shows "Website
+Privacy Policy" and then, immediately under it, "Privacy Policy" again, because
+`content/privacy-policy.website.mdx` carries its own `# Privacy Policy` heading.
+So the page has two `h1` elements. `content/terms-of-service.mdx` carries no
+heading of its own and lets the page supply it, which is the house pattern, so
+the privacy documents are the anomaly: they were written as standalone documents
+for counsel, where a title belongs, and nobody saw the duplication because the
+pages were unreachable.
+
+The fix is one line, deleting the document's own heading, and **it was not
+made**, because that line sits inside a legal document under review. She sees
+both headings in the preview and can say which one goes.
+
+### The effective date is the publication date, so it is a command and not a decision
+
+Her rule, 5 November: *"Apres approbation du texte, la date d'entree en vigueur
+sera celle de la publication reelle."* That removes a decision and replaces it
+with a step, which is better, because the step was the dangerous part: filling
+a date and removing a draft banner by hand, inside a contract, on the day a
+deploy is waiting.
+
+`scripts/publish-legal.ps1` does both, for one named document in both languages
+at once, and refuses to be clever about it. It never guesses a date, requires
+`-Date`, writes nothing without `-Apply`, renders the French date in French
+("14 novembre 2026"), and **exits 2 if a document is missing in either
+language**, because a policy published in one language and not the other is its
+own kind of wrong. Dry-run against the website policy on 5 November: the right
+two edits in each file, and nothing written, confirmed by the placeholder still
+being there afterwards. Against the Licence: both files reported missing, exit 2.
+
+It publishes nothing. After it the build still has to pass both legal checks
+**with no flag at all**, which is the real test: the walls come down because the
+document is finished, not because a flag was passed.

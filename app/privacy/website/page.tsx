@@ -30,7 +30,12 @@ import PrivacyContent from "@/content/privacy-policy.website.mdx";
  * ever published, so neither needs a redirect.
  */
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  // Her instruction, 5 November 2026: "utilise les titres Website Privacy
+  // Policy et Politique de confidentialite du site web". Two policies will
+  // carry a name; this is the one about the website, and the qualifier is what
+  // keeps the app's policy at /privacy distinguishable in a browser tab and in
+  // a search result.
+  title: "Website Privacy Policy",
   alternates: alternatesFor("/privacy/website"),
 };
 
@@ -45,7 +50,7 @@ export default function PrivacyPolicyPage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(36px,5vw,64px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
         >
-          Privacy Policy
+          Website Privacy Policy
         </h1>
       </section>
 

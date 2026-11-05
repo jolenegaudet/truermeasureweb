@@ -86,7 +86,12 @@ try {
 
 /* ── Netlify's own routing, as far as the preview needs it ───────────────── */
 
-const REDIRECTS = { "/terms": "/terms-of-service" };
+/* The redirects from netlify.toml that matter to a read-through. */
+const REDIRECTS = {
+  "/terms": "/terms-of-service",
+  "/license": "/licence",
+  "/build": "/inner-circle",
+};
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",

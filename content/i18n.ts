@@ -46,9 +46,26 @@ export const FRENCH_PATHS: Record<string, string> = {
   // that does not answer 200, so the 404 is the gate holding public sign-up
   // shut until the document a parent agrees to actually exists.
   "/privacy": "/politique-de-confidentialite",
-  // The French side of /privacy/website. She named the English pair; this
-  // mirrors it by the same rule that gives the Terms a French address.
+  // The French side of /privacy/website. She named the English pair and
+  // validated this one: "Je valide les quatre adresses proposees, y compris le
+  // nom site-web."
   "/privacy/website": "/politique-de-confidentialite/site-web",
+  // The End-User Licence Agreement, her validation of 5 November 2026: "Je
+  // valide /licence, /contrat-de-licence et la redirection de /license vers
+  // /licence." The app's agreement screen links it as TM_LICENCE_URL and its
+  // release check needs it to answer 200, alongside the Terms and the Policy.
+  //
+  // RESERVED, AND 404 TODAY IN BOTH LANGUAGES. The document does not exist in
+  // this repository: the only draft is outside it, in the counsel package, as
+  // "Draft 1.2 for counsel, 2 November 2026. Not approved, not published."
+  // There is no French version of it anywhere, and the French Terms reference
+  // it by name five times, so publishing it needs an approved English text, a
+  // routed page here, and a translation that has not been written.
+  //
+  // /licence and not /license: this repository uses the Canadian spelling and
+  // nothing else, 13 times against zero. netlify.toml redirects the American
+  // spelling, because a 404 on a legal document is the worst 404 on the site.
+  "/licence": "/contrat-de-licence",
 };
 const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
   Object.entries(FRENCH_PATHS).map(([en, fr]) => [fr, en]),

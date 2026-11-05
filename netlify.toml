@@ -64,6 +64,25 @@
   to     = "/terms-of-service"
   status = 301
 
+# /license, the American spelling, to /licence, the Canadian one.
+#
+# Her validation, 5 November 2026: "Je valide /licence, /contrat-de-licence et
+# la redirection de /license vers /licence." This repository uses "licence"
+# everywhere, 13 times against zero, and the Terms call the document the
+# End-User Licence Agreement in English and the Contrat de licence in French.
+# But /license is what a large share of readers will type, and a 404 on a
+# document somebody has agreed to is the worst 404 on this site.
+#
+# IT POINTS AT A 404 TODAY, DELIBERATELY. The Licence does not exist in this
+# repository in either language; the only draft is in the counsel package,
+# unapproved. The redirect is here now so it cannot be forgotten in the change
+# that publishes the document, and until then it moves one 404 to another, which
+# costs nothing. See content/i18n.ts for what publishing it actually needs.
+[[redirects]]
+  from   = "/license"
+  to     = "/licence"
+  status = 301
+
 [[redirects]]
   from   = "/build"
   to     = "/inner-circle"
