@@ -134,6 +134,18 @@ none, which its own rule turns into USD. Same answer by both paths. What it does
 mean is that an unplaceable visitor cannot be told apart from someone who typed
 the address, and neither can get a cheaper price by trying.
 
+**And the refusals, which are the actual point.** The app session put all
+fourteen clicked URLs through its verifier, plus **48 edited copies**: for each
+signed URL, the currency changed to each of the other two with the signature
+kept, the signature removed, and the expiry pushed by one second. **All 48 were
+refused**, so USD. The case her rule names in so many words, CAD swapped onto a
+euro-area signature, is refused in all four combinations of language and period.
+The expiry edit failing matters on its own: it shows `exp` is inside what is
+signed rather than beside it. The two unsigned clicks read as USD, as designed.
+
+So the property holds in both directions, tested by the side that did not write
+the signer.
+
 **What this does not prove.** The simulator stands in for Netlify resolving the
 country from the request and for Netlify's environment holding the key. Both are
 only testable on a deploy. Local preview means the browser click plus the app
