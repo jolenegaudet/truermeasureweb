@@ -51,6 +51,50 @@ That is the house style the dollar amounts use too (`CA$47` on the French page,
 which she approved in the same sentence), so it is consistent rather than wrong.
 Nothing was changed.
 
+**What stands between this build and publication, checked on 4 November.** The
+app session answered the half it owns, and two of the three gates turn out to be
+on this side or in her lawyer's inbox rather than in Azure.
+
+- **Opening the app is small and reversible: two settings.**
+  `TM_OPEN_TO_PUBLIC=yes` (which also lifts the Azure network restriction
+  through `deploy/azure-accounts.sh`) and an empty `TM_SIGNIN_ALLOW`, about two
+  minutes, undone the same way, 60 to 90 seconds to reach every front end. The
+  Kudu site stays locked. Reported by the app session, which corrected its own
+  first answer after reading the deploy script.
+- **Purchases are a separate third switch, and this is the mismatch to see
+  before publishing.** `TM_ALLOW_LIVE_PAYMENTS` is unset, so with the app open
+  but payments closed a parent can sign up and use free School, and the app
+  shows no price and no buy button. This page would be quoting CA$47, US$47 and
+  €47 to a parent who then arrives somewhere with nothing to buy.
+- **No Privacy Policy is public anywhere.** Checked here, not relayed:
+  `/privacy`, `/privacy-policy` and `/politique-de-confidentialite` all 404 on
+  truermeasure.com today. The app's release check refuses a release where its
+  Terms or Privacy link does not answer 200, so that check cannot pass against
+  this site as it stands. The policy is written, translated, routed and held in
+  `app/_pending` behind `PRIVACY_POLICY_PUBLISHED = false`, which is one switch
+  on this side, and behind counsel, who has never been engaged.
+- **The Terms are version 1.2 and the branch does not change them.** Checked:
+  `content/terms-of-service.mdx` reads "Version 1.2 · Effective 3 October 2026"
+  on this branch **and** on `main`, byte for byte. So publishing does not bring
+  newer Terms with it. A parent would agree to Terms written for the old offer
+  while reading the new amounts. Terms 1.3 is drafted and unapproved. Nothing
+  here writes or edits legal text.
+- **The `/terms` loop is not one.** The app session raised it, and the
+  netlify.toml comment already records the answer: from app commit 19903d2 the
+  app points straight at `/terms-of-service`, which answers 200 live today. The
+  `/terms` redirect on this branch is for anyone who types it. `/privacy`, above,
+  is the real coupling.
+- **Receipts: settled.** Her words, reported 4 November: *"Receipts on."* The app
+  session adds that checkout uses one Stripe customer per account carrying the
+  parent's sign-in email, and that all twelve first-payment test invoices carry
+  it.
+
+**The order, agreed with the app session and unchanged:** the app opens, this
+side verifies `app.truermeasure.com` answers 200 from outside her network, and
+only then does the website publish. A static export bakes the address into the
+HTML, so publishing is a rebuild and a deploy rather than a flag, and buttons
+published before the app opens would lead parents to a refusal.
+
 **The handoff, proved rather than assumed.** Twelve cases, two languages × three
 currencies × two periods, each in a fresh browser: every click produces exactly
 `https://app.truermeasure.com/?currency=<CUR>&billing=<PERIOD>`, two parameters,
