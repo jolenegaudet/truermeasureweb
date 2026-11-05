@@ -816,12 +816,27 @@ deploy, so the site stays up.
    counsel gates is opening it to families, because the app's release check must
    pass before any real sign-up and it refuses a legal link that 404s or a
    consent version still marked draft.
-4. The per-child versus per-account AI ceiling (pricing brief §2). It is per
-   account today, so two paying children share one US$10 allowance while
-   paying twice. With it comes **whether a parent is told the reading limit
-   exists before paying rather than when they reach it**: today nobody is, and
-   the only written description is in Terms 1.3, which counsel has not approved
-   (see §3).
+4. ~~The per-child versus per-account AI ceiling (pricing brief §2).~~
+   **Decided 4 and 5 November.** Her words, as the app session pasted them:
+   *"Je valide un plafond interne de 10 US$ par mois civil pour chaque enfant
+   abonné à School & Life. Chaque enfant payant a sa propre allocation. Pour
+   School gratuit, conserve une allocation de 3 US$ par compte, partagée entre
+   les enfants gratuits et séparée des allocations payantes. Je n'autorise pas
+   3 US$ par enfant gratuit."* Then, on 5 November: *"Je valide un plafond
+   global de 50 US$ par mois civil pour l'ensemble de l'usage gratuit, à
+   l'intérieur du plafond Anthropic de 200 US$."* So the defect is closed: a
+   paying child has their own US$10 and no longer shares. The US$50 caps all
+   free use together and not each free child, which is the distinction worth
+   not losing. Paid top-ups are deferred. Live in the app at `6b1a37b`.
+
+   **What survives of this item is the second half, and it is still open:**
+   whether a parent is told the reading limit exists, and with a figure, before
+   paying rather than when they reach it. The app's purchase confirmation now
+   says there is a monthly allowance and states no number. Whether a number is
+   required is counsel's question 3f, so this moved from her column to
+   counsel's. Nothing on this website mentions a limit at all, and if counsel
+   says a figure is required before payment, the page that must carry it is
+   mine.
 5. The refund policy, which blocks the Terms.
 6. ~~Whether "a school year" stays in the app's renewal wording.~~ Decided
    3 November: it is gone, and the app says "yearly" and "12 months".
@@ -911,6 +926,37 @@ deploy, so the site stays up.
    and *"applique USD comme solution de repli, en anglais et en français, si le
    site utilise encore CAD."* The site did still use CAD, and the three places
    that encoded it now read USD (`ce99b5c`). Nothing is left to decide here.
+
+10. **Which Terms are the published Terms, and where the two legal addresses
+    point.** Found on 5 November, and it corrects something this side said
+    earlier the same day. The app session read its production settings:
+    `TM_TERMS_URL`, `TM_PRIVACY_URL` and `TM_CONSENT_VERSION` are **all three
+    empty**. So the app's release check refuses today no matter what this
+    website answers, and the sentence "if the check points at
+    /terms-of-service it passes now" was wrong. There is no technical fallback
+    to point at: the values get set, by hand, to addresses she has approved.
+
+    That makes this a decision rather than a configuration, and it splits in
+    two, which is the useful part:
+
+    - **The Terms half she could close today.** `/terms-of-service` answers 200
+      and carries *Version 1.2, Effective 3 October 2026*, verified on
+      5 November to be the same string live and in this build. If she
+      designates 1.2 as the approved Terms, the app session sets
+      `TM_TERMS_URL` and that half passes immediately, with no counsel and no
+      refund policy. If she wants the new Terms instead, this half joins the
+      queue behind counsel and behind item 5.
+    - **The Privacy half she cannot close the same way,** because no privacy
+      page exists at any address on this domain. Re-verified 5 November, eight
+      paths, all 404 but `/terms-of-service`. There is nothing to point
+      `TM_PRIVACY_URL` at until the text is approved and published.
+
+    One thing to know before she chooses 1.2: the live Terms themselves say the
+    Privacy Policy and the End-User Licence Agreement "are being finalised and
+    will be published on this site." Designating 1.2 as approved therefore
+    publishes a promise of a privacy policy that does not yet answer. That is
+    not a reason against it. It is a reason the privacy page should not lag far
+    behind, and it is hers to weigh rather than mine.
 
 **Counsel's:** Terms 1.3, Privacy 1.2, and the engagement that has not started.
 
