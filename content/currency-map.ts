@@ -87,6 +87,101 @@ export function currencyForCountry(
   return "USD";
 }
 
+/* -- THE SIGNED STAMP ------------------------------------------------------
+ *
+ * Her rule of 4 November 2026: "Je ne veux pas qu'un parent puisse choisir un
+ * tarif moins cher simplement en modifiant l'URL ou la requete de paiement."
+ *
+ * `?currency=` is plain text, so anyone could type CAD and read the cheapest
+ * of the three. The fix is not to hide the parameter, which cannot be done on
+ * a static site, but to let the app tell a currency the website chose from one
+ * a visitor typed. The edge function signs the currency it has just decided,
+ * the button carries the signature, and the app treats a missing, altered or
+ * expired signature as no currency at all, which its own rule turns into USD.
+ *
+ * The contract, agreed with the app session on 4 November 2026:
+ *
+ *     cs  = "<exp>.<sig>"
+ *     exp = unix seconds, decimal, no leading zeros
+ *     sig = base64url, no padding, of
+ *           HMAC-SHA256(key, "tm-currency-v1:" + CUR + ":" + exp), CUR upper case
+ *
+ * The key lives in Netlify's environment, server side, and is read only by the
+ * edge function. It is never in a page, never in the client bundle and never in
+ * this repository. Nothing here prints it, and scripts/check-launch-build.mjs
+ * fails if the attribute or a signature ever reaches an exported page, because
+ * an exported page is built once and served to everyone.
+ *
+ * Seven days, not one. The signature is what stops a parent typing CAD; the
+ * expiry only limits how long a leaked signed link circulates. A short window
+ * costs something real instead: a parent who opens the page, is interrupted
+ * and clicks the next day would send an expired signature, and a Canadian who
+ * read CA$47 would be charged US$47, which is more. The app accepts an exp up
+ * to eight days ahead, which leaves a day for clock drift.
+ */
+
+/** The attribute the edge writes beside the currency, and the parameter it becomes. */
+export const SIGNATURE_ATTRIBUTE = "data-tm-cs";
+export const SIGNATURE_PARAM = "cs";
+
+/** Version marker inside the signed string, so the format can change later. */
+export const SIGNATURE_PREFIX = "tm-currency-v1:";
+
+/** Seven days. See above for why this is not twenty-four hours. */
+export const SIGNATURE_LIFETIME_SECONDS = 7 * 24 * 60 * 60;
+
+/** Exactly what gets signed. One place, so the two sides cannot drift. */
+export function signaturePayload(
+  currency: CurrencyCode | string,
+  exp: number | string,
+): string {
+  return SIGNATURE_PREFIX + String(currency).toUpperCase() + ":" + String(exp);
+}
+
+function base64url(bytes: Uint8Array): string {
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+/**
+ * The signature alone. Web Crypto, which both runtimes that read this file
+ * have: Deno at Netlify's edge, and Node for the local check.
+ */
+export async function currencySignature(
+  key: string,
+  currency: CurrencyCode | string,
+  exp: number | string,
+): Promise<string> {
+  const enc = new TextEncoder();
+  const material = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(key),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const mac = await crypto.subtle.sign(
+    "HMAC",
+    material,
+    enc.encode(signaturePayload(currency, exp)),
+  );
+  return base64url(new Uint8Array(mac));
+}
+
+/**
+ * The whole stamp, "<exp>.<sig>". `nowSeconds` is injectable so a test can ask
+ * for a stamp that expired yesterday without waiting a week.
+ */
+export async function currencyStamp(
+  key: string,
+  currency: CurrencyCode | string,
+  nowSeconds: number = Math.floor(Date.now() / 1000),
+): Promise<string> {
+  const exp = Math.floor(nowSeconds) + SIGNATURE_LIFETIME_SECONDS;
+  return exp + "." + (await currencySignature(key, currency, exp));
+}
+
 /**
  * Put the attribute on the <html> tag of a page, before the browser sees it.
  *
@@ -101,16 +196,24 @@ export function currencyForCountry(
 export function withCurrencyAttribute(
   html: string,
   currency: CurrencyCode | null,
+  stamp?: string | null,
 ): string {
   if (!currency) return html;
   const open = html.match(/<html\b[^>]*>/i);
   if (!open) return html;
-  const cleaned = open[0].replace(
-    new RegExp("\\s" + CURRENCY_ATTRIBUTE + '="[^"]*"', "i"),
-    "",
-  );
+  let cleaned = open[0];
+  for (const name of [CURRENCY_ATTRIBUTE, SIGNATURE_ATTRIBUTE]) {
+    cleaned = cleaned.replace(new RegExp("\s" + name + '="[^"]*"', "i"), "");
+  }
+  /* The stamp goes on only beside a currency, and only in the shape the
+     contract describes. A malformed one would be worse than none: the app
+     would read it as "no currency transmitted" and charge USD to a parent
+     who is looking at another amount. */
+  const signed = stamp && /^[0-9]+\.[A-Za-z0-9_-]+$/.test(stamp) ? stamp : null;
   const tag =
     cleaned.slice(0, -1).replace(/\s*\/?$/, "") +
-    ` ${CURRENCY_ATTRIBUTE}="${currency}">`;
+    ` ${CURRENCY_ATTRIBUTE}="${currency}"` +
+    (signed ? ` ${SIGNATURE_ATTRIBUTE}="${signed}"` : "") +
+    ">";
   return html.replace(open[0], tag);
 }

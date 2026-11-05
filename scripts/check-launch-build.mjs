@@ -32,7 +32,7 @@
  * approved or published by mistake.
  */
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 
 const OUT = "out";
 const DEMO = "https://demo.truermeasure.com/";
@@ -45,6 +45,17 @@ function htmlFiles(dir) {
     if (name === "_next") continue;
     if (statSync(path).isDirectory()) found.push(...htmlFiles(path));
     else if (name.endsWith(".html")) found.push(path);
+  }
+  return found;
+}
+
+/** Every file in the build, _next included: a key could leak into a chunk. */
+function everyBuiltFile(dir) {
+  const found = [];
+  for (const name of readdirSync(dir)) {
+    const path = join(dir, name);
+    if (statSync(path).isDirectory()) found.push(...everyBuiltFile(path));
+    else if (/\.(html|js|css|json|txt|xml|map)$/i.test(name)) found.push(path);
   }
   return found;
 }
@@ -91,6 +102,40 @@ if (expected && expected !== kind) {
 for (const page of pages) {
   const html = readFileSync(page, "utf8");
   if (html.includes("tm-country")) fail(`${page} carries the tm-country override`);
+}
+
+/* The signed currency stamp is written per request by the edge function, which
+   is the only place the key exists. An exported page is built once and served
+   to everyone, so a stamp baked into one would be a single signature handed to
+   every visitor, outliving its own expiry. Neither the attribute nor the key
+   may appear in a built file.
+
+   The key is read from the sibling secrets folder only to check that it is
+   absent from the build. It is never printed, and the check says which file is
+   wrong, never what was found. */
+const KEY_FILE = resolve(process.cwd(), "..", ".secrets", "currency-link.env");
+let signingKey = null;
+try {
+  const line = readFileSync(KEY_FILE, "utf8")
+    .split(/\r?\n/)
+    .find((l) => l.startsWith("TM_CURRENCY_KEY="));
+  if (line) {
+    const value = line.slice("TM_CURRENCY_KEY=".length).trim().replace(/^["']|["']$/g, "");
+    if (value) signingKey = value;
+  }
+} catch {
+  /* No key file on this machine is not a problem: the guard below still runs
+     for the attribute, and the key cannot leak from a file that is not here. */
+}
+
+for (const file of everyBuiltFile(OUT)) {
+  const text = readFileSync(file, "utf8");
+  if (text.includes("data-tm-cs=")) {
+    fail(`${file} carries a signed currency stamp, which only the edge may write`);
+  }
+  if (signingKey && text.includes(signingKey)) {
+    fail(`${file} contains the currency signing key`);
+  }
 }
 
 /* Her page, in both languages. Named one by one rather than counted, because

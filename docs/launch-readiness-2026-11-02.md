@@ -51,6 +51,54 @@ That is the house style the dollar amounts use too (`CA$47` on the French page,
 which she approved in the same sentence), so it is consistent rather than wrong.
 Nothing was changed.
 
+**Her second rule of 4 November, and the signed link.** Relayed by the app
+session in her words: *"Aucun sélecteur de devise pour les parents. Sur le
+site : Canada détecté → CAD ; zone euro détectée → EUR ; autre pays ou
+localisation inconnue → USD. Dans l'app : utiliser la devise légitimement
+transmise par le site. Si aucune devise n'est transmise, utiliser USD. Lorsqu'une
+devise de facturation est déjà établie pour un compte, la conserver pour ses
+abonnements, même si le parent voyage."* And: *"Je ne veux pas qu'un parent
+puisse choisir un tarif moins cher simplement en modifiant l'URL ou la requête de
+paiement."*
+
+The first three lines were already what `content/currency-map.ts` did. Two
+things changed:
+
+- **The unknown country is USD** (commit `ce99b5c`), in the three places that
+  encoded it and nowhere else: `CURRENCY_WHEN_UNKNOWN`, the
+  `html:not([data-tm-currency])` rule in `app/globals.css`, and
+  `DEFAULT_CURRENCY`, which is what a button sends when the page carries no
+  attribute. Those three must never disagree, because the amount on the page and
+  the currency in the link are one promise. Verified in a browser, both
+  languages: no attribute shows US$47 and sends `currency=USD`; Canada still
+  CA$47 and CAD; the eurozone still €47 and EUR.
+- **The link is signed.** `?currency=` is plain text, so anyone could type CAD
+  and read the cheapest of the three. The edge function now signs the currency
+  it has just decided and the button carries it as `cs=<exp>.<sig>`, base64url
+  HMAC-SHA256 over `tm-currency-v1:<CUR>:<exp>`. The contract was settled with
+  the app session on 4 November, and three details in it are worth the record:
+  signed pages go out `no-store`, because a signature with an expiry inside a
+  cached body would be handed to every visitor and outlive its own `exp`; the
+  USD fallback is signed too, so "no currency transmitted" means exactly one
+  thing on the app's side, a parent who did not come through a button; and the
+  lifetime is **seven days, not twenty-four hours**, because the signature is
+  what stops a parent typing CAD while a short expiry only costs a Canadian who
+  clicks the next day, who would then be charged US$47, which is more.
+
+**The key is not in this repository and cannot be.** It lives in
+`TM_CURRENCY_KEY` in the sibling `.secrets` folder and, in production, in
+Netlify's environment, read only by the edge function, which runs server side.
+`scripts/check-launch-build.mjs` now fails if `data-tm-cs=` or the key's value
+reaches any built file, `_next` chunks included; the guard was proved by feeding
+it a file that carried a stamp. **Without the variable set, nothing breaks:** no
+key means no signature, which is exactly today's behaviour, so this can be
+deployed before she sets it. **Setting it in Netlify is a change to her
+infrastructure and waits for her word.**
+
+Cross-checked rather than assumed: the shipped `currencyStamp` and an
+independent `node:crypto` HMAC produce the same signature for all three
+currencies, and `exp` lands at `now + 604800`.
+
 **What stands between this build and publication, checked on 4 November.** The
 app session answered the half it owns, and two of the three gates turn out to be
 on this side or in her lawyer's inbox rather than in Azure.

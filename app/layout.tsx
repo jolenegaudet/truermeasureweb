@@ -13,6 +13,7 @@ import {
   SHOW_PRICES,
 } from "@/content/app-plans";
 import { currencyForCountry } from "@/content/currency-for-country";
+import { SIGNATURE_ATTRIBUTE, SIGNATURE_PARAM } from "@/content/currency-map";
 
 /**
  * Which currency the plan card shows, and who decides it.
@@ -50,15 +51,25 @@ import { currencyForCountry } from "@/content/currency-for-country";
  *     computer and never in Netlify, and scripts/check-launch-build.mjs fails
  *     if `tm-country` reaches the exported HTML.
  *
+ *  4. The signed stamp, when the edge wrote one. `data-tm-cs` is carried into
+ *     the link as `cs`, so the app can tell the currency the website chose
+ *     from one a visitor typed into the address bar. The signature is made at
+ *     the edge, server side, and this script only copies it: there is no key
+ *     here and there never can be, because this script is in every page.
+ *     No attribute means no parameter, which the app reads as no currency
+ *     transmitted, which its own rule turns into USD.
+ *
  * Everything is wrapped in try/catch and does nothing on failure: no attribute
- * means CAD, which is her rule for an unknown country and also what a visitor
- * with JavaScript off sees.
+ * means USD, which is her rule of 4 November for an unknown country and also
+ * what a visitor with JavaScript off sees.
  */
 const STAMP_ON_CLICK = `document.addEventListener("click",function(e){try{
 var a=e.target&&e.target.closest?e.target.closest("a[data-tm-handoff]"):null;if(!a)return;
 var u=new URL(a.getAttribute("href"),location.href);
 u.searchParams.set(${JSON.stringify(HANDOFF.currency)},d.getAttribute("data-tm-currency")||${JSON.stringify(DEFAULT_CURRENCY)});
 u.searchParams.set(${JSON.stringify(HANDOFF.interval)},d.getAttribute("data-tm-interval")||${JSON.stringify(DEFAULT_INTERVAL)});
+var cs=d.getAttribute(${JSON.stringify(SIGNATURE_ATTRIBUTE)});
+if(cs)u.searchParams.set(${JSON.stringify(SIGNATURE_PARAM)},cs);
 a.href=u.toString();
 }catch(err){}},true);`;
 
