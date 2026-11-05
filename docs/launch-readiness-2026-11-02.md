@@ -105,10 +105,40 @@ refused**, which is the property her rule actually asks for. Expiry read back as
 12 November 2026 00:22 UTC. So the contract holds end to end, by two
 implementations that were written apart.
 
-**One piece is still owed and it is small:** a browser click carrying `cs`,
-proved on screen rather than in source. The preview server was stopped on
-4 November because the machine was low on memory, and no server is started again
-without her word.
+**Proved in a real browser on 4 November, sixteen cases.** Her words, relayed
+by the app session, authorised restarting a preview for exactly this. The test
+runs the edge function's own code locally: `scripts/`-side nothing changed, a
+simulator in the scratchpad imports `content/currency-map.ts` and calls
+`currencyForCountry`, `currencyStamp` and `withCurrencyAttribute` in the same
+order the edge does, with the country arriving as `?sim-country=XX` instead of
+from Netlify. Two languages × four placements × two periods:
+
+| placed | shows | the click produces |
+|---|---|---|
+| Canada | CA$47 | `currency=CAD&billing=month|year` **with `cs`** |
+| euro area | €47 | `currency=EUR&…` **with `cs`** |
+| elsewhere | US$47 | `currency=USD&…` **with `cs`** |
+| country unknown | US$47 | `currency=USD&…` **without `cs`** |
+
+In every signed case the `cs` in the link is the exact attribute the edge wrote,
+and the response carried `cache-control: no-store`.
+
+**The last row is the one to understand, and it corrects something said earlier
+in this exchange.** When Netlify cannot resolve a country at all,
+`currencyForCountry` returns null, the edge returns the page untouched, and
+there is no attribute to sign. So "the USD fallback is signed" is true of a
+visitor placed somewhere outside Canada and the euro area, and false of a
+visitor who could not be placed. It costs nothing: the page shows US$47, the
+button sends `currency=USD` unsigned, and the app reads an unsigned currency as
+none, which its own rule turns into USD. Same answer by both paths. What it does
+mean is that an unplaceable visitor cannot be told apart from someone who typed
+the address, and neither can get a cheaper price by trying.
+
+**What this does not prove.** The simulator stands in for Netlify resolving the
+country from the request and for Netlify's environment holding the key. Both are
+only testable on a deploy. Local preview means the browser click plus the app
+session's verifier; Netlify means after she sets `TM_CURRENCY_KEY` and a deploy
+carries it, and nothing is deployed without her word.
 
 **What stands between this build and publication, checked on 4 November.** The
 app session answered the half it owns, and two of the three gates turn out to be
