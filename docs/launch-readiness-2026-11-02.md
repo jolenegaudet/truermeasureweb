@@ -97,7 +97,18 @@ infrastructure and waits for her word.**
 
 Cross-checked rather than assumed: the shipped `currencyStamp` and an
 independent `node:crypto` HMAC produce the same signature for all three
-currencies, and `exp` lands at `now + 604800`.
+currencies, and `exp` lands at `now + 604800`. The app session then ran three real
+signed URLs from this build through its own verifier (`server/currency.js`,
+app commit `7cb65dd`) with the key from the secrets folder: each currency is
+accepted as itself, and **CAD written over the USD or the EUR signature is
+refused**, which is the property her rule actually asks for. Expiry read back as
+12 November 2026 00:22 UTC. So the contract holds end to end, by two
+implementations that were written apart.
+
+**One piece is still owed and it is small:** a browser click carrying `cs`,
+proved on screen rather than in source. The preview server was stopped on
+4 November because the machine was low on memory, and no server is started again
+without her word.
 
 **What stands between this build and publication, checked on 4 November.** The
 app session answered the half it owns, and two of the three gates turn out to be
