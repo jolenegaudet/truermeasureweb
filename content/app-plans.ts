@@ -166,8 +166,19 @@ export function money(symbol: string, amount: number): string {
   return symbol + (Number.isInteger(amount) ? String(amount) : amount.toFixed(2));
 }
 
-/** CAD leads, as her brief asks, and is the default. */
-export const DEFAULT_CURRENCY: CurrencyCode = "CAD";
+/**
+ * What a button sends when the page carries no currency attribute.
+ *
+ * USD since 4 November 2026, matching CURRENCY_WHEN_UNKNOWN in
+ * content/currency-map.ts, which is what the visitor is reading. The two must
+ * never disagree: the amount on the page and the currency in the link are the
+ * same promise. Her rule that day: "autre pays ou localisation inconnue → USD",
+ * in both languages. It was CAD before.
+ *
+ * CAD still leads APP_CURRENCY_ORDER below, because that is the order amounts
+ * are listed in, not what an unplaceable visitor is charged.
+ */
+export const DEFAULT_CURRENCY: CurrencyCode = "USD";
 export const APP_CURRENCY_ORDER: CurrencyCode[] = ["CAD", "USD", "EUR"];
 
 /**

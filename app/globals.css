@@ -31,8 +31,10 @@
  * States looking at CA$47 for about 650ms. A price is the one thing on the page
  * that may never be briefly wrong.
  *
- * With no attribute, which is JavaScript switched off, CAD shows. The selector
- * sets the same attribute, so a parent's own choice goes through the same path.
+ * With no attribute, which is JavaScript switched off or a country Netlify
+ * cannot resolve, USD shows. Her rule of 4 November 2026: "autre pays ou
+ * localisation inconnue → USD". It was CAD until then, and CAD was the
+ * cheapest of the three, which is what she closed off that day.
  */
 [data-tm-price] {
   display: none;
@@ -40,6 +42,6 @@
 html[data-tm-currency="CAD"] [data-tm-price="CAD"],
 html[data-tm-currency="USD"] [data-tm-price="USD"],
 html[data-tm-currency="EUR"] [data-tm-price="EUR"],
-html:not([data-tm-currency]) [data-tm-price="CAD"] {
+html:not([data-tm-currency]) [data-tm-price="USD"] {
   display: block;
 }

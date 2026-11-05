@@ -91,8 +91,8 @@ export function PlanCards({
 
      It reads the attribute and nothing else. It used to fall back to guessing
      from the browser's languages, which is exactly what her correction of
-     29 October ruled out: no attribute now means CAD, her rule for a country
-     that cannot be determined. */
+     29 October ruled out: no attribute now means USD, her rule of 4 November
+     for a country that cannot be determined. */
   useEffect(() => {
     const root = document.documentElement;
     /* The attribute, or what the inline script in app/layout.tsx saved before

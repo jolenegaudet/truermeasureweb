@@ -33,12 +33,18 @@
  *   United States     USD
  *   The euro area     EUR
  *   Anywhere else     USD
- *   Country unknown   CAD
+ *   Country unknown   USD   (CAD until 4 November 2026)
  *
  * The last one is not written here: an unknown country returns null, no
- * attribute is set, and the stylesheet's own default shows CAD. That way a
+ * attribute is set, and the stylesheet's own default shows it. That way a
  * visitor with JavaScript off, a request the edge never saw, and a country
  * Netlify cannot resolve all land on the same answer by the same path.
+ *
+ * Her rule of 4 November 2026, as she gave it: "Canada détecté → CAD ; zone
+ * euro détectée → EUR ; autre pays ou localisation inconnue → USD." The first
+ * three lines above already said that. Only the unknown line changed, and it
+ * now agrees with the customer app, which also answers USD when the website
+ * sends it nothing.
  */
 
 export type CurrencyCode = "CAD" | "USD" | "EUR";
@@ -46,8 +52,17 @@ export type CurrencyCode = "CAD" | "USD" | "EUR";
 /** The attribute the stylesheet keys on (app/globals.css). */
 export const CURRENCY_ATTRIBUTE = "data-tm-currency";
 
-/** What shows when no country is known. Not set as an attribute: see above. */
-export const CURRENCY_WHEN_UNKNOWN: CurrencyCode = "CAD";
+/**
+ * What shows when no country is known. Not set as an attribute: see above.
+ *
+ * USD since 4 November 2026, on her rule of that day: "autre pays ou
+ * localisation inconnue → USD", and "coordonne avec WEB pour appliquer USD
+ * comme solution de repli, en anglais et en français, si le site utilise
+ * encore CAD". It was CAD until then. The reason she gave for changing it is
+ * not tidiness: an unplaceable visitor who was shown CAD was being shown the
+ * cheapest of the three, which is the same thing she is closing off in the URL.
+ */
+export const CURRENCY_WHEN_UNKNOWN: CurrencyCode = "USD";
 
 /**
  * The euro area. Twenty members through 2025, plus Bulgaria, which adopted the
