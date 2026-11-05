@@ -1108,3 +1108,69 @@ it** - the real edge function and the real variable on a `netlify.app` URL that
 is not truermeasure.com, with no price shown to the public and no money at risk.
 It needs her word, and if she withholds it one of the three has to give, which
 is her choice and not something to arrange around.
+
+### Terms 1.2 is not designatable, because it states different prices
+
+Found on 5 November by opening the file, after both sessions had spent the
+morning treating "designate 1.2" as the cheap way to unblock the Terms. It is
+not available at all, and this supersedes everything said above about it,
+including item 10 of section 7.
+
+`content/terms-of-service.mdx`, which is what `/terms-of-service` serves live
+right now:
+
+| | CAD | USD | EUR |
+|---|---|---|---|
+| Standard price, per child, per month | **CA$59.00** | **US$42.00** | **35.00** |
+| Founding Families introductory rate | **CA$39.00** | **US$27.00** | **23.00** |
+
+She has approved **CA$47, US$47 and 47 EUR**, monthly or 507.60 for twelve
+months. Confirmed on the live site in both languages: the English table and the
+French `/conditions-d-utilisation` both carry the old figures. Byte-identical to
+the branch, which is why the contradiction is already published rather than
+pending.
+
+So designating 1.2 is not "terms that do not describe the current offer". **A
+parent would read CA$47 on the page, click, and agree to a contract stating the
+price is CA$59 with a founding rate of CA$39.** The page and the contract would
+contradict each other across one click, in writing, on both sides.
+
+Two further facts about 1.2, from the same reading. It never names **School &
+Life**, so the thing being sold does not appear in it. And it contains no yearly
+option, so the **507.60 twelve-month payment has no contractual basis in it**.
+
+**What follows is the honest headline.** New Terms are required before any paid
+sign-up. The new Terms are Terms 1.3, which lives outside this repository in
+`offer/counsel-package-2026-11-02/terms-of-service.md`, is with counsel, and is
+unapproved. There is no designation shortcut and no configuration that works
+around it, so **payments cannot open today**, and that conclusion does not
+depend on the currency checks, the draft deploy or the key fingerprint. It
+depends on counsel.
+
+What is still possible: the website Privacy Policy publishing alone on her text
+approval, which is what she asked for. Whether free School sign-up can open
+before the product policy and the Licence are published is a counsel question,
+not one for either session, and free use quotes no price so it carries no price
+contradiction.
+
+### The app cannot point at /privacy, and there are two documents
+
+The app session's own finding, 5 November, and it is correct. Its consent screen
+links "the Privacy Policy", and the document a parent agrees to must be the one
+covering their child's records. So `TM_PRIVACY_URL` cannot point at the
+website-only policy, and the product policy needs a published address of its
+own that does not exist yet.
+
+Two addresses, and the choice is hers because she named `/privacy` before either
+session knew there were two documents:
+
+| | recommended | the no-churn alternative |
+|---|---|---|
+| `/privacy` | the **product** policy, once approved, and what `TM_PRIVACY_URL` points at | the website policy, as she saw it in today's preview |
+| the other | `/privacy/website`, linked from the footer and the signup line | `/privacy/platform` for the product policy |
+
+The recommendation rests on one sentence: a parent who types `/privacy` wants
+the document about their child, not the one about a contact form, and the
+address a parent guesses should hold the document they agreed to. **Nothing was
+changed**, because today's preview shows her the website policy at `/privacy`
+and moving it is her call.
