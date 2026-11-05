@@ -1308,3 +1308,42 @@ being there afterwards. Against the Licence: both files reported missing, exit 2
 It publishes nothing. After it the build still has to pass both legal checks
 **with no flag at all**, which is the real test: the walls come down because the
 document is finished, not because a flag was passed.
+
+### The duplicate heading is gone, by her word, and the read-through left the browser
+
+Her instruction, 5 November: *"Garde uniquement les titres Website Privacy
+Policy et Politique de confidentialite du site web. Retire le deuxieme titre
+affiche sous chacun, en conservant le texte de la politique et la banniere
+d'ebauche pour ma relecture."*
+
+So the document's own heading goes and the page's stays, which is the pattern
+`content/terms-of-service.mdx` already follows. One line out of each file,
+`# Privacy Policy` and `# Politique de confidentialite`. Nothing else in either
+document was touched: the banner, the version line, the unfilled date and all
+eight sections are as they were. Both pages now carry exactly one `h1`.
+
+**And the preview stopped being the right tool.** It was killed four times on
+5 November, each time because the machine was low on memory while the session
+sat idle, and three of those interrupted her while she was trying to read a
+contract. A read-through that cannot survive the reader pausing is the wrong
+instrument, and the fix is not a more careful server.
+
+`scripts/standalone-legal.mjs` turns one built page into one file that opens
+with a double-click:
+
+- the document as the page renders it, real typography, **34 fonts embedded**
+- **no scripts, no `/_next` references, no http references at all**, so it
+  needs no server, no network and nothing installed, and reads the same offline
+- **no header, nav or footer**, because those are built in the browser and read
+  the language from the address, so a file opened from a folder would put an
+  English footer under a French contract
+- `--pair` points each language's toggle at the other file, so the two read as
+  a pair; every other site link becomes the words it was wrapped around, since
+  a dead link in a document somebody is approving is worse than no link
+- the draft banner and the empty effective date **kept**, because the point is
+  to approve the text as it stands, and a reading copy that looked finished
+  would be worse than none
+
+Both files verified before sending: one `h1` each, her title, eight numbered
+sections, the banner present, the placeholder present, zero scripts, and the
+only remaining links are the two mailto addresses and the other language.
