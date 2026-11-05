@@ -175,7 +175,13 @@ done:**
 1. **The key arrives.** `TM_CURRENCY_KEY` is readable by the edge function at
    runtime, which means a signed page carries `data-tm-cs`. If it does not, the
    failure is silent: no signature, no `cs`, and every visitor reads as USD on
-   the app's side with no error anywhere.
+   the app's side with no error anywhere. **She created the variable on
+   4 November**, in her words, "Variable créée", after being given the clicks.
+   Neither session has read it back: the variable was deliberately left
+   unflagged, so the connector would return its value, and printing a secret to
+   check it is worse than waiting for the deploy to show it. So the variable
+   exists on her word, and whether it holds the right value and reaches the edge
+   is exactly this check.
 2. **Netlify places the visitor.** `context.geo.country.code` resolves for real
    requests, so a Canadian sees CA$47 and a French visitor €47. Nothing local
    can test this: the simulator supplies the country itself.
