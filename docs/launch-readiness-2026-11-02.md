@@ -152,6 +152,39 @@ only testable on a deploy. Local preview means the browser click plus the app
 session's verifier; Netlify means after she sets `TM_CURRENCY_KEY` and a deploy
 carries it, and nothing is deployed without her word.
 
+**No private preview exists on this plan, checked rather than assumed.** She
+asked on 4 November whether the current plan allows a genuinely private Netlify
+preview, and said no new plan is authorised. Read through the Netlify connector:
+the team `jolene-s4g9am` is type **Personal** and the project `truermeasureweb`
+is on plan **`nf_team_dev`**, with `requiresPassword: false` and no password
+scope set. Netlify's password protection is a paid feature, documented as Pro
+and above for all deploys and, in the current knowledge base, Enterprise for
+protecting non-production deploys only. So on this plan a branch deploy or
+deploy preview is a public URL that happens to be unlisted, which is not the
+same thing as private.
+
+Two further facts make it moot rather than merely unavailable. Every deploy in
+this site's history has `deploy_source: "api"`: the GitHub handshake never
+completed, `quick_setup_in_progress` is stuck, and there is no branch-deploy
+mechanism wired at all. And a branch deploy would need the branch pushed, which
+her standing instruction keeps unpublished.
+
+**So these three checks are deferred to the final deploy, and they are not
+done:**
+
+1. **The key arrives.** `TM_CURRENCY_KEY` is readable by the edge function at
+   runtime, which means a signed page carries `data-tm-cs`. If it does not, the
+   failure is silent: no signature, no `cs`, and every visitor reads as USD on
+   the app's side with no error anywhere.
+2. **Netlify places the visitor.** `context.geo.country.code` resolves for real
+   requests, so a Canadian sees CA$47 and a French visitor €47. Nothing local
+   can test this: the simulator supplies the country itself.
+3. **The signed journey end to end on the real host**, one click per currency
+   from the published page through to the app's verifier.
+
+Until those run, the signature work is proved locally and on two
+implementations, and unproved on the platform that will serve it.
+
 **What stands between this build and publication, checked on 4 November.** The
 app session answered the half it owns, and two of the three gates turn out to be
 on this side or in her lawyer's inbox rather than in Azure.
