@@ -1194,9 +1194,18 @@ pour validation."* Built and unpublished:
 | `/politique-de-confidentialite` | the French product policy | **404**, reserved |
 | `/politique-de-confidentialite/site-web` | the French website policy | 200 |
 
-She named the English pair. The French pair mirrors it by the rule that already
-gives the Terms a French address, and `site-web` is the one piece of this she
-has not said in her own words.
+She named the English pair, and **validated all four the same day, `site-web`
+included**: *"Je valide les quatre adresses proposees, y compris le nom
+site-web."* So the French pair is hers now too, not a derivation of mine.
+
+**One thing left inside those pages, and it is hers.** Both documents are
+titled "Privacy Policy" and "Politique de confidentialite", in the `<title>` and
+in the `h1`. That was right while there was one. Once the app's policy publishes
+at `/privacy` there will be two pages carrying the same name at different
+addresses, which a reader meets as two identical browser tabs and a search
+engine meets as two competing results for one phrase. The honest fix is a
+qualifier on the website one, something like "Privacy Policy: this website", and
+it is copy, so **nothing was changed**.
 
 **The 404 on `/privacy` is the point, not a loose end.** The app's release check
 refuses a legal link that does not answer 200, so that 404 is the gate holding
