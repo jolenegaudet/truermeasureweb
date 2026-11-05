@@ -32,14 +32,23 @@ export const LOCALE_PREFIX = "/fr";
  */
 export const FRENCH_PATHS: Record<string, string> = {
   "/terms-of-service": "/conditions-d-utilisation",
-  // A legal document is found by its own name, so these two sit outside /fr.
+  // A legal document is found by its own name, so these sit outside /fr.
   //
-  // The English side is "/privacy", not "/privacy-policy". Her instruction,
-  // 5 November 2026: "Prepare la Politique de confidentialite a
-  // https://truermeasure.com/privacy". It is also the address the customer
-  // app's agreement screen already links to, so the two now agree without a
-  // redirect standing between them.
+  // TWO PRIVACY POLICIES, TWO ADDRESSES. Her decision, 5 November 2026: "Pour
+  // les adresses, je retiens /privacy pour la politique du produit et
+  // /privacy/website pour celle du site." The product policy is the document a
+  // parent agrees to, covering their child's records, and it is what the
+  // customer app's consent screen links to. The website policy covers the
+  // forms, the Kit list and Plausible, and nothing else.
+  //
+  // /privacy is RESERVED and answers 404 until the product policy's text is
+  // approved. That is deliberate: the app's release check refuses a legal link
+  // that does not answer 200, so the 404 is the gate holding public sign-up
+  // shut until the document a parent agrees to actually exists.
   "/privacy": "/politique-de-confidentialite",
+  // The French side of /privacy/website. She named the English pair; this
+  // mirrors it by the same rule that gives the Terms a French address.
+  "/privacy/website": "/politique-de-confidentialite/site-web",
 };
 const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
   Object.entries(FRENCH_PATHS).map(([en, fr]) => [fr, en]),

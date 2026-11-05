@@ -1180,6 +1180,33 @@ session knew there were two documents:
 
 The recommendation rests on one sentence: a parent who types `/privacy` wants
 the document about their child, not the one about a contact form, and the
-address a parent guesses should hold the document they agreed to. **Nothing was
-changed**, because today's preview shows her the website policy at `/privacy`
-and moving it is her call.
+address a parent guesses should hold the document they agreed to.
+
+**She took the recommendation**, the same day, in her words as the app session
+relayed them: *"Pour les adresses, je retiens `/privacy` pour la politique du
+produit et `/privacy/website` pour celle du site. Prepare ces liens avec WEB
+pour validation."* Built and unpublished:
+
+| address | serves | answers |
+|---|---|---|
+| `/privacy` | the **product** policy, and `TM_PRIVACY_URL` points here | **404**, reserved |
+| `/privacy/website` | the website-only policy | 200 |
+| `/politique-de-confidentialite` | the French product policy | **404**, reserved |
+| `/politique-de-confidentialite/site-web` | the French website policy | 200 |
+
+She named the English pair. The French pair mirrors it by the rule that already
+gives the Terms a French address, and `site-web` is the one piece of this she
+has not said in her own words.
+
+**The 404 on `/privacy` is the point, not a loose end.** The app's release check
+refuses a legal link that does not answer 200, so that 404 is the gate holding
+public sign-up shut until the document a parent agrees to exists. It opens when
+she approves the product policy's text and not before, and nothing on either
+side can route around it.
+
+A guard went in with it, and it was proved by firing it rather than by reading
+it: `check-launch-build.mjs` now fails if any built page links to `/privacy`
+while the build contains no `privacy.html`. A footer link to a 404 on every page
+of the site would be worse than no link, and the footer is exactly where this
+would have gone wrong. Tested by injecting the link into one built page: *"links
+to /privacy, which this build does not contain"*, then removed, then clean.

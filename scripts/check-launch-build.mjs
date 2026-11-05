@@ -247,16 +247,18 @@ for (const page of pages) {
   if (!html.includes(french ? "/fr/withdraw" : "/withdraw")) {
     fail(`${page} has no withdrawal link`);
   }
-  /* The Privacy Policy used to be held in app/_pending, and a link to it
-     anywhere meant it had escaped. It is routed since 5 November 2026, so she
-     can read the exact texts before approving them, and the thing that keeps a
-     draft off the live site is the draft-marker wall above rather than the
-     absence of a link. What is still a fault is the OLD address: /privacy-policy
-     was never public, her instruction names /privacy, and the app's agreement
-     screen links to /privacy too. A page pointing at the old one would be a
-     link to nothing. */
-  if (html.includes("/privacy-policy")) {
-    fail(`${page} links to /privacy-policy, which is not the address; use /privacy`);
+  /* TWO PRIVACY ADDRESSES, and the only fault is a link to one that does not
+     answer. Her decision of 5 November 2026 put the product policy at /privacy
+     and the website policy at /privacy/website. /privacy is reserved until the
+     product policy's text is approved, so a page linking there today would be
+     a link to a 404 on every page of the site, which is worse than no link.
+     /privacy-policy was this route's address while it was unreachable and was
+     never published. */
+  if (html.includes('href="/privacy-policy"')) {
+    fail(`${page} links to /privacy-policy, which was never an address`);
+  }
+  if (/href="\/privacy"/.test(html) && !existsSync(join(OUT, "privacy.html"))) {
+    fail(`${page} links to /privacy, which this build does not contain`);
   }
 }
 

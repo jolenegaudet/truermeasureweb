@@ -104,7 +104,7 @@ export const PRIVACY_POLICY_PUBLISHED = true;
  * route, for when the product opens.
  */
 export const PRIVACY_PATH: Record<Locale, string | null> = PRIVACY_POLICY_PUBLISHED
-  ? { en: "/privacy", fr: "/politique-de-confidentialite" }
+  ? { en: "/privacy/website", fr: "/politique-de-confidentialite/site-web" }
   : { en: null, fr: null };
 
 /**

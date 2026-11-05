@@ -4,7 +4,7 @@ import PrivacyContent from "@/content/politique-de-confidentialite.mdx";
 import { alternatesFor } from "@/content/i18n";
 
 /**
- * The French counterpart of app/privacy/page.tsx.
+ * The French counterpart of app/privacy/website/page.tsx.
  *
  * It sits at /politique-de-confidentialite rather than under /fr, the same
  * exception the French Terms take at /conditions-d-utilisation: a legal
@@ -13,7 +13,7 @@ import { alternatesFor } from "@/content/i18n";
  */
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
-  alternates: alternatesFor("/privacy", "fr"),
+  alternates: alternatesFor("/privacy/website", "fr"),
 };
 
 export default function PolitiqueDeConfidentialitePage() {
@@ -37,7 +37,7 @@ export default function PolitiqueDeConfidentialitePage() {
 
       <section className="mx-auto max-w-[720px] px-6 py-16 md:px-10 md:py-[72px]">
         <p className="mb-10 text-smoke" style={{ fontSize: 15 }}>
-          <Link href="/privacy" className="text-rose underline underline-offset-2">
+          <Link href="/privacy/website" className="text-rose underline underline-offset-2">
             English version
           </Link>
         </p>
