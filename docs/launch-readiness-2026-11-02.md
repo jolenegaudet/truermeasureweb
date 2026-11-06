@@ -1411,3 +1411,50 @@ francophone parent can be bound by a Licence whose English and French versions
 differ, and which one governs. That is a concordance clause, not a translation
 check, and it is the kind of thing APP's comparison may surface rather than
 settle.
+
+### Her question: does the bilingual wall cover the app's own policy
+
+It did not. The table I wrote this morning named the Terms, the site policy and
+the Licence, and left the product policy out on the grounds that its French
+file had no agreed name. Her answer, 6 November: *"Je veux m'assurer que les
+deux versions de la politique de l'app sont egalement verifiees avant
+publication."*
+
+That is the right instinct, and leaving it out was the weaker choice: the
+product policy is the one that describes child records, AI reading and
+retention, so it is the document where a missing language costs the most.
+
+**The filename collision was the real obstacle, and it was itself a trap.**
+Before today:
+
+| document | address | file |
+|---|---|---|
+| site policy, EN | `/privacy/website` | `privacy-policy.website.mdx` |
+| site policy, FR | `/politique-de-confidentialite/site-web` | `politique-de-confidentialite.mdx` |
+| product policy, EN | `/privacy` | `privacy-policy.mdx` |
+| product policy, FR | `/politique-de-confidentialite` | *none* |
+
+The French file whose name matches the product policy's address was holding the
+site policy's text. Two documents with a claim on one filename is exactly how
+approved text gets pasted into the wrong one, and that near-miss already
+happened once this week with the app session's retention wording. So the French
+site policy is renamed `politique-de-confidentialite.site-web.mdx`, and every
+file is now named after the address it serves. Content untouched: a rename and
+one import line.
+
+Both walls now cover all four documents:
+
+- `check-legal-placeholders.mjs` refuses to **build** a policy routed in one
+  language only, product policy included
+- `publish-legal.ps1 -Document app-privacy` now names both files and **exits 2**
+  until the French one exists. Verified today: it reported
+  `content/politique-de-confidentialite.mdx does not exist, so there is nothing
+  to finish` and refused
+
+The app pair cannot fire at build time yet, because neither product-policy file
+is routed. The mechanism was proved by pairing a routed document against that
+exact missing filename: refused, exit 1. Build after the rename: 16 pages
+checked, nothing wrong.
+
+So the French product policy is now a named, expected file rather than an open
+question. When the app session sends her approved text, it has one place to go.

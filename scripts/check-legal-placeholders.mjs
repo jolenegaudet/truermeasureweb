@@ -90,11 +90,19 @@ for (const [doc, route] of routed) {
    scripts/publish-legal.ps1 already refuses to finish a document that is
    missing a language. This refuses to BUILD one, which is earlier.
 
-   The French product policy is not in this table because it has no agreed
-   filename yet. Add it here the day it gets one. */
+   Her question, 6 November: does this cover the app's own policy at /privacy
+   and /politique-de-confidentialite, not only the site's. It does now. Every
+   file below is named after the address it serves, which is why the French
+   website policy was renamed to .site-web: the app's French policy is the one
+   that belongs at politique-de-confidentialite.mdx, and two documents with a
+   claim on the same filename is how approved text gets pasted into the wrong
+   one. */
 const PAIRS = [
   ["content/terms-of-service.mdx", "content/conditions-d-utilisation.mdx"],
-  ["content/privacy-policy.website.mdx", "content/politique-de-confidentialite.mdx"],
+  // The site's own policy: forms, Kit, Plausible. /privacy/website
+  ["content/privacy-policy.website.mdx", "content/politique-de-confidentialite.site-web.mdx"],
+  // The product's policy: child records, AI, retention. /privacy
+  ["content/privacy-policy.mdx", "content/politique-de-confidentialite.mdx"],
   ["content/licence.mdx", "content/contrat-de-licence.mdx"],
 ];
 

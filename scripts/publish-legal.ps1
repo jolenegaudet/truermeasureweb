@@ -64,9 +64,17 @@ Set-Location $repo
 # Which files each document is, in both languages.
 $files = switch ($Document) {
     'website-privacy' {
-        @('content/privacy-policy.website.mdx', 'content/politique-de-confidentialite.mdx')
+        @('content/privacy-policy.website.mdx', 'content/politique-de-confidentialite.site-web.mdx')
     }
-    'app-privacy' { @('content/privacy-policy.mdx') }
+    'app-privacy' {
+        # Both languages, because a policy published in one is a different
+        # policy for half the readers. The French file does not exist yet: the
+        # app session has not sent her approved text, so this exits 2 until it
+        # does. Her instruction, 6 November 2026: "Je veux m'assurer que les
+        # deux versions de la politique de l'app sont egalement verifiees avant
+        # publication."
+        @('content/privacy-policy.mdx', 'content/politique-de-confidentialite.mdx')
+    }
     'terms' {
         @('content/terms-of-service.mdx', 'content/conditions-d-utilisation.mdx')
     }

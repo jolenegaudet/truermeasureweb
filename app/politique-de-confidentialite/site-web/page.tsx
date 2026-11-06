@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PrivacyContent from "@/content/politique-de-confidentialite.mdx";
+import PrivacyContent from "@/content/politique-de-confidentialite.site-web.mdx";
 import { alternatesFor } from "@/content/i18n";
 
 /**
