@@ -4,32 +4,59 @@
   Traduction de privacy-policy.website.mdx. Les mêmes règles s'y appliquent.
 
   COMPÉTENCE. Ce document ne nomme aucune loi et ne conclut pas laquelle
-  s'applique. La seule phrase qui s'en approche est l'acheminement des plaintes
-  à la section 6, qui est conditionnelle (« si vous habitez au Québec ») et
-  indique où une personne peut porter plainte, sans affirmer qu'une loi
-  particulière régit l'entreprise. Instruction de Jolène, 4 octobre 2026.
+  s'applique. La section 6 dit que lorsque la loi applicable fixe un délai,
+  nous le respectons, sans nommer la loi ni le délai ; la seule autre phrase
+  qui s'en approche est l'acheminement des plaintes dans la même section, qui
+  est conditionnelle (« si vous habitez au Québec ») et indique où une personne
+  peut porter plainte, sans affirmer qu'une loi particulière régit
+  l'entreprise. Instruction de Jolène, 4 octobre 2026.
 
-  LES 30 JOURS, à la section 6, ne visent qu'une demande d'exercice de l'un des
-  droits énumérés. Ce n'est pas une promesse de répondre à toute question en
-  30 jours. Les 30 jours de la section 7 sont un préavis qu'elle accorde avant
-  qu'une modification prenne effet, et non un délai de réponse.
+  LES 30 JOURS QUI RESTENT, à la section 6, sont un engagement volontaire de
+  répondre à une demande d'exercice de l'un des droits énumérés. Ils sont
+  maintenant désignés comme tels et placés à côté du délai légal au lieu de
+  tenir sa place. Ce n'est pas une promesse de répondre à toute question en
+  30 jours.
+
+  LA SECTION 7 NE PROMET PLUS DE PRÉAVIS DE 30 JOURS. Instruction du
+  6 novembre 2026 : « remplace le préavis fixe de 30 jours par un avis avant
+  toute modification importante, avec un nouveau consentement lorsqu'il est
+  requis. » Le délai fixe était intenable tel qu'écrit : l'avis doit atteindre
+  toutes les personnes qui ont confié des renseignements, or celles qui ont
+  rempli un formulaire sont chez GoHighLevel et non sur la liste de courriels,
+  de sorte qu'une promesse datée à leur endroit portait sur un envoi qui n'est
+  peut-être pas permis. Un avis avant l'entrée en vigueur, avec consentement
+  lorsqu'il est requis, est à la fois plus fort et tenable.
 
   TITRE. La forme statutaire est obligatoire, exactement :
       Responsable de la protection des renseignements personnels
-  Jamais « Data Protection Officer », ni dans une langue ni dans l'autre.
+  Jamais « Data Protection Officer », ni dans une langue ni dans l'autre. La
+  mention anglaise « Privacy Officer », rétablie le 6 novembre 2026 à sa
+  demande, ne figure que dans la version anglaise.
 
   GENRE. Aucun accord avec le genre de la personne qui lit, décision de
   Jolène du 4 octobre 2026. Attention aux participes passés après « vous
   êtes » et « vous vous êtes », qui sont l'endroit où l'accord revient.
 
-  QUI EST NOMMÉ. Sa décision du 6 novembre 2026 : « je choisis d'afficher
-  VisionEd Consultation Inc., le titre de responsable de la protection des
-  renseignements personnels et privacy@truermeasure.com. Retire mon nom des
-  sections 1 et 8 dans les deux langues. » Les sections 1 et 8 affichent donc
-  la société, le titre et l'adresse. Son nom personnel ne figure dans aucune
-  des deux langues. La fonction reste désignée ; seul le nom de la personne est
-  retiré, ce qui garde aussi le nom d'une fondatrice qui travaille de chez elle
-  hors d'une page que tout le monde peut lire.
+  QUI EST NOMMÉ. Sa décision du 6 novembre 2026 : les sections 1 et 8
+  affichent la société, la fonction et l'adresse, et non son nom, dans les deux
+  langues. La fonction reste désignée ; seul le nom de la personne est retiré,
+  ce qui garde aussi le nom d'une fondatrice qui travaille de chez elle hors
+  d'une page que tout le monde peut lire.
+
+  LES FAITS DES SECTIONS 3, 4 ET 5 ont été lus dans le code et dans le site
+  construit le 6 novembre 2026, et non de mémoire. Voir les notes de la version
+  anglaise pour les fichiers exacts. La phrase sur les envois ratés qui ne sont
+  pas consignés est tenue par scripts/check-function-logs.mjs, qui exécute les
+  deux fonctions contre des erreurs de fournisseur citant une adresse fictive
+  et échoue si une adresse atteint une ligne de journal.
+
+  CE QUI RESTE À VALIDER et ne doit pas être renforcé sans réponse : les
+  ententes avec les fournisseurs et les transferts qu'elles permettent ; chaque
+  durée de conservation, raison pour laquelle ce document n'en énonce aucune ;
+  ce que l'hébergeur consigne d'une requête et pendant combien de temps ; et le
+  comportement de Kit en matière d'effacement, de désabonnement et de
+  réinscription. La description de Plausible à la section 5 est le comportement
+  que Plausible publie, et non ce que ce code peut prouver.
 */}
 
 > **ÉBAUCHE destinée au conseiller juridique — pas encore en vigueur.** Version
@@ -57,7 +84,7 @@ votre enfant.
 VisionEd Consultation Inc., Nouveau-Brunswick, Canada.
 
 **Responsable de la protection des renseignements personnels :**
-VisionEd Consultation Inc. — privacy@truermeasure.com
+privacy@truermeasure.com
 
 Vous pouvez écrire à cette adresse au sujet de tout ce que contient la présente politique, y
 compris pour consulter vos renseignements, les corriger, les faire supprimer ou porter plainte.
@@ -68,8 +95,11 @@ compris pour consulter vos renseignements, les corriger, les faire supprimer ou 
 
 - Sur ce site web, nous recueillons ce que vous inscrivez dans un formulaire, et rien d'autre à
   votre sujet.
-- **Nous ne les vendons pas, ne les louons pas et ne les partageons pas à des fins publicitaires.
-  Nous ne l'avons jamais fait et nous ne le ferons pas.**
+- **Rien n'est conservé sur votre appareil.** Aucun témoin, aucun identifiant, aucun traceur.
+- Notre hébergeur détermine de quel pays provient votre visite, afin qu'un prix puisse s'afficher
+  dans votre devise. Il sert à cela et n'est pas conservé.
+- **Nous ne vendons pas vos renseignements, ne les louons pas et ne les partageons pas à des fins
+  publicitaires. Nous ne l'avons jamais fait et nous ne le ferons pas.**
 - **Nous ne les utilisons pas pour entraîner des modèles d'intelligence artificielle.**
 - Vous pouvez les consulter, les corriger ou les faire supprimer.
 
@@ -77,35 +107,64 @@ compris pour consulter vos renseignements, les corriger, les faire supprimer ou 
 
 ## 3. Ce que nous recueillons
 
-### 3.1 Si vous remplissez un formulaire sur notre site web
+### 3.1 Les trois formulaires de ce site web
 
-Nos formulaires de liste d'attente et de demande d'information demandent votre **nom, votre adresse
-courriel, votre numéro de téléphone, votre ville, votre province ou état, votre code postal et,
-facultativement, le nombre de vos enfants et leur âge**. Nous utilisons ces renseignements
-uniquement pour communiquer avec vous au sujet de Truer Measure.
+Il y en a trois, et ils ne sont pas pareils.
 
-**Ces renseignements sont conservés chez GoHighLevel, un fournisseur de services situé aux
-États-Unis** — voir la section 4. Nous ne les vendons pas et ne les partageons pas à des fins
-publicitaires. Écrivez-nous à privacy@truermeasure.com et nous les supprimerons.
+| Formulaire | Ce que vous devez donner | Ce que vous pouvez aussi donner | Détenu par |
+|---|---|---|---|
+| **Liste d'attente et demande d'information** | prénom, nom, adresse courriel | numéro de téléphone ; nombre d'enfants et leur âge ; ville ; province ou état ; code postal | GoHighLevel |
+| **Liste de courriels « Sachez-le en premier »** | adresse courriel | rien : nous ne demandons rien d'autre | Kit |
+| **Droit de retrait** | prénom, nom, adresse courriel | rien | GoHighLevel |
 
-**N'inscrivez pas le nom de vos enfants dans un formulaire.** L'âge est tout ce que nous demandons,
-et tout ce dont nous avons besoin.
+La première colonne est ce sans quoi le formulaire ne s'envoie pas. Tout ce qui figure dans la
+deuxième peut rester vide, et le formulaire fonctionne.
 
-### 3.2 Si vous vous joignez à la liste « Sachez-le en premier »
+Nous utilisons ce que vous nous donnez uniquement pour communiquer avec vous au sujet de Truer
+Measure. **Nous ne le vendons pas et ne le partageons pas à des fins publicitaires.** Écrivez-nous
+à privacy@truermeasure.com et nous le supprimerons.
 
-Sur notre site web, vous pouvez laisser **votre adresse courriel** pour savoir quand la prochaine
-version de Truer Measure sera prête. C'est la seule chose que nous demandons, et la seule que nous
-conservons. Nous ne demandons ni votre nom, ni votre numéro de téléphone, ni quoi que ce soit au
-sujet de votre enfant.
+**N'inscrivez pas le nom de vos enfants dans un formulaire.** Le champ des enfants est une zone de
+texte libre, donc rien ne vous en empêche, et c'est précisément pourquoi nous vous le demandons. Le
+nombre d'enfants et leur âge est tout ce que nous demandons, et tout ce dont nous avons besoin.
 
-Nous l'utilisons pour vous envoyer des nouvelles du lancement et, à l'occasion, des nouvelles du
-produit Truer Measure. **Chacun de ces courriels comporte un lien de désabonnement.** Vous pouvez
+### 3.2 Ce que la liste de courriels conserve
+
+Si vous vous joignez à la liste « Sachez-le en premier », Kit détient **votre adresse courriel**,
+ainsi que trois choses au sujet de l'inscription elle-même :
+
+- **quand** vous vous êtes inscrit, à la minute près
+- **de quelle page** vous vous êtes inscrit
+- **dans quelle langue** vous lisiez
+
+Nous les consignons une seule fois, à votre première inscription, afin de pouvoir démontrer comment
+et quand vous avez accepté de recevoir nos communications. Si vous vous inscrivez de nouveau
+ailleurs, c'est l'enregistrement d'origine que nous gardons. Nous ne demandons ni votre nom, ni
+votre numéro de téléphone, ni quoi que ce soit au sujet de votre enfant.
+
+Nous utilisons la liste pour vous envoyer des nouvelles du lancement et, à l'occasion, des
+nouvelles du produit. **Chacun de ces courriels comporte un lien de désabonnement.** Vous pouvez
 aussi nous écrire à privacy@truermeasure.com et nous vous retirerons de la liste.
 
-**Cette liste est hébergée chez Kit, un fournisseur de services de courriel situé aux États-Unis**
-(voir la section 4). Nous consignons la date de votre inscription et la page d'où elle provient,
-afin de pouvoir démontrer comment et quand vous avez accepté de recevoir nos communications. Nous
-ne vendons pas cette liste et ne la partageons pas à des fins publicitaires.
+### 3.3 Ce que votre visite seule nous apprend
+
+**Nous comptons les visites.** Nous utilisons Plausible Analytics pour savoir combien de personnes
+viennent et quelles pages elles lisent. Aucun témoin n'est déposé et aucun renseignement personnel
+n'est recueilli. Nous voyons des totaux, pas des personnes. La section 5 en dit davantage.
+
+**Nous déterminons votre pays, pour le prix.** Les pages qui affichent un prix l'affichent en
+dollars canadiens, en dollars américains ou en euros. Notre hébergeur, Netlify, détermine de quel
+pays provient une requête et le transmet à la page, qui choisit l'une des trois devises. Ce pays
+sert à choisir une devise et à rien d'autre : il n'est pas conservé, il n'est ajouté à aucun
+enregistrement à votre sujet, et il n'est transmis à personne.
+
+**Quand un formulaire échoue, nous consignons l'échec et non vos renseignements.** Si un envoi ne
+peut pas être enregistré, notre serveur consigne le code d'erreur et un motif en un mot, afin que
+nous puissions corriger la cause. Ce que vous avez inscrit n'est écrit dans aucun journal.
+
+Notre hébergeur tient ses propres registres techniques des requêtes faites à ce site web, comme le
+fait tout hébergeur. Nous ne les utilisons pas pour identifier les visiteurs et nous ne les
+combinons avec rien de ce qui figure à la section 3.
 
 ---
 
@@ -116,10 +175,17 @@ instructions, sont liés par contrat et ne peuvent utiliser vos renseignements �
 
 | Fournisseur | À quelle fin | Où |
 |---|---|---|
-| **GoHighLevel** | Formulaires de liste d'attente et de demande d'information | États-Unis |
+| **GoHighLevel** | Les formulaires de liste d'attente, de demande d'information et de retrait | États-Unis |
 | **Kit** | La liste « Sachez-le en premier » : nouvelles du lancement et du produit | États-Unis |
 | **Plausible Analytics** | Comptage des visites du site web — sans témoins, aucun renseignement personnel | Union européenne |
-| **Netlify** | Hébergement du site truermeasure.com et de son gestionnaire de formulaires | États-Unis |
+| **Netlify** | Hébergement de truermeasure.com, exécution de ses gestionnaires de formulaires et détermination du pays pour le prix | États-Unis |
+
+**Stripe ne figure pas dans ce tableau, et voici pourquoi.** Au bas de chaque page se trouve un lien
+permettant aux membres existants de gérer ou d'annuler un abonnement. C'est un lien : le suivre vous
+amène sur une page exploitée par Stripe, et ce site web ne transmet rien à Stripe lorsque vous
+cliquez. **Aucun paiement n'est encaissé sur ce site web.** Lorsque le produit ouvrira, le paiement
+se fera dans l'application Truer Measure, et la politique visant le produit dira ce que Stripe y
+fait.
 
 **Par ailleurs, nous ne communiquons vos renseignements que :** lorsque vous nous le demandez ;
 lorsque la loi l'exige ou qu'une ordonnance valide nous y contraint ; ou, si l'entreprise était un
@@ -130,14 +196,24 @@ les engagements de la présente politique.** Nous vous en informerons au préala
 
 ---
 
-## 5. Témoins et statistiques du site web
+## 5. Témoins, mesure d'audience et votre pays
 
-**Nous n'utilisons ni témoins publicitaires, ni pixels de suivi, ni traceurs intersites.**
+**Ce site web ne conserve rien sur votre appareil.** Aucun témoin n'est déposé, aucun identifiant
+n'est écrit, rien n'est gardé dans la mémoire de votre navigateur. **Nous n'utilisons ni témoins
+publicitaires, ni pixels de suivi, ni traceurs intersites**, et aucune partie de ce site n'est
+intégrée depuis ailleurs, de sorte qu'aucune autre entreprise ne voit votre visite à moins que vous
+ne cliquiez sur un lien vers elle.
 
-**Sur notre site web, nous utilisons Plausible Analytics** pour compter les visites et voir quelles
-pages sont lues. Plausible fonctionne **sans témoins** : aucun témoin n'est déposé, aucun
-identifiant n'est conservé sur votre appareil, il ne vous suit pas d'un site à l'autre et il ne
-recueille aucun renseignement personnel. Nous voyons des totaux, pas des personnes.
+**Nous comptons les visites avec Plausible Analytics.** Plausible fonctionne **sans témoins** :
+aucun témoin n'est déposé, aucun identifiant n'est conservé sur votre appareil, il ne vous suit pas
+d'un site à l'autre et il ne recueille aucun renseignement personnel. Nous voyons quelles pages
+sont lues et par combien de personnes. C'est le seul service que votre navigateur contacte sur ce
+site ; les polices de caractères et tout le reste sont servis depuis truermeasure.com.
+
+**Votre pays, une fois, pour le prix.** Netlify détermine de quel pays provient une requête, à
+partir de la connexion elle-même, et la page s'en sert pour afficher l'une des trois devises. Nous
+ne vous demandons rien, aucune localisation précise n'est en cause, et rien de tout cela n'est
+conservé, consigné à votre sujet ni transmis.
 
 **C'est pourquoi aucune bannière de consentement aux témoins ne vous est présentée : il n'y a rien
 ici à consentir.** Si nous adoptions un jour quelque chose qui vous suit, nous vous le demanderions
@@ -156,8 +232,14 @@ Vous pouvez en tout temps, en écrivant à privacy@truermeasure.com :
 - **Retirer votre consentement**, ce qui, pour la liste de courriels, passe aussi par le lien de
   désabonnement présent dans chaque envoi
 
-**Lorsque vous présentez l'une des demandes ci-dessus, nous répondons dans les 30 jours, sans
-frais.**
+Ce sont vos droits, et non des faveurs que nous accordons.
+
+**Le délai légal, et ce que nous promettons en plus.** Lorsque la loi sur la protection des
+renseignements personnels qui nous est applicable fixe un délai pour répondre à une demande comme
+celles ci-dessus, ce délai s'applique et nous le respectons. Par ailleurs, et quel que soit le
+délai applicable, **nous nous engageons à vous répondre dans les 30 jours, sans frais.** Ces
+30 jours sont notre propre engagement ; ils ne remplacent pas un délai plus court s'il vous est
+applicable.
 
 **Vous pouvez aussi porter plainte auprès de nous**, à la même adresse, et obtenir une vraie
 réponse. Une plainte, ou une question générale au sujet de la présente politique, n'est pas une
@@ -174,8 +256,12 @@ Commission d'accès à l'information (cai.gouv.qc.ca).
 
 Si nous modifions de façon importante la présente politique — en particulier ce que nous
 recueillons, pourquoi, avec qui nous le partageons, ou l'engagement de ne pas entraîner de modèles
-à partir de vos renseignements — **nous vous écrirons au moins 30 jours avant l'entrée en vigueur**
-et nous dirons clairement ce qui a changé.
+à partir de vos renseignements — **nous vous en informerons avant que la modification prenne
+effet** et nous dirons clairement ce qui a changé.
+
+**Lorsqu'une modification requiert votre consentement, nous vous le demanderons.** Tant que vous ne
+l'avez pas donné, la modification ne s'applique pas aux renseignements que vous nous avez déjà
+confiés.
 
 **Nous n'appliquerons jamais une modification de façon rétroactive pour affaiblir les protections
 qui s'appliquaient aux renseignements que vous nous aviez déjà confiés.**

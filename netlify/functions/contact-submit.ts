@@ -25,6 +25,42 @@ const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
 const STUDENT_NOTES_FIELD_ID = "QUrGhz59gCPbU9gVa0MY";
 
+/**
+ * WHY A PROVIDER'S RESPONSE IS NEVER LOGGED.
+ *
+ * Her instruction, 6 November 2026: "Corrige les journaux des formulaires pour
+ * conserver les codes d'erreur utiles au diagnostic et retirer les reponses
+ * brutes des fournisseurs."
+ *
+ * A provider's error body can quote the request back, so a duplicate contact
+ * or a rejected subscriber could put somebody's email address into a Netlify
+ * function log. Nothing in the form is meant to be logged, and a log is a
+ * place nobody remembers to delete from.
+ *
+ * So the body is still read, because the code needs it to tell a duplicate
+ * from a real failure, and it is never printed. What gets logged is the HTTP
+ * status and one word from the fixed list below. Every value this can return
+ * is written here as a literal; no part of the body reaches the log.
+ */
+type Reason =
+  | "auth"
+  | "not_found"
+  | "duplicate"
+  | "unprocessable"
+  | "rate_limited"
+  | "provider_error"
+  | "rejected";
+
+function classify(status: number, body: string): Reason {
+  if (/duplicat/i.test(body)) return "duplicate";
+  if (status === 401 || status === 403) return "auth";
+  if (status === 404) return "not_found";
+  if (status === 422) return "unprocessable";
+  if (status === 429) return "rate_limited";
+  if (status >= 500) return "provider_error";
+  return "rejected";
+}
+
 const json = (status: number, body: unknown) => ({
   statusCode: status,
   headers: { "Content-Type": "application/json" },
@@ -92,7 +128,7 @@ export const handler = async (event: { httpMethod: string; body: string | null }
 
   const contactText = await contactRes.text();
   if (!contactRes.ok) {
-    console.error("GHL contact create failed", contactRes.status, contactText);
+    console.error("GHL contact create failed", contactRes.status, classify(contactRes.status, contactText));
     if (contactRes.status === 400 && /duplicat/i.test(contactText)) {
       if (tag !== "withdrawal-request") return json(200, { ok: true, duplicate: true });
       // Tag the existing contact; if that is not possible, fail loudly so the
@@ -115,7 +151,8 @@ export const handler = async (event: { httpMethod: string; body: string | null }
         body: JSON.stringify({ tags: [tag] }),
       });
       if (!tagRes.ok) {
-        console.error("GHL tag add failed", tagRes.status, await tagRes.text());
+        const tagText = await tagRes.text();
+        console.error("GHL tag add failed", tagRes.status, classify(tagRes.status, tagText));
         return json(502, { error: "Could not record your withdrawal." });
       }
       return json(200, { ok: true, existing: true });

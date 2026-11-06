@@ -1595,3 +1595,128 @@ GoHighLevel and are not on that list**, so honouring section 7 for them means a
 separate send to people who asked about a product and never subscribed to
 anything. Whether that send is permissible, and whether the commitment should
 extend to them at all, is a counsel question and a deliverability one.
+
+## 6 November, later: the logs stop quoting the provider, and both drafts say the same things
+
+### The title came back, in one language
+
+Her instruction: *"Remets le titre « Privacy Officer » à côté de
+privacy@truermeasure.com dans la version anglaise."* So the English role line
+in sections 1 and 8 reads "Privacy Officer — privacy@truermeasure.com" under
+the statutory-style heading, and the French carries the statutory wording
+alone, which is what the note in both files has always required. Her name is
+still absent from both documents, and her professional links are still in the
+footer, by her word, untouched.
+
+### A duplicate signup can no longer put an address in a log
+
+The functions have to read a provider's error body, because that is how they
+tell a duplicate contact from a real failure. They were also printing it, so a
+duplicate or a refusal could leave an address in a Netlify function log. Her
+instruction: keep the error codes, drop the raw responses, and prove it with a
+fictitious address.
+
+The body is still read and never printed. What is logged is the HTTP status and
+one word from a fixed list written in the file itself:
+
+    auth · not_found · duplicate · unprocessable · rate_limited
+    provider_error · rejected
+
+Nothing from the body reaches a log line. A thrown error is reduced to its
+class name plus the short upper-case network code Node attaches, because an
+error raised while sending a request can carry the request with it.
+
+**`scripts/check-function-logs.mjs` is the proof, and it is a permanent one.**
+It imports both handlers and runs them for real against five provider
+responses that quote `ghost.tester@example.invalid` back, the way a real
+GoHighLevel or Kit error does. `.invalid` is reserved, so the address can never
+belong to anyone; the credentials are obvious fakes created in the process; no
+provider is contacted and nothing is sent anywhere. It fails if the address
+appears in any log line, and it also fails if the status and the reason word do
+*not* appear, because a log that says nothing is not the goal.
+
+| scenario | logged |
+|---|---|
+| waitlist form, duplicate contact | `400 duplicate` |
+| waitlist form, contact refused | `422 unprocessable` |
+| withdrawal form, duplicate then tagging fails | `400 duplicate`, `500 provider_error` |
+| email list, subscriber refused | `422 unprocessable` |
+| email list, tagging fails after the subscriber exists | `500 provider_error` |
+
+Five clean. Then I put the old logging back on one line and ran it again: three
+scenarios reported LEAKED and it exited 1. A test that cannot fail proves
+nothing, so that is the part worth recording.
+
+It is deliberately **not** wired into `prebuild`. It imports TypeScript
+directly, which this machine's Node 24 does without a flag, and a build on
+Netlify that failed over a type-stripping difference would block a deploy for a
+reason that has nothing to do with privacy. It can move into `prebuild` once
+the Node version there is pinned.
+
+### Both drafts now say the same things, and more of them
+
+New or rewritten, in both languages, from the audit and nothing else:
+
+- **3.1 is a table of the three forms**, with required and optional separated.
+  The first column is what the form will not submit without; everything in the
+  second can be left blank. The free-text children box is named as free text,
+  which is what makes the warning beside it necessary.
+- **3.2 names the three things Kit keeps about the signup**: when, from which
+  page, and in which language, recorded once at the first signup, with the
+  original kept if someone signs up again elsewhere.
+- **3.3 is new**: what a visit alone discloses. Visit counting, the country
+  lookup for the price, and the sentence the check above now guarantees, that a
+  failed submission records an error code and not what was typed. It also says
+  plainly that the host keeps its own technical records, which is true of every
+  host and was previously unsaid.
+- **Section 4 separates Stripe from payment.** The footer link is a link: this
+  website sends Stripe nothing when it is clicked, and no payment is taken on
+  this website. Payment happens in the app, and the product's policy will say
+  what Stripe does there. Netlify's row now also names the country lookup.
+- **Section 5 covers cookies, measurement and the country** in one place, and
+  states the two facts the built output proves: nothing is written on the
+  device, and Plausible is the only service the browser contacts.
+
+### Section 6 separates the deadline from the promise
+
+The 30 days used to read as though they were the rule. They are now set beside
+it: where the privacy law applying to us fixes a limit, that limit applies and
+we meet it; separately, and whichever limit applies, we undertake to answer
+within 30 days at no charge, and that undertaking does not replace a shorter
+deadline. No statute is named, which is still her 4 October rule.
+
+**This is the one passage where the drafting is a legal characterization and
+not a fact from the code.** Counsel has to confirm that it distinguishes the
+two without implying a conclusion about which law applies.
+
+### Section 7 no longer promises a date
+
+The fixed 30 days' notice is gone, replaced by notice before a material change
+takes effect, plus consent where consent is required, and the change not
+applying to information already given until that consent exists. The
+no-retroactive-weakening promise is unchanged.
+
+That also retires the problem I raised this morning. A dated promise had to
+reach everyone who gave us information, and the people who filled in a form are
+in GoHighLevel, not on the mailing list, so the promise covered a send that may
+not be permissible. One 30-day commitment remains in the document, in
+section 6, and it is labelled as voluntary.
+
+### Confirmed against the code, and still to validate
+
+**Confirmed**, by reading the repository and the built output: the three forms
+and their exact required and optional fields; what each provider receives; the
+three signup facts in Kit and the first-signup-only rule; one third-party
+script host and no request to Google for fonts; no cookie, no local storage, no
+session storage anywhere in the built site; no iframe; no Netlify Forms, so
+submissions are not stored by the host; no log drain; the country read per
+request and neither stored nor forwarded; and, now, that a failed submission
+logs a status and a reason and never an address.
+
+**Still to validate, and not strengthened in the text without an answer:**
+the provider agreements and the cross-border transfers they permit; every
+retention period, which is why the document still states none; what Netlify's
+access logs record and for how long on this plan; and Kit's own procedure for
+erasure, unsubscribe and a later re-signup, which is the one with a conflict
+inside it, since the record that keeps an unsubscribe honoured is the record an
+erasure would remove.

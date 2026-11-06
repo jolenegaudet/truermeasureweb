@@ -55,6 +55,55 @@ const sameTag = (a: string, b: string) => {
 /** The client holds the wording, in the reader's language. This is a code. */
 type ErrorCode = "method" | "bad_request" | "invalid_email" | "not_configured" | "upstream";
 
+/**
+ * WHY A PROVIDER'S RESPONSE IS NEVER LOGGED.
+ *
+ * Her instruction, 6 November 2026: "Corrige les journaux des formulaires pour
+ * conserver les codes d'erreur utiles au diagnostic et retirer les reponses
+ * brutes des fournisseurs."
+ *
+ * A provider's error body can quote the request back, so a duplicate contact
+ * or a rejected subscriber could put somebody's email address into a Netlify
+ * function log. Nothing in the form is meant to be logged, and a log is a
+ * place nobody remembers to delete from.
+ *
+ * So the body is still read, because the code needs it to tell a duplicate
+ * from a real failure, and it is never printed. What gets logged is the HTTP
+ * status and one word from the fixed list below. Every value this can return
+ * is written here as a literal; no part of the body reaches the log.
+ */
+type Reason =
+  | "auth"
+  | "not_found"
+  | "duplicate"
+  | "unprocessable"
+  | "rate_limited"
+  | "provider_error"
+  | "rejected";
+
+function classify(status: number, body: string): Reason {
+  if (/duplicat/i.test(body)) return "duplicate";
+  if (status === 401 || status === 403) return "auth";
+  if (status === 404) return "not_found";
+  if (status === 422) return "unprocessable";
+  if (status === 429) return "rate_limited";
+  if (status >= 500) return "provider_error";
+  return "rejected";
+}
+
+/**
+ * A thrown error, reduced to what is safe and still useful: its class name and,
+ * for a network failure, the short upper-case code Node attaches (ECONNRESET,
+ * ETIMEDOUT). An error's own message is not printed, because an error raised
+ * while sending a request can carry the request with it.
+ */
+function errorName(e: unknown): string {
+  const name = e instanceof Error ? e.name : "unknown";
+  const cause = (e as { cause?: { code?: unknown } })?.cause;
+  const code = typeof cause?.code === "string" ? cause.code : null;
+  return code && /^[A-Z_]{3,32}$/.test(code) ? name + "/" + code : name;
+}
+
 const json = (status: number, body: unknown) => ({
   statusCode: status,
   headers: { "Content-Type": "application/json" },
@@ -95,7 +144,7 @@ async function resolveTagId(key: string): Promise<number | null> {
     if (after) url.searchParams.set("after", after);
     const res = await fetch(url, { headers: kitHeaders(key) });
     if (!res.ok) {
-      console.error("Kit list tags failed", res.status, await res.text());
+      console.error("Kit list tags failed", res.status, classify(res.status, await res.text()));
       return null;
     }
     const data = (await res.json()) as {
@@ -117,7 +166,7 @@ async function resolveTagId(key: string): Promise<number | null> {
     body: JSON.stringify({ name: TAG_NAME }),
   });
   if (!created.ok) {
-    console.error("Kit create tag failed", created.status, await created.text());
+    console.error("Kit create tag failed", created.status, classify(created.status, await created.text()));
     return null;
   }
   const body = (await created.json()) as { tag?: { id: number } };
@@ -150,7 +199,7 @@ async function resolveFieldKeys(key: string): Promise<string[]> {
       console.error("Kit list custom fields failed", res.status);
     }
   } catch (e) {
-    console.error("Kit list custom fields threw", e);
+    console.error("Kit list custom fields threw", errorName(e));
   }
 
   const keys: string[] = [];
@@ -173,7 +222,7 @@ async function resolveFieldKeys(key: string): Promise<string[]> {
         console.error("Kit create custom field failed", label, res.status);
       }
     } catch (e) {
-      console.error("Kit create custom field threw", label, e);
+      console.error("Kit create custom field threw", label, errorName(e));
     }
   }
 
@@ -222,7 +271,7 @@ export const handler = async (event: { httpMethod: string; body: string | null }
     body: JSON.stringify({ email_address: email }),
   });
   if (!subRes.ok) {
-    console.error("Kit subscriber upsert failed", subRes.status, await subRes.text());
+    console.error("Kit subscriber upsert failed", subRes.status, classify(subRes.status, await subRes.text()));
     return fail(502, "upstream");
   }
   // 200 means Kit already had this address; 201 means it is new.
@@ -248,7 +297,7 @@ export const handler = async (event: { httpMethod: string; body: string | null }
         body: JSON.stringify({ email_address: email, fields }),
       });
       if (!fieldRes.ok) {
-        console.error("Kit consent fields not written", fieldRes.status, await fieldRes.text());
+        console.error("Kit consent fields not written", fieldRes.status, classify(fieldRes.status, await fieldRes.text()));
       }
     }
   }
@@ -259,7 +308,7 @@ export const handler = async (event: { httpMethod: string; body: string | null }
     body: JSON.stringify({ email_address: email }),
   });
   if (!tagRes.ok) {
-    console.error("Kit tag apply failed", tagRes.status, await tagRes.text());
+    console.error("Kit tag apply failed", tagRes.status, classify(tagRes.status, await tagRes.text()));
     return fail(502, "upstream");
   }
 
