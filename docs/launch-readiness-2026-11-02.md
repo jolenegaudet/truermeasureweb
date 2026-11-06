@@ -1458,3 +1458,140 @@ checked, nothing wrong.
 
 So the French product policy is now a named, expected file rather than an open
 question. When the app session sends her approved text, it has one place to go.
+
+## 6 November: who is named, and what the code actually confirms
+
+### Her name is out of sections 1 and 8
+
+Her decision: *"je choisis d'afficher VisionEd Consultation Inc., le titre de
+responsable de la protection des renseignements personnels et
+privacy@truermeasure.com. Retire mon nom des sections 1 et 8 dans les deux
+langues."*
+
+Done in both files. Section 1 and section 8 now carry the company, the
+designated role and the address. The role is still designated; only the
+individual's name is withheld, which also keeps a founder who works from home
+off a page any visitor can read.
+
+**The label "Privacy Officer" went with the name.** It was a second naming of
+the same role in English, and with no name beside it the line read as a title
+with nobody in it. The heading states the role. The French statutory wording is
+unchanged and still exact.
+
+**Her name still appears on those pages, in the footer.** The social links name
+her and point at her Instagram, Substack and LinkedIn accounts, on every page of
+the site including both policies. That is her public professional presence and
+her call, not a leak, and it is outside what she asked me to change. The two
+reading files have no footer, so they contain her name zero times.
+
+### What the code and the configuration confirm
+
+Read from the repository and from the built site, not from memory.
+
+**The forms. Three of them, not two.** `components/waitlist-button.tsx`,
+`components/withdrawal-form.tsx` and `components/first-to-know.tsx`. The first
+two post to `netlify/functions/contact-submit.ts` and land in GoHighLevel; the
+third posts to `netlify/functions/kit-subscribe.ts` and lands in Kit.
+
+The waitlist and enquiry form sends exactly: `firstName`, `lastName`, `email`
+(these three required), `phone`, `kids`, `city`, `state`, `postalCode` (all
+optional), plus the tag and `source: "truermeasure.com"`. Nothing else. The
+`kids` field is a free-text textarea labelled "Number of kids and ages", and it
+is stored in a GoHighLevel custom field whose identifier in the code is
+`STUDENT_NOTES_FIELD_ID`. Free text is why the policy's "please don't include
+your children's names" line is doing real work.
+
+The withdrawal form sends `firstName`, `lastName`, `email`, all required, with
+the tag `withdrawal-request`.
+
+**Kit holds the email address and nothing else about the person.** On a new
+subscriber the function writes two custom fields and no others:
+
+- `TM signup source` = the placement and the locale
+- `TM consent` = the purpose wording and an ISO timestamp
+
+plus the tag and Kit's own `created_at`. Two details the policy does not say:
+the record includes **which language** the person signed up in, and the consent
+field is written **only on a first signup**, because Kit's upsert would
+otherwise overwrite the original source with the most recent one. A returning
+address keeps its first record, which is the right behaviour and worth stating.
+
+**Plausible.** One script, the plain `script.js` from plausible.io, with
+`data-domain="truermeasure.com"`, loaded after paint from `app/layout.tsx`. Not
+a variant with outbound-link or file-download tracking.
+
+**No cookies and no stored identifiers, confirmed in the built output.** The
+built site contains zero occurrences of `document.cookie`, `localStorage` and
+`sessionStorage`. Nothing at all is written on the visitor's device; the
+currency decision lives in one HTML attribute and one `window` variable that
+dies with the tab.
+
+**Everything the browser talks to, counted in the built HTML.** One third-party
+script host: plausible.io. Fonts are self-hosted by `next/font`, so **not one
+request to Google**. The rest are ordinary outbound links the reader chooses to
+click: the Stripe billing portal in the footer, Substack, Instagram, LinkedIn,
+and the customer app. **No iframe anywhere on the site**, so none of those hosts
+sees a visitor who does not click.
+
+**Netlify.** It hosts the site and runs the two functions. There is **no Netlify
+Forms markup anywhere in the built output**, which matters: Netlify Forms would
+store submissions on Netlify, and this does not. The functions relay and keep
+nothing. `netlify.toml` configures **no log drain**, so nothing is forwarded to
+a third-party logging service.
+
+**What the functions write to Netlify's logs.** No function logs a form field.
+Every log line is an error path, and several include the **provider's error
+response body**, which for a duplicate contact or a rejected subscriber can
+contain the email address. So the honest statement is: form data is not logged
+deliberately, and an upstream failure can put an address in a Netlify function
+log.
+
+**The edge function reads a country.** `netlify/edge-functions/currency.ts`
+reads `context.geo.country.code` on every HTML request and writes one attribute.
+It stores nothing, calls no third party and sends nothing onward. The country is
+inferred by Netlify from the request, which is to say from the IP address, by
+Netlify and not by this code.
+
+### What the code cannot answer, and who has to
+
+These are not gaps in the drafting. They are facts that live with the providers,
+or decisions that are hers or counsel's.
+
+**Providers.** Whether a data-processing agreement is in place with GoHighLevel,
+Kit, Plausible and Netlify, and whether each permits the cross-border transfer
+the policy already discloses. Whether Plausible's own published behaviour
+matches what section 5 asserts on its behalf, in particular its handling of IP
+addresses and where it stores what it keeps; the code can prove the script is
+the cookieless one, and nothing more. Whether Netlify's platform access logs
+record IP addresses and for how long, and the same for function logs, on the
+`nf_team_dev` plan. Stripe appears in the footer as a destination and in no
+provider table; once purchases open it processes payment data, and the table
+will need it.
+
+**Retention.** The policy states no retention period for anything: not
+GoHighLevel contacts, not Kit subscribers, not Netlify logs, not Plausible
+totals. That is deliberate, because inventing one is not mine to do. It is the
+largest open item in the document.
+
+**Rights.** Three practical questions behind section 6. Deletion from Kit
+conflicts with the unsubscribe guarantee: Kit keeps an unsubscribed record,
+which is exactly what makes "anyone who unsubscribed stays unsubscribed" true in
+`kit-subscribe.ts`, and deleting that record would let the same address be added
+again by a later signup. Counsel should say which obligation wins. "A copy in a
+portable format" has no mechanism today; it would be assembled by hand from two
+providers. And nothing in the repository records a privacy request or its
+deadline, so the 30 days are kept in a mailbox.
+
+**The two 30-day commitments, which are different promises.**
+
+Section 6, thirty days to answer a rights request, is a response deadline. It
+needs someone watching privacy@truermeasure.com and a way to retrieve, correct
+or delete from GoHighLevel and Kit inside the window. Both are manual today.
+
+Section 7, thirty days' notice before a material change, is a notification duty,
+and it is the harder of the two. It requires emailing people who gave their
+information. The list members are reachable in Kit. **Form submitters are in
+GoHighLevel and are not on that list**, so honouring section 7 for them means a
+separate send to people who asked about a product and never subscribed to
+anything. Whether that send is permissible, and whether the commitment should
+extend to them at all, is a counsel question and a deliverability one.
