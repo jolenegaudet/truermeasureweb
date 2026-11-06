@@ -136,9 +136,15 @@ foreach ($file in $files) {
 
     $actions = @()
 
-    if ($text -match '\[EFFECTIVE_DATE\]') {
+    # The placeholder is written as inline code, `[EFFECTIVE_DATE]`, so that an
+    # unfilled date is impossible to miss on the page. THE BACKTICKS BELONG TO
+    # THE PLACEHOLDER, NOT TO THE DATE. Replacing only the brackets left the
+    # date in a monospace box on 6 November 2026, which is not how a published
+    # policy reads and not how the Terms read: "Effective 3 October 2026",
+    # plain. So the pattern takes the optional backticks with it.
+    if ($text -match '`?\[EFFECTIVE_DATE\]`?') {
         $actions += "set the effective date to '$written'"
-        $text = $text -replace '\[EFFECTIVE_DATE\]', $written
+        $text = $text -replace '`?\[EFFECTIVE_DATE\]`?', $written
     }
 
     foreach ($banner in $banners) {
