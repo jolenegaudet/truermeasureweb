@@ -72,6 +72,28 @@ const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
 );
 
 /**
+ * ADDRESSES THAT EXIST IN ENGLISH ONLY. Her decision, 6 November 2026: "We are
+ * launching without a french version."
+ *
+ * The names above stay reserved, because she validated all four of them and a
+ * French version may still be written. What changes is what the site CLAIMS: no
+ * language toggle and no fr hreflang for these two, because both would send a
+ * reader, or Google, to a page that answers 404.
+ *
+ * This is the product's policy and the Licence. The Terms and the website's
+ * policy are bilingual and are not in here. The French site stays live, so a
+ * French-speaking parent will read French Terms beside an English Licence and an
+ * English product policy. That mismatch is counsel question 1b and is not
+ * settled by this file; what this file does is stop the site from implying the
+ * French versions are there.
+ *
+ * scripts/check-legal-placeholders.mjs carries the matching exception, by
+ * filename rather than by address. Two entries in two places: if a French
+ * version is written, both have to lose it.
+ */
+export const ENGLISH_ONLY_PATHS = new Set(["/privacy", "/licence"]);
+
+/**
  * The locale a path belongs to: everything under /fr, plus the French paths
  * above. Getting this wrong puts an English nav and footer on a French page.
  */
@@ -80,8 +102,12 @@ export function localeFromPath(pathname: string): Locale {
   return pathname in ENGLISH_PATHS ? "fr" : "en";
 }
 
-/** The same page in the other language. */
-export function otherLocalePath(pathname: string): string {
+/**
+ * The same page in the other language, or null when there is no such page.
+ * Callers must handle null: the nav hides the toggle rather than linking a 404.
+ */
+export function otherLocalePath(pathname: string): string | null {
+  if (ENGLISH_ONLY_PATHS.has(pathname)) return null;
   if (pathname in FRENCH_PATHS) return FRENCH_PATHS[pathname];
   if (pathname in ENGLISH_PATHS) return ENGLISH_PATHS[pathname];
   if (localeFromPath(pathname) === "fr") {
@@ -107,12 +133,14 @@ export function localePath(locale: Locale, path: string): string {
  * telling Google to drop it, and the French site would never be indexed.
  */
 export function alternatesFor(englishPath: string, locale: Locale = "en") {
+  /* No fr alternate for a document that exists in English only. An hreflang
+     pointing at a 404 is a broken alternate and is reported as one. */
+  const languages = ENGLISH_ONLY_PATHS.has(englishPath)
+    ? { en: englishPath }
+    : { en: englishPath, fr: localePath("fr", englishPath) };
   return {
     canonical: localePath(locale, englishPath),
-    languages: {
-      en: englishPath,
-      fr: localePath("fr", englishPath),
-    },
+    languages,
   };
 }
 

@@ -106,13 +106,48 @@ const PAIRS = [
   ["content/licence.mdx", "content/contrat-de-licence.mdx"],
 ];
 
+/* ENGLISH ONLY AT LAUNCH, by her decision of 6 November 2026: "We are
+   launching without a french version."
+
+   It covers the two documents that do not exist in French. The product's policy
+   and the Licence launch in English, and the pair rule above does not refuse
+   them for it. Nothing else changes: the Terms and the website's policy are
+   bilingual today and stay inside the rule, so dropping a language from either
+   is still refused.
+
+   THE EXCEPTION IS DIRECTIONAL, deliberately. It allows the English file routed
+   alone. A FRENCH file routed without its English counterpart is still refused,
+   because that is the same fault in the other direction and nobody has decided
+   it.
+
+   WHAT IT DOES NOT DECIDE. The French site stays live, the French Terms stay
+   published, and they reference the Licence by name five times. So a
+   French-speaking parent will read French Terms and an English Licence and an
+   English product policy. That is counsel question 1b, which a lawyer has not
+   answered, and this file cannot answer it either. What this file can do is
+   stop pretending the French versions exist: content/i18n.ts drops the French
+   alternate for these two addresses, so the language toggle and the hreflang
+   tags no longer point at pages that answer 404.
+
+   Removing a name from this set re-arms the refusal, which is the point of
+   keeping the rule and listing the exception rather than deleting the rule. */
+const ENGLISH_ONLY = new Set([
+  "content/privacy-policy.mdx",
+  "content/licence.mdx",
+]);
+
 const routedNames = new Set(
   [...routed.keys()].map((p) => p.slice(ROOT.length + 1).split(sep).join("/")),
 );
 const unpaired = [];
+const englishOnly = [];
 for (const pair of PAIRS) {
   for (const [a, b] of [pair, [...pair].reverse()]) {
     if (routedNames.has(a) && !routedNames.has(b)) {
+      if (ENGLISH_ONLY.has(a)) {
+        englishOnly.push(a);
+        continue;
+      }
       unpaired.push({ here: a, missing: b, route: routed.get(join(ROOT, ...a.split("/"))) });
     }
   }
@@ -173,10 +208,15 @@ if (unpaired.length) {
 
 if (refuse) process.exit(1);
 
-if (problems.length || unpaired.length) {
+if (problems.length || unpaired.length || englishOnly.length) {
   const notes = [];
   if (problems.length) notes.push(`${new Set(problems.map((p) => p.doc)).size} still a draft`);
   if (unpaired.length) notes.push(`${unpaired.length} missing a language`);
+  /* Named, not silent. An allowed exception that prints nothing is a rule
+     nobody remembers lifting. */
+  if (englishOnly.length) {
+    notes.push(`${englishOnly.length} English only by her decision (${englishOnly.join(", ")})`);
+  }
   console.log(`  Legal documents checked: ${routed.size}, ${notes.join(", ")}.`);
 } else {
   console.log(`  Legal documents checked: ${routed.size}, all complete, both languages each.`);

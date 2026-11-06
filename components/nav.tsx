@@ -52,26 +52,34 @@ export default function Nav() {
             </Link>
           ))}
           {/* The language toggle is the same page in the other language, not a
-              language home page, so nobody loses their place by using it. */}
-          <Link
-            href={toggleHref}
-            hrefLang={locale === "en" ? "fr" : "en"}
-            aria-label={t.toggle.aria}
-            className="rounded-[2px] border border-warm px-[11px] py-[5px] text-[12px] font-semibold tracking-[0.16em] uppercase text-rose transition-colors hover:bg-bark hover:text-parchment"
-          >
-            {t.toggle.label}
-          </Link>
+              language home page, so nobody loses their place by using it.
+
+              It is absent on a page that exists in one language only. A toggle
+              that leads to a 404 is worse than no toggle, and on a legal page it
+              would tell a parent a French version exists. */}
+          {toggleHref ? (
+            <Link
+              href={toggleHref}
+              hrefLang={locale === "en" ? "fr" : "en"}
+              aria-label={t.toggle.aria}
+              className="rounded-[2px] border border-warm px-[11px] py-[5px] text-[12px] font-semibold tracking-[0.16em] uppercase text-rose transition-colors hover:bg-bark hover:text-parchment"
+            >
+              {t.toggle.label}
+            </Link>
+          ) : null}
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">
-          <Link
-            href={toggleHref}
-            hrefLang={locale === "en" ? "fr" : "en"}
-            aria-label={t.toggle.aria}
-            className="rounded-[2px] border border-warm px-[10px] py-[5px] text-[12px] font-semibold tracking-[0.16em] uppercase text-rose"
-          >
-            {t.toggle.label}
-          </Link>
+          {toggleHref ? (
+            <Link
+              href={toggleHref}
+              hrefLang={locale === "en" ? "fr" : "en"}
+              aria-label={t.toggle.aria}
+              className="rounded-[2px] border border-warm px-[10px] py-[5px] text-[12px] font-semibold tracking-[0.16em] uppercase text-rose"
+            >
+              {t.toggle.label}
+            </Link>
+          ) : null}
           <button
             className="text-bark"
             onClick={() => setOpen((v) => !v)}
