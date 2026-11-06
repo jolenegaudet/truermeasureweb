@@ -72,8 +72,13 @@ $files = switch ($Document) {
     }
     'licence' {
         # Neither file exists yet. The Licence is not in this repository in
-        # either language: the only draft is in the counsel package, outside it,
-        # and no French version has been written. See content/i18n.ts.
+        # either language. The English draft is in the counsel package, outside
+        # it; she wrote a French draft and sent it to the app session on
+        # 6 November 2026 to be checked against the English, and said she would
+        # forward both approved versions here for integration. Until they
+        # arrive this document cannot be finished, and scripts/
+        # check-legal-placeholders.mjs additionally refuses to build it in one
+        # language only. See content/i18n.ts.
         @('content/licence.mdx', 'content/contrat-de-licence.mdx')
     }
 }

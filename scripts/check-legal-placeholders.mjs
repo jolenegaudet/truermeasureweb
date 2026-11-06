@@ -29,7 +29,7 @@
  * the source it came from.
  */
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { join, resolve, sep } from "node:path";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const PLACEHOLDER = /\[([A-Z][A-Z0-9_]{2,})\]/g;
@@ -80,7 +80,42 @@ for (const [doc, route] of routed) {
   }
 }
 
+/* ── A document published in one language only ───────────────────────────── */
+
+/* Her Licence is moving in two pieces at two speeds: on 6 November 2026 the
+   English draft sat in the counsel package and she had just sent her French
+   draft to the app session to check it against the English. Two documents
+   moving separately is how a contract ends up routed in one language, and a
+   francophone parent then agrees to an English page or lands on a 404.
+   scripts/publish-legal.ps1 already refuses to finish a document that is
+   missing a language. This refuses to BUILD one, which is earlier.
+
+   The French product policy is not in this table because it has no agreed
+   filename yet. Add it here the day it gets one. */
+const PAIRS = [
+  ["content/terms-of-service.mdx", "content/conditions-d-utilisation.mdx"],
+  ["content/privacy-policy.website.mdx", "content/politique-de-confidentialite.mdx"],
+  ["content/licence.mdx", "content/contrat-de-licence.mdx"],
+];
+
+const routedNames = new Set(
+  [...routed.keys()].map((p) => p.slice(ROOT.length + 1).split(sep).join("/")),
+);
+const unpaired = [];
+for (const pair of PAIRS) {
+  for (const [a, b] of [pair, [...pair].reverse()]) {
+    if (routedNames.has(a) && !routedNames.has(b)) {
+      unpaired.push({ here: a, missing: b, route: routed.get(join(ROOT, ...a.split("/"))) });
+    }
+  }
+}
+
 const previewing = process.env.TM_LEGAL_PREVIEW === "1";
+
+/* Both kinds of fault get reported before the build stops, so a document
+   that is a draft AND missing a language does not hide the second problem
+   behind the first. */
+let refuse = false;
 
 if (problems.length) {
   const say = previewing ? console.warn : console.error;
@@ -102,13 +137,39 @@ if (problems.length) {
   } else {
     say("  Fill these in, or remove the route, before building.");
     say("  To read them locally instead, set TM_LEGAL_PREVIEW=1.\n");
-    process.exit(1);
+    refuse = true;
   }
 }
 
-if (problems.length) {
-  const drafts = new Set(problems.map((p) => p.doc)).size;
-  console.log(`  Legal documents checked: ${routed.size}, ${drafts} still a draft.`);
+if (unpaired.length) {
+  const say = previewing ? console.warn : console.error;
+  say(
+    previewing
+      ? "\n  LEGAL PREVIEW: a legal document is routed in one language only.\n"
+      : "\n  BUILD STOPPED: a legal document is routed in one language only.\n",
+  );
+  for (const { here, missing, route } of unpaired) {
+    say(`    ${here}`);
+    say(`      served by  ${route}`);
+    say(`      but        ${missing} is not routed\n`);
+  }
+  if (previewing) {
+    say("  Building anyway, because TM_LEGAL_PREVIEW=1 was set. A reader can");
+    say("  see the one language that exists. THIS BUILD MUST NOT BE DEPLOYED.\n");
+  } else {
+    say("  A contract offered in one language is not a translation problem, it");
+    say("  is a different contract for half the readers. Route both or neither.\n");
+    refuse = true;
+  }
+}
+
+if (refuse) process.exit(1);
+
+if (problems.length || unpaired.length) {
+  const notes = [];
+  if (problems.length) notes.push(`${new Set(problems.map((p) => p.doc)).size} still a draft`);
+  if (unpaired.length) notes.push(`${unpaired.length} missing a language`);
+  console.log(`  Legal documents checked: ${routed.size}, ${notes.join(", ")}.`);
 } else {
-  console.log(`  Legal documents checked: ${routed.size}, all complete.`);
+  console.log(`  Legal documents checked: ${routed.size}, all complete, both languages each.`);
 }

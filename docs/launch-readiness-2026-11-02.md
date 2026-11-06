@@ -1347,3 +1347,67 @@ with a double-click:
 Both files verified before sending: one `h1` each, her title, eight numbered
 sections, the banner present, the placeholder present, zero scripts, and the
 only remaining links are the two mailto addresses and the other language.
+
+## 6 November: the Licence stopped being a one-language document
+
+Her word this morning, and it closes the thing I had recorded as the Licence's
+hardest gap: *"Le brouillon francais de la Licence est pret et je le transmets a
+APP pour verifier la concordance avec l'anglais. Je te ferai suivre les versions
+approuvees pour integration."*
+
+So the record's line that no French Licence exists anywhere is out of date. It
+exists, she wrote it, and it is with the app session to be checked against the
+English. Neither version is in this repository and neither is approved, so
+nothing changes at `/licence` or `/contrat-de-licence` today: both still answer
+404, which is still what keeps the app's release check refusing.
+
+She also said the two site policies' publication approval will come separately,
+with the real publication date as the effective date. That is the rule from
+5 November, unchanged.
+
+### A new wall: a contract routed in one language
+
+Two documents now move at two speeds. The English Licence sits in the counsel
+package; the French one is with APP. That is exactly how a contract ends up
+live in one language, and the failure is not cosmetic: a francophone parent
+either agrees to a page they cannot read, or clicks `/contrat-de-licence` and
+gets a 404 after the English page told them a licence applies.
+
+`scripts/publish-legal.ps1` already refused to *finish* a document missing a
+language. `scripts/check-legal-placeholders.mjs` now refuses to **build** one,
+which is earlier and harder to walk past:
+
+| | catches | when |
+|---|---|---|
+| `check-legal-placeholders.mjs` | a routed document whose counterpart is not routed | prebuild, before any page exists |
+| `publish-legal.ps1` | a document missing in either language | exit 2, before the date is filled |
+
+The pairs it knows: Terms, the website policy, and the Licence. The app's
+product policy is deliberately absent from that table, because its French file
+has no agreed filename yet; it goes in the day it gets one.
+
+`TM_LEGAL_PREVIEW=1` downgrades this to a warning like the rest, so one
+language can still be read while the other is being checked. The publish
+procedure passes no flag, so the warning is not available to a deploy.
+
+Both kinds of fault now report before the build stops, instead of the draft
+marker hiding a missing language behind it. Verified by pairing a routed
+document against a file that does not exist: refused with exit 1, reported both
+faults, and under preview printed *"8 documents checked, 2 still a draft,
+1 missing a language."* Build after the change: 16 pages checked, nothing
+wrong.
+
+### What integration will need when her texts arrive
+
+Both languages in the same pass. In order: the two `content/*.mdx` files
+(`licence.mdx`, `contrat-de-licence.mdx`), the two routes, the footer link,
+then `publish-legal.ps1 -Document licence -Date <the day it goes up>`. The
+addresses, the French path mapping and the `/license` redirect are already in
+place and have been since 5 November, so the only missing input is the text
+itself.
+
+One question for counsel stands regardless of the translation: whether a
+francophone parent can be bound by a Licence whose English and French versions
+differ, and which one governs. That is a concordance clause, not a translation
+check, and it is the kind of thing APP's comparison may surface rather than
+settle.
