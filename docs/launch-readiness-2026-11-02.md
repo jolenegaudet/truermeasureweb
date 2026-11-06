@@ -1720,3 +1720,82 @@ access logs record and for how long on this plan; and Kit's own procedure for
 erasure, unsubscribe and a later re-signup, which is the one with a conflict
 inside it, since the record that keeps an unsubscribe honoured is the record an
 erasure would remove.
+
+## 6 November, third pass: her sentence, and a claim about a click that was too strong
+
+### Section 6 now promises no period of its own
+
+She validated the bilingual title and the log fix as tested, and replaced the
+section 6 commitment with her own wording, which she marked *sous réserve de la
+relecture juridique*:
+
+> Nous répondons à votre demande dans le délai prévu par la loi applicable. Si
+> aucun délai n'est prévu, nous répondons dès que possible.
+
+That is the French, verbatim. The English is that sentence and not a looser
+paraphrase of it. **No 30-day commitment remains anywhere in either document.**
+Section 7 lost its fixed notice period this morning; section 6 has now lost the
+response promise, so the policy commits to no period it invented.
+
+That has a quiet benefit beyond the wording: nothing has to be re-dated if
+counsel concludes a different law applies. The document defers to whatever limit
+exists and says what happens when none does.
+
+**I kept one thing her replacement did not carry:** *there is no charge*, which
+stood inside the sentence being replaced and is a separate statement from the
+deadline. Dropping a statement in the reader's favour unasked is the wrong
+default. It is flagged in both files' notes to remove on her word.
+
+### The claim about the click was too strong, and she was right to cut it
+
+The Stripe passage said the website sends Stripe nothing when the link is
+clicked. Her instruction: *"Retire l'affirmation selon laquelle rien n'est
+transmis au moment du clic."*
+
+She is right, and the error is worth recording because it is the kind I should
+catch. **Following a link is a request to Stripe**, which carries the visitor's
+IP address and may carry a referrer. The sentence was true about this site's
+code, which sends nothing itself, and false as a reader would read it. Verifying
+that the repository contains no call to Stripe is not the same as verifying that
+nothing reaches Stripe.
+
+What the passage says now is only what is checkable: the footer carries a link
+to Stripe's portal where an existing member can manage or cancel a
+subscription; following it takes you to a page Stripe runs; **no payment is
+taken on the showcase site**; payment happens in the app, and the product's
+policy covers what Stripe does there.
+
+### The counsel folder is current, and the zip is not
+
+In `offer/counsel-package-2026-11-02/`:
+
+- the two drafts, under names that do not carry a version number, so there is
+  exactly one of each and the index's links never go stale:
+  `Website Privacy Policy - draft for counsel.html` and
+  `Politique de confidentialite du site web - ebauche pour avocat.html`
+- `website-policy-open-checks.html` and `.md`, one page listing the four open
+  checks: provider agreements and transfers, retention criteria, Netlify's
+  access logs, and Kit's procedure for erasure, unsubscribe and
+  re-subscription. Each item says what is confirmed, what is open, why it
+  matters, and what an answer would change in the drafts.
+- `index.html` gains a contents row 6 and a "Changed 6 November" section, and
+  one stale row is corrected: it still said the policy sat in
+  `app/_pending/privacy-policy`, which stopped being true on 5 November.
+
+The superseded copies are gone. Three successive versions of the same policy in
+a folder somebody reviews from is how the wrong draft gets approved, which is
+the same reason the numbered names went.
+
+**The zip is deliberately untouched.** `truermeasure-counsel-package-2026-11-05.zip`
+holds five attachments and the website policy is not among them. Rebuilding it
+would change what she might send to counsel, and that is her decision, not
+mine. It is flagged in the index in those terms.
+
+Every local link in the index resolves; checked after the edit.
+
+### State
+
+Both documents still carry the draft banner and `[EFFECTIVE_DATE]`. Both legal
+walls still refuse a build that contains either, and the publish procedure
+passes no flag. Nothing is merged, nothing is deployed, and the effective date
+will be the day she says it is published.
