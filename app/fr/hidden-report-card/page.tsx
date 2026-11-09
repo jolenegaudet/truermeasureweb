@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { salesPause } from "@/content/founding-families";
-import { FirstToKnowButton } from "@/components/first-to-know";
+import { closing } from "@/content/founding-families";
 import { FrameworkList } from "@/components/framework-list";
 import { PlanCards } from "@/components/plan-cards";
 import { APP_PRICES } from "@/content/app-prices";
@@ -10,7 +9,7 @@ const DESCRIPTION =
   "Réunissez les bulletins, les commentaires des enseignants, vos observations, les projets et les moments vécus hors de l’école, et voyez ce qui revient d’une expérience à l’autre chez votre enfant.";
 
 export const metadata: Metadata = {
-  title: "Le rapport caché",
+  title: "La juste mesure",
   description: DESCRIPTION,
   alternates: alternatesFor("/hidden-report-card", "fr"),
   openGraph: {
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CA",
     url: "/fr/hidden-report-card",
-    title: "Le rapport caché",
+    title: "La juste mesure",
     description: DESCRIPTION,
   },
   twitter: { description: DESCRIPTION },
@@ -28,14 +27,26 @@ export const metadata: Metadata = {
  * The French counterpart of app/hidden-report-card/page.tsx. Same sections, in
  * the same order, so the language toggle never changes which page you are on.
  *
- * NAMING, her four terms of 2 October 2026. The document is "Le rapport caché"
- * in French, with no trademark symbol: she wrote the mark on the English name
- * and not on the French one. The product itself is Une Juste Mesure, and the
- * other two offers are Parents Élites and Cercle privé, all in
+ * NAMING. The product is "La juste mesure" in French, with no trademark
+ * symbol: she wrote the mark on the English name and not on the French one.
+ * The other two offers are Parents Élites and Cercle privé, all in
  * content/i18n.ts.
  *
- * The route keeps the /hidden-report-card path on both sides, which is also the
- * phrase a parent is most likely to search for.
+ * RENAMED 9 November 2026, with the English. It was "Le rapport caché", one of
+ * her four dictated terms of 2 October, until she renamed the product: "I kind
+ * of changed it to The Truer Measure™, so that needs to change everywhere on
+ * the site." The French name is not a new translation. /fr already used "la
+ * juste mesure" for this idea in the home headline ("Bienvenue à la juste
+ * mesure de votre enfant !"), the footer brand, the tagline and the tier name,
+ * and justemesure.ca is hers.
+ *
+ * WATCH THE ARTICLE when editing. "Le rapport caché" was masculine and "la
+ * juste mesure" is feminine, so every "le" that introduced the old name became
+ * "la", and the sentences that carried it were reread rather than
+ * search-replaced.
+ *
+ * The route keeps the /hidden-report-card path on both sides. A path is an
+ * address, not a name, and that one is in links already sent.
  */
 
 const contrasts = [
@@ -101,9 +112,19 @@ const experience = [
     outcome:
       "Enregistrez vite ce que vous venez de remarquer, en une phrase, une photo ou votre voix, avant de l’oublier.",
   },
+  /* Avec l'anglais, 9 November 2026. Her name, given the same afternoon: it
+     went in as "Reflect together" on the reasoning that the product's proper
+     names stay English, and she translated it. She is right and the row above
+     proves it: every other feature on this French page is already translated,
+     from Mon enfant to Saisir un moment. The imperative matches them and
+     matches the -ez form /fr uses throughout. */
+  {
+    feature: "Réfléchissez ensemble",
+    outcome: "Répondez à quelques questions avec votre enfant.",
+  },
 ];
 
-const pause = salesPause.fr;
+const close = closing.fr;
 
 export default function FrenchHiddenReportCardPage() {
   return (
@@ -185,7 +206,7 @@ export default function FrenchHiddenReportCardPage() {
                 </div>
                 <div className="px-6 py-6 md:px-9 md:py-[34px]">
                   <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-                    Le rapport caché
+                    La juste mesure
                   </div>
                   <div
                     className="font-heading text-bark"
@@ -205,10 +226,10 @@ export default function FrenchHiddenReportCardPage() {
         <div className="mx-auto max-w-[1080px]">
           {/* Her wording of 2 November 2026. See the English page. */}
           <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
+            {/* One line since 9 November 2026, as on the English page: under
+                the new name the second line repeated the first. */}
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              Le rapport caché
-              <br />
-              Une juste mesure de votre enfant
+              La juste mesure
             </div>
             <h2
               className="font-heading font-medium text-bark"
@@ -225,7 +246,11 @@ export default function FrenchHiddenReportCardPage() {
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"
             style={{ fontSize: 17, lineHeight: 1.75, maxWidth: 640 }}
           >
-            <p className="font-heading italic text-dusk" style={{ fontSize: "clamp(20px,2.4vw,25px)" }}>
+            {/* Bold, with the English. Her instruction of 9 November 2026. */}
+            <p
+              className="font-heading font-bold italic text-dusk"
+              style={{ fontSize: "clamp(20px,2.4vw,25px)" }}
+            >
               Vous en reconnaissez peut-être déjà certaines. D&rsquo;autres, vous
               ne les avez peut-être pas encore vues.
             </p>
@@ -235,13 +260,24 @@ export default function FrenchHiddenReportCardPage() {
               Vous en voyez un autre. Un entraîneur en voit un autre. Votre
               enfant, lui, vit tout cela.
             </p>
+            {/* Le voyage, 9 November 2026, shortened with the English the
+                same afternoon. See the note on the English page.
+
+                "Ah, et" rather than a literal "Oh, et", which reads as
+                translated English. "Ah, et" is the aside her sentence is
+                making, in the register /fr already uses. */}
+            <p>
+              Ah, et trois semaines de voyage, c&rsquo;est trois semaines
+              d&rsquo;apprentissage. L&rsquo;école inscrit une absence. Votre
+              enfant, lui, était présent à tout cela.
+            </p>
             <p>
               Tant que ces preuves ne sont pas réunies, il est difficile de voir
               ce qu&rsquo;elles révèlent.
             </p>
             <p>
-              C&rsquo;est pour cela que nous l&rsquo;appelons le{" "}
-              <strong className="font-semibold text-bark">rapport caché</strong>.
+              C&rsquo;est pour cela que nous l&rsquo;appelons la{" "}
+              <strong className="font-semibold text-bark">juste mesure</strong>.
             </p>
           </div>
         </div>
@@ -275,8 +311,8 @@ export default function FrenchHiddenReportCardPage() {
               enfant apprend et grandit.
             </p>
             <p>
-              Truer Measure réunit ces preuves et génère le{" "}
-              <strong className="font-semibold text-bark">rapport caché</strong>{" "}
+              Truer Measure réunit ces preuves et génère la{" "}
+              <strong className="font-semibold text-bark">juste mesure</strong>{" "}
               de votre enfant.
             </p>
             <p>
@@ -314,7 +350,7 @@ export default function FrenchHiddenReportCardPage() {
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
             >
-              Ouvrez le rapport caché
+              Ouvrez la juste mesure
             </h2>
           </div>
 
@@ -374,28 +410,28 @@ export default function FrenchHiddenReportCardPage() {
         </div>
       </section>
 
-      {/* SALES PAUSED, 2 October 2026, same as the English page. Section 7
-          was the Founding Families offer. It is in git at 1cb767c, and every
-          amount and id is still in content/founding-families.ts. */}
+      {/* 7. THE CLOSE, same as the English page. It said "Le rapport caché est
+          en évolution" under a "Sachez-le en premier." email capture until
+          9 November 2026; her instruction: "This is not longer true… It's
+          live." See content/founding-families.ts for what replaced it and
+          why. */}
       <section className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[640px] text-center">
           <h2
             className="font-heading font-medium text-parchment"
             style={{ fontSize: "clamp(28px,5vw,46px)", lineHeight: 1.1 }}
           >
-            {pause.heading}
+            {close.heading}
           </h2>
           <p className="mt-7 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
-            {pause.story}
+            {close.story}
           </p>
-          {/* The one thing to do at the end of the page. Section 7 used to be
-              the offer and the checkout button; while sales are paused this is
-              an email address and nothing else. Her brief, 4 October 2026. */}
-          <FirstToKnowButton
-            locale="fr"
-            place="hidden-report-card"
-            className="mt-9 inline-block cursor-pointer rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-          />
+          <a
+            href={close.ctaHref}
+            className="mt-9 inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+          >
+            {close.cta}
+          </a>
         </div>
       </section>
     </div>

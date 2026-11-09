@@ -357,8 +357,36 @@ if (kind !== "maintenance") {
 
 /* ── The buttons ──────────────────────────────────────────────────────────── */
 
-const buttonHrefs = [...en.matchAll(/href="([^"]+)"[^>]*>(?:Start free|Choose School)/g)]
-  .map((m) => m[1]);
+/* THE BUTTON LABELS COME FROM THE COPY, not from this file.
+ *
+ * They were spelled out here as "Start free|Choose School" until 9 November
+ * 2026, when she renamed the free button and this wall failed on a correct
+ * build: it was looking for words the site no longer said. A check that has to
+ * be edited every time the copy changes will eventually be edited wrongly, or
+ * deleted. So the four labels are read out of content/app-plans.ts, which is
+ * where they are written, and a build whose buttons do not carry them fails.
+ *
+ * If the shape of that file changes so the labels cannot be found, this fails
+ * loudly rather than quietly passing on nothing. */
+const planSource = readFileSync(
+  new URL("../content/app-plans.ts", import.meta.url),
+  "utf8",
+);
+const planCtas = [...planSource.matchAll(/^\s*cta:\s*"([^"]+)"/gm)].map((m) => m[1]);
+if (planCtas.length < 4) {
+  fail(
+    `content/app-plans.ts: expected four button labels (free and paid, EN and FR), found ${planCtas.length}`,
+  );
+}
+/* `free: { … cta }` then `paid: { … cta }`, English block then French. */
+const [freeCtaEn, paidCtaEn, freeCtaFr] = planCtas;
+
+const labelAlternatives = planCtas
+  .map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+  .join("|");
+const buttonHrefs = [
+  ...en.matchAll(new RegExp(`href="([^"]+)"[^>]*>(?:${labelAlternatives})`, "g")),
+].map((m) => m[1]);
 
 if (kind === "launch") {
   if (!appHost) {
@@ -456,7 +484,9 @@ if (items.length !== 27) {
    failed on the only build Netlify made for five weeks, which is worse than no
    check, because a wall that cries wolf on the normal case is a wall people
    learn to ignore. It now runs where the plan cards are supposed to exist. */
-for (const [html, lang, freeCta] of kind === "maintenance" ? [] : [[en, "EN", "Start free"], [fr, "FR", "Commencer gratuitement"]]) {
+for (const [html, lang, freeCta] of kind === "maintenance"
+  ? []
+  : [[en, "EN", freeCtaEn], [fr, "FR", freeCtaFr]]) {
   const paidPrice = html.indexOf('data-tm-price="CAD"');
   const free = html.indexOf(freeCta);
   if (paidPrice === -1 || free === -1) {

@@ -160,8 +160,15 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
  * both languages, and nothing should paraphrase them:
  *
  *   Start Here      Commencez ici
- *   The Hidden Report Card(TM)   Le rapport caché
+ *   The Truer Measure(TM)        La juste mesure
  *   Elite Parents   Parents Élites
+ *
+ * The second term was "The Hidden Report Card(TM) / Le rapport caché" until
+ * 9 November 2026, when she renamed the product: "I kind of changed it to The
+ * Truer Measure™, so that needs to change everywhere on the site." The old
+ * name is dead in both languages and must not come back. The route is still
+ * /hidden-report-card, which is an address and not a name; see the note at the
+ * top of app/hidden-report-card/page.tsx.
  *
  * The French name was "Parents leaders" until 29 October 2026, when she
  * corrected it to "Parents Élites" ("Use exactly “Parents Élites”, replacing
@@ -197,8 +204,24 @@ export const tiers = {
   },
 } as const;
 
-/** The document the product produces. Named, not paraphrased. */
-export const hiddenReportCard = { en: "The Hidden Report Card", fr: "Le rapport caché" } as const;
+/**
+ * The document the product produces. Named, not paraphrased.
+ *
+ * RENAMED 9 November 2026, her instruction: "it says The Hidden Report Card™.
+ * I kind of changed it to The Truer Measure™, so that needs to change
+ * everywhere on the site."
+ *
+ * The French is her own: /fr already carried "la juste mesure" in the home
+ * headline, the footer brand ("Une Juste Mesure"), the tagline and the tier
+ * name, and justemesure.ca is hers. So the French name is not a new
+ * translation, it is the phrase the French site was already using for the same
+ * idea. Her rule of 2 October stands: the mark is claimed in English, so the
+ * French name carries no trademark symbol.
+ *
+ * Nothing imports this; the nav reads shell[locale].nav instead. It is kept
+ * because it is the one place the pair is stated side by side.
+ */
+export const productName = { en: "The Truer Measure", fr: "La juste mesure" } as const;
 
 export const shell = {
   en: {
@@ -209,7 +232,7 @@ export const shell = {
     brand: "Welcome to the Truer Measure of your child!",
     nav: {
       start: "Start Here",
-      hiddenReportCard: "The Hidden Report Card™",
+      hiddenReportCard: "The Truer Measure™",
       learn: "Elite Parents",
       innerCircle: "Inner Circle",
     },
@@ -245,7 +268,7 @@ export const shell = {
     brand: "Bienvenue à la juste mesure de votre enfant !",
     nav: {
       start: "Commencez ici",
-      hiddenReportCard: "Le rapport caché",
+      hiddenReportCard: "La juste mesure",
       learn: "Parents Élites",
       innerCircle: "Cercle privé",
     },

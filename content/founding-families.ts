@@ -26,8 +26,15 @@
  * ================= SALES PAUSED, 2 October 2026 =================
  *
  * Jolene is restructuring the offer, the feature packaging and the pricing for
- * The Hidden Report Card. Until she gives the new structure, a visitor must not
- * be able to buy the current one, in either language.
+ * The Truer Measure (named The Hidden Report Card until 9 November 2026). Until
+ * she gives the new structure, a visitor must not be able to buy the current
+ * one, in either language.
+ *
+ * THIS IS HISTORY AS OF 9 November 2026, when the app launched with its own two
+ * plans and its own prices (content/app-plans.ts, content/app-prices.ts).
+ * SALES_PAUSED below is read by nothing that renders. What is paused is this
+ * Founding Families offer, which was never bought from and whose amounts, caps
+ * and Stripe ids are all still below, untouched.
  *
  * WHAT WAS REMOVED FROM THE PUBLIC PAGES, and nothing else:
  *   the price block and its currency buttons, "Limited to 50 families",
@@ -54,23 +61,51 @@
  */
 export const SALES_PAUSED = true;
 
-/** The temporary state shown where the offer used to be. Her wording. */
-export const salesPause = {
+/**
+ * THE CLOSE at the end of the product page, in both languages.
+ *
+ * ── WHAT THIS REPLACED, 9 November 2026 ───────────────────────────────────
+ *
+ * It was `salesPause`, and it said "The Hidden Report Card™ is evolving. What
+ * started as a way to see more of your child than a traditional report card
+ * could show is becoming something much more." under a "Be the first to know."
+ * email capture. Her instruction: "This is not longer true… It's live."
+ *
+ * Both halves of it had stopped being true on the same day. The product was
+ * renamed, and it launched: prices are on, the buttons reach
+ * app.truermeasure.com, and the three documents are published. A page that
+ * ends by promising news about a launch that already happened asks a parent to
+ * join a list instead of starting.
+ *
+ * WHAT THIS SAYS INSTEAD, and what it is careful not to say. It states that
+ * the product is open and sends the reader back to the plan cards at the top
+ * of the same page. It quotes no price and names no plan: those live in
+ * content/app-plans.ts and content/app-prices.ts, which the cards read, so the
+ * close cannot drift away from the amounts a parent is actually charged.
+ *
+ * The French is her own register from /fr: vous, the -ez imperative, and no
+ * agreement with the reader's gender.
+ */
+export const closing = {
   en: {
-    heading: "The Hidden Report Card™ is evolving.",
+    heading: "It’s open.",
+    /* Her wording, 9 November 2026, replacing "Everything above is in the app
+       now." The dashboard is the thing a parent actually opens, and naming it
+       says the product is a place rather than a promise. */
     story:
-      "What started as a way to see more of your child than a traditional report card could show is becoming something much more.",
-    // Two lines came out on 3 October 2026: "Sneak peek coming soon", which
-    // belongs on her social media, and "I'm building what comes next".
-    cta: "Coming soon.",
-    ctaHref: "/hidden-report-card",
+      "The dashboard is yours to use. Bring together what you already have, start seeing what keeps showing up, and keep adding as your child grows.",
+    cta: "See the two plans",
+    /* Back to the plan cards on this same page, which carry the live prices,
+       the billing choice and the currency handoff. Not a second link into the
+       app: a purchase should begin in one place. */
+    ctaHref: "#plans",
   },
   fr: {
-    heading: "Le rapport caché est en évolution.",
+    heading: "C’est ouvert.",
     story:
-      "Ce qui a commencé comme une façon de voir votre enfant au-delà de ce qu’un bulletin traditionnel pouvait montrer devient quelque chose de bien plus grand.",
-    cta: "À venir.",
-    ctaHref: "/fr/hidden-report-card",
+      "Le tableau de bord est à vous. Rassemblez ce que vous avez déjà, voyez ce qui revient, et continuez d’ajouter à mesure que votre enfant grandit.",
+    cta: "Voyez les deux forfaits",
+    ctaHref: "#plans",
   },
 } as const;
 
@@ -177,7 +212,7 @@ export const foundingIncludes: { what: string; howLong: string }[] = [
     howLong: `For the first ${INTRO_MONTHS} months`,
   },
   {
-    what: "The Hidden Report Card™ platform and dashboard",
+    what: "The Truer Measure™ platform and dashboard",
     howLong: "For as long as you are a member",
   },
 ];
@@ -200,7 +235,7 @@ export const offerFr = {
       howLong: `Pour les ${INTRO_MONTHS} premiers mois`,
     },
     {
-      what: "La plateforme et le tableau de bord Le rapport caché",
+      what: "La plateforme et le tableau de bord La juste mesure",
       howLong: "Aussi longtemps que vous êtes membre",
     },
   ],

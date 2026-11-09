@@ -17,7 +17,7 @@ const contexts = [
   },
   {
     title: "Applying for something competitive",
-    desc: "You already have the story. The Hidden Report Card is where it lives.",
+    desc: "You already have the story. The Truer Measure is where it lives.",
   },
   {
     title: "Celebrating a breakthrough",
