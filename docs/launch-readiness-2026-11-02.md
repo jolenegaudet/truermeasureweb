@@ -2153,3 +2153,46 @@ types is never written to a log, and `netlify/functions/contact-submit.ts` on `m
 the provider's response body to `console.error`, which can quote a submitted email address back.
 The one-word-reason fix and `scripts/check-function-logs.mjs`, which enforces it, exist on this
 working branch only. It needs its own batch and her approval.
+
+### 9 November, afternoon: the app session's full handover, and two errors of mine
+
+The app session sent every ruling from 6 to 9 November and answered the four gaps. Verified rather
+than accepted, and two of the four were mine to fix.
+
+**I was wrong about the vendor names.** I told her the counsel copies still named all nine
+providers. They have named none since the midday edits of 9 November; checked all three files for
+Azure, Stripe, Anthropic, Microsoft, GoHighLevel, Kit, Sentry, Plausible and Netlify, and found
+nothing. My read was of the pre-midday version.
+
+**I was wrong about the export, and this one mattered.** On 6 November I wrote into the rights list
+that the export "does not include the original files you uploaded". Her Part C 2.3 answer was "No,
+by app export only", and the natural reading is *do not send copies by hand, the export is how a
+parent gets them*, not *the export excludes them*. `server/api.js:152` in the launch branch settles
+it: "Everything the family has, as one zip (the founder, 6 November 2026: the export carries the
+uploaded files)". The endpoint streams record.json plus every uploaded file. Reverted to the
+wording that stood before I touched it rather than swapping one assertion of mine for another.
+
+**What the app already carries, quoting her by date in its own source:** the team-access sentence
+word for word, the submissions allowance with an add-on pack, no family limit until 20 accounts,
+the daily sign-in clean-up with "not every six hours" in the comment, and the child identified at
+Stripe by id only.
+
+**Two places the website is now out of step with a ruling I had not seen.**
+
+1. *Euro prices off, EU blocked at sign-up, UK in USD.* The UK already resolves to USD. The euro
+   does not: `content/currency-for-country.ts` maps the euro area to EUR and the launch build's home
+   page shows €47. A French visitor would be quoted a price and then stopped at sign-up.
+2. *The at-18 sentence.* Mine reads "they will be offered an account of their own", from her
+   answer 5.7. Her 9 November wording is "you can offer them the option to create their own
+   account", and the app session says that account is still on the to-build list. Mine promises a
+   feature that does not exist.
+
+**The mechanical launch blocker nobody has stated plainly.** The app will set its legal links to
+/terms-of-service, /privacy and /licence, and its release check refuses any that does not answer
+200. /privacy and /licence answer 404 by design. So launch cannot complete until the product
+Privacy Policy and the Licence are published, which means the open items in them have to be settled
+first. The gate is doing exactly what it was built for.
+
+**One source per document:** the app session proposes that web/content becomes the single source,
+that it stops editing the counsel copies, and that changes come through here. That is what I
+recommended this morning. Waiting on her.
