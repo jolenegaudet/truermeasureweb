@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PrivacyContent from "@/content/politique-de-confidentialite.mdx";
+import PrivacyContent from "@/content/politique-de-confidentialite.site-web.mdx";
 import { alternatesFor } from "@/content/i18n";
 
 /**
- * The French counterpart of app/privacy-policy/page.tsx.
+ * The French counterpart of app/privacy/website/page.tsx.
  *
  * It sits at /politique-de-confidentialite rather than under /fr, the same
  * exception the French Terms take at /conditions-d-utilisation: a legal
@@ -12,8 +12,8 @@ import { alternatesFor } from "@/content/i18n";
  * FRENCH_PATHS so the language toggle and the footer still resolve.
  */
 export const metadata: Metadata = {
-  title: "Politique de confidentialité",
-  alternates: alternatesFor("/privacy-policy", "fr"),
+  title: "Politique de confidentialité du site web",
+  alternates: alternatesFor("/privacy/website", "fr"),
 };
 
 export default function PolitiqueDeConfidentialitePage() {
@@ -27,7 +27,7 @@ export default function PolitiqueDeConfidentialitePage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(36px,5vw,64px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
         >
-          Politique de confidentialité
+          Politique de confidentialité du site web
         </h1>
       </section>
 
@@ -37,7 +37,7 @@ export default function PolitiqueDeConfidentialitePage() {
 
       <section className="mx-auto max-w-[720px] px-6 py-16 md:px-10 md:py-[72px]">
         <p className="mb-10 text-smoke" style={{ fontSize: 15 }}>
-          <Link href="/privacy-policy" className="text-rose underline underline-offset-2">
+          <Link href="/privacy/website" className="text-rose underline underline-offset-2">
             English version
           </Link>
         </p>

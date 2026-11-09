@@ -2,19 +2,40 @@
   NOTES FOR COUNSEL AND FOR THE FRENCH VERSION
 
   JURISDICTION. This document deliberately names no statute and makes no claim
-  about which law governs. The only jurisdiction-adjacent sentence is the
-  complaint routing in section 6, which is conditional ("if you live in
-  Quebec") and tells a reader where they may complain rather than asserting
-  that any particular Act applies. Her instruction, 4 October 2026: do not
-  state that Quebec Law 25 governs unless that applicability conclusion comes
-  from counsel.
+  about which law governs. Section 6 says that where the privacy law applying
+  to us sets a time limit we meet it, without stating which law or what limit;
+  the only other jurisdiction-adjacent sentence is the complaint routing in the
+  same section, which is conditional ("if you live in Quebec") and tells a
+  reader where they may complain rather than asserting that any particular Act
+  applies. Her instruction, 4 October 2026: do not state that Quebec Law 25
+  governs unless that applicability conclusion comes from counsel.
 
-  THE 30 DAYS in section 6 attaches only to a request to exercise one of the
-  listed rights, which is where a 30-day deadline actually bites. It is not a
-  promise that every question or complaint gets an answer in 30 days. Her
-  instruction, same date. The other "30 days", in section 7, is a notice period
-  she is giving before a change takes effect, not a response deadline, and is
-  unaffected.
+  NO 30-DAY COMMITMENT REMAINS IN THIS DOCUMENT. Section 6 used to promise an
+  answer within 30 days whether or not the law set a limit. Her instruction,
+  6 November 2026, replaced it with her own wording, which she gave in French
+  and marked "sous reserve de la relecture juridique":
+
+      Nous repondons a votre demande dans le delai prevu par la loi
+      applicable. Si aucun delai n'est prevu, nous repondons des que possible.
+
+  The English is that sentence and not a looser paraphrase of it. The document
+  now promises no period of its own, which is also why nothing here has to be
+  re-dated if counsel concludes that a different law applies.
+
+  I KEPT ONE THING her replacement did not carry: "there is no charge", which
+  stood in the sentence being replaced and is a separate statement from the
+  deadline. Dropping a statement in the reader's favour without being asked
+  would be the wrong default. Remove it on her word.
+
+  SECTION 7 NO LONGER PROMISES 30 DAYS' NOTICE. Her instruction, 6 November
+  2026: "A la section 7, remplace le preavis fixe de 30 jours par un avis avant
+  toute modification importante, avec un nouveau consentement lorsqu'il est
+  requis." The fixed period was unkeepable as written: notice has to reach
+  everyone who gave us information, and the people who filled in a form are in
+  GoHighLevel and not on the mailing list, so a dated promise to all of them
+  was a promise about a send that may not be permissible. Notice before the
+  change takes effect, plus consent where consent is required, is both stronger
+  and keepable.
 
   FRENCH. The title of the person responsible must be rendered with the
   statutory wording, exactly:
@@ -23,18 +44,39 @@
 
   Do NOT use "Data Protection Officer" in either language. That is a defined
   GDPR role with its own obligations and is not the role being designated here.
+
+  WHO IS NAMED. Her decision, 6 November 2026: sections 1 and 8 show the
+  company, the role and the address, and not her name, in either language. The
+  role is still designated; only the individual's name is withheld, which also
+  keeps a founder who works from home off a page any visitor can read. On
+  6 November she asked for the English label "Privacy Officer" back beside the
+  address, so the English role line carries both the statutory-style heading
+  and that label. The French carries the statutory wording alone.
+
+  EVERY FACTUAL CLAIM in sections 3, 4 and 5 was read out of the code and the
+  built site on 6 November 2026, not from memory: the field lists from
+  components/waitlist-button.tsx, components/withdrawal-form.tsx and
+  components/first-to-know.tsx; what reaches each provider from
+  netlify/functions/contact-submit.ts and netlify/functions/kit-subscribe.ts;
+  the absence of any cookie or stored identifier by searching the built output;
+  the single third-party script host by counting external hosts in the built
+  HTML; and the country lookup from netlify/edge-functions/currency.ts. The
+  sentence about failed submissions not being logged is enforced by
+  scripts/check-function-logs.mjs, which runs both handlers against provider
+  errors that quote a fictitious address back and fails if an address reaches a
+  log line.
+
+  WHAT IS STILL UNVERIFIED and must not be strengthened without an answer: the
+  provider agreements and the transfers they permit; every retention period,
+  which is why this document still states none; what our host records about a
+  request and for how long; and Kit's own behaviour on erasure, unsubscribe and
+  a later re-signup. Section 5's description of Plausible is Plausible's
+  published behaviour, not something this code can prove.
 */}
-
-> **DRAFT for counsel — not yet in force.** This is the website-only policy,
-> assembled from the approved passages of `privacy-policy.mdx`. It must not be
-> published until counsel has signed off and the three remaining placeholders
-> are filled.
-
-# Privacy Policy
 
 **truermeasure.com**
 
-Version 1.0.0 · Effective `[EFFECTIVE_DATE]`
+Version 1.0.0 · Effective 6 November 2026
 
 This policy covers **this website**: what we collect when you fill in a form or leave your email
 address here, why, who it goes to, and what you can make us do about it.
@@ -50,7 +92,7 @@ it before you give us anything about your child.
 VisionEd Consultation Inc., New Brunswick, Canada.
 
 **Person responsible for the protection of personal information:**
-**Jolene Gaudet**, Privacy Officer — privacy@truermeasure.com
+Privacy Officer — privacy@truermeasure.com
 
 You can write to that address about anything in this policy, including to access your
 information, correct it, delete it, or complain.
@@ -60,7 +102,11 @@ information, correct it, delete it, or complain.
 ## 2. The short version
 
 - On this website we collect what you type into a form, and nothing else about you.
-- **We do not sell it, rent it, or share it for advertising. We never have and we will not.**
+- **Nothing is stored on your device.** No cookie, no identifier, no tracker.
+- Our host works out which country your visit comes from, so a price can be shown in your
+  currency. It is used for that and not kept.
+- **We do not sell your information, rent it, or share it for advertising. We never have and we
+  will not.**
 - **We do not use it to train artificial intelligence models.**
 - You can see it, correct it, or have it deleted.
 
@@ -68,30 +114,60 @@ information, correct it, delete it, or complain.
 
 ## 3. What we collect
 
-### 3.1 If you fill in a form on our website
+### 3.1 The three forms on this website
 
-Our waitlist and enquiry forms ask for your **name, email address, phone number, city, province or
-state, postal code, and optionally how many children you have and their ages**. We use this only to
-contact you about Truer Measure.
+There are three, and they are not the same.
 
-**This information is stored with GoHighLevel, a service provider in the United States** — see
-section 4. We do not sell it and we do not share it for advertising. Ask us at privacy@truermeasure.com
-and we will delete it.
+| Form | You must give | You may also give | Held by |
+|---|---|---|---|
+| **Waitlist and enquiry** | first name, last name, email address | phone number; number of children and their ages; city; province or state; postal code | GoHighLevel |
+| **"Be the first to know" email list** | email address | nothing: we ask for nothing else | Kit |
+| **Right of withdrawal** | first name, last name, email address | nothing | GoHighLevel |
 
-**Please don't include your children's names in a form.** Ages are all we ask for, and all we need.
+The first column is what the form will not submit without. Everything in the second column can be
+left blank, and the form works.
 
-### 3.2 If you join the "be the first to know" email list
+We use what you give us only to contact you about Truer Measure. **We do not sell it and we do not
+share it for advertising.** Ask us at privacy@truermeasure.com and we will delete it.
 
-On our website you can leave **your email address** to hear when the next version of Truer Measure
-is ready. That is the only thing we ask for, and the only thing we store. We do not ask for your
-name, your phone number, or anything about your child.
+**Please don't include your children's names in a form.** The children field is a free-text box, so
+nothing stops you, which is exactly why we are asking. How many children and what ages is all we
+request, and all we need.
 
-We use it to send you launch news and occasional product updates. **Every one of those emails
-carries an unsubscribe link.** You can also ask us at privacy@truermeasure.com and we will remove you.
+### 3.2 What the email list keeps
 
-**This list is held with Kit, an email service provider in the United States** (see section 4). We
-record the date you signed up and which page you signed up from, so that we can show how and when
-you agreed to hear from us. We do not sell this list and we do not share it for advertising.
+If you join the "be the first to know" list, Kit holds **your email address**, and these three
+things about the signup itself:
+
+- **when** you signed up, to the minute
+- **which page** you signed up from
+- **which language** you were reading in
+
+We record them once, at your first signup, so that we can show how and when you agreed to hear
+from us. If you ever sign up again from somewhere else, the original record is what we keep. We do
+not ask for your name, your phone number, or anything about your child.
+
+We use the list to send you launch news and occasional product updates. **Every one of those
+emails carries an unsubscribe link.** You can also ask us at privacy@truermeasure.com and we will
+remove you.
+
+### 3.3 What your visit alone tells us
+
+**We count visits.** We use Plausible Analytics to see how many people come and which pages they
+read. It sets no cookie and collects no personal information. We see totals, not people. Section 5
+says more.
+
+**We work out your country, for the price.** Pages that show a price show it in Canadian dollars,
+US dollars or euros. Our host, Netlify, resolves the country a request comes from and tells the
+page, which picks one of the three. That country is used to choose a currency and for nothing
+else: it is not stored, not added to any record about you, and not sent to anyone.
+
+**When a form fails, we record the failure and not your details.** If a submission cannot be
+saved, our server records the error code and a one-word reason so that we can fix it. What you
+typed is not written to any log.
+
+Our host keeps its own technical records of requests to this website, as every host does. We do
+not use them to identify visitors and we do not combine them with anything in section 3.
 
 ---
 
@@ -102,10 +178,16 @@ and may not use your information for their own purposes.
 
 | Provider | What for | Where |
 |---|---|---|
-| **GoHighLevel** | Waitlist and enquiry forms | United States |
+| **GoHighLevel** | The waitlist, enquiry and withdrawal forms | United States |
 | **Kit** | The "be the first to know" email list: launch news and product updates | United States |
 | **Plausible Analytics** | Website visit counts — cookieless, no personal information | European Union |
-| **Netlify** | Hosting the truermeasure.com website and its form handler | United States |
+| **Netlify** | Hosting truermeasure.com, running its form handlers, and resolving the country for the price | United States |
+
+**Stripe is not in that table, and here is why.** At the bottom of every page there is a link to
+Stripe's portal, where an existing member can manage or cancel a subscription. Following it takes
+you to a page Stripe runs. **No payment is taken on this website.** When the product opens, payment
+happens inside the Truer Measure app, and the policy covering the product will say what Stripe does
+there.
 
 **Otherwise, we disclose your information only:** when you tell us to; when the law requires it or
 a valid legal order compels it; or, if the business is ever sold or merged, to the buyer — **and
@@ -116,13 +198,23 @@ that happens.
 
 ---
 
-## 5. Cookies and website analytics
+## 5. Cookies, measurement, and your country
 
-**We do not use advertising cookies, tracking pixels, or cross-site trackers.**
+**Nothing is stored on your device by this website.** No cookie is set, no identifier is written,
+nothing is kept in your browser's storage. **We do not use advertising cookies, tracking pixels, or
+cross-site trackers**, and no part of this site is embedded from somewhere else, so no other
+company sees your visit unless you click a link to it.
 
-**On our website we use Plausible Analytics** to count visits and see which pages people read.
-Plausible is **cookieless**: it sets no cookie, stores no identifier on your device, does not
-follow you across websites, and does not collect personal information. We see totals, not people.
+**We count visits with Plausible Analytics.** Plausible is **cookieless**: it sets no cookie,
+stores no identifier on your device, does not follow you across websites, and does not collect
+personal information. We see which pages are read and how many people read them. It is the only
+service on this site that your browser contacts, and the fonts and everything else are served from
+truermeasure.com.
+
+**Your country, once, for the price.** Netlify resolves which country a request comes from, which
+it does from the connection itself, and the page uses it to show one of three currencies. We ask
+nothing of you, no precise location is involved, and nothing about it is stored, recorded against
+you, or passed on.
 
 **That is why you are not being shown a cookie consent banner — there is nothing here to consent
 to.** If we ever adopt anything that does track you, we will ask first.
@@ -139,11 +231,14 @@ You can, at any time, by writing to privacy@truermeasure.com:
 - **Get a copy** in a portable format
 - **Withdraw consent**, which for the email list also means the unsubscribe link in any email
 
-**When you make one of the requests above, we respond within 30 days, and there is no charge.**
+These are your rights, not favours we are granting.
+
+**We answer your request within the time limit set by the applicable law. If no time limit is set,
+we answer as soon as we can.** There is no charge.
 
 **You can also complain to us**, at the same address, and get a real answer. A complaint, or a
-general question about this policy, is not a request to exercise one of the rights above. We do
-not put a fixed deadline on those; we answer as soon as we can.
+general question about this policy, is not a request to exercise one of the rights above. We do not
+put a fixed deadline on those; we answer as soon as we can.
 
 **If our answer doesn't satisfy you**, you can complain to the Office of the Privacy Commissioner
 of Canada (priv.gc.ca), or — if you live in Quebec — to the Commission d'accès à l'information
@@ -153,9 +248,12 @@ of Canada (priv.gc.ca), or — if you live in Quebec — to the Commission d'acc
 
 ## 7. Changes to this policy
 
-If we materially change this policy — particularly what we collect, why, who we share with, or
-the commitment not to train models on your information — **we will email you at least 30 days
-before it takes effect** and say plainly what changed.
+If we materially change this policy — particularly what we collect, why, who we share it with, or
+the commitment not to train models on your information — **we will tell you before the change takes
+effect** and say plainly what changed.
+
+**Where a change needs your consent, we will ask for it.** Until you give it, the change does not
+apply to the information you have already given us.
 
 **We will never apply a change backwards to weaken protections that applied to information you
 already gave us.**
@@ -165,6 +263,6 @@ already gave us.**
 ## 8. Contact
 
 **Privacy, and all requests under this policy:** privacy@truermeasure.com
-**Person responsible:** **Jolene Gaudet**, Privacy Officer
+**Person responsible for the protection of personal information:** Privacy Officer — privacy@truermeasure.com
 **Support:** support@truermeasure.com
 VisionEd Consultation Inc. · New Brunswick, Canada

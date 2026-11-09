@@ -17,10 +17,26 @@ import PrivacyContent from "@/content/privacy-policy.website.mdx";
  * scripts/check-legal-placeholders.mjs fails the build if either routed legal
  * document still carries a placeholder, so this page cannot go live with an
  * unset effective date.
+ *
+ * THE ADDRESS IS /privacy/website, her decision of 5 November 2026: "je
+ * retiens /privacy pour la politique du produit et /privacy/website pour celle
+ * du site." /privacy is reserved for the product policy, which is the document
+ * a parent agrees to and the one the app's consent screen links to. This one
+ * governs the forms and the email list, so it belongs at a qualified address
+ * and in the footer, which is where a reader of this website meets it.
+ *
+ * It routed at /privacy-policy while it was unreachable and briefly at
+ * /privacy on 5 November, before she settled the pair. Neither address was
+ * ever published, so neither needs a redirect.
  */
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  alternates: alternatesFor("/privacy-policy"),
+  // Her instruction, 5 November 2026: "utilise les titres Website Privacy
+  // Policy et Politique de confidentialite du site web". Two policies will
+  // carry a name; this is the one about the website, and the qualifier is what
+  // keeps the app's policy at /privacy distinguishable in a browser tab and in
+  // a search result.
+  title: "Website Privacy Policy",
+  alternates: alternatesFor("/privacy/website"),
 };
 
 export default function PrivacyPolicyPage() {
@@ -34,7 +50,7 @@ export default function PrivacyPolicyPage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(36px,5vw,64px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
         >
-          Privacy Policy
+          Website Privacy Policy
         </h1>
       </section>
 
@@ -44,7 +60,7 @@ export default function PrivacyPolicyPage() {
 
       <section className="mx-auto max-w-[720px] px-6 py-16 md:px-10 md:py-[72px]">
         <p className="mb-10 text-smoke" style={{ fontSize: 15 }}>
-          <Link href="/politique-de-confidentialite" className="text-rose underline underline-offset-2">
+          <Link href="/politique-de-confidentialite/site-web" className="text-rose underline underline-offset-2">
             Version française
           </Link>
         </p>
