@@ -21,18 +21,14 @@ import { localeFromPath, shell } from "@/content/i18n";
  *   Manage or cancel   online cancellation, through the Stripe customer portal.
  *   Withdraw           the EU withdrawal function, which must be reachable from
  *                      every page for the whole 14 days.
- *   Privacy            added 5 November 2026, when the policy was routed so she
- *                      could read it at its own address. It is the fourth
- *                      obligation and the one a reader looks for first.
+ *   Privacy            the website's Privacy Policy, published 6 November
+ *                      2026 in both languages, on her approval that day.
  * Each one points at its own language.
  *
- * The Privacy row appears only while PRIVACY_PATH is set, which
- * content/first-to-know.ts governs and which carries the full procedure. Until
- * 5 November the policy was unrouted and this link was deliberately absent,
- * because a footer link to a 404 on every page is worse than no link. The
- * reason it is here now is that the page answers; the reason it is still not
- * publishable is the draft marker inside the text, which
- * scripts/check-launch-build.mjs refuses.
+ * The privacy row is still conditional on PRIVACY_PATH rather than hardcoded,
+ * because the same mechanism holds the product's policy back: that document is
+ * not published, /privacy answers 404, and nothing should link it until it
+ * exists. content/first-to-know.ts carries the detail.
  */
 export default function Footer() {
   const locale = localeFromPath(usePathname() || "/");

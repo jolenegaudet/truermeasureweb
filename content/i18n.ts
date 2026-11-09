@@ -49,6 +49,10 @@ export const FRENCH_PATHS: Record<string, string> = {
   // The French side of /privacy/website. She named the English pair and
   // validated this one: "Je valide les quatre adresses proposees, y compris le
   // nom site-web."
+  //
+  // PUBLISHED 6 NOVEMBER 2026, both languages, effective that day, on her
+  // approval. It routed at /privacy-policy while it was unreachable and was
+  // never published there, so no redirect is owed.
   "/privacy/website": "/politique-de-confidentialite/site-web",
   // The End-User Licence Agreement, her validation of 5 November 2026: "Je
   // valide /licence, /contrat-de-licence et la redirection de /license vers
@@ -58,9 +62,8 @@ export const FRENCH_PATHS: Record<string, string> = {
   // RESERVED, AND 404 TODAY IN BOTH LANGUAGES. The document does not exist in
   // this repository: the only draft is outside it, in the counsel package, as
   // "Draft 1.2 for counsel, 2 November 2026. Not approved, not published."
-  // There is no French version of it anywhere, and the French Terms reference
-  // it by name five times, so publishing it needs an approved English text, a
-  // routed page here, and a translation that has not been written.
+  // Her decision of 6 November 2026 is that it launches in English only, so
+  // the French side stays reserved and unbuilt: see ENGLISH_ONLY_PATHS below.
   //
   // /licence and not /license: this repository uses the Canadian spelling and
   // nothing else, 13 times against zero. netlify.toml redirects the American
@@ -209,9 +212,16 @@ export const shell = {
       follow: "Follow along",
       terms: "Terms of Service",
       termsPath: "/terms-of-service",
-      // The document's own title, not new copy. Shown only while
-      // PRIVACY_PATH is set, which content/first-to-know.ts governs.
-      privacy: "Privacy Policy",
+      // The document's own title, not new copy, and the qualified title she
+      // set on 5 November 2026: "utilise les titres Website Privacy Policy et
+      // Politique de confidentialite du site web". The qualifier earns its
+      // place in the footer rather than only in the tab: this policy covers the
+      // forms, the email list and visit counts, and a reader who clicks a bare
+      // "Privacy Policy" would reasonably expect the one about their child's
+      // records, which is a different document at /privacy and is not
+      // published. Shown only while PRIVACY_PATH is set, which
+      // content/first-to-know.ts governs.
+      privacy: "Website Privacy Policy",
       // Online cancellation, through the Stripe customer portal. California
       // Bus. & Prof. Code 17602(d) requires it for an online sign-up.
       manage: "Manage or cancel your membership",
@@ -238,7 +248,7 @@ export const shell = {
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
       termsPath: "/conditions-d-utilisation",
-      privacy: "Politique de confidentialité",
+      privacy: "Politique de confidentialité du site web",
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",
       withdrawPath: "/fr/withdraw",

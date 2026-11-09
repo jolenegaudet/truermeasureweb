@@ -51,53 +51,43 @@ export const SIGNUP_SOURCE = "hidden-report-card:be-first-to-know";
 export const CONSENT_PURPOSE = "launch news and occasional product updates";
 
 /**
- * Whether the Privacy Policy is published.
+ * Whether the website's Privacy Policy is published. IT IS, since 6 November
+ * 2026, in both languages, effective that day.
  *
- * TRUE SINCE 5 NOVEMBER 2026, AND THE POLICY IS STILL NOT PUBLISHED. Read
- * that carefully, because the flag changed meaning that day.
+ * Her approval, 6 November 2026: "Publish the website policy". Her rule of 5
+ * November set the date: the effective date is the real publication date, so
+ * the document reads 6 November 2026 and 6 novembre 2026 and nothing was dated
+ * in advance.
  *
- * Her instruction, 5 November 2026: "Prepare la Politique de confidentialite a
- * https://truermeasure.com/privacy ... Montre-moi les versions exactes en
- * apercu. Apres mon accord sur les textes et leur publication, publie ces
- * pages separement de la mise a jour commerciale." So she asked to read the
- * exact texts at their real addresses before approving them. That cannot be
- * done from app/_pending, where the pages were unreachable, so the routes now
- * exist: app/privacy and app/politique-de-confidentialite. This flag only
- * decides whether the footer and the signup consent line LINK to them, and
- * with the routes live a half-state where the page exists but nothing points
- * at it would show her something the published site would never look like.
+ * WHAT THIS FLAG DOES, AND WHAT IT NEVER DID. It decides whether the footer and
+ * the signup consent line LINK to the policy. It has never been what stops an
+ * unfinished policy reaching the site. Two checks do that, and both read the
+ * documents rather than trusting a boolean:
  *
- * WHAT STOPS PUBLICATION IS NO LONGER THIS FLAG. It is two walls, and both
- * read the documents rather than trusting a boolean:
+ *   - scripts/check-legal-placeholders.mjs, which runs as prebuild here and on
+ *     Netlify, and stops any build whose routed legal text still carries
+ *     [EFFECTIVE_DATE] or a draft banner.
+ *   - scripts/check-launch-build.mjs, which refuses a BUILT site carrying a
+ *     draft marker or an unfilled placeholder in its HTML.
  *
- *   - scripts/check-legal-placeholders.mjs stops any build whose routed legal
- *     text still carries [EFFECTIVE_DATE] or a draft banner. It is prebuild,
- *     so it runs here and on Netlify alike. TM_LEGAL_PREVIEW=1 turns it into a
- *     loud warning, for exactly one purpose: the local preview she asked for.
- *   - scripts/check-launch-build.mjs then refuses a BUILT site that carries a
- *     draft marker or an unfilled placeholder in its HTML, which is the check
- *     that runs before anything is deployed. --legal-preview relaxes it, and
- *     the publish procedure never passes that flag.
+ * Both passed with no flag before this went out, which is the only acceptable
+ * way for them to pass: the document was finished, not waved through.
  *
- * TWO THINGS INSIDE THE DOCUMENTS ARE STILL HERS, and neither is mine to do:
- *   1. The effective date, [EFFECTIVE_DATE] in both files.
- *   2. The draft banner at the top of both, the blockquote beginning "DRAFT
- *      for counsel" and "EBAUCHE destinee au conseiller juridique". Deleting
- *      it is the act that declares the text final, which is her word and
- *      counsel's, not a formatting step.
- *
- * Her standing rule, 4 October 2026, still holds: hold until counsel is done.
- * Nothing here shortens that. It makes the text readable at its own address
- * while keeping publication impossible.
+ * THE PRODUCT'S POLICY IS A DIFFERENT DOCUMENT and is not published. It lives
+ * at content/privacy-policy.mdx, still carries its draft banner, and /privacy
+ * answers 404 until its text is approved. Nothing here publishes it, and the
+ * app's release check needs that address to answer 200, so the 404 is the gate
+ * holding public sign-up shut.
  */
 export const PRIVACY_POLICY_PUBLISHED = true;
 
 /**
  * The Privacy Policy link in the consent line, one path per language.
  *
- * While the policy is held back these are null and the consent sentence simply
+ * While a policy is held back these are null and the consent sentence simply
  * ends at "You can unsubscribe anytime." A link to a page that 404s would be
- * worse than no link, and the sentence was written to stand without it.
+ * worse than no link, and the sentence was written to stand without it. Since 6
+ * November 2026 the link is there, in both languages.
  *
  * These point at the WEBSITE policy, which covers the forms, the Kit list and
  * Plausible. The full product policy is a separate document and a separate
