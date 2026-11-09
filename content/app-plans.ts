@@ -549,10 +549,16 @@ export const appPlans: Record<Locale, AppPlans> = {
 
          The card already shows "Free" as the price, so the button was selling
          the price a second time and the narrow plan read as the generous one.
-         This label takes the price off the button and keeps the paid card's
-         verb, so what a parent compares is the scope: School only, or School &
-         Life. Her choice of three, 9 November 2026. */
-      cta: "Choose School only",
+         The label takes the price off the button, so what a parent compares is
+         the scope: School only, or School and Life.
+
+         It was "Choose School only" for an hour that afternoon, until she
+         dropped the verb from both buttons: "Instead of CHOOSE SCHOOL ONLY and
+         CHOOSE SCHOOL & LIFE. I want: SCHOOL ONLY and SCHOOL AND LIFE." The
+         cards render these uppercase, which is why she wrote them that way.
+         Note the ampersand went with the verb: the plan is still called School
+         & Life in the eyebrow above, and the button spells the word. */
+      cta: "School only",
     },
 
     paid: {
@@ -574,7 +580,7 @@ export const appPlans: Record<Locale, AppPlans> = {
         "See the bigger picture.",
       ],
       tagline: "Get the Truer Measure.",
-      cta: "Choose School & Life",
+      cta: "School and Life",
       billing: "Pay monthly or yearly.",
       /* Her cancel sentence, 20 October 2026, in her words. */
       cancel:
@@ -675,10 +681,10 @@ export const appPlans: Record<Locale, AppPlans> = {
       ],
       only: "Bulletins seulement.",
       /* "Commencer gratuitement" until 9 November 2026, with the English. The
-         same reasoning: le prix est déjà affiché sur la carte. "seulement"
-         carries what "only" carries, and the verb matches the paid card's
-         "Choisir École et vie". */
-      cta: "Choisir École seulement",
+         same reasoning: le prix est déjà affiché sur la carte. Both buttons
+         lost their verb when she set the English pair, so these are the plan
+         names and nothing else. */
+      cta: "École seulement",
     },
 
     paid: {
@@ -692,7 +698,7 @@ export const appPlans: Record<Locale, AppPlans> = {
         "Voyez le portrait d’ensemble.",
       ],
       tagline: "Obtenez une juste mesure.",
-      cta: "Choisir École et vie",
+      cta: "École et vie",
       billing: "Payez au mois ou à l’année.",
       cancel:
         "Annulez quand vous voulez. École et vie reste jusqu’à la fin de la période payée, et tout ce que vous avez ajouté reste avec vous.",

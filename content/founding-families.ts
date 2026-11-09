@@ -89,8 +89,11 @@ export const SALES_PAUSED = true;
 export const closing = {
   en: {
     heading: "It’s open.",
+    /* Her wording, 9 November 2026, replacing "Everything above is in the app
+       now." The dashboard is the thing a parent actually opens, and naming it
+       says the product is a place rather than a promise. */
     story:
-      "Everything above is in the app now. Bring together what you already have, start seeing what keeps showing up, and keep adding as your child grows.",
+      "The dashboard is yours to use. Bring together what you already have, start seeing what keeps showing up, and keep adding as your child grows.",
     cta: "See the two plans",
     /* Back to the plan cards on this same page, which carry the live prices,
        the billing choice and the currency handoff. Not a second link into the
@@ -100,7 +103,7 @@ export const closing = {
   fr: {
     heading: "C’est ouvert.",
     story:
-      "Tout ce qui précède est maintenant dans l’application. Rassemblez ce que vous avez déjà, voyez ce qui revient, et continuez d’ajouter à mesure que votre enfant grandit.",
+      "Le tableau de bord est à vous. Rassemblez ce que vous avez déjà, voyez ce qui revient, et continuez d’ajouter à mesure que votre enfant grandit.",
     cta: "Voyez les deux forfaits",
     ctaHref: "#plans",
   },

@@ -99,9 +99,15 @@ ${COUNTRY_OVERRIDE ? PREVIEW_COUNTRY_OVERRIDE : ""}
 ${CARRIES_CHOICE ? STAMP_ON_CLICK : ""}
 }catch(e){}})();`;
 
+/* 700 added 9 November 2026, for her instruction to set "Some you may already
+   recognize…" in bold. Cormorant Garamond is not a variable font here, so a
+   weight that is not loaded is faked by the browser: it smears the glyphs
+   sideways, which on a serif at 25px looks like a rendering fault rather than
+   emphasis. Loading the real cut costs two more files and is the difference
+   between bold and blurred. */
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant-garamond",
 });

@@ -82,7 +82,11 @@ export function FrameworkList({ locale = "en" }: { locale?: Locale }) {
             {group.families.map((family) => (
               <div key={family.id}>
                 {family.heading ? (
-                  <div className="mb-6 text-center text-[13px] font-semibold uppercase tracking-[0.15em] text-dusk md:mb-7">
+                  /* Bold and in the darkest brown, her instruction of
+                     9 November 2026: "Put these subtitles is bold: Thinking
+                     and learning, Taking action, Themselves and others, Their
+                     place in the world." */
+                  <div className="mb-6 text-center text-[13px] font-bold uppercase tracking-[0.15em] text-bark md:mb-7">
                     {family.heading[locale]}
                   </div>
                 ) : null}

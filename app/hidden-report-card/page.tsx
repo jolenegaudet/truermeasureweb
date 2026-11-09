@@ -102,6 +102,18 @@ const experience = [
     outcome:
       "Quickly save something you noticed with a sentence, photo or your voice, before you forget it.",
   },
+  /* Added 9 November 2026: "Add Reflect together, to this".
+     THE SENTENCE IS HERS. The draft read "Answer a few questions together with
+     your child, and keep those answers word for word", built from her
+     published Terms ("questions you answer with your child, kept in their own
+     words"). She cut it at the comma the same afternoon. What came off was the
+     keeping, which every other row on this page already promises; what is left
+     is the only row that names something a parent does WITH the child rather
+     than about the child, which is why it belongs last. */
+  {
+    feature: "Reflect together",
+    outcome: "Answer a few questions together with your child.",
+  },
 ];
 
 const close = closing.en;
@@ -245,7 +257,14 @@ export default function HiddenReportCardPage() {
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"
             style={{ fontSize: 17, lineHeight: 1.75, maxWidth: 640 }}
           >
-            <p className="font-heading italic text-dusk" style={{ fontSize: "clamp(20px,2.4vw,25px)" }}>
+            {/* Bold, her instruction of 9 November 2026. It is the line that
+                turns the list above into something about the reader's own
+                child, so it carries the weight of a heading without being
+                one. */}
+            <p
+              className="font-heading font-bold italic text-dusk"
+              style={{ fontSize: "clamp(20px,2.4vw,25px)" }}
+            >
               Some you may already recognize. Others you may not have seen yet.
             </p>
             <p>
@@ -253,21 +272,20 @@ export default function HiddenReportCardPage() {
               and years. A teacher sees one piece. You see another. A coach sees
               another. Your child experiences all of it.
             </p>
-            {/* TRAVEL, added 9 November 2026 on her instruction: "Add
-                something about travel. We have talked about that before."
-                Built from her own words rather than new copy. The list and the
-                absent line are hers, from the post that opens "Every time a
-                teacher told me, when I was a school principal, that they
-                couldn't believe a family was going on another trip with their
-                kids" (docs/posting-schedule-full-text.md): "navigating
-                airports, hearing another language, visiting museums,
-                calculating currencies, reading maps… we mark them absent
-                because they weren't sitting in class". */}
+            {/* TRAVEL, 9 November 2026: "Add something about travel. We have
+                talked about that before." It comes from her own post about
+                families travelling in term time, which ends "Absent from
+                school? Yes. Absent from learning? Absolutely not."
+                (docs/posting-schedule-full-text.md).
+
+                HER CUT, the same afternoon. The draft listed what a trip
+                teaches: "another language, a map, a currency, a museum, a meal
+                nobody at home would recognize". She took the list out and
+                added the "Oh, and", which turns a claim into an aside and
+                lands harder for being shorter. Three sentences, hers. */}
             <p>
-              Three weeks travelling is three weeks of learning: another
-              language, a map, a currency, a museum, a meal nobody at home would
-              recognize. School marks that absent. Your child was present for
-              all of it.
+              Oh, and three weeks travelling is three weeks of learning. School
+              marks that absent. Your child was present for all of it.
             </p>
             <p>
               Until you bring that evidence together, it&rsquo;s hard to see what

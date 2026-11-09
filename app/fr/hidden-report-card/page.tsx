@@ -112,6 +112,16 @@ const experience = [
     outcome:
       "Enregistrez vite ce que vous venez de remarquer, en une phrase, une photo ou votre voix, avant de l’oublier.",
   },
+  /* Avec l'anglais, 9 November 2026. Her name, given the same afternoon: it
+     went in as "Reflect together" on the reasoning that the product's proper
+     names stay English, and she translated it. She is right and the row above
+     proves it: every other feature on this French page is already translated,
+     from Mon enfant to Saisir un moment. The imperative matches them and
+     matches the -ez form /fr uses throughout. */
+  {
+    feature: "Réfléchissez ensemble",
+    outcome: "Répondez à quelques questions avec votre enfant.",
+  },
 ];
 
 const close = closing.fr;
@@ -236,7 +246,11 @@ export default function FrenchHiddenReportCardPage() {
             className="mx-auto mt-[54px] flex flex-col gap-5 text-center text-smoke"
             style={{ fontSize: 17, lineHeight: 1.75, maxWidth: 640 }}
           >
-            <p className="font-heading italic text-dusk" style={{ fontSize: "clamp(20px,2.4vw,25px)" }}>
+            {/* Bold, with the English. Her instruction of 9 November 2026. */}
+            <p
+              className="font-heading font-bold italic text-dusk"
+              style={{ fontSize: "clamp(20px,2.4vw,25px)" }}
+            >
               Vous en reconnaissez peut-être déjà certaines. D&rsquo;autres, vous
               ne les avez peut-être pas encore vues.
             </p>
@@ -246,15 +260,16 @@ export default function FrenchHiddenReportCardPage() {
               Vous en voyez un autre. Un entraîneur en voit un autre. Votre
               enfant, lui, vit tout cela.
             </p>
-            {/* Le voyage, 9 November 2026. Her own words from the post about
-                families travelling in term time, rendered in the register
-                of /fr. See the English page. */}
+            {/* Le voyage, 9 November 2026, shortened with the English the
+                same afternoon. See the note on the English page.
+
+                "Ah, et" rather than a literal "Oh, et", which reads as
+                translated English. "Ah, et" is the aside her sentence is
+                making, in the register /fr already uses. */}
             <p>
-              Trois semaines de voyage, c&rsquo;est trois semaines
-              d&rsquo;apprentissage : une autre langue, une carte, une monnaie,
-              un musée, un repas que personne ne reconnaîtrait à la maison.
-              L&rsquo;école inscrit une absence. Votre enfant, lui, était
-              présent à tout cela.
+              Ah, et trois semaines de voyage, c&rsquo;est trois semaines
+              d&rsquo;apprentissage. L&rsquo;école inscrit une absence. Votre
+              enfant, lui, était présent à tout cela.
             </p>
             <p>
               Tant que ces preuves ne sont pas réunies, il est difficile de voir
