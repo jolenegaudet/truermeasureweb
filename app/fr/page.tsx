@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { salesPause } from "@/content/founding-families";
 import { WaitlistButton } from "@/components/waitlist-button";
-import { FirstToKnowButton } from "@/components/first-to-know";
+import { PlanCards } from "@/components/plan-cards";
+import { APP_PRICES } from "@/content/app-prices";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 const DESCRIPTION =
@@ -56,10 +56,17 @@ const circleAccess = [
  * phrase behind justemesure.ca, because "Voici A Truer Measure" reads like a
  * translation accident.
  *
- * Prices and offer terms come from content/founding-families.ts, the same file
- * the English page reads, so the two languages cannot quote different numbers.
+ * Prices and offer terms come from content/app-plans.ts, the same file the
+ * English page reads, so the two languages cannot quote different numbers.
+ *
+ * 28 OCTOBER 2026, her second brief: the app offer is one product with two
+ * plans here too, Ecole and Ecole et vie, and /fr now has the same four
+ * sections as the English page. Parents Élites and Cercle prive are
+ * untouched: same cards, same GoHighLevel forms, same French, same tags.
+ *
+ * The French plan copy is a DRAFT for her review (content/app-plans.ts, the
+ * fr block), not an approved translation.
  */
-const pause = salesPause.fr;
 
 export default function FrenchHomePage() {
   return (
@@ -96,126 +103,37 @@ export default function FrenchHomePage() {
         </div>
       </section>
 
-      {/* 2. Founder */}
-      <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
-        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
-          <div className="flex justify-center">
-            <Image
-              src="/founder.png"
-              alt="Jolene, fondatrice de Truer Measure"
-              width={400}
-              height={400}
-              className="block rounded-full object-cover object-top"
-              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
-            />
-          </div>
-          <div>
-            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
-              Un mot de la fondatrice
-            </div>
-            <p
-              className="font-heading mb-7 text-bark"
-              style={{
-                fontSize: "clamp(24px,3vw,34px)",
-                lineHeight: 1.4,
-              }}
-            >
-              Pendant près de <em>25 ans</em>, j&rsquo;ai participé à la
-              rédaction des bulletins que les familles rapportent à la maison :
-              d&rsquo;abord comme enseignante, qui les écrivait, puis comme
-              directrice, qui les signait.
-            </p>
-            <p
-              className="mb-[22px] text-smoke"
-              style={{ fontSize: 17, lineHeight: 1.75 }}
-            >
-              J&rsquo;ai assisté à des centaines de rencontres
-              parents-enseignants, à regarder des familles chercher leur enfant
-              dans un paragraphe de commentaires soigneusement choisis. Et
-              chaque fois, je voyais la même chose : les qualités et les
-              habiletés qui comptaient le plus, la conviction discrète
-              qu&rsquo;un enfant est capable de plus que la case où on vient de
-              le placer, ne se trouvaient nulle part dans ces pages.
-            </p>
-            <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
-              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat}&nbsp;: un portrait
-              vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
-              <em className="italic text-bark">au-delà</em>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Tiers */}
+      {/* 2. Tiers */}
       <section
         id="tiers"
         className="bg-parchment px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[110px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto mb-12 max-w-[560px] text-center md:mb-16">
+          <PlanCards locale="fr" prices={APP_PRICES} />
+        </div>
+      </section>
+
+      {/* 3. Communauté et Proximité.
+          Parents Élites and Cercle privé, exactly as they were: the same
+          cards, the same GoHighLevel forms, the same tags, the same French.
+          Only the row width changed, from three columns to two, because the
+          app offer that used to sit beside them is now its own section above. */}
+      <section className="bg-linen px-6 pb-16 pt-16 md:px-10 md:pb-[100px] md:pt-[104px]">
+        <div className="mx-auto max-w-[860px]">
+          <div className="mx-auto mb-12 max-w-[560px] text-center md:mb-14">
             <h2
               className="font-heading mb-[18px] font-medium text-bark"
               style={{ fontSize: "clamp(28px,5vw,52px)", lineHeight: 1.08 }}
             >
-              Commencez par la clarté.
+              Poursuivez avec la communauté.
             </h2>
             <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.7 }}>
-              Poursuivez avec la communauté. Grandissez avec la proximité.
+              Grandissez avec la proximité.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 items-stretch gap-7 md:grid-cols-3 md:gap-8">
-            {/* Tier 1 — A Truer Measure */}
-            <div className="flex flex-col">
-              <div
-                className="flex flex-1 flex-col items-center rounded-[2px] bg-bark px-7 pb-[52px] pt-[58px] text-center md:px-11"
-                style={{ boxShadow: "0 12px 48px rgba(43,34,32,.18)" }}
-              >
-                <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose-dark">
-                  Clarté
-                </div>
-                <div
-                  className="font-heading mb-3 font-medium text-parchment"
-                  style={{ fontSize: 40, lineHeight: 1.04 }}
-                >
-                  {tiers.fr.one[0]}
-                  <br />
-                  {tiers.fr.one[1]}
-                </div>
-                <p
-                  className="mb-8 text-parchment"
-                  style={{ fontSize: 15.5, lineHeight: 1.55 }}
-                >
-                  Plus qu&rsquo;une note pour parler de votre enfant.
-                </p>
-                {/* No flex-1 spacer here any more. It was sized for a card
-                    full of pricing; with this much less content it would push
-                    the message to the bottom and open a hole in the middle. The
-                    card still stretches to the row, and the slack now falls
-                    below the button, where it reads as padding. */}
-                {/* SALES PAUSED, 2 October 2026, in both languages: pausing
-                    only the English pages would have left the offer on sale to
-                    every French visitor. See content/founding-families.ts. */}
-                <p
-                  className="font-heading mt-4 text-parchment"
-                  style={{ fontSize: 22, lineHeight: 1.3 }}
-                >
-                  {pause.heading}
-                </p>
-                {/* "Be the first to know", her brief of 4 October 2026.
-                    This replaced a link to the product page that read
-                    "Coming soon."; that page is still one click away in
-                    the nav on every page. The classes are the ones the
-                    link had, so the card does not move. */}
-                <FirstToKnowButton
-                  locale="fr"
-                  place="home-card"
-                  className="mt-8 inline-block cursor-pointer rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-                />
-              </div>
-            </div>
-
-            {/* Tier 2 — Parents leaders */}
+          <div className="grid grid-cols-1 items-stretch gap-7 md:grid-cols-2 md:gap-8">
+            {/* Tier 2: Parents Élites */}
             <div className="flex flex-col items-center rounded-[2px] border border-border bg-ghost px-6 pb-[46px] pt-[50px] text-center md:px-9">
               <div className="mb-4 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
                 Communauté
@@ -289,6 +207,61 @@ export default function FrenchHomePage() {
           </div>
         </div>
       </section>
+
+      {/* 4. La note de la fondatrice, en dernier.
+          Her brief of 2 November 2026: the founder's note becomes the last
+          content section, immediately before the footer, after the offers
+          and their supporting explanations. Not one word of it changed;
+          only where it sits. The English home page makes the same move. */}
+      <section className="bg-linen px-6 py-16 md:px-10 md:py-[104px]">
+        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:gap-16 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="flex justify-center">
+            <Image
+              src="/founder.png"
+              alt="Jolene, fondatrice de Truer Measure"
+              width={400}
+              height={400}
+              className="block rounded-full object-cover object-top"
+              style={{ width: "min(280px, 70vw)", aspectRatio: "1/1" }}
+            />
+          </div>
+          <div>
+            <div className="mb-[26px] text-center text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose md:text-left">
+              Un mot de la fondatrice
+            </div>
+            <p
+              className="font-heading mb-7 text-bark"
+              style={{
+                fontSize: "clamp(24px,3vw,34px)",
+                lineHeight: 1.4,
+              }}
+            >
+              Pendant près de <em>25 ans</em>, j&rsquo;ai participé à la
+              rédaction des bulletins que les familles rapportent à la maison :
+              d&rsquo;abord comme enseignante, qui les écrivait, puis comme
+              directrice, qui les signait.
+            </p>
+            <p
+              className="mb-[22px] text-smoke"
+              style={{ fontSize: 17, lineHeight: 1.75 }}
+            >
+              J&rsquo;ai assisté à des centaines de rencontres
+              parents-enseignants, à regarder des familles chercher leur enfant
+              dans un paragraphe de commentaires soigneusement choisis. Et
+              chaque fois, je voyais la même chose : les qualités et les
+              habiletés qui comptaient le plus, la conviction discrète
+              qu&rsquo;un enfant est capable de plus que la case où on vient de
+              le placer, ne se trouvaient nulle part dans ces pages.
+            </p>
+            <p className="text-smoke" style={{ fontSize: 17, lineHeight: 1.75 }}>
+              C&rsquo;est pourquoi j&rsquo;ai créé {tiers.fr.oneFlat}&nbsp;: un portrait
+              vivant de l&rsquo;éducation de votre enfant, à l&rsquo;école et{" "}
+              <em className="italic text-bark">au-delà</em>.
+            </p>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

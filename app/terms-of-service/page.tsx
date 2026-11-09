@@ -3,6 +3,26 @@ import { alternatesFor } from "@/content/i18n";
 import Link from "next/link";
 import TermsContent from "@/content/terms-of-service.mdx";
 
+/**
+ * The Terms of Service.
+ *
+ * content/terms-of-service.mdx is GENERATED from
+ * offer/legal-documents-current/terms-of-service.md by scripts/sync-legal.mjs.
+ * Her ruling of 9 November 2026: that folder is the only source for the three
+ * documents. Do not edit the MDX.
+ *
+ * ENGLISH ONLY from 9 November 2026, and the link to the French is gone with
+ * the French page. Her instruction: "Take /conditions-d-utilisation down until
+ * the French translation exists." Section 13 of the document says the same
+ * thing in its own words, which is why taking the page down does not leave the
+ * contract lying: "These terms are in English. A French version will follow;
+ * once it exists, if you live in Quebec, the French version governs."
+ *
+ * So this page offers no "Version francaise" link, content/i18n.ts drops the
+ * French alternate so no hreflang tag and no language toggle points at a 404,
+ * and the French footer's Terms link points here. A French page linking an
+ * English contract is the honest state of things until the translation lands.
+ */
 export const metadata: Metadata = {
   title: "Terms of Service",
   alternates: alternatesFor("/terms-of-service"),
@@ -28,11 +48,6 @@ export default function TermsOfServicePage() {
       </div>
 
       <section className="mx-auto max-w-[720px] px-6 py-16 md:px-10 md:py-[72px]">
-        <p className="mb-10 text-smoke" style={{ fontSize: 15 }}>
-          <Link href="/conditions-d-utilisation" className="text-rose underline underline-offset-2">
-            Version française
-          </Link>
-        </p>
         <TermsContent />
 
         <div className="mt-16 border-t border-border pt-10">

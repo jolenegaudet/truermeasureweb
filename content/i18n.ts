@@ -32,21 +32,77 @@ export const LOCALE_PREFIX = "/fr";
  */
 export const FRENCH_PATHS: Record<string, string> = {
   "/terms-of-service": "/conditions-d-utilisation",
-  // A legal document is found by its own name, so these two sit outside /fr.
+  // A legal document is found by its own name, so these sit outside /fr.
   //
-  // Published 6 November 2026 at /privacy/website and
-  // /politique-de-confidentialite/site-web, her four validated addresses: "je
-  // retiens /privacy pour la politique du produit et /privacy/website pour
-  // celle du site." The qualifier matters because /privacy is reserved for the
-  // product's policy, the document a parent agrees to, which does not exist
-  // yet and answers 404 until it does. The policy routed at /privacy-policy
-  // while it was unreachable and was never published there, so no redirect is
-  // owed.
+  // TWO PRIVACY POLICIES, TWO ADDRESSES. Her decision, 5 November 2026: "Pour
+  // les adresses, je retiens /privacy pour la politique du produit et
+  // /privacy/website pour celle du site." The product policy is the document a
+  // parent agrees to, covering their child's records, and it is what the
+  // customer app's consent screen links to. The website policy covers the
+  // forms, the Kit list and Plausible, and nothing else.
+  //
+  // /privacy is RESERVED and answers 404 until the product policy's text is
+  // approved. That is deliberate: the app's release check refuses a legal link
+  // that does not answer 200, so the 404 is the gate holding public sign-up
+  // shut until the document a parent agrees to actually exists.
+  "/privacy": "/politique-de-confidentialite",
+  // The French side of /privacy/website. She named the English pair and
+  // validated this one: "Je valide les quatre adresses proposees, y compris le
+  // nom site-web."
+  //
+  // PUBLISHED 6 NOVEMBER 2026, both languages, effective that day, on her
+  // approval. It routed at /privacy-policy while it was unreachable and was
+  // never published there, so no redirect is owed.
   "/privacy/website": "/politique-de-confidentialite/site-web",
+  // The End-User Licence Agreement, her validation of 5 November 2026: "Je
+  // valide /licence, /contrat-de-licence et la redirection de /license vers
+  // /licence." The app's agreement screen links it as TM_LICENCE_URL and its
+  // release check needs it to answer 200, alongside the Terms and the Policy.
+  //
+  // RESERVED, AND 404 TODAY IN BOTH LANGUAGES. The document does not exist in
+  // this repository: the only draft is outside it, in the counsel package, as
+  // "Draft 1.2 for counsel, 2 November 2026. Not approved, not published."
+  // Her decision of 6 November 2026 is that it launches in English only, so
+  // the French side stays reserved and unbuilt: see ENGLISH_ONLY_PATHS below.
+  //
+  // /licence and not /license: this repository uses the Canadian spelling and
+  // nothing else, 13 times against zero. netlify.toml redirects the American
+  // spelling, because a 404 on a legal document is the worst 404 on the site.
+  "/licence": "/contrat-de-licence",
 };
 const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
   Object.entries(FRENCH_PATHS).map(([en, fr]) => [fr, en]),
 );
+
+/**
+ * ADDRESSES THAT EXIST IN ENGLISH ONLY. Her decision, 6 November 2026: "We are
+ * launching without a french version."
+ *
+ * The names above stay reserved, because she validated all four of them and a
+ * French version may still be written. What changes is what the site CLAIMS: no
+ * language toggle and no fr hreflang for these two, because both would send a
+ * reader, or Google, to a page that answers 404.
+ *
+ * This is the product's policy and the Licence. The Terms and the website's
+ * policy are bilingual and are not in here. The French site stays live, so a
+ * French-speaking parent will read French Terms beside an English Licence and an
+ * English product policy. That mismatch is counsel question 1b and is not
+ * settled by this file; what this file does is stop the site from implying the
+ * French versions are there.
+ *
+ * scripts/check-legal-placeholders.mjs carries the matching exception, by
+ * filename rather than by address. Two entries in two places: if a French
+ * version is written, both have to lose it.
+ */
+/* THE TERMS JOINED THIS SET ON 9 NOVEMBER 2026, on her instruction: "Take
+   /conditions-d-utilisation down until the French translation exists." The
+   French path stays in FRENCH_PATHS above, reserved for the translation, so
+   what changed is what the site CLAIMS exists, not what is set aside. */
+export const ENGLISH_ONLY_PATHS = new Set([
+  "/terms-of-service",
+  "/privacy",
+  "/licence",
+]);
 
 /**
  * The locale a path belongs to: everything under /fr, plus the French paths
@@ -57,8 +113,12 @@ export function localeFromPath(pathname: string): Locale {
   return pathname in ENGLISH_PATHS ? "fr" : "en";
 }
 
-/** The same page in the other language. */
-export function otherLocalePath(pathname: string): string {
+/**
+ * The same page in the other language, or null when there is no such page.
+ * Callers must handle null: the nav hides the toggle rather than linking a 404.
+ */
+export function otherLocalePath(pathname: string): string | null {
+  if (ENGLISH_ONLY_PATHS.has(pathname)) return null;
   if (pathname in FRENCH_PATHS) return FRENCH_PATHS[pathname];
   if (pathname in ENGLISH_PATHS) return ENGLISH_PATHS[pathname];
   if (localeFromPath(pathname) === "fr") {
@@ -84,12 +144,14 @@ export function localePath(locale: Locale, path: string): string {
  * telling Google to drop it, and the French site would never be indexed.
  */
 export function alternatesFor(englishPath: string, locale: Locale = "en") {
+  /* No fr alternate for a document that exists in English only. An hreflang
+     pointing at a 404 is a broken alternate and is reported as one. */
+  const languages = ENGLISH_ONLY_PATHS.has(englishPath)
+    ? { en: englishPath }
+    : { en: englishPath, fr: localePath("fr", englishPath) };
   return {
     canonical: localePath(locale, englishPath),
-    languages: {
-      en: englishPath,
-      fr: localePath("fr", englishPath),
-    },
+    languages,
   };
 }
 
@@ -99,7 +161,13 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
  *
  *   Start Here      Commencez ici
  *   The Hidden Report Card(TM)   Le rapport caché
- *   Elite Parents   Parents leaders
+ *   Elite Parents   Parents Élites
+ *
+ * The French name was "Parents leaders" until 29 October 2026, when she
+ * corrected it to "Parents Élites" ("Use exactly “Parents Élites”, replacing
+ * “Parents Leaders” and other outdated variants wherever they name this
+ * offer"). The English name, the French brand name and the Inner Circle offer
+ * are unchanged.
  *   Inner Circle    Cercle privé
  *
  * She wrote the trademark on the English and not on the French, so the French
@@ -122,8 +190,8 @@ export const tiers = {
   fr: {
     one: ["Une Juste", "Mesure"],
     oneFlat: "Une Juste Mesure",
-    two: ["Parents", "leaders"],
-    twoFlat: "Parents leaders",
+    two: ["Parents", "Élites"],
+    twoFlat: "Parents Élites",
     three: ["Cercle", "privé"],
     threeFlat: "Cercle privé",
   },
@@ -178,7 +246,7 @@ export const shell = {
     nav: {
       start: "Commencez ici",
       hiddenReportCard: "Le rapport caché",
-      learn: "Parents leaders",
+      learn: "Parents Élites",
       innerCircle: "Cercle privé",
     },
     toggle: { label: "EN", aria: "View this page in English" },
@@ -187,7 +255,12 @@ export const shell = {
       tagline: "La juste mesure d’un enfant !",
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
-      termsPath: "/conditions-d-utilisation",
+      /* POINTS AT THE ENGLISH DOCUMENT, 9 November 2026. The French Terms came
+         down with her instruction and the translation does not exist yet, so a
+         French page's footer links the English contract rather than a 404.
+         Section 13 of the document says a French version will follow. Change
+         this back the day content/conditions-d-utilisation.mdx is routed. */
+      termsPath: "/terms-of-service",
       privacy: "Politique de confidentialité du site web",
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",

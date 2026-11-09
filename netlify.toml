@@ -31,6 +31,59 @@
 [functions]
   node_bundler = "esbuild"
 
+# The visitor's country, resolved by Netlify and turned into one attribute on
+# the page (netlify/edge-functions/currency.ts). The function also declares
+# this path itself; both are here so the routing is visible in the config a
+# person reads first. Inline config wins if they ever disagree.
+[[edge_functions]]
+  function = "currency"
+  path     = "/*"
+
+# /terms, because the customer app's agreement screen links to it.
+#
+# Confirmed with the app session on 2 November 2026: the app's agreement screen
+# (js/account.js:370) links https://truermeasure.com/terms and
+# https://truermeasure.com/privacy, and both return 404 on the live site today.
+# The Terms exist, at /terms-of-service, so this is a one-line fix and it costs
+# nothing: anyone who types /terms today also gets the 404 page.
+#
+# /privacy needs no redirect: since 9 November 2026 it IS the product Privacy
+# Policy, published on her instruction from offer/legal-documents-current. This
+# paragraph said it was held back pending counsel; that stopped being true when
+# she published the three documents.
+#
+# This is no longer what the app depends on, and it stays anyway. From app
+# commit 19903d2 (3 November 2026) the app's Terms and Privacy links and its
+# consent version are release settings, and its release check refuses a release
+# where either link does not answer 200. At release it points straight at
+# /terms-of-service. This redirect is then for anyone who types /terms, where
+# the 404 is just as real.
+[[redirects]]
+  from   = "/terms"
+  to     = "/terms-of-service"
+  status = 301
+
+# /license, the American spelling, to /licence, the Canadian one.
+#
+# Her validation, 5 November 2026: "Je valide /licence, /contrat-de-licence et
+# la redirection de /license vers /licence." This repository uses "licence"
+# everywhere, 13 times against zero, and the Terms call the document the
+# End-User Licence Agreement in English and the Contrat de licence in French.
+# But /license is what a large share of readers will type, and a 404 on a
+# document somebody has agreed to is the worst 404 on this site.
+#
+# IT NOW POINTS AT A REAL PAGE. /licence is the End-User Licence Agreement,
+# published 9 November 2026 from offer/legal-documents-current. The redirect was
+# written while it was still a 404 so that it could not be forgotten in the
+# change that published the document; that change has happened.
+#
+# /contrat-de-licence is NOT routed: the Licence is English only until the
+# French translation exists, the same as the Terms. See content/i18n.ts.
+[[redirects]]
+  from   = "/license"
+  to     = "/licence"
+  status = 301
+
 [[redirects]]
   from   = "/build"
   to     = "/inner-circle"

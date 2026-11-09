@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { INTRO_MONTHS, prices, type Price } from "@/content/founding-families";
+import { CurrencyToggle, type CurrencyCode } from "@/components/currency-toggle";
 import type { Locale } from "@/content/i18n";
 
 /**
@@ -18,9 +19,13 @@ import type { Locale } from "@/content/i18n";
  * USD is rendered on the server and is the default, so the first paint and the
  * hydrated paint agree. No currency is guessed from the browser: a guess that
  * lands wrong changes the price a parent sees with no explanation.
+ *
+ * 28 October 2026: the three buttons moved to components/currency-toggle.tsx so
+ * the app plan cards could use the same control instead of a second one that
+ * looked almost like it. The order and the default here are unchanged.
  */
 
-const CODES: Price["code"][] = ["USD", "CAD", "EUR"];
+const CODES: CurrencyCode[] = ["USD", "CAD", "EUR"];
 
 /**
  * The tax sentence follows the currency, not the language. In Stripe the euro
@@ -36,7 +41,6 @@ const copy = {
       tax === "inclusive"
         ? `Then ${amount} per month, VAT included.`
         : `Then ${amount} per month, plus applicable taxes.`,
-    aria: (c: string) => `Show prices in ${c}`,
   },
   fr: {
     first: (n: number) => `Vos ${n} premiers mois`,
@@ -45,7 +49,6 @@ const copy = {
       tax === "inclusive"
         ? `Ensuite ${amount} par mois, TVA incluse.`
         : `Ensuite ${amount} par mois, plus les taxes applicables.`,
-    aria: (c: string) => `Afficher les prix en ${c}`,
   },
 } as const;
 
@@ -67,18 +70,6 @@ export function OfferPrice({
   const quiet = dark ? "text-muted" : "text-smoke";
   const eyebrow = dark ? "text-rose-dark" : "text-rose";
 
-  const button = (active: boolean) =>
-    [
-      "rounded-[2px] px-[13px] py-[6px] text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors",
-      active
-        ? dark
-          ? "bg-parchment text-bark"
-          : "bg-bark text-parchment"
-        : dark
-          ? "border border-charcoal text-muted hover:text-parchment"
-          : "border border-border text-smoke hover:text-bark",
-    ].join(" ");
-
   return (
     <div>
       <div
@@ -99,19 +90,14 @@ export function OfferPrice({
       </div>
 
       {/* The buttons sit directly under the price, because they change it. */}
-      <div className="mt-4 flex items-center justify-center gap-2">
-        {CODES.map((c) => (
-          <button
-            key={c}
-            type="button"
-            onClick={() => setCode(c)}
-            aria-pressed={c === code}
-            aria-label={t.aria(c)}
-            className={button(c === code)}
-          >
-            {c}
-          </button>
-        ))}
+      <div className="mt-4">
+        <CurrencyToggle
+          value={code}
+          onChange={setCode}
+          tone={tone}
+          locale={locale}
+          codes={CODES}
+        />
       </div>
 
       {/* The standing price has to follow the chosen currency. Leaving all

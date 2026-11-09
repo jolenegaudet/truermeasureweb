@@ -5,7 +5,7 @@ import { WaitlistButton } from "@/components/waitlist-button";
 import { alternatesFor, tiers } from "@/content/i18n";
 
 export const metadata: Metadata = {
-  title: "Parents leaders",
+  title: "Parents Élites",
   description:
     "Une communauté choisie pour des parents qui prennent l’apprentissage au sérieux : rencontre en direct avec Jolene, experts invités, et des questions posées en contexte.",
   alternates: alternatesFor("/learn", "fr"),
@@ -27,7 +27,7 @@ export default function FrenchLearnPage() {
           className="font-heading mb-8 font-medium text-bark"
           style={{ fontSize: "clamp(44px,7vw,88px)", lineHeight: 1.0, letterSpacing: "-0.01em" }}
         >
-          Parents leaders
+          Parents Élites
         </h1>
         <p
           className="font-heading mx-auto italic text-dusk"
@@ -35,6 +35,20 @@ export default function FrenchLearnPage() {
         >
           Des parents d&rsquo;exception, leaders de l&rsquo;apprentissage
         </p>
+
+        {/* Her brief of 2 November 2026: the action before the explanation.
+            Same button, tag and form as the one at the foot of the page. */}
+        <div className="mt-10 flex justify-center">
+          <WaitlistButton
+            locale="fr"
+            tag="waitlist-elite-learning-leaders"
+            label={"Rejoignez la liste d’attente"}
+            modalEyebrow={tiers.fr.twoFlat}
+            modalTitle="Inscrivez-vous à la liste d’attente."
+            submitLabel={"Inscrivez-vous"}
+            variant="bark"
+          />
+        </div>
       </section>
 
       {/* Separator */}
