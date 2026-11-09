@@ -55,8 +55,9 @@
 
   EVERY FACTUAL CLAIM in sections 3, 4 and 5 was read out of the code and the
   built site on 6 November 2026, not from memory: the field lists from
-  components/waitlist-button.tsx, components/withdrawal-form.tsx and
-  components/first-to-know.tsx; what reaches each provider from
+  components/waitlist-button.tsx and
+  components/first-to-know.tsx (components/withdrawal-form.tsx was the third,
+  deleted 9 November 2026 with the withdrawal row of this table); what reaches each provider from
   netlify/functions/contact-submit.ts and netlify/functions/kit-subscribe.ts;
   the absence of any cookie or stored identifier by searching the built output;
   the single third-party script host by counting external hosts in the built
@@ -122,7 +123,6 @@ There are three, and they are not the same.
 |---|---|---|---|
 | **Waitlist and enquiry** | first name, last name, email address | phone number; number of children and their ages; city; province or state; postal code | GoHighLevel |
 | **"Be the first to know" email list** | email address | nothing: we ask for nothing else | Kit |
-| **Right of withdrawal** | first name, last name, email address | nothing | GoHighLevel |
 
 The first column is what the form will not submit without. Everything in the second column can be
 left blank, and the form works.
@@ -178,7 +178,7 @@ and may not use your information for their own purposes.
 
 | Provider | What for | Where |
 |---|---|---|
-| **GoHighLevel** | The waitlist, enquiry and withdrawal forms | United States |
+| **GoHighLevel** | The waitlist and enquiry forms | United States |
 | **Kit** | The "be the first to know" email list: launch news and product updates | United States |
 | **Plausible Analytics** | Website visit counts — cookieless, no personal information | European Union |
 | **Netlify** | Hosting truermeasure.com, running its form handlers, and resolving the country for the price | United States |

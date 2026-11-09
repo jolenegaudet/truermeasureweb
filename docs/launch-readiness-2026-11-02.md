@@ -1996,3 +1996,47 @@ Writing replacements is writing legal text, so they stand as they are and are re
 same three sentences exist in the French at article 3.
 
 **Not deployed.** The live Terms still carry section 2 until she says the Terms go out.
+
+### 9 November: section 3 repaired, section 15 and the whole withdrawal route removed
+
+Two choices from her, one question at a time, after she asked for the web to be up to date and
+aligned.
+
+**Section 3, by deletion only.** The introductory-rate bullet is gone, and two words with it:
+"other" and "standard". Nothing was added, in either language. Section 3 still carries automatic
+renewal, 30 days' notice before the amount changes, no change to a period already paid, and the
+Québec cancellation right. The French bullet became "Tout changement de prix. Nous pouvons modifier
+le prix pour les périodes de facturation futures."
+
+**Section 15 and the EU withdrawal function, removed.** Her answer to 3c: *"Until the next version,
+we will not process EU customers. British not included."* What came out, in one commit:
+
+- section 15 of the Terms, both languages
+- the "Withdraw from contract here" footer link and its two strings in `content/i18n.ts`
+- `app/withdraw/` and `app/fr/withdraw/`
+- `components/withdrawal-form.tsx`
+- the **Right of withdrawal** row in the published English website policy and the **Droit de
+  retrait** row in the French, and the words "and withdrawal" / "et de retrait" from each
+  GoHighLevel row
+
+**That last item is the one worth noticing.** Both website policies are published, and both
+described the withdrawal form by name, in a table of what each form collects. Removing the form
+without removing those rows would have left two live documents describing a page that answers 404.
+The French used "retrait" rather than "rétractation", which is why a first search for the word
+found nothing in it; the row was there.
+
+**The launch wall now refuses the link instead of demanding it.** `check-launch-build.mjs` used to
+fail a build whose pages lacked `/withdraw`, because the EU function has to be reachable from every
+page for the whole fourteen days. That check is inverted, not deleted: a deleted check forgets the
+decision. The line now names everything that has to come back if EU sales resume.
+
+**Verified in the built output**, 16 pages: no page links `/withdraw`, both Terms carry no price
+figure and no mention of an introductory rate or a right of withdrawal, Truer Measure™ appears at
+every mention, and neither website policy mentions the withdrawal form in either language.
+
+**One thing I cannot check from here:** whether any existing subscription is in euros. Removing
+section 15 removes a right from a euro customer who already has one. There is at least one live
+subscription (`sub_1Tw71d`). This is the one item worth confirming in Stripe before the Terms go
+live.
+
+**Still not deployed.** The live Terms still carry section 2, section 15 and the withdrawal link.

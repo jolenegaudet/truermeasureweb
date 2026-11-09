@@ -225,9 +225,6 @@ export const shell = {
       // Online cancellation, through the Stripe customer portal. California
       // Bus. & Prof. Code 17602(d) requires it for an online sign-up.
       manage: "Manage or cancel your membership",
-      // The EU directive's own suggested label.
-      withdraw: "Withdraw from contract here",
-      withdrawPath: "/withdraw",
       rights: "Truer Measure. All rights reserved.",
     },
   },
@@ -250,8 +247,6 @@ export const shell = {
       termsPath: "/conditions-d-utilisation",
       privacy: "Politique de confidentialité du site web",
       manage: "Gérez ou annulez votre adhésion",
-      withdraw: "Rétractez-vous de votre contrat ici",
-      withdrawPath: "/fr/withdraw",
       rights: "Truer Measure. Tous droits réservés.",
     },
   },
