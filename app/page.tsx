@@ -6,7 +6,7 @@ import { APP_PRICES } from "@/content/app-prices";
 import { alternatesFor } from "@/content/i18n";
 
 export const metadata: Metadata = {
-  title: "A Truer Measure",
+  title: "A Truer Measure™",
   // hreflang, so the English and French home pages read as one page in two
   // languages rather than two pages competing for the same searches.
   alternates: alternatesFor("/"),

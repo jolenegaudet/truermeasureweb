@@ -9,7 +9,12 @@ const DESCRIPTION =
   "Un portrait vivant de l’apprentissage, des forces et du cheminement de votre enfant, qui réunit ce qui vient de l’école et d’ailleurs.";
 
 export const metadata: Metadata = {
-  title: "A Truer Measure",
+  /* `absolute` so the root layout's "%s | Truer Measure(TM)" template is not
+     applied on top of a title that already ends in the name. Without it this
+     tab read "A Truer Measure(TM) | Truer Measure(TM)". The English home page
+     never had the fault because it uses the layout's default title rather than
+     setting its own; app/hidden-report-card/page.tsx records the same trap. */
+  title: { absolute: "A Truer Measure™" },
   description: DESCRIPTION,
   alternates: alternatesFor("/", "fr"),
   // Without this the page inherits the English Open Graph block from the root

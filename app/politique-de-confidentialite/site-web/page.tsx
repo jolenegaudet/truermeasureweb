@@ -21,7 +21,7 @@ export default function PolitiqueDeConfidentialitePage() {
     <>
       <section className="mx-auto max-w-[920px] px-6 pb-[40px] pt-16 text-center md:px-10 md:pt-24">
         <div className="mb-[30px] text-[13px] font-semibold uppercase tracking-[0.26em] text-rose">
-          Truer Measure
+          Truer Measure™
         </div>
         <h1
           className="font-heading mb-8 font-medium text-bark"

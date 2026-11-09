@@ -215,7 +215,7 @@ export const shell = {
     },
     toggle: { label: "FR", aria: "Voyez cette page en français" },
     footer: {
-      brand: "A Truer Measure",
+      brand: "A Truer Measure™",
       tagline: "The Truer Measure of a Child!",
       follow: "Follow along",
       terms: "Terms of Service",
@@ -236,7 +236,7 @@ export const shell = {
       // The EU directive's own suggested label.
       withdraw: "Withdraw from contract here",
       withdrawPath: "/withdraw",
-      rights: "Truer Measure. All rights reserved.",
+      rights: "Truer Measure™. All rights reserved.",
     },
   },
   fr: {
@@ -265,7 +265,7 @@ export const shell = {
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",
       withdrawPath: "/fr/withdraw",
-      rights: "Truer Measure. Tous droits réservés.",
+      rights: "Truer Measure™. Tous droits réservés.",
     },
   },
 } as const;
