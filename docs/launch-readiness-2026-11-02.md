@@ -1886,3 +1886,79 @@ sensibly before that, and section 2 is live text in a published contract. The
 Licence's own changes, the version-recording sentence and the findings clause,
 sit downstream of the same answer because the Licence is accepted alongside the
 Terms.
+
+## 9 November: the responses document did answer the two questions I was still asking
+
+She told me to check the file before asking again. It answers both, and both answers sit somewhere
+I had not looked hard enough.
+
+**The merchant of record is answered in Part A, in the Prices row, not under a question.** Her
+words: *"We are using Stripe Manage payment processing as a merchant of record."* The same answer
+appears again at the Québec row: *"Resolved by merchant of record."* I had been treating this as
+open because no question in Part B asks it; the answer arrived attached to the prices decision
+instead.
+
+"Stripe Managed Payments" is a real Stripe product, and it is the one Stripe product in which
+Stripe is the merchant of record; in Payments, Billing and the rest, the business stays the
+merchant. So her sentence is coherent and names something that exists. What it does not establish
+is whether the account is on it. Managed Payments has to be enabled, and the existing subscription
+`sub_1Tw71d` was taken under the old arrangement, where VisionEd is the seller and the receipts
+carry her address.
+
+**The provider question is answered too**, at 5.3: *"Replace the names of the vendors with
+categories."* Also 5.2, *"We do use third party providers in our product,"* and the AI row,
+*"No need to name which AI is used."*
+
+### Applied
+
+- **Truer Measure™ at every mention**, in the Terms in both languages and in the product policy.
+  She said it twice: *"Truer Measure™ every time"* and *"Always Truer Measure™"*. The documents
+  already wrote Hidden Report Card™ that way, so the typography is consistent rather than new.
+- **Product policy section 7: the nine named providers became nine categories.** The what-for and
+  where columns are untouched, so the reader loses the names and keeps the facts. The VERIFY note
+  now says what it can still check, which is the regions, and records that the mapping from
+  category to provider is kept outside the policy.
+
+### The two answers collide on Stripe, and only on Stripe
+
+A merchant of record is not a vendor. It is the seller. If Stripe sells the subscription to the
+parent, then Stripe is the other party to the sale, the party that collects the tax, and the party
+whose own terms govern the purchase. A document cannot describe its own seller as a category called
+payment processing. Eight of the nine names can go; the ninth stops being a name on a list and
+becomes a party to the contract.
+
+This is why "Remove section 2 from the Terms" is the smaller half of the problem. Section 1 of the
+live Terms says the agreement is between the parent and VisionEd Consultation Inc. Under a merchant
+of record that sentence is wrong about the sale, not just about the price.
+
+### Two product policies exist, and neither contains the other
+
+`web/content/privacy-policy.mdx` is the file that would publish. `offer/counsel-package-2026-11-02/privacy-policy.md`
+is what counsel would read. They have diverged in both directions: the repository copy carries her
+6 November fills, and the counsel copy carries a section 7 the repository copy never got, including
+the passage on Stripe acting as a controller for its own fraud, risk, compliance and product
+purposes. Her 5.3 answer has now been applied to the publishing copy only. Hand-editing both is how
+the wrong draft gets approved, which is the reason the numbered duplicates were deleted from that
+folder on 6 November. The counsel copies should be regenerated from the repository file.
+
+### Her 5.6 sentence cannot go in as written
+
+*"Our third-party partners in Canada and in the United States receive information and may retain it
+for a short time as necessary for their operations."* Read against section 8 that misdescribes the
+host, which holds a child's records for as long as the membership lasts rather than for a short
+time. Not inserted.
+
+### Still unanswered after a full re-read
+
+- Operational and audit log retention. Part C 3 says "Keep" about the one-year period and sets
+  nothing for logs; the `[RETENTION]` note stands.
+- The ten mandatory profile fields, `[FOUNDER DECISION NEEDED]` in section 5.
+- The anonymiser. Nothing in the responses document touches it, because nothing in the questions
+  asked about it. Section 6 still claims a control that is scheduled for Milestone 6.
+- 5.8, where her answer is *"Don't understand question. Need clarification."*
+- Whether the de-naming extends past section 7. Sections 3.1, 3.5, 8 and 12 still name Stripe,
+  GoHighLevel, Kit, Azure and Plausible, and the live website policy names Kit, Plausible and
+  Netlify in text she approved and published after writing this answer. Recommendation: leave them,
+  because the cookieless claim about the analytics tool is only checkable if the tool is named, and
+  because a category in one policy beside a name in another, for the same company, reads worse than
+  either choice made consistently.
