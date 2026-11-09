@@ -19,8 +19,13 @@
  * So both functions are gone rather than kept as a fallback, because a
  * fallback would quietly reintroduce the thing she ruled out: a Canadian
  * parent whose browser is set to en-US would be shown American dollars again.
- * When the edge cannot resolve a country, no attribute is set and CAD shows,
- * which is her rule for an unknown country.
+ *
+ * When the edge cannot resolve a country, no attribute is set and US DOLLARS
+ * show. This paragraph said CAD until 9 November 2026 and was wrong about the
+ * code it sits beside: app/globals.css line 45 is
+ * `html:not([data-tm-currency]) [data-tm-price="USD"]`, and her own rule is
+ * "US dollars when the location cannot be determined". The CSS was right and
+ * the comment was not.
  */
 import type { CurrencyCode } from "@/components/currency-toggle";
 import {
@@ -31,7 +36,8 @@ import {
 
 export { CURRENCY_ATTRIBUTE, EUROZONE };
 
-/** Canada is CAD, the euro area is EUR, everywhere else is USD. */
+/** Canada is CAD, everywhere else is USD. The euro area joined "everywhere
+ *  else" on 9 November 2026: see content/currency-map.ts. */
 export function currencyForCountry(country: string | null): CurrencyCode | null {
   return mapCountry(country);
 }

@@ -83,7 +83,13 @@ export function currencyForCountry(
   const c = String(country).trim().toUpperCase();
   if (!/^[A-Z]{2}$/.test(c)) return null;
   if (c === "CA") return "CAD";
-  if ((EUROZONE as readonly string[]).includes(c)) return "EUR";
+  /* THE EURO AREA READS US DOLLARS, by her decision of 9 November 2026. EU
+     customers are not served at launch and sign-up refuses them, so quoting a
+     euro price to a visitor who would then be stopped at the door is the one
+     outcome worth preventing. EUROZONE is kept, not deleted: it is the list
+     this rule has to name again when the EU is served, and the Terms still
+     carry the withdrawal right she kept the same morning. */
+  if ((EUROZONE as readonly string[]).includes(c)) return "USD";
   return "USD";
 }
 
