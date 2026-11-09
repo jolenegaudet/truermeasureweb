@@ -1962,3 +1962,37 @@ time. Not inserted.
   because the cookieless claim about the analytics tool is only checkable if the tool is named, and
   because a category in one policy beside a name in another, for the same company, reads worse than
   either choice made consistently.
+
+### Section 2 removed from the Terms, exactly as written
+
+Her choice, 9 November, from three options: remove section 2 only, leave section 1 and the rest
+alone. Done in both languages, 33 lines out of each.
+
+**What went.** The price table (CA$59.00 / US$42.00 / €35.00 per child per month), the billing, tax
+and exchange rows, the sentence that the price shown at checkout governs, and the whole Founding
+Families introductory rate block (CA$39.00 / US$27.00 / €23.00 for the first three payments, the
+limit of 50 families, the step up to the standard price).
+
+**The superseded prices are the real gain.** Those figures were live on truermeasure.com and
+contradicted the decided CA$47 / US$47 / €47 and "no trial, no introductory price". Neither
+document now states a price anywhere. No price figure survives in either file.
+
+**Numbering kept.** The Terms now run 1, 3, 4 … 15 with no 2. Renumbering would have broken every
+cross-reference in the Privacy Policy, the Licence, the counsel package and her own answer sheet,
+which cites Terms 1, 2, 3, 5, 6, 9, 10, 14 and 15 by number. She chose to leave the rest alone and
+this is part of the rest. The gap is visible to a reader and can be closed later in one pass across
+all four documents.
+
+**Three places now refer to something the document no longer defines**, and all three are inside
+section 3, which she did not open:
+
+- "The end of the introductory rate. You agreed to it at checkout." There is no longer an
+  introductory rate in the Terms.
+- "We may change the standard price for future billing periods." There is no longer a standard
+  price in the Terms.
+- The reminder "between 7 and 30 days before your fourth payment" counts from a rate that is gone.
+
+Writing replacements is writing legal text, so they stand as they are and are recorded here. The
+same three sentences exist in the French at article 3.
+
+**Not deployed.** The live Terms still carry section 2 until she says the Terms go out.
