@@ -206,8 +206,31 @@ not change this for information you have already given us without asking you and
 not decisions. Nothing it outputs determines any entitlement, placement or opportunity, and every
 family's first report is reviewed by a person before release.
 
-`[BLOCKING: the anonymiser described in this section is not yet built — it is scheduled for
-Milestone 6 (S43). This section must not be published as written until it ships.]`
+{/* THE BLOCKING NOTE IS GONE, 9 November 2026, because it was wrong.
+
+    It said the anonymiser was not built and was scheduled for Milestone 6 (S43). That was true of
+    the old Next.js app and false of the app that is shipping. Checked here, not taken on trust:
+
+      prototype (branch launch)  server/privacy.js        namesFor / protect / restore
+                                 server/engine.js:151     protect() on every message before the
+                                                          model call, and on plain-text documents
+                                                          at line 154
+                                 tests/privacy-names.test.js   2 tests, both pass
+      84ba6cc, 13 October 2026, confirmed an ancestor of the launch branch. In production since
+      3 November per the app session; redeployed 9 November at 7a7693d.
+
+    WHAT THE CODE ACTUALLY DOES. SCRUB removes emails, phone numbers, Canadian postal codes and
+    street addresses. namesFor builds stand-ins for the names the record knows: the child, the
+    parent, teachers, schools and named sources, longest first, each part of a name sharing the
+    whole name's stand-in. restore puts the real names back in the answer.
+
+    WHERE THIS SECTION IS STILL TOO STRONG, and the counsel copy is not. engine.js line 154 scrubs
+    a document only when it is text/plain; an image or a PDF page goes to the model as it is, with
+    whatever is printed on it. So "Before anything is sent to an outside model" overstates it, and
+    the paragraph below attributes the remaining risk to context when part of it is simply a name
+    printed on a page. privacy.js says so in its own first comment: "This is not anonymisation."
+    offer/counsel-package-2026-11-02/privacy-policy.md already words this correctly and this file
+    does not. Her wording to fix, not mine. */}
 
 ---
 
