@@ -31,6 +31,36 @@
 [functions]
   node_bundler = "esbuild"
 
+# ── THE LAUNCH IS ON, 9 November 2026 ───────────────────────────────────────
+#
+# Her instruction: "Then merge and publish the website, with the currency key
+# matching the app's." These two variables are what turn the prices on and point
+# the buttons at the app instead of the demo. Without them SHOW_PRICES is false,
+# content/app-plans.ts forces the app host to empty, and every button opens the
+# demo and says so.
+#
+# WHY THEY ARE HERE AND NOT IN THE NETLIFY UI. They belong in the UI and she can
+# move them there whenever she likes; this file does the same job and it is the
+# only one of the two I can reach. The Netlify MCP rejected every documented
+# shape for setting a variable, there is no Netlify CLI on this machine, and
+# widening a token's scope for a one-off is against her own rule. Neither value
+# is a secret: both are compiled into the public pages anyway, which is what
+# NEXT_PUBLIC_ means. The one real secret, TM_CURRENCY_KEY, stays in the Netlify
+# UI and is not in this file and never will be.
+#
+# PRODUCTION ONLY, deliberately. A branch deploy or a deploy preview keeps the
+# maintenance build, so a preview link can never show prices or send anyone to
+# live payments. That is most of what the old gate was for.
+#
+# TO PUT THE SITE BACK: delete this block and redeploy. One commit.
+[context.production.environment]
+  # Her amounts of 29 October 2026: CA$47, US$47, EUR 47 a month.
+  NEXT_PUBLIC_TM_PRICES_APPROVED = "1"
+  # The production app, confirmed answering 200 on 9 November 2026, with
+  # /api/legal naming /terms-of-service, /privacy and /licence, all of which
+  # answer 200 since the documents were published the same day.
+  NEXT_PUBLIC_TM_APP_URL = "https://app.truermeasure.com"
+
 # The visitor's country, resolved by Netlify and turned into one attribute on
 # the page (netlify/edge-functions/currency.ts). The function also declares
 # this path itself; both are here so the routing is visible in the config a
