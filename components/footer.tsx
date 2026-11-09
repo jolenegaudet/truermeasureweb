@@ -19,20 +19,11 @@ import { localeFromPath, shell } from "@/content/i18n";
  *   Terms              published 30 September 2026 as interim terms, by her
  *                      decision, because the checkout was live without any.
  *   Manage or cancel   online cancellation, through the Stripe customer portal.
+ *   Withdraw           the EU withdrawal function, which must be reachable from
+ *                      every page for the whole 14 days.
  *   Privacy            the website's Privacy Policy, published 6 November
  *                      2026 in both languages, on her approval that day.
  * Each one points at its own language.
- *
- * THE WITHDRAWAL LINK IS GONE, by her decision of 9 November 2026. It was the
- * EU withdrawal function, which has to be reachable from every page for the
- * whole 14 days, and that is why it sat here rather than on one page. Her
- * answer to counsel question 3c is that no EU customers will be processed
- * until a later version, so the Terms no longer offer the right and this no
- * longer offers the function. scripts/check-launch-build.mjs now refuses a
- * build that puts it back, which is how the decision survives being
- * forgotten. Restoring it means restoring section 15 of the Terms, the
- * /withdraw route, components/withdrawal-form.tsx and the rows about that
- * form in both website policies, all removed in the same commit.
  *
  * The privacy row is still conditional on PRIVACY_PATH rather than hardcoded,
  * because the same mechanism holds the product's policy back: that document is
@@ -77,6 +68,9 @@ export default function Footer() {
         <a href={MANAGE_URL} className={link}>
           {t.manage}
         </a>
+        <Link href={t.withdrawPath} className={link}>
+          {t.withdraw}
+        </Link>
         <span>
           © {new Date().getFullYear()} {t.rights}
         </span>

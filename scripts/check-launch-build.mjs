@@ -244,16 +244,8 @@ for (const page of pages) {
   if (!html.includes("billing.stripe.com/p/login/")) {
     fail(`${page} has no manage-or-cancel link`);
   }
-  /* THE WITHDRAWAL LINK MUST NOT COME BACK, by her decision of 9 November
-     2026: no EU customers are processed until a later version, section 15 of
-     the Terms is removed, and the /withdraw route is deleted. This check used
-     to demand the link on every page. Inverting it rather than deleting it is
-     deliberate: a removed check forgets the decision, and the footer is in the
-     root layout, so anything that restores the link restores it everywhere at
-     once. If EU sales resume, this is the line that says what else has to come
-     back with it. */
-  if (html.includes(french ? "/fr/withdraw" : "/withdraw")) {
-    fail(`${page} links the withdrawal form, which was removed on 9 November 2026`);
+  if (!html.includes(french ? "/fr/withdraw" : "/withdraw")) {
+    fail(`${page} has no withdrawal link`);
   }
   /* THE RESERVED LEGAL ADDRESSES. Three documents are linked from the app's
      agreement screen and its release check needs all three to answer 200: the
