@@ -543,7 +543,16 @@ export const appPlans: Record<Locale, AppPlans> = {
         "Get simple ideas to try at home.",
       ],
       only: "Report cards only.",
-      cta: "Start free",
+      /* "Start free" until 9 November 2026. Her instruction: "For school free
+         report cards only, what could I write instead of 'Start Free'? Because
+         I want most parent to choose school and life."
+
+         The card already shows "Free" as the price, so the button was selling
+         the price a second time and the narrow plan read as the generous one.
+         This label takes the price off the button and keeps the paid card's
+         verb, so what a parent compares is the scope: School only, or School &
+         Life. Her choice of three, 9 November 2026. */
+      cta: "Choose School only",
     },
 
     paid: {
@@ -665,7 +674,11 @@ export const appPlans: Record<Locale, AppPlans> = {
         "Recevez des idées simples à essayer à la maison.",
       ],
       only: "Bulletins seulement.",
-      cta: "Commencer gratuitement",
+      /* "Commencer gratuitement" until 9 November 2026, with the English. The
+         same reasoning: le prix est déjà affiché sur la carte. "seulement"
+         carries what "only" carries, and the verb matches the paid card's
+         "Choisir École et vie". */
+      cta: "Choisir École seulement",
     },
 
     paid: {

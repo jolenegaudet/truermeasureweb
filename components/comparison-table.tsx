@@ -16,7 +16,7 @@ export default function ComparisonTable() {
           The Report Card
         </span>
         <span className="text-xs font-semibold uppercase tracking-widest text-bark">
-          The Hidden Report Card
+          The Truer Measure
         </span>
       </div>
       {rows.map(([left, right], i) => (

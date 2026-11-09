@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { alternatesFor } from "@/content/i18n";
-import { salesPause } from "@/content/founding-families";
-import { FirstToKnowButton } from "@/components/first-to-know";
+import { closing } from "@/content/founding-families";
 import { FrameworkList } from "@/components/framework-list";
 import { PlanCards } from "@/components/plan-cards";
 import { APP_PRICES } from "@/content/app-prices";
@@ -10,28 +9,37 @@ export const metadata: Metadata = {
   // The layout template appends " | Truer Measure", and the home page is
   // already titled "A Truer Measure", so titling this page the same gave both
   // "A Truer Measure | Truer Measure" and two pages with identical titles.
-  // This one is the founding offer, so it says so.
-  title: "The Hidden Report Card",
+  // This one is the product page, so it carries the product's name.
+  title: "The Truer Measure",
   description:
     "Bring together report cards, teacher comments, your observations, projects and moments from beyond school, and see what keeps showing up across your child's experiences.",
   alternates: alternatesFor("/hidden-report-card"),
 };
 
 /**
- * A Truer Measure, and the proposed Founding Families offer.
+ * The Truer Measure: the product page.
  *
- * Naming rule, Jolene 29 September 2026: A Truer Measure is what a parent buys.
- * The Hidden Report Card is the document it produces. The route keeps its
- * /hidden-report-card path, which is the phrase a parent is most likely to
- * search for, but the product is named A Truer Measure on the page itself.
+ * ── THE NAME CHANGED, 9 November 2026 ─────────────────────────────────────
  *
- * Sales of the current offer are paused (2 October 2026). The offer section is
- * gone from public view; everything that explains the product is still here.
+ * Her instruction: "it says The Hidden Report Card™. I kind of changed it to
+ * The Truer Measure™, so that needs to change everywhere on the site."
  *
- * Every number and term comes from content/founding-families.ts so the offer
- * can be revised in one place. The FAQ is off the page until Jolene decides
- * what it says (30 September 2026); its answers stay in that file. Nothing on
- * this page mentions the demo for now, by her decision.
+ * The naming rule of 29 September had A Truer Measure as the thing a parent
+ * buys and The Hidden Report Card as the document it produces. That split is
+ * gone. One name now covers both, which is why the framework section's eyebrow
+ * lost its second line: "The Hidden Report Card™ / A Truer Measure of your
+ * child" would read as the same words twice.
+ *
+ * THE ROUTE IS STILL /hidden-report-card, deliberately, and it is the one
+ * place the old phrase survives. A path is an address, not a name: this one is
+ * in her social posts, in emails already sent, and it is the phrase a parent
+ * searches for. Changing it would break those links for a cosmetic gain. If
+ * she wants the address changed too, that is one redirect and a separate
+ * decision, and nothing on the page depends on the path.
+ *
+ * The FAQ is off the page until Jolene decides what it says (30 September
+ * 2026); its answers stay in content/founding-families.ts. Nothing on this
+ * page mentions the demo, by her decision.
  */
 
 const contrasts = [
@@ -96,7 +104,7 @@ const experience = [
   },
 ];
 
-const pause = salesPause.en;
+const close = closing.en;
 
 export default function HiddenReportCardPage() {
   return (
@@ -188,7 +196,7 @@ export default function HiddenReportCardPage() {
                 </div>
                 <div className="px-6 py-6 md:px-9 md:py-[34px]">
                   <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.2em] text-rose">
-                    The Hidden Report Card&trade;
+                    The Truer Measure&trade;
                   </div>
                   <div
                     className="font-heading text-bark"
@@ -215,10 +223,12 @@ export default function HiddenReportCardPage() {
               true of the foundations as well, so the heading introduces the
               whole section again rather than the second block alone. */}
           <div className="mx-auto mb-12 max-w-[720px] text-center md:mb-14">
+            {/* ONE LINE SINCE 9 November 2026. It read "The Hidden Report
+                Card™ / A Truer Measure of your child" while those were two
+                different names. Under the new name the second line is the
+                first line again, so it came off rather than being reworded. */}
             <div className="mb-[22px] text-[12.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-              The Hidden Report Card&trade;
-              <br />
-              A Truer Measure of your child
+              The Truer Measure&trade;
             </div>
             <h2
               className="font-heading font-medium text-bark"
@@ -243,13 +253,29 @@ export default function HiddenReportCardPage() {
               and years. A teacher sees one piece. You see another. A coach sees
               another. Your child experiences all of it.
             </p>
+            {/* TRAVEL, added 9 November 2026 on her instruction: "Add
+                something about travel. We have talked about that before."
+                Built from her own words rather than new copy. The list and the
+                absent line are hers, from the post that opens "Every time a
+                teacher told me, when I was a school principal, that they
+                couldn't believe a family was going on another trip with their
+                kids" (docs/posting-schedule-full-text.md): "navigating
+                airports, hearing another language, visiting museums,
+                calculating currencies, reading maps… we mark them absent
+                because they weren't sitting in class". */}
+            <p>
+              Three weeks travelling is three weeks of learning: another
+              language, a map, a currency, a museum, a meal nobody at home would
+              recognize. School marks that absent. Your child was present for
+              all of it.
+            </p>
             <p>
               Until you bring that evidence together, it&rsquo;s hard to see what
               it reveals.
             </p>
             <p>
               That&rsquo;s why we call it the{" "}
-              <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>.
+              <strong className="font-semibold text-bark">Truer Measure&trade;</strong>.
             </p>
           </div>
         </div>
@@ -284,7 +310,7 @@ export default function HiddenReportCardPage() {
             <p>
               Truer Measure brings that evidence together and generates your
               child&rsquo;s{" "}
-              <strong className="font-semibold text-bark">Hidden Report Card&trade;</strong>.
+              <strong className="font-semibold text-bark">Truer Measure&trade;</strong>.
             </p>
             <p>
               Now you can see what keeps showing up, what&rsquo;s changing, where
@@ -319,7 +345,7 @@ export default function HiddenReportCardPage() {
               className="font-heading font-medium text-bark"
               style={{ fontSize: "clamp(32px,5vw,54px)", lineHeight: 1.08 }}
             >
-              Pull up the Hidden Report Card<span className="align-super text-[0.55em]">&trade;</span>
+              Pull up the Truer Measure<span className="align-super text-[0.55em]">&trade;</span>
             </h2>
           </div>
 
@@ -379,30 +405,40 @@ export default function HiddenReportCardPage() {
         </div>
       </section>
 
-      {/* SALES PAUSED, 2 October 2026. Section 7 was the Founding Families
-          offer: the price, the cap, what was included, the checkout button and
-          the Terms consent beside it. It is in git at 1cb767c, and every amount
-          and id is still in content/founding-families.ts. Sections 1 to 6 above
-          are untouched, because someone arriving from social media still has to
-          be able to understand what this is and why it exists. */}
+      {/* 7. THE CLOSE.
+          This section said "The Hidden Report Card™ is evolving… Be the first
+          to know." from 2 October 2026, while sales were paused and there was
+          nothing to buy. Her instruction of 9 November 2026: "This is not
+          longer true… It's live."
+
+          So the email capture is gone from this page. Collecting an address to
+          announce a launch that has happened would be asking a parent to wait
+          for something already in front of them. The one action at the end of
+          the page is the same action as at the top of it, and the button
+          returns to the real plan cards at #plans rather than minting a second
+          path into the app: one place a purchase begins, with the live prices
+          and the currency handoff the cards already carry.
+
+          The signup itself is untouched and still shipping: the Kit list, the
+          function, the tag and components/first-to-know.tsx are all in place
+          for the next thing she has to announce. */}
       <section className="bg-bark px-6 py-16 md:px-10 md:py-[104px]">
         <div className="mx-auto max-w-[640px] text-center">
           <h2
             className="font-heading font-medium text-parchment"
             style={{ fontSize: "clamp(28px,5vw,46px)", lineHeight: 1.1 }}
           >
-            {pause.heading}
+            {close.heading}
           </h2>
           <p className="mt-7 text-muted" style={{ fontSize: 17, lineHeight: 1.75 }}>
-            {pause.story}
+            {close.story}
           </p>
-          {/* The one thing to do at the end of the page. Section 7 used to be
-              the offer and the checkout button; while sales are paused this is
-              an email address and nothing else. Her brief, 4 October 2026. */}
-          <FirstToKnowButton
-            place="hidden-report-card"
-            className="mt-9 inline-block cursor-pointer rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
-          />
+          <a
+            href={close.ctaHref}
+            className="mt-9 inline-block rounded-[2px] bg-parchment px-9 py-[17px] text-[13px] font-bold uppercase tracking-[0.14em] text-bark no-underline"
+          >
+            {close.cta}
+          </a>
         </div>
       </section>
     </>
