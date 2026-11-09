@@ -2040,3 +2040,65 @@ subscription (`sub_1Tw71d`). This is the one item worth confirming in Stripe bef
 live.
 
 **Still not deployed.** The live Terms still carry section 2, section 15 and the withdrawal link.
+
+### The version question was answered in the file too, and so was the mechanism
+
+She sent me back to the responses document twice. It answers more than I had taken from it.
+
+**Question 4:** *"Get rid of the language referring to a version of the terms of service or other
+documents. There is only a current version."* So the version numbers are gone from all five
+documents and the effective dates stay:
+
+| Document | Was | Now |
+|---|---|---|
+| Terms, English | Version 1.2 · Effective 3 October 2026 | Effective 9 November 2026 |
+| Terms, French | Version 1.2 · En vigueur le 3 octobre 2026 | En vigueur le 9 novembre 2026 |
+| Website policy, English | Version 1.0.0 · Effective 6 November 2026 | Effective 6 November 2026 |
+| Website policy, French | Version 1.0.0 · En vigueur le 6 novembre 2026 | En vigueur le 6 novembre 2026 |
+| Product policy | Version 1.0.0 · Effective 6 November 2026 | Effective 6 November 2026 |
+
+The version numbers on the two published policies were mine, not her copy. I put them there on
+6 November, after she had already written this answer.
+
+**Why no 30-day wait, in her own text rather than my preference.** Part C 2.1 keeps the promise of
+an email at least 30 days before a change to the Terms, and section 9 states the condition on it:
+*"If we **materially** change these terms."* Nothing removed today applied to anyone. The prices
+were superseded, Founding Family places stand at 0 of 50, and the one known live subscription is in
+US dollars, so no member held the EU withdrawal right. The promise stays in the document and is not
+triggered by this change. **If she considers the existing subscriber bound by these Terms, the
+effective date moves out 30 days and the email goes first.** That is her call and it is the one
+thing in this change that could need it.
+
+### Two of her answers contradicted each other, and the resolution keeps both
+
+- Question 3: *"No refund unless they decline a change in TOS."* A refund exists, and declining a
+  change to the Terms is what triggers it.
+- Question 4: a member who declines *"can continue using it until their current subscription
+  expires, but at the end of that subscription, it will not auto-renew."* No refund in sight.
+
+Read as alternatives they cancel out. Read as a choice they agree, and her word in question 4 is
+*"can"*. So section 9 now carries both routes: cancel before the effective date and the unused part
+of the billing period is refunded, **or** continue to the end of the subscription, after which it
+does not renew, and continuing later means subscribing again under the terms as they then stand.
+
+**I had removed the refund first and put it back.** Implementing question 4 alone deleted the only
+refund question 3 keeps, which would have taken a right out of a published contract on the strength
+of one answer while another said the opposite. Question 3b's *"Does not apply"* is the third voice
+here and it is too terse to decide anything: it answers "is each worded correctly?" and could mean
+either that the remedies are withdrawn or that the question misses her situation. Nothing was
+removed on the strength of it.
+
+### State
+
+Terms, both languages: no version number, effective 9 November 2026, no section 2, no section 15,
+no Founding Family subsection, no introductory rate, Truer Measure™ at every mention, and section 9
+carrying both routes. Sections run 1, 3 to 14.
+
+Built clean, 16 pages, wall clean, typecheck clean. **Nothing is deployed.** The live site still
+shows Version 1.2, section 2 with CA$59 / US$42 / €35, the Founding Families rate, section 15 and
+the withdrawal link.
+
+**Small thing left in the Terms intro, not changed:** "What we collect and why is in our Privacy
+Policy. Both are being finalised and will be published on this site." That still describes the
+product policy and the Licence accurately, while the footer of the same page now links a published
+Website Privacy Policy. Her copy, so flagged rather than touched.
