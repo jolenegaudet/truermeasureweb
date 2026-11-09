@@ -51,40 +51,50 @@ export const SIGNUP_SOURCE = "hidden-report-card:be-first-to-know";
 export const CONSENT_PURPOSE = "launch news and occasional product updates";
 
 /**
- * Whether the Privacy Policy is published.
+ * Whether the website's Privacy Policy is published. IT IS, since 6 November
+ * 2026, in both languages, effective that day.
  *
- * false while counsel reviews it. Her instruction, 4 October 2026: hold until
- * counsel is done. The policy is written, translated and routed, and none of it
- * is reachable.
+ * Her approval, 6 November 2026: "Publish the website policy". Her rule of 5
+ * November set the date: the effective date is the real publication date, so
+ * the document reads 6 November 2026 and 6 novembre 2026 and nothing was dated
+ * in advance.
  *
- * TO PUBLISH, four steps, in this order:
- *   1. Set the effective date in BOTH content/privacy-policy.website.mdx and
- *      content/politique-de-confidentialite.mdx, replacing [EFFECTIVE_DATE].
- *   2. Delete the draft banner from the top of both, the blockquote beginning
- *      "DRAFT for counsel" and "EBAUCHE destinee au conseiller juridique".
- *   3. git mv app/_pending/privacy-policy app/privacy-policy
- *      git mv app/_pending/politique-de-confidentialite app/politique-de-confidentialite
- *   4. Set this to true.
+ * WHAT THIS FLAG DOES, AND WHAT IT NEVER DID. It decides whether the footer and
+ * the signup consent line LINK to the policy. It has never been what stops an
+ * unfinished policy reaching the site. Two checks do that, and both read the
+ * documents rather than trusting a boolean:
  *
- * Miss step 1 or 2 and scripts/check-legal-placeholders.mjs stops the build, so
- * an unfinished policy cannot reach the site. That guard ignores app/_pending
- * because a folder starting with "_" is not a route.
+ *   - scripts/check-legal-placeholders.mjs, which runs as prebuild here and on
+ *     Netlify, and stops any build whose routed legal text still carries
+ *     [EFFECTIVE_DATE] or a draft banner.
+ *   - scripts/check-launch-build.mjs, which refuses a BUILT site carrying a
+ *     draft marker or an unfilled placeholder in its HTML.
+ *
+ * Both passed with no flag before this went out, which is the only acceptable
+ * way for them to pass: the document was finished, not waved through.
+ *
+ * THE PRODUCT'S POLICY IS A DIFFERENT DOCUMENT and is not published. It lives
+ * at content/privacy-policy.mdx, still carries its draft banner, and /privacy
+ * answers 404 until its text is approved. Nothing here publishes it, and the
+ * app's release check needs that address to answer 200, so the 404 is the gate
+ * holding public sign-up shut.
  */
-export const PRIVACY_POLICY_PUBLISHED = false;
+export const PRIVACY_POLICY_PUBLISHED = true;
 
 /**
  * The Privacy Policy link in the consent line, one path per language.
  *
- * While the policy is held back these are null and the consent sentence simply
+ * While a policy is held back these are null and the consent sentence simply
  * ends at "You can unsubscribe anytime." A link to a page that 404s would be
- * worse than no link, and the sentence was written to stand without it.
+ * worse than no link, and the sentence was written to stand without it. Since 6
+ * November 2026 the link is there, in both languages.
  *
  * These point at the WEBSITE policy, which covers the forms, the Kit list and
  * Plausible. The full product policy is a separate document and a separate
  * route, for when the product opens.
  */
 export const PRIVACY_PATH: Record<Locale, string | null> = PRIVACY_POLICY_PUBLISHED
-  ? { en: "/privacy-policy", fr: "/politique-de-confidentialite" }
+  ? { en: "/privacy/website", fr: "/politique-de-confidentialite/site-web" }
   : { en: null, fr: null };
 
 /**

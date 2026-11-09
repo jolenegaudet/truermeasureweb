@@ -33,7 +33,16 @@ export const LOCALE_PREFIX = "/fr";
 export const FRENCH_PATHS: Record<string, string> = {
   "/terms-of-service": "/conditions-d-utilisation",
   // A legal document is found by its own name, so these two sit outside /fr.
-  "/privacy-policy": "/politique-de-confidentialite",
+  //
+  // Published 6 November 2026 at /privacy/website and
+  // /politique-de-confidentialite/site-web, her four validated addresses: "je
+  // retiens /privacy pour la politique du produit et /privacy/website pour
+  // celle du site." The qualifier matters because /privacy is reserved for the
+  // product's policy, the document a parent agrees to, which does not exist
+  // yet and answers 404 until it does. The policy routed at /privacy-policy
+  // while it was unreachable and was never published there, so no redirect is
+  // owed.
+  "/privacy/website": "/politique-de-confidentialite/site-web",
 };
 const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
   Object.entries(FRENCH_PATHS).map(([en, fr]) => [fr, en]),
@@ -143,6 +152,16 @@ export const shell = {
       follow: "Follow along",
       terms: "Terms of Service",
       termsPath: "/terms-of-service",
+      // The document's own title, not new copy, and the qualified title she
+      // set on 5 November 2026: "utilise les titres Website Privacy Policy et
+      // Politique de confidentialite du site web". The qualifier earns its
+      // place in the footer rather than only in the tab: this policy covers the
+      // forms, the email list and visit counts, and a reader who clicks a bare
+      // "Privacy Policy" would reasonably expect the one about their child's
+      // records, which is a different document at /privacy and is not
+      // published. Shown only while PRIVACY_PATH is set, which
+      // content/first-to-know.ts governs.
+      privacy: "Website Privacy Policy",
       // Online cancellation, through the Stripe customer portal. California
       // Bus. & Prof. Code 17602(d) requires it for an online sign-up.
       manage: "Manage or cancel your membership",
@@ -169,6 +188,7 @@ export const shell = {
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
       termsPath: "/conditions-d-utilisation",
+      privacy: "Politique de confidentialité du site web",
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",
       withdrawPath: "/fr/withdraw",
