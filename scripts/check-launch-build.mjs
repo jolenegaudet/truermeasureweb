@@ -448,8 +448,15 @@ if (items.length !== 27) {
 
 /* The paid choice leads on a phone, so the price, the billing period and the
    paid button are in the first screen. It is markup order, not CSS, which is
-   what makes this checkable here and what keeps the reading order honest. */
-for (const [html, lang, freeCta] of [[en, "EN", "Start free"], [fr, "FR", "Commencer gratuitement"]]) {
+   what makes this checkable here and what keeps the reading order honest.
+
+   MAINTENANCE BUILDS ARE EXEMPT, fixed 9 November 2026. This loop ran on every
+   build and looked for data-tm-price="CAD", which a maintenance build correctly
+   does not have: the whole point of that mode is no amounts. So the check
+   failed on the only build Netlify made for five weeks, which is worse than no
+   check, because a wall that cries wolf on the normal case is a wall people
+   learn to ignore. It now runs where the plan cards are supposed to exist. */
+for (const [html, lang, freeCta] of kind === "maintenance" ? [] : [[en, "EN", "Start free"], [fr, "FR", "Commencer gratuitement"]]) {
   const paidPrice = html.indexOf('data-tm-price="CAD"');
   const free = html.indexOf(freeCta);
   if (paidPrice === -1 || free === -1) {
