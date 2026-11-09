@@ -239,8 +239,17 @@ for (const page of pages) {
     route.includes("/fr/") ||
     route.includes("conditions-d-utilisation") ||
     route.includes("politique-de-confidentialite");
-  const terms = french ? "/conditions-d-utilisation" : "/terms-of-service";
-  if (!html.includes(terms)) fail(`${page} has no Terms link (${terms})`);
+  /* ONE TERMS ADDRESS FOR BOTH LANGUAGES, from 9 November 2026. This used to
+     expect /conditions-d-utilisation on a French page. Her instruction took
+     that page down until the translation exists, so every page, French
+     included, links the English Terms. Restore the French branch the day the
+     translation is routed. */
+  if (!html.includes("/terms-of-service")) {
+    fail(`${page} has no Terms link (/terms-of-service)`);
+  }
+  if (html.includes('href="/conditions-d-utilisation"')) {
+    fail(`${page} links /conditions-d-utilisation, which came down on 9 November 2026`);
+  }
   if (!html.includes("billing.stripe.com/p/login/")) {
     fail(`${page} has no manage-or-cancel link`);
   }

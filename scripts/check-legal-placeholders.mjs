@@ -132,6 +132,13 @@ const PAIRS = [
    Removing a name from this set re-arms the refusal, which is the point of
    keeping the rule and listing the exception rather than deleting the rule. */
 const ENGLISH_ONLY = new Set([
+  /* THE TERMS, from 9 November 2026. Her instruction: "Take
+     /conditions-d-utilisation down until the French translation exists." The
+     English Terms are routed alone, the French file stays in content/ unrouted
+     and ready for the translation, and section 13 of the document itself says a
+     French version will follow. Remove this line the day it does and the pair
+     rule re-arms by itself. */
+  "content/terms-of-service.mdx",
   "content/privacy-policy.mdx",
   "content/licence.mdx",
 ]);

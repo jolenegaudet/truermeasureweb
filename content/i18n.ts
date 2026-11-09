@@ -94,7 +94,15 @@ const ENGLISH_PATHS: Record<string, string> = Object.fromEntries(
  * filename rather than by address. Two entries in two places: if a French
  * version is written, both have to lose it.
  */
-export const ENGLISH_ONLY_PATHS = new Set(["/privacy", "/licence"]);
+/* THE TERMS JOINED THIS SET ON 9 NOVEMBER 2026, on her instruction: "Take
+   /conditions-d-utilisation down until the French translation exists." The
+   French path stays in FRENCH_PATHS above, reserved for the translation, so
+   what changed is what the site CLAIMS exists, not what is set aside. */
+export const ENGLISH_ONLY_PATHS = new Set([
+  "/terms-of-service",
+  "/privacy",
+  "/licence",
+]);
 
 /**
  * The locale a path belongs to: everything under /fr, plus the French paths
@@ -247,7 +255,12 @@ export const shell = {
       tagline: "La juste mesure d’un enfant !",
       follow: "Suivez-nous",
       terms: "Conditions d’utilisation",
-      termsPath: "/conditions-d-utilisation",
+      /* POINTS AT THE ENGLISH DOCUMENT, 9 November 2026. The French Terms came
+         down with her instruction and the translation does not exist yet, so a
+         French page's footer links the English contract rather than a 404.
+         Section 13 of the document says a French version will follow. Change
+         this back the day content/conditions-d-utilisation.mdx is routed. */
+      termsPath: "/terms-of-service",
       privacy: "Politique de confidentialité du site web",
       manage: "Gérez ou annulez votre adhésion",
       withdraw: "Rétractez-vous de votre contrat ici",

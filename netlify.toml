@@ -47,11 +47,10 @@
 # The Terms exist, at /terms-of-service, so this is a one-line fix and it costs
 # nothing: anyone who types /terms today also gets the 404 page.
 #
-# /privacy is deliberately NOT here. The Privacy Policy is written, translated
-# and routed but held in app/_pending while counsel reviews it
-# (PRIVACY_POLICY_PUBLISHED in content/first-to-know.ts), and a redirect to a
-# page that does not exist is a second 404 with a longer path. It goes in with
-# the policy, in the same change, not before it.
+# /privacy needs no redirect: since 9 November 2026 it IS the product Privacy
+# Policy, published on her instruction from offer/legal-documents-current. This
+# paragraph said it was held back pending counsel; that stopped being true when
+# she published the three documents.
 #
 # This is no longer what the app depends on, and it stays anyway. From app
 # commit 19903d2 (3 November 2026) the app's Terms and Privacy links and its
@@ -73,11 +72,13 @@
 # But /license is what a large share of readers will type, and a 404 on a
 # document somebody has agreed to is the worst 404 on this site.
 #
-# IT POINTS AT A 404 TODAY, DELIBERATELY. The Licence does not exist in this
-# repository in either language; the only draft is in the counsel package,
-# unapproved. The redirect is here now so it cannot be forgotten in the change
-# that publishes the document, and until then it moves one 404 to another, which
-# costs nothing. See content/i18n.ts for what publishing it actually needs.
+# IT NOW POINTS AT A REAL PAGE. /licence is the End-User Licence Agreement,
+# published 9 November 2026 from offer/legal-documents-current. The redirect was
+# written while it was still a 404 so that it could not be forgotten in the
+# change that published the document; that change has happened.
+#
+# /contrat-de-licence is NOT routed: the Licence is English only until the
+# French translation exists, the same as the Terms. See content/i18n.ts.
 [[redirects]]
   from   = "/license"
   to     = "/licence"
