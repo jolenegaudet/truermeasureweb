@@ -1799,3 +1799,90 @@ Both documents still carry the draft banner and `[EFFECTIVE_DATE]`. Both legal
 walls still refuse a build that contains either, and the publish procedure
 passes no flag. Nothing is merged, nothing is deployed, and the effective date
 will be the day she says it is published.
+
+## 6 November, published: the website policy is live, and the product policy takes her answers
+
+### The website policy went out on its own
+
+Her approval: "Publish the website policy." It is live at `/privacy/website` and
+`/politique-de-confidentialite/site-web`, effective 6 November 2026 in both
+languages, which is her rule that the effective date is the real publication
+date.
+
+**It went out separately from the launch work, which is her instruction of 5
+November:** *"publie ces pages separement de la mise a jour commerciale."* That
+instruction turned out to matter more than it reads. The working branch carries
+70 commits of unpublished launch work, the plan cards, the app prices, the
+currency edge function and netlify.toml among them. Deploying that branch to
+publish a privacy policy would have published the entire launch with it. So the
+policy went out on `publish-website-policy-2026-11-06`, cut from main, nine
+files, every one of them the policy or the link to it.
+
+Verified before the merge: typecheck clean, build clean with the placeholder
+check running as prebuild and no flag passed, all 16 built pages scanned for
+draft markers and unfilled placeholders and none found, her name absent from
+both documents, hreflang pairing both ways. Verified after the deploy: both
+pages answer 200 and carry the right date, the footer links them in both
+languages, and `/privacy` still answers 404, which is the gate holding app
+sign-up shut.
+
+**One defect in the publish procedure, found by using it.** The effective-date
+placeholder is written as inline code so an unfilled date is impossible to miss.
+The script replaced the brackets and left the backticks, so the first run put
+the date in a monospace box. Fixed in the script, not just in the two files, so
+the three documents still to come do not repeat it.
+
+### The product policy took the answers that were unambiguous
+
+Five changes, each traceable to her responses document:
+
+| Change | Source |
+|---|---|
+| One year after a membership ends, then deleted with notice | Part C decision 3, "Keep" |
+| Sign-in logs 90 days, a clean-up once a day, backups seven days after | Part A plus her correction that it runs daily, not every six hours |
+| Purpose 7 made general | Her answer 5.9 |
+| The export holds the record, not the original files | Part C 2.3, "No, by app export only" |
+| An account of their own when the child turns 18 | Her answer 5.7 |
+
+**Three things in that document were deliberately not written.**
+
+The **catch-all purpose** her answer 5.9 asks for, "quality improvements and
+operational efficiency". Section 5 states that Canadian law allows only purposes
+the reader has been told about, lists them, and then says the list is
+exhaustive. A catch-all underneath that sentence contradicts it, and a purpose
+of "operational efficiency" is the kind that specificity rules exist to refuse.
+Purpose 4 already covers reading records to check quality. One word from her and
+it goes in; it should not go in silently.
+
+**Operational and audit log retention** still has no answer anywhere, so the
+placeholder stays.
+
+**Whether closing an account removes sign-in records at once** is answered one
+way in Part A and another in her correction, so the table claims neither.
+
+### The finding that outranks the responses document
+
+Section 6 of the product policy says that before anything is sent to an outside
+model, family names are replaced with placeholders and the map back never leaves
+the database. Section 2 repeats it in the short version. **The anonymiser is not
+built.** A blocking note inside section 6, written when the draft was made, says
+it is scheduled for Milestone 6 and that the section must not be published as
+written until it ships.
+
+Nobody answered that in the responses document, because it was never asked. It
+is the policy's strongest claim about a child's records, it is the reason the
+policy can say processing happens outside Canada at all, and on publication day
+as written it would be false. No answer about providers, addresses or retention
+changes that. Section 2's copy of the claim carries no blocking note, which is
+its own problem: a reader meets it there first.
+
+### What stayed untouched, and why
+
+The **Terms** and the **Licence** took no changes. Both are blocked on the same
+answer: her responses say Stripe is the merchant of record, which decides who
+the contract is between, who owes a refund, who collects the tax, and what
+address must appear. "Remove section 2 from the Terms" cannot be carried out
+sensibly before that, and section 2 is live text in a published contract. The
+Licence's own changes, the version-recording sentence and the findings clause,
+sit downstream of the same answer because the Licence is accepted alongside the
+Terms.
