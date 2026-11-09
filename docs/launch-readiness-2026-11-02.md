@@ -2102,3 +2102,54 @@ the withdrawal link.
 Policy. Both are being finalised and will be published on this site." That still describes the
 product policy and the Licence accurately, while the footer of the same page now links a published
 Website Privacy Policy. Her copy, so flagged rather than touched.
+
+### 9 November, published: the Terms, and the withdrawal section she kept
+
+Approved and live. Branch `publish-terms-2026-11-09`, cut from `main` at 17bb9f2 when `main` was
+byte-identical to `origin/main`, carrying four files and nothing else. Merged as `b4ab9f0`, pushed,
+build hook posted, served on the first poll.
+
+**What changed on the live site**
+
+| Page | Change |
+|---|---|
+| `/terms-of-service` | 52 lines of readable text out, 12 in |
+| `/conditions-d-utilisation` | 55 out, 13 in |
+| `/privacy/website` | the version line only |
+| `/politique-de-confidentialite/site-web` | the version line only |
+
+Gone from both Terms: section 2 entire, with CA$59.00 / US$42.00 / €35.00 and the Founding Families
+rate of CA$39.00 / US$27.00 / €23.00; the Founding Family subsection of section 1; section 3's
+introductory-rate bullet and the words *other* and *standard*. Added: Truer Measure™ at every
+mention, the date, and section 9's second route when a member declines a change.
+
+**After-publish verification, all passed:** the four pages at 200 with the right dates, section 15
+present in both languages, `/withdraw` and `/fr/withdraw` at 200, the footer link on both home
+pages, five marked brand mentions in each Terms document, no version number anywhere, none of the
+eight superseded price strings, and `/privacy`, `/politique-de-confidentialite`, `/licence`,
+`/contrat-de-licence` still answering 404. The same script reported 23 problems before the deploy
+and none after, which is the only honest way to know the hook did something: it answers 200 either
+way.
+
+**The correction that mattered most today was hers.** I had argued that removing section 15 was
+safe because the one known live subscription is in US dollars. Her answer: *"Un abonnement en USD
+ne suffit pas à établir le marché desservi ni les droits applicables."* That is right. The currency
+of one sale is not the market served, not who can reach the checkout, and not which rights attach,
+and a right is not absent because nobody has used it. Section 15, the footer link, both
+`/withdraw` routes, the form component and the withdrawal rows in both policies were restored to
+exactly what they were, and `check-launch-build.mjs` demands the link again instead of refusing it.
+
+**The Québec question is not closed**, on her instruction: even if APP confirms Managed Payments is
+what the Checkout uses, counsel answers separately what it changes for the contract and for the
+journey. "Resolved by merchant of record" stays an open item.
+
+**Noted, not changed:** the site chrome around the documents still says "Truer Measure" without the
+mark, 6 times on the English Terms page and 3 on the French, in the nav, the footer and the page
+title. Her instruction scoped the mark to the documents, and the documents carry it five times
+each. Marking the chrome is a separate decision about the whole site.
+
+**Still outside any batch:** the live website policy says, in both languages, that what a visitor
+types is never written to a log, and `netlify/functions/contact-submit.ts` on `main` still passes
+the provider's response body to `console.error`, which can quote a submitted email address back.
+The one-word-reason fix and `scripts/check-function-logs.mjs`, which enforces it, exist on this
+working branch only. It needs its own batch and her approval.
