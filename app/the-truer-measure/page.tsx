@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "The Truer Measure",
   description:
     "Bring together report cards, teacher comments, your observations, projects and moments from beyond school, and see what keeps showing up across your child's experiences.",
-  alternates: alternatesFor("/hidden-report-card"),
+  alternates: alternatesFor("/the-truer-measure"),
 };
 
 /**
@@ -30,12 +30,21 @@ export const metadata: Metadata = {
  * lost its second line: "The Hidden Report Card™ / A Truer Measure of your
  * child" would read as the same words twice.
  *
- * THE ROUTE IS STILL /hidden-report-card, deliberately, and it is the one
- * place the old phrase survives. A path is an address, not a name: this one is
- * in her social posts, in emails already sent, and it is the phrase a parent
- * searches for. Changing it would break those links for a cosmetic gain. If
- * she wants the address changed too, that is one redirect and a separate
- * decision, and nothing on the page depends on the path.
+ * THE ROUTE MOVED TOO, later the same day: "Change the URL for
+ * /the-truer-measure." It had stayed /hidden-report-card for a few hours, on
+ * the reasoning that a path is an address rather than a name and that one was
+ * in posts and sent emails. She decided the address should match the name, and
+ * the links are kept whole by a pair of 301s in netlify.toml rather than by
+ * leaving the old word in the bar.
+ *
+ * BOTH REDIRECTS MATTER. /hidden-report-card and /fr/hidden-report-card are
+ * permanent, so a search engine moves its ranking across instead of treating
+ * this as a new page competing with a dead one. Do not remove them: everything
+ * she has ever posted points at the old pair.
+ *
+ * The French path mirrors the English one, as every /fr route does. That is
+ * what lets the language toggle be "add or remove the prefix" with no table of
+ * page pairs (content/i18n.ts).
  *
  * The FAQ is off the page until Jolene decides what it says (30 September
  * 2026); its answers stay in content/founding-families.ts. Nothing on this

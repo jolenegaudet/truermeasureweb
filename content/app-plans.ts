@@ -199,8 +199,13 @@ export const APP_CURRENCY_ORDER: CurrencyCode[] = ["CAD", "USD", "EUR"];
  * explicit that they may then go: "L'indication concernant le démo pourra
  * alors disparaître."
  *
- * The Kit signup itself is untouched and still runs on /hidden-report-card in
- * both languages; only its copy inside this section was removed.
+ * The Kit signup's copy inside this section was removed then. The signup
+ * itself came off the site entirely on 9 November 2026, when the product
+ * launched and "be the first to know" stopped being true. Her decision the
+ * same day: "The site does not need an email sign up for now. The paid option
+ * was the goal." The list, the tag and netlify/functions/kit-subscribe.ts are
+ * all intact and nothing on the site opens them. Do not add one back
+ * unprompted; she is weighing a newsletter or a low-ticket offer separately.
  */
 export const DEMO_URL = "https://demo.truermeasure.com/";
 

@@ -42,9 +42,9 @@ const circleAccess = [
  * them, and the section came out rather than repeat the same three links
  * immediately above the footer that now holds them.
  *
- * The explanation of the Hidden Report Card (the contrast with a report card,
- * the qualities, what you get, when to pull it up) moved to /hidden-report-card
- * by her decision, so the home page is the door to the three offers. The
+ * The explanation of The Truer Measure (the contrast with a report card, the
+ * qualities, what you get, when to pull it up) moved to /the-truer-measure by
+ * her decision, so the home page is the door to the three offers. The
  * Clarity card's "See what is inside" link is where that explanation now lives.
  *
  * 28 OCTOBER 2026, her brief: the app offer is now one product with two plans.

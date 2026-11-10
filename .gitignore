@@ -57,3 +57,7 @@ Thumbs.db
 *.pem
 *secret*.txt
 *api*key*.txt
+
+# Python bytecode, from scripts/preview-server.py being imported
+__pycache__/
+*.pyc

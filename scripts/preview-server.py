@@ -24,11 +24,45 @@ Preview only. Nothing here runs in production, and the published site is served
 by Netlify.
 """
 import os
+import re
 import sys
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
-REDIRECTS = {"/terms": "/terms-of-service"}
+
+def redirects():
+    """The 301s from netlify.toml, read rather than copied.
+
+    This was a one-line dict holding /terms until 9 November 2026, when the
+    product page moved to /the-truer-measure and the preview went on serving
+    404s for the old pair while the live site redirected them correctly. A
+    preview that disagrees with production about routing is worse than no
+    preview, because it is believed.
+
+    Only the simple literal rules are taken. The wildcard ones (/build/*, and
+    the catch-all to 404.html) are left to the 404 handling below, which
+    already does what the catch-all does.
+    """
+    toml = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "netlify.toml")
+    try:
+        with open(toml, encoding="utf-8") as f:
+            src = f.read()
+    except OSError:
+        return {"/terms": "/terms-of-service"}
+    found = {}
+    for block in re.findall(r"\[\[redirects\]\](.*?)(?=\n\[|\Z)", src, re.S):
+        frm = re.search(r'from\s*=\s*"([^"]+)"', block)
+        to = re.search(r'to\s*=\s*"([^"]+)"', block)
+        status = re.search(r"status\s*=\s*(\d+)", block)
+        if not (frm and to and status):
+            continue
+        if status.group(1) != "301" or "*" in frm.group(1):
+            continue
+        found[frm.group(1)] = to.group(1)
+    return found
+
+
+REDIRECTS = redirects()
 
 
 class Netlifyish(SimpleHTTPRequestHandler):

@@ -69,6 +69,33 @@
   function = "currency"
   path     = "/*"
 
+# THE PRODUCT PAGE MOVED, 9 November 2026. Her instruction: "Change the URL for
+# /the-truer-measure."
+#
+# The page was /hidden-report-card in both languages from the day the site went
+# up until the product was renamed. These two redirects are the whole reason the
+# rename was safe to do: every link she has ever posted, every email already
+# sent and every search result in the index points at the old pair.
+#
+# 301 AND NOT 302, deliberately. A permanent redirect is what moves a page's
+# accumulated ranking to the new address; a temporary one tells a search engine
+# to keep indexing the old one, which would leave the dead name in results for
+# months. There is no reason to go back, so there is no reason to say it might.
+#
+# DO NOT REMOVE THESE. They cost nothing and they are load-bearing for the
+# oldest inbound links the site has. The French one is listed first only because
+# Netlify matches rules in order and the English rule would otherwise swallow it
+# if either is ever loosened to a wildcard.
+[[redirects]]
+  from   = "/fr/hidden-report-card"
+  to     = "/fr/the-truer-measure"
+  status = 301
+
+[[redirects]]
+  from   = "/hidden-report-card"
+  to     = "/the-truer-measure"
+  status = 301
+
 # /terms, because the customer app's agreement screen links to it.
 #
 # Confirmed with the app session on 2 November 2026: the app's agreement screen

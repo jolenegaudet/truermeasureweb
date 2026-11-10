@@ -442,8 +442,8 @@ const esc = (s) => s.replace(/&/g, "&amp;");
 if (items.length !== 27) {
   fail(`content/framework.ts parsed as ${items.length} items, expected 27`);
 } else {
-  const hrcEn = readFileSync(join(OUT, "hidden-report-card.html"), "utf8");
-  const hrcFr = readFileSync(join(OUT, "fr", "hidden-report-card.html"), "utf8");
+  const hrcEn = readFileSync(join(OUT, "the-truer-measure.html"), "utf8");
+  const hrcFr = readFileSync(join(OUT, "fr", "the-truer-measure.html"), "utf8");
   for (const item of items) {
     if (!hrcEn.includes(esc(item.en))) fail(`"${item.en}" is not on the English page`);
     if (!hrcFr.includes(esc(item.fr))) fail(`"${item.fr}" is not on the French page`);
@@ -506,8 +506,8 @@ for (const [html, lang, freeCta] of kind === "maintenance"
    there. Named explicitly so the check cannot pass by finding nothing. */
 const MDX_BODY = '<h2 class="font-heading mt-12';
 const actionFirst = [
-  ["hidden-report-card.html", 'id="plans"', "Grades tell a story", "the plan cards"],
-  ["fr/hidden-report-card.html", 'id="plans"', "Les notes racontent", "the plan cards"],
+  ["the-truer-measure.html", 'id="plans"', "Grades tell a story", "the plan cards"],
+  ["fr/the-truer-measure.html", 'id="plans"', "Les notes racontent", "the plan cards"],
   ["learn.html", "Join the Waitlist", MDX_BODY, "the waitlist"],
   ["fr/learn.html", "Rejoignez la liste", MDX_BODY, "the waitlist"],
   ["inner-circle.html", ">Apply<", MDX_BODY, "the application"],

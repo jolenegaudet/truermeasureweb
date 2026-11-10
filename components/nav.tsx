@@ -18,7 +18,7 @@ export default function Nav() {
 
   const links = [
     { href: localePath(locale, "/#tiers"), label: t.nav.start },
-    { href: localePath(locale, "/hidden-report-card"), label: t.nav.hiddenReportCard },
+    { href: localePath(locale, "/the-truer-measure"), label: t.nav.hiddenReportCard },
     { href: localePath(locale, "/learn"), label: t.nav.learn },
     { href: localePath(locale, "/inner-circle"), label: t.nav.innerCircle },
   ];

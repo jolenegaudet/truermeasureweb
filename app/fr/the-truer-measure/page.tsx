@@ -11,12 +11,12 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: "La juste mesure",
   description: DESCRIPTION,
-  alternates: alternatesFor("/hidden-report-card", "fr"),
+  alternates: alternatesFor("/the-truer-measure", "fr"),
   openGraph: {
     siteName: "Truer Measure",
     type: "website",
     locale: "fr_CA",
-    url: "/fr/hidden-report-card",
+    url: "/fr/the-truer-measure",
     title: "La juste mesure",
     description: DESCRIPTION,
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * The French counterpart of app/hidden-report-card/page.tsx. Same sections, in
+ * The French counterpart of app/the-truer-measure/page.tsx. Same sections, in
  * the same order, so the language toggle never changes which page you are on.
  *
  * NAMING. The product is "La juste mesure" in French, with no trademark
@@ -45,8 +45,9 @@ export const metadata: Metadata = {
  * "la", and the sentences that carried it were reread rather than
  * search-replaced.
  *
- * The route keeps the /hidden-report-card path on both sides. A path is an
- * address, not a name, and that one is in links already sent.
+ * The route moved to /fr/the-truer-measure with the English one, her
+ * instruction of 9 November 2026. /fr/hidden-report-card is a permanent
+ * redirect in netlify.toml and must stay one.
  */
 
 const contrasts = [

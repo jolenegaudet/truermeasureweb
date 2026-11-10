@@ -14,7 +14,7 @@
  * real pages under /fr.
  *
  * WHY THE PATHS MIRROR THE ENGLISH ONES
- * /fr/hidden-report-card, not /fr/bulletin-cache. The toggle is then "add or
+ * /fr/the-truer-measure, not /fr/la-juste-mesure. The toggle is then "add or
  * remove the /fr prefix", with no table of page pairs to keep in step, and any
  * page added later gets a working toggle without being registered anywhere.
  * The product names stay English because the brand does.
@@ -166,9 +166,10 @@ export function alternatesFor(englishPath: string, locale: Locale = "en") {
  * The second term was "The Hidden Report Card(TM) / Le rapport caché" until
  * 9 November 2026, when she renamed the product: "I kind of changed it to The
  * Truer Measure™, so that needs to change everywhere on the site." The old
- * name is dead in both languages and must not come back. The route is still
- * /hidden-report-card, which is an address and not a name; see the note at the
- * top of app/hidden-report-card/page.tsx.
+ * name is dead in both languages and must not come back. The route followed it
+ * to /the-truer-measure later the same day, with permanent redirects from the
+ * old pair in netlify.toml; see the note at the top of
+ * app/the-truer-measure/page.tsx.
  *
  * The French name was "Parents leaders" until 29 October 2026, when she
  * corrected it to "Parents Élites" ("Use exactly “Parents Élites”, replacing
