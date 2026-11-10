@@ -190,6 +190,11 @@ const mustHold = [
   [en, "s a Truer Measure.", "the English headline"],
   [en, "A note from the founder", "the founder's note (EN)"],
   [en, "Start with Clarity", "Clarity (EN)"],
+  /* The headline that used to sit under "Start with Clarity" moved onto the
+     paid card on 9 November 2026. Both must hold: the label names the first
+     part of the home page, and the promise is the claim the paid plan is sold
+     on. Losing either one silently is the thing this list exists to catch. */
+  [en, "See what grades don", "the paid promise (EN)"],
   [en, "Continue with Community.", "Community (EN)"],
   [en, "Grow with Proximity.", "Proximity (EN)"],
   [en, "Elite Parents", "Elite Parents (EN)"],
@@ -199,6 +204,7 @@ const mustHold = [
   [en, "You choose what goes in. Nothing is added without you.", "closing line 1 (EN)"],
   [en, "helps you see the bigger picture.", "closing line 2 (EN)"],
   [fr, "Commencez par la clart", "Clarté (FR)"],
+  [fr, "Voyez ce que les notes ne montrent pas.", "the paid promise (FR)"],
   [fr, "Parents Élites", "Parents Élites (FR)"],
   [fr, "Cercle privé", "Cercle privé (FR)"],
   [fr, "cole et vie", "École et vie (FR)"],

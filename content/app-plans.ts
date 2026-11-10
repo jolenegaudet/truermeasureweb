@@ -440,7 +440,22 @@ export const GOES_TO_DEMO = REGISTRATION.url === null;
 export const CARRIES_CHOICE = !GOES_TO_DEMO && REGISTRATION.currencyParam;
 
 type AppPlans = {
+  /** "Start with Clarity", above the cards on the home page in both
+   *  languages. It is the first of the three labels that name the parts of
+   *  that page, before "Continue with Community." and "Grow with Proximity."
+   *  The product pages do not show it (PlanCards, `showEyebrow`). */
   sectionEyebrow: string;
+  /**
+   * RETIRED 9 November 2026. Nothing renders this.
+   *
+   * It was "See what grades don't show.", centred under the eyebrow above both
+   * cards. It is now `paid.promise`, on the School & Life card, because the
+   * free plan cannot keep that promise and a line over both cards reads as
+   * covering both.
+   *
+   * KEPT, not deleted: it is her sentence and it still exists verbatim one
+   * field below. Delete it once it is clear no band is coming back here.
+   */
   sectionHeading: string;
   /** Under each button, because a button label is the wrong place for it. */
   demoNote: string;
@@ -465,6 +480,20 @@ type AppPlans = {
   };
   paid: {
     eyebrow: string;
+    /**
+     * The card's opening promise, under the plan name and above the price.
+     *
+     * Added 9 November 2026. It is the sentence that used to head the whole
+     * section, over both cards: "See what grades don't show needs to be on
+     * the … of the paid tier (School and Life) only." She is right that it was
+     * in the wrong place. The free plan reads report cards and says so
+     * ("Report cards only."), so a promise to show what grades do NOT show was
+     * being made over a card that cannot keep it.
+     *
+     * It sits above the price on purpose, which is where she put it: it is the
+     * reason to read the amount, so it comes before the amount.
+     */
+    promise: string;
     heading: string;
     plus: string;
     includes: string[];
@@ -568,6 +597,8 @@ export const appPlans: Record<Locale, AppPlans> = {
 
     paid: {
       eyebrow: "School & Life",
+      /* Her line, moved here from above the cards on 9 November 2026. */
+      promise: "See what grades don’t show.",
       heading: "See what everyday moments show.",
       plus: "Everything in School, plus:",
       /* Her four lines, dictated on 1 November and used word for word. They
@@ -694,6 +725,9 @@ export const appPlans: Record<Locale, AppPlans> = {
 
     paid: {
       eyebrow: "École et vie",
+      /* Déplacé au-dessus du prix le 9 novembre 2026, avec l'anglais. This is
+         the sentence that was the section heading, word for word. */
+      promise: "Voyez ce que les notes ne montrent pas.",
       heading: "Voyez ce que les moments du quotidien montrent.",
       plus: "Tout ce qu’il y a dans École, plus :",
       includes: [

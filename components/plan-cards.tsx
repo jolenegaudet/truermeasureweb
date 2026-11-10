@@ -71,13 +71,23 @@ import type { Locale } from "@/content/i18n";
 export function PlanCards({
   locale = "en",
   prices = [],
-  showHeading = true,
+  showEyebrow = true,
 }: {
   locale?: Locale;
   prices?: AppPrice[];
-  /** False where the page's own title already introduces the offer, so a
-      phone does not spend a screen on two headings before the choice. */
-  showHeading?: boolean;
+  /**
+   * Whether to print "Start with Clarity" above the cards.
+   *
+   * It was `showHeading` until 9 November 2026, when the headline under that
+   * eyebrow moved onto the paid card and only the eyebrow was left in the
+   * band. Renamed rather than kept, because a prop that says "heading" and
+   * governs an eyebrow is the kind of small lie that costs an hour later.
+   *
+   * The two product pages pass false. The label belongs to the home page,
+   * where it names the first of three parts; on a page that is entirely about
+   * this one offer it would be labelling the whole page.
+   */
+  showEyebrow?: boolean;
 }) {
   const t = appPlansFor(locale);
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
@@ -127,18 +137,27 @@ export function PlanCards({
 
   return (
     <>
-      {/* ---------- Heading ---------- */}
-      {showHeading && (
-        <div className="mx-auto mb-8 max-w-[560px] text-center">
-          <div className="mb-3 text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
-            {t.sectionEyebrow}
-          </div>
-          <h2
-            className="font-heading font-medium text-bark"
-            style={{ fontSize: "clamp(27px,4.6vw,46px)", lineHeight: 1.08 }}
-          >
-            {t.sectionHeading}
-          </h2>
+      {/* ---------- The section label ---------- */}
+      {/* "Start with Clarity", and nothing else.
+          The headline that sat under it, "See what grades don't show.", moved
+          onto the paid card on 9 November 2026: her instruction was that it
+          "needs to be on the … of the paid tier (School and Life) only", and
+          she is right about why. The free plan reads report cards and says so
+          ("Report cards only."), so a promise to show what grades do NOT show
+          was being made over a card that cannot keep it, and a claim centred
+          above two cards is read as covering both.
+
+          THE EYEBROW STAYS, her correction the same evening: "Start with
+          clarity needed to stay where it was." I had taken it off with the
+          headline, on the reasoning that a lone eyebrow looks like something
+          failed to render. That was wrong here, because this label is not
+          decoration: it is the first of the three that name the parts of the
+          home page, with "Continue with Community." and "Grow with
+          Proximity." below it. Take it away and the sequence loses its first
+          step. */}
+      {showEyebrow && (
+        <div className="mx-auto mb-8 max-w-[560px] text-center text-[11.5px] font-semibold uppercase tracking-[0.26em] text-rose">
+          {t.sectionEyebrow}
         </div>
       )}
 
@@ -200,9 +219,20 @@ export function PlanCards({
             {t.paid.eyebrow}
           </div>
 
+          {/* The promise, above the price. Her placement, 9 November 2026: it
+              is the reason to read the amount, so it comes before the amount.
+              Set below the price's 36px so the two do not compete, and in the
+              heading face so it reads as a sentence rather than a label. */}
+          <h3
+            className="font-heading mt-3 text-balance font-medium text-parchment"
+            style={{ fontSize: "clamp(20px,2.6vw,24px)", lineHeight: 1.15 }}
+          >
+            {t.paid.promise}
+          </h3>
+
           {/* The price, the period, the scope and the button: one group, in
               that order, which is her brief of 29 October. */}
-          <div className="mt-2">
+          <div className="mt-4">
             {showPrices ? (
               /* All three currencies are in the HTML and CSS shows exactly one,
                  chosen by the attribute the inline script in app/layout.tsx

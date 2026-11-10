@@ -172,7 +172,7 @@ export default function HiddenReportCardPage() {
         className="scroll-mt-6 bg-parchment px-6 pb-16 pt-2 md:px-10 md:pb-[100px]"
       >
         <div className="mx-auto max-w-[1180px]">
-          <PlanCards locale="en" prices={APP_PRICES} showHeading={false} />
+          <PlanCards locale="en" prices={APP_PRICES} showEyebrow={false} />
         </div>
       </section>
 
