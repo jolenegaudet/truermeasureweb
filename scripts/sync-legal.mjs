@@ -97,7 +97,16 @@ for (const [from, to] of DOCS) {
   const { text, fingerprint } = render(readFileSync(src, "utf8"), from);
   const dest = join(ROOT, "content", to);
   const current = existsSync(dest) ? readFileSync(dest, "utf8") : null;
-  if (current === text) {
+  /* LINE ENDINGS ARE NOT DRIFT, fixed 11 November 2026.
+     This repository has core.autocrlf=true and no .gitattributes, so every
+     checkout writes CRLF into content/ while this script writes LF. The two
+     could therefore never be equal, and --check reported all three documents
+     DRIFTED on a clean tree, every time, whatever they said. A guard that
+     always fails is not a guard: its whole job is to catch someone editing a
+     generated legal document by hand, and nobody can read that signal out of
+     three permanent failures. Compare the text, which is what drift means. */
+  const same = (a, b) => a !== null && a.replace(/\r\n/g, "\n") === b;
+  if (same(current, text)) {
     report.push(`  ${to}  up to date  (${fingerprint})`);
     continue;
   }
