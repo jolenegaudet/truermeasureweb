@@ -404,6 +404,35 @@ if (kind === "launch") {
       if (!href.includes("currency=")) fail(`${href} does not carry the currency`);
       if (!href.includes("billing=")) fail(`${href} does not carry the billing period`);
     }
+    /* THE PLAN, her instruction of 11 November 2026: the paid button carries
+       plan=life and the free button carries plan=school. The two values are
+       read out of PLAN_PARAM in content/app-plans.ts rather than written here,
+       for the same reason the labels are: one place to change, and a shape
+       change fails loudly instead of passing on nothing.
+
+       Counted per page rather than matched to a button label, because the
+       French labels carry accents and this file cannot assume how they survive
+       the export. Each page has exactly one of each button, so one occurrence
+       of each value per page is the whole claim. */
+    const planBlock = /export const PLAN_PARAM = \{([\s\S]*?)\}/.exec(planSource);
+    if (!planBlock) {
+      fail("content/app-plans.ts: PLAN_PARAM is missing, so the plan values cannot be checked");
+    } else {
+      const valueOf = (key) => {
+        const m = new RegExp(`${key}:\\s*"([^"]+)"`).exec(planBlock[1]);
+        if (!m) fail(`content/app-plans.ts: PLAN_PARAM has no ${key} value`);
+        return m ? m[1] : null;
+      };
+      const paidValue = valueOf("full");
+      const freeValue = valueOf("school");
+      for (const [html, lang] of [[en, "EN"], [fr, "FR"]]) {
+        for (const [value, which] of [[paidValue, "paid"], [freeValue, "free"]]) {
+          if (value && !html.includes(`plan=${value}`)) {
+            fail(`the ${lang} page's ${which} button does not carry plan=${value}`);
+          }
+        }
+      }
+    }
   }
   for (const [html, lang] of [[en, "EN"], [fr, "FR"]]) {
     if (html.includes("Opens the demo") || html.includes("Ouvre la d")) {

@@ -265,14 +265,33 @@ export const DEMO_URL = "https://demo.truermeasure.com/";
  * ── CARRYING THE PLAN INTO REGISTRATION ───────────────────────────────────
  *
  * Her brief: "Where supported, carry the selected plan into registration."
- * It is not supported. The customer app reads exactly two query parameters,
- * `?checkout=done|cancelled` (js/account.js) and `?code=` for an invite
- * (js/ai.js). There is no `?plan=`. The plan is chosen inside onboarding, on
- * the "How do you want to start with {name}?" screen, after the child's name.
  *
- * Adding one would be a change to the customer app, which this brief rules
- * out. So `planParam` is false and no plan is appended; when the app learns
- * `?plan=`, set it to true and the links carry `school` or `full`.
+ * It was not supported, and `planParam` was false from 28 October to
+ * 11 November 2026 for that reason: the app read exactly two query parameters,
+ * `?checkout=done|cancelled` (js/account.js) and `?code=` for an invite
+ * (js/ai.js), plus the currency pair below. The plan is chosen inside
+ * onboarding, on the "How do you want to start with {name}?" screen, after the
+ * child's name.
+ *
+ * HER INSTRUCTION OF 11 NOVEMBER 2026 turns it on anyway: "add the chosen plan
+ * to each button's app link: the 'School and Life' button adds &plan=life, and
+ * the 'School only' button adds &plan=school. Keep currency and billing as they
+ * are." So the links now name the plan, and her two words are the values, which
+ * is why the paid plan travels as `life` and not as `full`: `full` is this
+ * file's internal key for that card, `life` is what she asked the link to say.
+ * PLAN_PARAM below is the one place the two are mapped to each other.
+ *
+ * WHAT THE APP DOES WITH IT. Nothing, as far as anything here can verify: the
+ * last confirmation from the app session, 3 November 2026, was that it reads
+ * currency, billing and the signed stamp, and ignores unknown parameters. An
+ * ignored parameter is harmless, not wrong, and the link is the only place a
+ * website can put the choice; if the app later learns to read it, the website
+ * side is already done. What it must not become is a claim: nothing on the page
+ * tells a parent the button has chosen their plan for them, because onboarding
+ * still asks.
+ *
+ * It goes on LAST, after currency and billing, which is the order she wrote and
+ * the order a reader of the address bar will see.
  *
  * ── THE VERIFIED ROUTE, confirmed with the app session on 29 October ──────
  *
@@ -357,6 +376,30 @@ export const HANDOFF = {
 } as const;
 
 /**
+ * The plan parameter, and the two words that travel in it.
+ *
+ * Her instruction of 11 November 2026 gave the values, not just the idea:
+ * `plan=life` on the School and Life button, `plan=school` on the School only
+ * button. The keys on the left are this file's own, used by `planHref` and the
+ * two cards in components/plan-cards.tsx; the strings on the right are the ones
+ * a parent can read in the address bar.
+ *
+ * They differ on purpose for the paid plan. `full` is what the card has been
+ * called in this codebase since 28 October, and renaming it would touch the
+ * cards, the checks and the app's own vocabulary for no gain. `life` is her
+ * word, and the link is hers. Change either side here and nowhere else;
+ * scripts/check-launch-build.mjs reads these values out of this block, so a
+ * build whose buttons carry something different fails.
+ */
+export const PLAN_PARAM = {
+  school: "school",
+  full: "life",
+} as const;
+
+/** The query-string name itself, kept beside the values it takes. */
+export const PLAN_PARAM_NAME = "plan";
+
+/**
  * The customer app's host, when there is one: the single value that connects
  * this page to registration.
  *
@@ -393,11 +436,16 @@ export const REGISTRATION: {
   /** The route a new parent lands on, verified with the app session. */
   path: string;
   /**
-   * Whether the link names the plan. False, and settled: the app session
-   * confirmed on 3 November 2026 that it needs no plan parameter, because the
-   * app asks School or School & Life in its own onboarding. Currency and
-   * billing only pre-set what a parent sees if they later choose School & Life,
-   * so sending both on the free button is correct, not a leak.
+   * Whether the link names the plan. True since her instruction of 11 November
+   * 2026; the values are PLAN_PARAM above.
+   *
+   * It was false before that, because the app asks School or School & Life in
+   * its own onboarding and the app session confirmed on 3 November 2026 that it
+   * reads no plan parameter. Her instruction is for the link to carry the
+   * choice regardless, which it now does, after currency and billing.
+   *
+   * Currency and billing only pre-set what a parent sees if they later choose
+   * School & Life, so sending both on the free button is correct, not a leak.
    */
   planParam: boolean;
   /** Whether the destination understands ?currency= and ?billing=. */
@@ -405,7 +453,7 @@ export const REGISTRATION: {
 } = {
   url: APP_HOST || null,
   path: "/",
-  planParam: false,
+  planParam: true,
   currencyParam: true,
 };
 
@@ -421,10 +469,15 @@ export function planHref(
   } catch {
     return REGISTRATION.url;
   }
-  if (REGISTRATION.planParam) url.searchParams.set("plan", plan);
   if (REGISTRATION.currencyParam) {
     if (carry?.currency) url.searchParams.set(HANDOFF.currency, carry.currency);
     if (carry?.interval) url.searchParams.set(HANDOFF.interval, carry.interval);
+  }
+  /* Last, after currency and billing: her instruction of 11 November 2026 wrote
+     it as "&plan=life", and the click-time stamp in app/layout.tsx re-sets the
+     two parameters it owns in place, so this stays where it is put. */
+  if (REGISTRATION.planParam) {
+    url.searchParams.set(PLAN_PARAM_NAME, PLAN_PARAM[plan]);
   }
   return url.toString();
 }
